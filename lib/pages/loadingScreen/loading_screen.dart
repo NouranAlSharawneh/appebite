@@ -11,6 +11,12 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> with SingleTickerProviderStateMixin {
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -23,13 +29,6 @@ class _LoadingScreenState extends State<LoadingScreen> with SingleTickerProvider
         builder: (_) => const LoginScreen(),
       ));
     });
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-    super.dispose();
   }
 
   @override
