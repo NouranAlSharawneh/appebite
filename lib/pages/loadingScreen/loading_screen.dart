@@ -26,7 +26,7 @@ class _LoadingScreenState extends State<LoadingScreen> with SingleTickerProvider
 
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (_) => const LoginScreen(),
+        builder: (_) => LoginPage(),
       ));
     });
   }
