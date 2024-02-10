@@ -1,0 +1,47 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+class LoginButton extends StatelessWidget {
+  const LoginButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.fromLTRB(4, 0, 15.5, 48),
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.pushReplacementNamed(context, '/next_page');
+        },
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(horizontal: 120, vertical: 18),
+          backgroundColor: const Color(0xffff7269),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              margin: const EdgeInsets.fromLTRB(0, 0, 11, 0),
+              child: Text(
+                'Login',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  height: 1.5,
+                  color: const Color(0xffffffff),
+                ),
+              ),
+            ),
+            const Icon(
+              Icons.arrow_forward_sharp,
+              color: Colors.white,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
