@@ -8,32 +8,29 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.fromLTRB(4, 0, 15.5, 48),
+      margin: const EdgeInsets.fromLTRB(4, 0, 14, 48),
       child: ElevatedButton(
         onPressed: () {
           Navigator.pushReplacementNamed(context, '/next_page');
         },
         style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(horizontal: 120, vertical: 18),
+          padding: const EdgeInsets.symmetric(horizontal: 125, vertical: 18),
           backgroundColor: const Color(0xffff7269),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
         ),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              margin: const EdgeInsets.fromLTRB(0, 0, 11, 0),
-              child: Text(
-                'Login',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  height: 1.5,
-                  color: const Color(0xffffffff),
-                ),
+            Text(
+              'Login',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.poppins(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                height: 1.5,
+                color: const Color(0xffffffff),
               ),
             ),
             const Icon(
