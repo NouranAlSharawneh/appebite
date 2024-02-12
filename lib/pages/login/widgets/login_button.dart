@@ -7,6 +7,7 @@ class LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       margin: const EdgeInsets.fromLTRB(4, 0, 15.5, 48),
       child: ElevatedButton(
         onPressed: () {
