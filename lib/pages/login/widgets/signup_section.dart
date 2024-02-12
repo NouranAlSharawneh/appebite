@@ -15,13 +15,28 @@ class SignUpSection extends StatelessWidget {
         style: TextButton.styleFrom(
           padding: EdgeInsets.zero,
         ),
-        child: Text(
-          'Don’t have an account? Sign up',
-          style: GoogleFonts.poppins(
-            fontSize: 11,
-            fontWeight: FontWeight.w500,
-            height: 1.5,
-            color: const Color(0xffe7965b),
+        child: RichText(
+          text: TextSpan(
+            children: [
+              const TextSpan(
+                text: 'Don\'t have an account?',
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                  height: 1.5,
+                  color: Color(0xff686F82), // Set the desired color
+                ),
+              ),
+              TextSpan(
+                text: ' Sign up',
+                style: GoogleFonts.poppins(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                  height: 1.5,
+                  color: const Color(0xffe7965b), // Your original color
+                ),
+              ),
+            ],
           ),
         ),
       ),

@@ -8,9 +8,10 @@ class ForgetPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        margin: const EdgeInsets.fromLTRB(0, 0, 229.5, 28),
-        child: Text(
-          'Forgot Password?',
+        alignment: Alignment.topLeft,
+        child: TextButton(
+          onPressed: () {},
+          child: Text('Forgot Password?',
           textAlign: TextAlign.center,
           style: GoogleFonts.poppins(
             fontSize: 13,
@@ -19,6 +20,7 @@ class ForgetPassword extends StatelessWidget {
             color: const Color(0xffe7965b),
           ),
         ),
+      ),
       ),
     );
   }

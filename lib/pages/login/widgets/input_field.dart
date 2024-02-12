@@ -8,9 +8,10 @@ class InputField extends StatelessWidget {
     required this.hint,
     this.isPassword = false,
   });
-  final String label;
+
   final String hint;
   final bool isPassword;
+  final String label;
 
   @override
   Widget build(BuildContext context) {
@@ -41,19 +42,19 @@ class InputField extends StatelessWidget {
             ),
             child: isPassword
                 ? SizedBox(
-                  height: 35,
+                  height: 45,
                   child: TextField(
                       obscureText: true,
                       style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         hintText: hint,
-                        hintStyle: const TextStyle(color: Color(0xff686f82)),
+                        hintStyle: const TextStyle(color: Color(0xff686f82)),                   
                         border: InputBorder.none,
                       ),
                     ),
                 )
                 : SizedBox(
-                  height: 35,
+                  height: 45,
                   child: TextField(
                       style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
@@ -61,6 +62,7 @@ class InputField extends StatelessWidget {
                         hintStyle: const TextStyle(color: Color(0xff686f82)),
                         border: InputBorder.none,
                       ),
+                      
                     ),
                 ),
           ),
