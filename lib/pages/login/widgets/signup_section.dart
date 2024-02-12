@@ -7,9 +7,9 @@ class SignUpSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(0, 0, 24.5, 100), // Adjust margin to move up
+      margin: const EdgeInsets.fromLTRB(0, 0, 24.5, 100), 
       child: Transform.translate(
-        offset: const Offset(0, -20), // Adjust the offset to move up
+        offset: const Offset(0, -20), 
         child: TextButton(
           onPressed: () {
             // Implement your sign-up logic here
