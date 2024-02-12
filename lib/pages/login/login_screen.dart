@@ -1,7 +1,7 @@
 import 'package:appebite/pages/login/widgets/divider_section.dart';
 import 'package:appebite/pages/login/widgets/forget_password.dart';
 import 'package:appebite/pages/login/widgets/input_field.dart';
-import 'package:appebite/pages/login/widgets/login_buttin.dart';
+import 'package:appebite/pages/login/widgets/login_button.dart';
 import 'package:appebite/pages/login/widgets/signup_section.dart';
 import 'package:appebite/pages/login/widgets/title_section.dart';
 import 'package:flutter/material.dart';

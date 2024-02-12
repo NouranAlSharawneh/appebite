@@ -16,7 +16,7 @@ class InputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(0, 0, 0, 45),
+      margin: const EdgeInsets.fromLTRB(0, 0, 0, 35),
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +38,7 @@ class InputField extends StatelessWidget {
             width: double.infinity,
             decoration: BoxDecoration(
               color: const Color(0xff353842),
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(13),
             ),
             child: isPassword
                 ? SizedBox(
