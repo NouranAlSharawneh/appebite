@@ -22,7 +22,7 @@ class LoginPage extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Container(
-        padding: const EdgeInsets.fromLTRB(34, 14, 22.5, 8),
+        padding: const EdgeInsets.fromLTRB(36, 14, 36, 8),
         width: double.infinity,
         decoration: const BoxDecoration(
           color: Color(0xff272a32),
