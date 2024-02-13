@@ -1,3 +1,4 @@
+// Noran, Progress: UI DONE, FUNCTIONALITY TO BE ADDED 
 import 'package:appebite/pages/login/widgets/divider_section.dart';
 import 'package:appebite/pages/login/widgets/forget_password.dart';
 import 'package:appebite/pages/login/widgets/input_field.dart';
