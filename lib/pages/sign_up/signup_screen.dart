@@ -1,9 +1,8 @@
+import 'package:appebite/pages/sign_up/widgets/signup_title.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
-class Scene extends StatelessWidget {
+class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 391;
@@ -12,138 +11,28 @@ class Scene extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Container(
-        // signupRTR (52:594)
         padding: EdgeInsets.fromLTRB(34*fem, 14*fem, 22.5*fem, 8*fem),
         width: double.infinity,
-        decoration: BoxDecoration (
-          border: Border.all(color: Color(0xff353842)),
-          color: const Color(0xff272a32),
+        decoration: const BoxDecoration (
+          color: Color(0xff272a32),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              // statusbarudV (52:606)
-              margin: EdgeInsets.fromLTRB(2.5*fem, 0*fem, 0*fem, 72*fem),
-              padding: EdgeInsets.fromLTRB(0*fem, 0*fem, 1*fem, 0*fem),
-              width: double.infinity,
-              height: 19*fem,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    // time1gX (I52:606;128:320)
-                    margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 231*fem, 0*fem),
-                    child: Text(
-                      '19:27',
-                      style: GoogleFonts.poppins(
-                        fontSize: 15*ffem,
-                        fontWeight: FontWeight.w500,
-                        height: 1.2575*ffem/fem,
-                        letterSpacing: -0.1650000066*fem,
-                        color: const Color(0xffffffff),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    // symbolsJQj (I52:606;128:302)
-                    margin: EdgeInsets.fromLTRB(0*fem, 3.16*fem, 0*fem, 4.34*fem),
-                    height: double.infinity,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          // combinedshapeS19 (I52:606;128:310)
-                          margin: EdgeInsets.fromLTRB(0*fem, 0.08*fem, 5*fem, 0*fem),
-                          width: 17.1*fem,
-                          height: 10.7*fem,
-                          child: Image.asset(
-                            'assets/designs/images/combined-shape-pcK.png',
-                            width: 17.1*fem,
-                            height: 10.7*fem,
-                          ),
-                        ),
-                        Container(
-                          // wifiYK5 (I52:606;128:315)
-                          margin: EdgeInsets.fromLTRB(0*fem, 0.04*fem, 5*fem, 0*fem),
-                          width: 15.4*fem,
-                          height: 11.06*fem,
-                          child: Image.asset(
-                            'assets/designs/images/wi-fi-7MV.png',
-                            width: 15.4*fem,
-                            height: 11.06*fem,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 24.5*fem,
-                          height: 11.5*fem,
-                          child: Image.asset(
-                            'assets/designs/images/battery-zYs.png',
-                            width: 24.5*fem,
-                            height: 11.5*fem,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 13.5*fem, 23*fem),
+              margin: EdgeInsets.fromLTRB(0*fem, 100, 13.5*fem, 23*fem),
               width: 313*fem,
               height: 75*fem,
-              child: Container(
-                // autogroupoa9yh5V (JybXJ5bGBPCHyoLWvJoa9y)
-                margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 122*fem, 0*fem),
-                width: 191*fem,
-                height: double.infinity,
-                child: SizedBox(
-                  width: double.infinity,
-                  height: 68*fem,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 5*fem),
-                        child: Text(
-                          'Create an account',
-                          style: GoogleFonts.poppins(
-                            fontSize: 20*ffem,
-                            fontWeight: FontWeight.w600,
-                            height: 1.5*ffem/fem,
-                            color: const Color(0xffffffff),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        constraints: BoxConstraints (
-                          maxWidth: 190*fem,
-                        ),
-                        child: Text(
-                          'Let’s help you set up your account, it won’t take long.',
-                          style: GoogleFonts.poppins(
-                            fontSize: 11*ffem,
-                            fontWeight: FontWeight.w400,
-                            height: 1.5*ffem/fem,
-                            color: const Color(0xffffffff),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              // for the title of the page
+              child: SignUpTitle(fem: fem, ffem: ffem),
             ),
             Container(
-              // autogroupgcx3A7V (JybXZeyeFCEww172Z4GCx3)
               margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 16.5*fem, 18.83*fem),
               width: 316*fem,
               height: 318.17*fem,
               child: Stack(
                 children: [
                   Positioned(
-                    // inputsTsH (53:809)
                     left: 0*fem,
                     top: 0*fem,
                     child: SizedBox(
@@ -152,170 +41,80 @@ class Scene extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            // autogroupmivpPF9 (JybXhV5vvL57hoxhLCmivP)
-                            margin: EdgeInsets.fromLTRB(1*fem, 0*fem, 0*fem, 21*fem),
-                            width: double.infinity,
-                            height: 61*fem,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 25*fem, 0*fem),
-                                  width: 145*fem,
-                                  height: double.infinity,
-                                  child: Stack(
-                                    children: [
-                                      Positioned(
-                                        left: 0*fem,
-                                        top: 19.5803222656*fem,
-                                        child: Align(
-                                          child: SizedBox(
-                                            width: 145*fem,
-                                            height: 41.42*fem,
-                                            child: Container(
-                                              decoration: BoxDecoration (
-                                                borderRadius: BorderRadius.circular(10*fem),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // First row: Labels
+                              Row(
+                                children: [
+                                  // "First name" label
+                                  Expanded(
+                                    child:Text(
+                                        'First name',
+                                        style: GoogleFonts.poppins(
+                                        fontSize: 14*ffem,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.5*ffem/fem,
+                                        color: const Color(0xffffffff),
                                       ),
-                                      Positioned(
-                                        left: 0*fem,
-                                        top: 0*fem,
-                                        child: Align(
-                                          child: SizedBox(
-                                            width: 74*fem,
-                                            height: 21*fem,
-                                            child: Text(
-                                              'First name',
-                                              style: GoogleFonts.poppins(
-                                                fontSize: 14*ffem,
-                                                fontWeight: FontWeight.w400,
-                                                height: 1.5*ffem/fem,
-                                                color: const Color(0xffffffff),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Positioned(
-                                        left: 30*fem,
-                                        top: 32*fem,
-                                        child: Align(
-                                          child: SizedBox(
-                                            width: 58*fem,
-                                            height: 17*fem,
-                                            child: Text(
-                                              'First name',
-                                              style: GoogleFonts.poppins(
-                                                fontSize: 11*ffem,
-                                                fontWeight: FontWeight.w400,
-                                                height: 1.5*ffem/fem,
-                                                color: const Color(0xff686f82),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Positioned(
-                                        left: 8*fem,
-                                        top: 33*fem,
-                                        child: Align(
-                                          child: SizedBox(
-                                            width: 15*fem,
-                                            height: 15*fem,
-                                            child: Image.asset(
-                                              'assets/designs/images/vuesax-bold-frame.png',
-                                              width: 15*fem,
-                                              height: 15*fem,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                    ),
                                   ),
-                                ),
-                                SizedBox(
-                                  width: 145*fem,
-                                  height: double.infinity,
-                                  child: Stack(
-                                    children: [
-                                      Positioned(
-                                        left: 0*fem,
-                                        top: 19.5803222656*fem,
-                                        child: Align(
-                                          child: SizedBox(
-                                            width: 145*fem,
-                                            height: 41.42*fem,
-                                            child: Container(
-                                              decoration: BoxDecoration (
-                                                borderRadius: BorderRadius.circular(10*fem),
-                                                color: const Color(0xff353842),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
+                                  // "Last name" label
+                                  Expanded(
+                                    child: Text(
+                                        'Last name',
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 14*ffem,
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.5*ffem/fem,
+                                          color: const Color(0xffffffff),
                                       ),
-                                      Positioned(
-                                        left: 0*fem,
-                                        top: 0*fem,
-                                        child: Align(
-                                          child: SizedBox(
-                                            width: 74*fem,
-                                            height: 21*fem,
-                                            child: Text(
-                                              'Last name',
-                                              style: GoogleFonts.poppins(
-                                                fontSize: 14*ffem,
-                                                fontWeight: FontWeight.w400,
-                                                height: 1.5*ffem/fem,
-                                                color: const Color(0xffffffff),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Positioned(
-                                        left: 37*fem,
-                                        top: 32*fem,
-                                        child: Align(
-                                          child: SizedBox(
-                                            width: 58*fem,
-                                            height: 17*fem,
-                                            child: Text(
-                                              'Last name',
-                                              style: GoogleFonts.poppins(
-                                                fontSize: 11*ffem,
-                                                fontWeight: FontWeight.w400,
-                                                height: 1.5*ffem/fem,
-                                                color: const Color(0xff686f82),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Positioned(
-                                        left: 12*fem,
-                                        top: 33*fem,
-                                        child: Align(
-                                          child: SizedBox(
-                                            width: 15*fem,
-                                            height: 15*fem,
-                                            child: Image.asset(
-                                              'assets/designs/images/vuesax-bold-frame-Zz3.png',
-                                              width: 15*fem,
-                                              height: 15*fem,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
+                                ],
+                              ),
+                              const SizedBox(height: 8.0), 
+
+                              // Second row: Text Fields
+                              Row(
+                                children: [
+                                  // "First name" text field
+                                  Expanded(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey[200],
+                                        borderRadius: BorderRadius.circular(10.0),
+                                      ),
+                                      // child: TextField(
+                                      //   decoration: InputDecoration(
+                                      //     hintText: 'Enter your first name',
+                                      //     contentPadding: EdgeInsets.all(12.0),
+                                      //     border: InputBorder.none,
+                                      //   ),
+                                      // ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 16.0), // Add some spacing between text fields
+
+                                  // "Last name" text field
+                                  Expanded(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey[200],
+                                        borderRadius: BorderRadius.circular(10.0),
+                                      ),
+                                      // child: const TextField(
+                                      //   decoration: InputDecoration(
+                                      //     hintText: 'Enter your last name',
+                                      //     contentPadding: EdgeInsets.all(12.0),
+                                      //     border: InputBorder.none,
+                                      //   ),
+                                      // ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                           Container(
                             margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 26*fem),
@@ -519,7 +318,6 @@ class Scene extends StatelessWidget {
                                   ),
                                 ),
                                 Container(
-                                  // addyourprofilepicturePJK (53:1269)
                                   margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 47*fem, 0*fem),
                                   child: Text(
                                     'Add your profile picture  ',
@@ -557,7 +355,6 @@ class Scene extends StatelessWidget {
               ),
             ),
             Container(
-              // frame48095704D2T (79:1312)
               margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 11.5*fem, 50*fem),
               child: TextButton(
                 onPressed: () {},
@@ -568,7 +365,6 @@ class Scene extends StatelessWidget {
                   width: 315*fem,
                   height: 60*fem,
                   child: Container(
-                    // bigbutton7tX (53:753)
                     padding: EdgeInsets.fromLTRB(102.5*fem, 18*fem, 104.5*fem, 18*fem),
                     width: double.infinity,
                     height: double.infinity,
@@ -580,7 +376,6 @@ class Scene extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          // labeld6B (I53:753;53:624)
                           margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 9*fem, 0*fem),
                           child: Text(
                             'Continue ',
@@ -657,24 +452,6 @@ class Scene extends StatelessWidget {
                         ),
                       ),
                     ],
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              // homeindicatormtX (52:595)
-              margin: EdgeInsets.fromLTRB(94*fem, 0*fem, 105.5*fem, 0*fem),
-              width: double.infinity,
-              child: Center(
-                // line8DH (I52:595;42:603)
-                child: SizedBox(
-                  width: double.infinity,
-                  height: 5*fem,
-                  child: Container(
-                    decoration: BoxDecoration (
-                      borderRadius: BorderRadius.circular(100*fem),
-                      color: const Color(0xffffffff),
-                    ),
                   ),
                 ),
               ),
