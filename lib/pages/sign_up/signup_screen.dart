@@ -70,7 +70,7 @@ class SignUpPage extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 8.0), // Add some spacing between rows
+                              const SizedBox(height: 8.0), // Add some spacing between rows
 
                               // Second row: Text Fields
                               Row(
@@ -180,207 +180,13 @@ class SignUpPage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Container(
-                            margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 26*fem),
-                            width: 315*fem,
-                            height: 65*fem,
-                            child: Stack(
-                              children: [
-                                Positioned(
-                                  left: 0*fem,
-                                  top: 4*fem,
-                                  child: SizedBox(
-                                    width: 315*fem,
-                                    height: 61*fem,
-                                    child: Stack(
-                                      children: [
-                                        Positioned(
-                                          left: 0*fem,
-                                          top: 19.5803222656*fem,
-                                          child: Align(
-                                            child: SizedBox(
-                                              width: 315*fem,
-                                              height: 41.42*fem,
-                                              child: Container(
-                                                decoration: BoxDecoration (
-                                                  borderRadius: BorderRadius.circular(10*fem),
-                                                  color: const Color(0xff353842),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          left: 11.25*fem,
-                                          top: 37.5*fem,
-                                          child: Align(
-                                            child: SizedBox(
-                                              width: 12.5*fem,
-                                              height: 10*fem,
-                                              child: Image.asset(
-                                                'assets/designs/images/ic-round-email.png',
-                                                width: 12.5*fem,
-                                                height: 10*fem,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          left: 31*fem,
-                                          top: 34*fem,
-                                          child: Align(
-                                            child: SizedBox(
-                                              width: 62*fem,
-                                              height: 17*fem,
-                                              child: Text(
-                                                'Enter email',
-                                                style: GoogleFonts.poppins(
-                                                  fontSize: 11*ffem,
-                                                  fontWeight: FontWeight.w400,
-                                                  height: 1.5*ffem/fem,
-                                                  color: const Color(0xff686f82),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                  left: 3*fem,
-                                  top: 0*fem,
-                                  child: Align(
-                                    child: SizedBox(
-                                      width: 99*fem,
-                                      height: 21*fem,
-                                      child: Text(
-                                        'Email address',
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 14*ffem,
-                                          fontWeight: FontWeight.w400,
-                                          height: 1.5*ffem/fem,
-                                          color: const Color(0xffffffff),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                          
+                          ///////////////////////
                           SizedBox(
                             width: 315*fem,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
-                                  margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 54*fem),
-                                  width: double.infinity,
-                                  height: 65*fem,
-                                  child: Stack(
-                                    children: [
-                                      Positioned(
-                                        left: 0*fem,
-                                        top: 4*fem,
-                                        child: SizedBox(
-                                          width: 315*fem,
-                                          height: 61*fem,
-                                          child: Stack(
-                                            children: [
-                                              Positioned(
-                                                left: 0*fem,
-                                                top: 19.5802001953*fem,
-                                                child: Align(
-                                                  child: SizedBox(
-                                                    width: 315*fem,
-                                                    height: 41.42*fem,
-                                                    child: Container(
-                                                      decoration: BoxDecoration (
-                                                        borderRadius: BorderRadius.circular(10*fem),
-                                                        color: const Color(0xff353842),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              Positioned(
-                                                left: 13.5*fem,
-                                                top: 32*fem,
-                                                child: Align(
-                                                  child: SizedBox(
-                                                    width: 12*fem,
-                                                    height: 15*fem,
-                                                    child: Image.asset(
-                                                      'assets/designs/images/ooui-link-secure.png',
-                                                      width: 12*fem,
-                                                      height: 15*fem,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              Positioned(
-                                                left: 31*fem,
-                                                top: 32*fem,
-                                                child: Align(
-                                                  child: SizedBox(
-                                                    width: 85*fem,
-                                                    height: 17*fem,
-                                                    child: Text(
-                                                      'Enter password',
-                                                      style: GoogleFonts.poppins(
-                                                        fontSize: 11*ffem,
-                                                        fontWeight: FontWeight.w400,
-                                                        height: 1.5*ffem/fem,
-                                                        color: const Color(0xff686f82),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              Positioned(
-                                                left: 283.625*fem,
-                                                top: 34.8125*fem,
-                                                child: Align(
-                                                  child: SizedBox(
-                                                    width: 13.75*fem,
-                                                    height: 9.38*fem,
-                                                    child: Image.asset(
-                                                      'assets/designs/images/mdi-eye.png',
-                                                      width: 13.75*fem,
-                                                      height: 9.38*fem,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Positioned(
-                                        // passwordVCw (53:1255)
-                                        left: 3*fem,
-                                        top: 0*fem,
-                                        child: Align(
-                                          child: SizedBox(
-                                            width: 68*fem,
-                                            height: 21*fem,
-                                            child: Text(
-                                              'Password',
-                                              style: GoogleFonts.poppins(
-                                                fontSize: 14*ffem,
-                                                fontWeight: FontWeight.w400,
-                                                height: 1.5*ffem/fem,
-                                                color: const Color(0xffffffff),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
                                 Container(
                                   margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 47*fem, 0*fem),
                                   child: Text(
