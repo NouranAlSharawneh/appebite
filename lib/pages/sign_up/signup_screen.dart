@@ -8,7 +8,7 @@ class SignUpPage extends StatelessWidget {
     double baseWidth = 391;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return SizedBox(
+    return Scaffold(body: SizedBox(
       width: double.infinity,
       child: Container(
         padding: EdgeInsets.fromLTRB(34*fem, 14*fem, 22.5*fem, 8*fem),
@@ -32,10 +32,7 @@ class SignUpPage extends StatelessWidget {
               height: 318.17*fem,
               child: Stack(
                 children: [
-                  Positioned(
-                    left: 0*fem,
-                    top: 0*fem,
-                    child: SizedBox(
+                  SizedBox(
                       width: 316*fem,
                       height: 313*fem,
                       child: Column(
@@ -49,31 +46,31 @@ class SignUpPage extends StatelessWidget {
                                 children: [
                                   // "First name" label
                                   Expanded(
-                                    child:Text(
-                                        'First name',
-                                        style: GoogleFonts.poppins(
-                                        fontSize: 14*ffem,
-                                        fontWeight: FontWeight.w400,
-                                        height: 1.5*ffem/fem,
-                                        color: const Color(0xffffffff),
-                                      ),
-                                    ),
+                                    child: Text(
+                                            'First name',
+                                            style: GoogleFonts.poppins(
+                                              fontSize: 14*ffem,
+                                              fontWeight: FontWeight.w400,
+                                              height: 1.5*ffem/fem,
+                                              color: const Color(0xffffffff),
+                                            ),
+                                          ),
                                   ),
                                   // "Last name" label
                                   Expanded(
                                     child: Text(
-                                        'Last name',
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 14*ffem,
-                                          fontWeight: FontWeight.w400,
-                                          height: 1.5*ffem/fem,
-                                          color: const Color(0xffffffff),
-                                      ),
-                                    ),
+                                            'Last name',
+                                            style: GoogleFonts.poppins(
+                                              fontSize: 14*ffem,
+                                              fontWeight: FontWeight.w400,
+                                              height: 1.5*ffem/fem,
+                                              color: const Color(0xffffffff),
+                                            ),
+                                          ),
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 8.0), 
+                              SizedBox(height: 8.0), // Add some spacing between rows
 
                               // Second row: Text Fields
                               Row(
@@ -85,13 +82,13 @@ class SignUpPage extends StatelessWidget {
                                         color: Colors.grey[200],
                                         borderRadius: BorderRadius.circular(10.0),
                                       ),
-                                      // child: TextField(
-                                      //   decoration: InputDecoration(
-                                      //     hintText: 'Enter your first name',
-                                      //     contentPadding: EdgeInsets.all(12.0),
-                                      //     border: InputBorder.none,
-                                      //   ),
-                                      // ),
+                                      child: const TextField(
+                                        decoration: InputDecoration(
+                                          hintText: 'Enter your first name',
+                                          contentPadding: EdgeInsets.all(12.0),
+                                          border: InputBorder.none,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(width: 16.0), // Add some spacing between text fields
@@ -103,13 +100,80 @@ class SignUpPage extends StatelessWidget {
                                         color: Colors.grey[200],
                                         borderRadius: BorderRadius.circular(10.0),
                                       ),
-                                      // child: const TextField(
-                                      //   decoration: InputDecoration(
-                                      //     hintText: 'Enter your last name',
-                                      //     contentPadding: EdgeInsets.all(12.0),
-                                      //     border: InputBorder.none,
-                                      //   ),
-                                      // ),
+                                      child: const TextField(
+                                        decoration: InputDecoration(
+                                          hintText: 'Enter your last name',
+                                          contentPadding: EdgeInsets.all(12.0),
+                                          border: InputBorder.none,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 16.0), // Add some spacing between rows
+
+                              // Third row: Labels
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // "Email" label
+                                  Text(
+                                    'Email address',
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 14*ffem,
+                                      fontWeight: FontWeight.w400,
+                                      height: 1.5*ffem/fem,
+                                      color: const Color(0xffffffff),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8.0), 
+                                  // Fourth row: Text Field
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey[200],
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    child: const TextField(
+                                      decoration: InputDecoration(
+                                        hintText: 'Enter your email',
+                                        contentPadding: EdgeInsets.all(12.0),
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 16.0), 
+
+                              // Fifth row: Labels
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // "Password" label
+                                  Text(
+                                    'Password',
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 14*ffem,
+                                      fontWeight: FontWeight.w400,
+                                      height: 1.5*ffem/fem,
+                                      color: const Color(0xffffffff),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8.0), 
+
+                                  // Sixth row: Text Field
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey[200],
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    child: const TextField(
+                                      decoration: InputDecoration(
+                                        hintText: 'Enter your password',
+                                        contentPadding: EdgeInsets.all(12.0),
+                                        border: InputBorder.none,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -335,7 +399,7 @@ class SignUpPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                  ),
+                  
                   Positioned(
                     left: 228.9166870117*fem,
                     top: 279.8333740234*fem,
@@ -459,6 +523,7 @@ class SignUpPage extends StatelessWidget {
           ],
         ),
       ),
-          );
+    )
+    );
   }
 }
