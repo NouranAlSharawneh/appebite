@@ -40,7 +40,7 @@ class ProfilePictureSection extends StatelessWidget {
                       color: const Color.fromRGBO(104, 111, 130, 100),
                       size: 48 * ffem,
                     ),
-                    onPressed: _pickImage, // Call the method when the button is pressed
+                    onPressed: _pickImage, 
                   ),
                 ),
               ],

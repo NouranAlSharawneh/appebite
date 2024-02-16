@@ -34,7 +34,7 @@ class SignUpNavigator extends StatelessWidget {
               TextSpan(
                 text: 'Already a member?',
                 style: GoogleFonts.poppins(
-                  fontSize: 11*ffem,
+                  fontSize: 13*ffem,
                   fontWeight: FontWeight.w500,
                   height: 1.5*ffem/fem,
                   color: const Color(0xff686f82),
@@ -46,7 +46,7 @@ class SignUpNavigator extends StatelessWidget {
               TextSpan(
                 text: 'Login',
                 style: GoogleFonts.poppins(
-                  fontSize: 11*ffem,
+                  fontSize: 13*ffem,
                   fontWeight: FontWeight.w500,
                   height: 1.5*ffem/fem,
                   color: const Color(0xffe7965b),

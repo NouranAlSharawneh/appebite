@@ -3,11 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      // width: double.infinity,
       margin: const EdgeInsets.fromLTRB(4, 0, 14, 48),
       child: ElevatedButton(
         onPressed: () {

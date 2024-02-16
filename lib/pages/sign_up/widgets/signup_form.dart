@@ -71,6 +71,10 @@ class SignUpForm extends StatelessWidget {
                               ),
                               child: const TextField(
                                 decoration: InputDecoration(
+                                  prefixIcon: Icon(
+                                          Icons.person,
+                                          color: Color.fromRGBO(104, 111, 130, 100), 
+                                        ),
                                   hintText: 'first name',
                                   hintStyle: TextStyle(color: Color(0xff686f82)),
                                   contentPadding: EdgeInsets.all(12.0),
@@ -91,6 +95,10 @@ class SignUpForm extends StatelessWidget {
                               child: const TextField(
                                 decoration: InputDecoration(
                                   hintText: 'last name',
+                                  prefixIcon: Icon(
+                                          Icons.person,
+                                          color: Color.fromRGBO(104, 111, 130, 100), 
+                                        ),
                                   hintStyle: TextStyle(color: Color(0xff686f82)),
                                   contentPadding: EdgeInsets.all(12.0),
                                   border: InputBorder.none,
@@ -125,6 +133,10 @@ class SignUpForm extends StatelessWidget {
                             ),
                             child: const TextField(
                               decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                          Icons.email,
+                                          color: Color.fromRGBO(104, 111, 130, 100), 
+                                        ),
                                 hintText: 'Enter your email',
                                 hintStyle: TextStyle(color: Color(0xff686f82)),
                                 contentPadding: EdgeInsets.all(12.0),
@@ -164,6 +176,10 @@ class SignUpForm extends StatelessWidget {
                               obscureText: true,
                               decoration: InputDecoration(
                                 hintText: 'Enter your password',
+                                prefixIcon: Icon(
+                                          Icons.lock,
+                                          color: Color.fromRGBO(104, 111, 130, 100), 
+                                        ),
                                 hintStyle: TextStyle(color: Color(0xff686f82)),
                                 contentPadding: EdgeInsets.all(12.0),
                                 border: InputBorder.none,
