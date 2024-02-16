@@ -49,7 +49,8 @@ class SignUpInformation extends StatelessWidget {
                   ),
                     child: TextField(
                         style: const TextStyle(color: Colors.white),      
-                        textAlign: TextAlign.justify,                          
+                        textAlign: TextAlign.justify, 
+                        keyboardType: TextInputType.number,                         
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.fromLTRB(10*fem, 0*fem, 12*fem, 10*fem),
                           prefix: Text('kg  ',
@@ -60,9 +61,10 @@ class SignUpInformation extends StatelessWidget {
                               height: 1.5 * ffem / fem,
                             ),
                           ),                 
-                          hintText:'55',   
+                          hintText:'55',                             
                           hintStyle: const TextStyle(color: Color(0xff686f82)),
                           border: InputBorder.none,
+                          
                         ),
                       ),
                   ),
@@ -100,7 +102,8 @@ class SignUpInformation extends StatelessWidget {
                   ),
                     child: TextField(
                         style: const TextStyle(color: Colors.white),  
-                        textAlign: TextAlign.justify,                             
+                        textAlign: TextAlign.justify,
+                        keyboardType: TextInputType.number,                               
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.fromLTRB(10*fem, 0*fem, 12*fem, 10*fem),                                 
                           prefix: Text('cm  ',

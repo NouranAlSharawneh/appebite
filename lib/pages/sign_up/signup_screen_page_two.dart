@@ -8,7 +8,6 @@ import 'package:appebite/pages/sign_up/widgets/signup_personal_information.dart'
 import 'package:appebite/pages/sign_up/widgets/signup_terms_and_conditions.dart';
 import 'package:appebite/pages/sign_up/widgets/signup_title.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SignUpPageTwo extends StatelessWidget {
   const SignUpPageTwo({super.key});
