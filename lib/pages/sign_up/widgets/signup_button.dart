@@ -1,3 +1,4 @@
+import 'package:appebite/pages/sign_up/signup_screen_page_two.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -16,7 +17,12 @@ class SignUpButton extends StatelessWidget {
     return Container(
       margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 11.5*fem, 50*fem),
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SignUpPageTwo()), 
+            );
+        },
         style: TextButton.styleFrom (
           padding: EdgeInsets.zero,
         ),

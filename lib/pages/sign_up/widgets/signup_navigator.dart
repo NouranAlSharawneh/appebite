@@ -1,3 +1,4 @@
+import 'package:appebite/pages/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,7 +18,10 @@ class SignUpNavigator extends StatelessWidget {
       margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 14.5*fem, 0),
       child: TextButton(
         onPressed: () {
-          Navigator.pop(context);
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const LoginPage()), 
+            );
         },
         style: TextButton.styleFrom (
           padding: EdgeInsets.zero,

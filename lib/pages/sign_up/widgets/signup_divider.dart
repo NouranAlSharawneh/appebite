@@ -11,7 +11,7 @@ class SignUpDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 12.5*fem, 50.5*fem),
+      margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 12.5*fem, 20*fem),
       width: 322*fem,
       height: 0.5*fem,
       decoration: const BoxDecoration (
