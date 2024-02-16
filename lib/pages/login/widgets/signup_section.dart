@@ -26,7 +26,7 @@ class SignUpSection extends StatelessWidget {
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
                     height: 1.5,
-                    color: Color(0xff686F82), // Set the desired color
+                    color: Color(0xff686F82), 
                   ),
                 ),
                 TextSpan(
@@ -35,7 +35,7 @@ class SignUpSection extends StatelessWidget {
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
                     height: 1.5,
-                    color: const Color(0xffe7965b), // Your original color
+                    color: const Color(0xffe7965b), 
                   ),
                 ),
               ],

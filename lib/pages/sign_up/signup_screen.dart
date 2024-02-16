@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignUpPage extends StatelessWidget {
+  const SignUpPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 391;
@@ -30,9 +32,7 @@ class SignUpPage extends StatelessWidget {
               margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 16.5*fem, 18.83*fem),
               width: 316*fem,
               height: 318.17*fem,
-              child: Stack(
-                children: [
-                  SizedBox(
+              child: SizedBox(
                       width: 316*fem,
                       height: 313*fem,
                       child: Column(
@@ -173,6 +173,7 @@ class SignUpPage extends StatelessWidget {
                                         hintText: 'Enter your password',
                                         contentPadding: EdgeInsets.all(12.0),
                                         border: InputBorder.none,
+                                      
                                       ),
                                     ),
                                   ),
@@ -180,48 +181,49 @@ class SignUpPage extends StatelessWidget {
                               ),
                             ],
                           ),
+              
+                          Center(
+                            child: SizedBox(
+                              width: 315 * fem,
+                              height: 70,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.fromLTRB(39 * fem, 20 * fem, 0 * fem, 0 * fem),
+                                        child: Text(
+                                          'Add your profile picture  ',
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 14 * ffem,
+                                            fontWeight: FontWeight.w400,
+                                            height: 1.5 * ffem / fem,
+                                            color: const Color(0xffffffff), 
+                                          ),
+                                        ),
+                                      ),
                           
-                          ///////////////////////
-                          SizedBox(
-                            width: 315*fem,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 47*fem, 0*fem),
-                                  child: Text(
-                                    'Add your profile picture  ',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 14*ffem,
-                                      fontWeight: FontWeight.w400,
-                                      height: 1.5*ffem/fem,
-                                      color: const Color(0xffffffff),
-                                    ),
+                                      Container(
+                                        margin: EdgeInsets.only(right: 10 * fem, top: 20),
+                                        child: Icon(
+                                          Icons.photo,
+                                          color:const Color.fromRGBO(104, 111, 130, 100),
+                                          size: 48 * ffem,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        ],
-                      ),
-                    ),
+          ],
+          ),
                   
-                  Positioned(
-                    left: 228.9166870117*fem,
-                    top: 279.8333740234*fem,
-                    child: Align(
-                      child: SizedBox(
-                        width: 39.17*fem,
-                        height: 38.33*fem,
-                        child: Image.asset(
-                          'assets/designs/images/iconly-bold-image.png',
-                          width: 39.17*fem,
-                          height: 38.33*fem,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+          
               ),
             ),
             Container(
@@ -259,14 +261,12 @@ class SignUpPage extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          // icongeneralarrowrightLWP (I53:753;53:625)
                           width: 20*fem,
                           height: 20*fem,
-                          child: Image.asset(
-                            'assets/designs/images/icon-general-arrow-right-jmV.png',
-                            width: 20*fem,
-                            height: 20*fem,
-                          ),
+                          child:const Icon(
+                                  Icons.arrow_right_alt_outlined,
+                                  color:Color(0xffffffff),
+                                ),
                         ),
                       ],
                     ),
@@ -275,7 +275,6 @@ class SignUpPage extends StatelessWidget {
               ),
             ),
             Container(
-              // line3GQ3 (53:808)
               margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 12.5*fem, 50.5*fem),
               width: 322*fem,
               height: 0.5*fem,
@@ -284,7 +283,6 @@ class SignUpPage extends StatelessWidget {
               ),
             ),
             Container(
-              // alreadyamemberloginntB (53:745)
               margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 14.5*fem, 89*fem),
               child: TextButton(
                 onPressed: () {},
