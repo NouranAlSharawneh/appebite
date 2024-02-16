@@ -12,6 +12,7 @@ class SignUpTermsAndConditions extends StatefulWidget {
   final double ffem;
 
   @override
+  // ignore: library_private_types_in_public_api
   _SignUpTermsAndConditionsState createState() => _SignUpTermsAndConditionsState();
 }
 
