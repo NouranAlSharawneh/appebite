@@ -110,7 +110,7 @@ class SignUpPageTwo extends StatelessWidget {
             ),
             Container(
               margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 83*fem, 28*fem),
-              width: 260*fem,
+              width: 300*fem,
               decoration: BoxDecoration (
                 borderRadius: BorderRadius.circular(8*fem),
               ),

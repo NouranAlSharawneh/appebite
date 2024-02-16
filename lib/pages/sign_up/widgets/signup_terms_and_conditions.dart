@@ -21,10 +21,11 @@ class _SignUpTermsAndConditionsState extends State<SignUpTermsAndConditions> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(1.5 * widget.fem, 0 * widget.fem, 166.5 * widget.fem, 25 * widget.fem),
+      alignment: Alignment.centerLeft,
+      margin: EdgeInsets.fromLTRB(0, 0 * widget.fem, 16.5 * widget.fem, 25 * widget.fem),
       width: double.infinity,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5 * widget.fem),
+        borderRadius: BorderRadius.circular(15 * widget.fem),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
