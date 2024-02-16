@@ -1,3 +1,5 @@
+/** 
+
 import 'package:appebite/pages/sign_up/widgets/signup_title.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -379,4 +381,4 @@ class SignUpPage extends StatelessWidget {
     )
     );
   }
-}
+} **/

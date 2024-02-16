@@ -16,7 +16,9 @@ class SignUpNavigator extends StatelessWidget {
     return Container(
       margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 14.5*fem, 0),
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pop(context);
+        },
         style: TextButton.styleFrom (
           padding: EdgeInsets.zero,
         ),

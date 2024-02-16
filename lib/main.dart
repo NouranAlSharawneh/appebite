@@ -1,5 +1,5 @@
 import 'package:appebite/pages/loadingScreen/loading_screen.dart';
-import 'package:appebite/pages/sign_up/signup_screen.dart';
+// import 'package:appebite/pages/sign_up/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: SignUpPage(),
+      home: LoadingScreen(),
     );
   }
 }

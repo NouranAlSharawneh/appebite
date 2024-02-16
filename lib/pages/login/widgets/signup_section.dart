@@ -1,3 +1,4 @@
+import 'package:appebite/pages/sign_up/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,7 +13,10 @@ class SignUpSection extends StatelessWidget {
         offset: const Offset(0, -20), 
         child: TextButton(
           onPressed: () {
-            // Implement your sign-up logic here
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SignUpPage()), 
+            );
           },
           style: TextButton.styleFrom(
             padding: EdgeInsets.zero,
