@@ -1,0 +1,45 @@
+import 'package:appebite/pages/sign_up/widgets/mo_calories_tracker.dart';
+import 'package:appebite/pages/sign_up/widgets/mo_chart.dart';
+import 'package:appebite/pages/sign_up/widgets/mo_title.dart';
+import 'package:flutter/material.dart';
+
+class SignUpMonthlyOverview extends StatelessWidget {
+  const SignUpMonthlyOverview({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    double baseWidth = 400;
+    double fem = MediaQuery.of(context).size.width / baseWidth;
+    double ffem = fem * 0.97;
+    return Scaffold(
+      resizeToAvoidBottomInset : false,
+      body: SizedBox(
+      width: double.infinity,
+      child: Container(
+        padding: EdgeInsets.fromLTRB(34*fem, 94*fem, 22.5*fem, 8*fem),
+        width: double.infinity,
+        decoration: const BoxDecoration (
+          color: Color(0xff272a32),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            MOTitle(fem: fem, ffem: ffem),
+            MOChart(fem: fem),
+            MOCalories(fem: fem, ffem: ffem),
+          ],
+        ),
+      ),
+    )
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
