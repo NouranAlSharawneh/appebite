@@ -44,7 +44,7 @@ class InputField extends StatelessWidget {
                 ? SizedBox(
                   height: 45,
                   child: TextField(
-                      obscureText: true,
+                      obscureText: true,                    
                       style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         hintText: hint,

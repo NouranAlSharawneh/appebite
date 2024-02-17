@@ -22,31 +22,40 @@ class SignUpSection extends StatelessWidget {
             padding: EdgeInsets.zero,
           ),
           child: RichText(
-            text: TextSpan(
-              children: [
-                const TextSpan(
-                  text: 'Don\'t have an account?',
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                    height: 1.5,
-                    color: Color(0xff686F82), 
-                  ),
-                ),
-                TextSpan(
-                  text: ' Sign up',
-                  style: GoogleFonts.poppins(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                    height: 1.5,
-                    color: const Color(0xffe7965b), 
-                  ),
-                ),
-              ],
+          text: TextSpan(
+            style: GoogleFonts.poppins(
+              fontSize: 11,
+              fontWeight: FontWeight.w500,
+              height: 1.5,
+              color:const Color(0xff000000),
             ),
+            children: [
+              TextSpan(
+                text: 'Don\'t have an account?',
+                style: GoogleFonts.poppins(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                  height: 1.5,
+                  color: const Color(0xff686f82),
+                ),
+              ),
+              const TextSpan(
+                text: ' ',
+              ),
+              TextSpan(
+                text: 'Sign up',
+                style: GoogleFonts.poppins(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                  height: 1.5,
+                  color: const Color(0xffe7965b),
+                ),
+              ),
+            ],
           ),
         ),
       ),
+    ),
     );
   }
 }
