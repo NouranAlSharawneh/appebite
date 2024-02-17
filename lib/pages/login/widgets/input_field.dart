@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class InputField extends StatelessWidget {
+class InputField extends StatefulWidget {
   const InputField({
-    super.key,
+    Key? key,
     required this.label,
     required this.hint,
     this.isPassword = false,
-  });
+  }) : super(key: key);
 
   final String hint;
   final bool isPassword;
   final String label;
+
+  @override
+  _InputFieldState createState() => _InputFieldState();
+}
+
+class _InputFieldState extends State<InputField> {
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +31,7 @@ class InputField extends StatelessWidget {
           Container(
             margin: const EdgeInsets.fromLTRB(0, 0, 0, 5),
             child: Text(
-              label,
+              widget.label,
               style: GoogleFonts.poppins(
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
@@ -40,31 +47,50 @@ class InputField extends StatelessWidget {
               color: const Color(0xff353842),
               borderRadius: BorderRadius.circular(13),
             ),
-            child: isPassword
+            child: widget.isPassword
                 ? SizedBox(
-                  height: 45,
-                  child: TextField(
-                      obscureText: true,                    
-                      style: const TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                        hintText: hint,
-                        hintStyle: const TextStyle(color: Color(0xff686f82)),                   
-                        border: InputBorder.none,
-                      ),
+                    height: 45,
+                    child: Stack(
+                      alignment: Alignment.centerRight,
+                      children: [
+                        TextField(
+                          obscureText: _obscureText,
+                          style: const TextStyle(color: Colors.white),
+                          decoration: InputDecoration(
+                            hintText: widget.hint,
+                            hintStyle:
+                                const TextStyle(color: Color(0xff686f82)),
+                            border: InputBorder.none,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            setState(() {
+                              _obscureText = !_obscureText;
+                            });
+                          },
+                          icon: Icon(
+                            _obscureText
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: const Color.fromRGBO(104, 111, 130, 100),
+                          ),
+                        ),
+                      ],
                     ),
-                )
+                  )
                 : SizedBox(
-                  height: 45,
-                  child: TextField(
+                    height: 45,
+                    child: TextField(
                       style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        hintText: hint,
-                        hintStyle: const TextStyle(color: Color(0xff686f82)),
+                        hintText: widget.hint,
+                        hintStyle:
+                            const TextStyle(color: Color(0xff686f82)),
                         border: InputBorder.none,
                       ),
-                      
                     ),
-                ),
+                  ),
           ),
         ],
       ),

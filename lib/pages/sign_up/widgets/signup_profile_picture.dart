@@ -15,7 +15,7 @@ class SignUpProfilePicture extends StatefulWidget {
   final double ffem;
 
   @override
-  _SignUpProfilePictureState createState() => _SignUpProfilePictureState();
+  State<SignUpProfilePicture> createState() => _SignUpProfilePictureState();
 }
 
 class _SignUpProfilePictureState extends State<SignUpProfilePicture> {
