@@ -1,3 +1,4 @@
+import 'package:appebite/pages/sign_up/signup_account_confirmation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -56,7 +57,12 @@ class MOTitle extends StatelessWidget {
             ),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SignUpAccountConfirmation()), 
+            );
+            },
             style: TextButton.styleFrom (
               padding: EdgeInsets.zero,
             ),

@@ -1,5 +1,4 @@
 import 'package:appebite/pages/sign_up/signup_monthly_overview.dart';
-import 'package:appebite/pages/sign_up/signup_screen_page_two.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
