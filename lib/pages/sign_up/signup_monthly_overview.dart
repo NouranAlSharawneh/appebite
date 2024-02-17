@@ -12,11 +12,14 @@ class SignUpMonthlyOverview extends StatelessWidget {
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
     return Scaffold(
-      resizeToAvoidBottomInset : false,
-      body: SizedBox(
+      backgroundColor:const Color(0xff272a32),
+      body: SingleChildScrollView(
+        child:
+      
+      SizedBox(
       width: double.infinity,
       child: Container(
-        padding: EdgeInsets.fromLTRB(34*fem, 94*fem, 22.5*fem, 8*fem),
+        padding: EdgeInsets.fromLTRB(34*fem, 120*fem, 22.5*fem, 0*fem),
         width: double.infinity,
         decoration: const BoxDecoration (
           color: Color(0xff272a32),
@@ -30,7 +33,7 @@ class SignUpMonthlyOverview extends StatelessWidget {
           ],
         ),
       ),
-    )
+    ))
     );
   }
 }

@@ -18,6 +18,7 @@ class SignUpPageTwo extends StatelessWidget {
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
     return Scaffold(
+      backgroundColor:const Color(0xff272a32) ,
       resizeToAvoidBottomInset : false,
       body: SizedBox(
       width: double.infinity,
