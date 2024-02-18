@@ -26,8 +26,8 @@ class TitleSection extends StatelessWidget {
             style: GoogleFonts.poppins(
               fontSize: 20,
               fontWeight: FontWeight.w400,
-              height: 1.2575,
-              letterSpacing: -0.1650000066,
+              height: 1.5,
+              letterSpacing: -0.2,
               color: const Color(0xffffffff),
             ),
           ),
