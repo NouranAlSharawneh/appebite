@@ -1,3 +1,4 @@
+import 'package:appebite/pages/uploadRecipe/upload_recipe.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -66,7 +67,12 @@ class SignUpAccountConfirmation extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.fromLTRB(1.5*fem, 0*fem, 15.5*fem, 117*fem),
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const UploadRecipe()), 
+                      );
+                    },
                     style: TextButton.styleFrom (
                       padding: EdgeInsets.zero,
                     ),
@@ -81,7 +87,6 @@ class SignUpAccountConfirmation extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
-                            // labelLN7 (I212:2472;53:624)
                             margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 11*fem, 0*fem),
                             child: Text(
                               'Get Started',
