@@ -12,7 +12,7 @@ class ProfilePictureSection extends StatelessWidget {
     return Center(
       child: SizedBox(
         width: 315 * fem,
-        height: 70, 
+        height: 100, 
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -21,7 +21,7 @@ class ProfilePictureSection extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
-                  margin: EdgeInsets.fromLTRB(39 * fem, 20 * fem, 0 * fem, 0 * fem),
+                  margin: EdgeInsets.fromLTRB(39 * fem, 20 * fem, 0 * fem, 10 * fem),
                   child: Text(
                     'Add your profile picture  ',
                     style: GoogleFonts.poppins(

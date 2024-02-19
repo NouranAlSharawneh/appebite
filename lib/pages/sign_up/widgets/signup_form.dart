@@ -77,6 +77,7 @@ class _SignUpFormState extends State<SignUpForm> {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: const TextField(
+                          style: TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                             prefixIcon: Icon(
                               Icons.person,
@@ -101,6 +102,7 @@ class _SignUpFormState extends State<SignUpForm> {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: const TextField(
+                          style: TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                             hintText: 'last name',
                             prefixIcon: Icon(
@@ -141,6 +143,7 @@ class _SignUpFormState extends State<SignUpForm> {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: const TextField(
+                        style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           prefixIcon: Icon(
                             Icons.email,
