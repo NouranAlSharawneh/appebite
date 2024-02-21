@@ -58,7 +58,7 @@ class SignUpAccountConfirmation extends StatelessWidget {
                     style: GoogleFonts.poppins(
                       fontSize: 15*ffem,
                       fontWeight: FontWeight.w500,
-                      height: 1.6666666667*ffem/fem,
+                      height: 2*ffem/fem,
                       letterSpacing: 0.5*fem,
                       color: const Color(0xff686e81),
                     ),
