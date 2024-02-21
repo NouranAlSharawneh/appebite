@@ -34,8 +34,9 @@ class UploadRecipe extends StatelessWidget {
             FoodInput(fem: fem, ffem: ffem),
             DescriptionInput(fem: fem, ffem: ffem),
             CookingDuration(fem: fem, ffem: ffem),
-            // ServingsAndCaloriesInput(fem: fem, ffem: ffem),
+            // CustomInputWidget( fem: 1.0, ffem: 1.0),
             ContinueButton(fem: fem, ffem: ffem),
+            // CustomInput(label: 'Calories', fem: 1.0, ffem: 1.0),
           ],
     )
       )

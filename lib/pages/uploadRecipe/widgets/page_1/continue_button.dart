@@ -32,8 +32,6 @@ class ContinueButton extends StatelessWidget {
                     style: GoogleFonts.poppins(
                       fontSize: 15*ffem,
                       fontWeight: FontWeight.w700,
-                      height: 1.2125*ffem/fem,
-                      letterSpacing: 0.1049999982*fem,
                       color: const Color(0xffffffff),
                     ),
                   ),
