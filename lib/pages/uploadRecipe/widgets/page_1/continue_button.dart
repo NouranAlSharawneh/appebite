@@ -1,3 +1,4 @@
+import 'package:appebite/pages/uploadRecipe/upload_recipe_page_2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,7 +15,12 @@ class ContinueButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const UploadRecipePage2()), 
+                      );
+              },
               style: TextButton.styleFrom (
                 padding: EdgeInsets.zero,
               ),
