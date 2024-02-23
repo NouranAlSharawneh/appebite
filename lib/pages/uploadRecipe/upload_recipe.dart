@@ -17,8 +17,8 @@ class UploadRecipe extends StatelessWidget {
     double ffem = fem * 0.97;
     return Scaffold(
       backgroundColor:const Color(0xff272a32) ,
-      resizeToAvoidBottomInset : false,
-      body: SizedBox(
+      body: SingleChildScrollView(
+      child: SizedBox(
       width: double.infinity,
       child: Container(
         padding: EdgeInsets.fromLTRB(34*fem, 34*fem, 22.5*fem, 8*fem),
@@ -34,12 +34,11 @@ class UploadRecipe extends StatelessWidget {
             FoodInput(fem: fem, ffem: ffem),
             DescriptionInput(fem: fem, ffem: ffem),
             CookingDuration(fem: fem, ffem: ffem),
-            // CustomInputWidget( fem: 1.0, ffem: 1.0),
+            const ServingsAndCaloriesInput(text1: 'Servings', text2: 'Calories'),
             ContinueButton(fem: fem, ffem: ffem),
-            // CustomInput(label: 'Calories', fem: 1.0, ffem: 1.0),
           ],
     )
-      )
+      ))
     ));
   }
 }

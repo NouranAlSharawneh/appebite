@@ -1,109 +1,134 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CustomInputWidget extends StatelessWidget {
-  const CustomInputWidget({
-    Key? key,
-    required this.fem,
-    required this.ffem,
-  }) : super(key: key);
+class ServingsAndCaloriesInput extends StatelessWidget {
+  final String text1;
+  final String text2;
+  // final TextEditingController controller1;
+  // final TextEditingController controller2;
+  final double gapWidth;
 
-  final double fem;
-  final double ffem;
+  const ServingsAndCaloriesInput({
+    Key? key,
+    required this.text1,
+    required this.text2,
+    // required this.controller1,
+    // required this.controller2,
+    this.gapWidth = 10.0,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: double.infinity,
-        margin: EdgeInsets.fromLTRB(5 * fem, 0 * fem, 8.5 * fem, 0 * fem),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Column(
+      width: double.infinity,
+      margin: const EdgeInsets.fromLTRB(8, 0, 5.5, 31),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Row(
               children: [
                 Text(
-                  'Servings',
-                  style: GoogleFonts.poppins(
-                    fontSize: 17 * ffem,
-                    fontWeight: FontWeight.w700,
-                    color: const Color(0xffffffff),
-                  ),
-                ),
-                SizedBox(height: 2 * fem),
-                Container(
-                  padding: EdgeInsets.fromLTRB(9 * fem, 10 * fem, 20 * fem, 8 * fem),
-                  decoration: BoxDecoration(
-                    color: const Color(0xff353842),
-                    borderRadius: BorderRadius.circular(8 * fem),
-                  ),
-                  child: TextField(
-                    style: GoogleFonts.poppins(
-                      fontSize: 15 * ffem,
-                      fontWeight: FontWeight.w700,
-                      color: const Color(0xff686e81),
-                    ),
-                    decoration: InputDecoration(
-                      hintText: '3',
-                      hintStyle: GoogleFonts.poppins(
-                        fontSize: 15 * ffem,
+                  text1,
+                      style: GoogleFonts.poppins(
+                        fontSize: 17,
                         fontWeight: FontWeight.w700,
-                        height: 1.5 * ffem / fem,
-                        color: const Color(0xff686e81),
+                        height: 1,
+                        letterSpacing: 0.5,
+                        color: const Color(0xffffffff),
+                      ),                 
+                ),
+                SizedBox(width: gapWidth),
+                Expanded(
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: const Color(0xff353842),
                       ),
-                      border: InputBorder.none,
-                      prefixIcon: Padding(
-                        padding: EdgeInsets.only(left: 8 * fem, right: 10 * fem),
-                        child: const Icon(Icons.fastfood),
-                      ),
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    style: GoogleFonts.poppins(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 0.5 ,
+                    color: const Color(0xff686f82),
+                    
+                  ),textAlign: TextAlign.left,
+                    decoration: InputDecoration(
+                    hintStyle: GoogleFonts.poppins(
+                      fontSize: 13 ,
+                      height: 1 ,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 0.5,
+                      color: const Color(0xff686f82),
                     ),
+                    prefixIcon: const Icon(Icons.people_sharp, color: Color(0xff686f82),),
+                    contentPadding: const EdgeInsets.symmetric(vertical: 12), 
+                    border: InputBorder.none,
+                  ),
+                  ),
+                ),
                   ),
                 ),
               ],
             ),
-            SizedBox(width: 15 * fem), // Add some spacing between the two sections
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          ),
+          SizedBox(width: gapWidth),
+          Expanded(
+            child: Row(
               children: [
                 Text(
-                  'Calories ',
+                  text2,
                   style: GoogleFonts.poppins(
-                    fontSize: 17 * ffem,
-                    fontWeight: FontWeight.w700,
-                    height: 1.2125 * ffem / fem,
-                    color: const Color(0xffffffff),
+                        fontSize: 17,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.5,
+                        color: const Color(0xffffffff),
+                      ),
+                ),
+                SizedBox(width: gapWidth),
+                Expanded(
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: const Color(0xff353842),
+                      ),
+                  child: TextField(
+                    // controller: controller2,
+                    textAlign: TextAlign.left,
+                    keyboardType: TextInputType.number,
+                    style: GoogleFonts.poppins(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 0.5 ,
+                    color: const Color(0xff686f82),
+                  ),
+                    decoration: InputDecoration(
+                    hintStyle: GoogleFonts.poppins(
+                      fontSize: 12 ,
+                      fontWeight: FontWeight.w500,
+                      height: 1.2,                      
+                      letterSpacing: 0.5,
+                      color: const Color(0xff686f82),
+                    ),
+                    prefixIcon: const Icon(Icons.sports_gymnastics, color: Color(0xff686f82),),
+                    contentPadding: const EdgeInsets.symmetric(vertical: 12), 
+                    border: InputBorder.none,
+                  ),
                   ),
                 ),
-                SizedBox(height: 2 * fem),
-                Container(
-                  padding: EdgeInsets.fromLTRB(10 * fem, 10 * fem, 11 * fem, 8 * fem),
-                  decoration: BoxDecoration(
-                    color: const Color(0xff353842),
-                    borderRadius: BorderRadius.circular(8 * fem),
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 7 * fem, 2 * fem),
-                        width: 10 * fem,
-                        height: 15 * fem,
-                      ),
-                      Text(
-                        '250',
-                        style: GoogleFonts.poppins(
-                          fontSize: 15 * ffem,
-                          fontWeight: FontWeight.w700,
-                          height: 1.2125 * ffem / fem,
-                          color: const Color(0xff686e81),
-                        ),
-                      ),
-                    ],
                   ),
                 ),
               ],
             ),
-          ],
-      
+          ),
+        ],
       ),
     );
   }
