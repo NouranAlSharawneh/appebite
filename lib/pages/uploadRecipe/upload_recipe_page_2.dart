@@ -1,6 +1,7 @@
 import 'package:appebite/pages/uploadRecipe/widgets/page_2/add_ingredient_field.dart';
 import 'package:appebite/pages/uploadRecipe/widgets/title_heading.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class UploadRecipePage2 extends StatefulWidget {
   const UploadRecipePage2({Key? key}) : super(key: key);
@@ -64,11 +65,12 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
                               margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 198 * fem, 0 * fem),
                               child: Text(
                                 'Ingredients',
-                                style: TextStyle(
+                                style: GoogleFonts.poppins(
                                   fontSize: 17 * ffem,
                                   fontWeight: FontWeight.w700,
                                   letterSpacing: 0.5 * fem,
                                   color: const Color(0xffffffff),
+                                  
                                 ),
                               ),
                             ),
@@ -88,16 +90,34 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
                           ],
                         ),
                       ),
-                      // Display existing ingredient fields
                       ...ingredientFields,
                     ],
                   ),
                 ),
+                
+                Container(
+                      margin: EdgeInsets.fromLTRB(8*fem, 0*fem, 6*fem, 0*fem),
+                      width: double.infinity,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 18*fem),
+                            child: Text(
+                              'Categories',
+                              style: GoogleFonts.poppins(
+                                fontSize: 17*ffem,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: 0.5*fem,
+                                color: const Color(0xffffffff),
+                              ),
+                            ),
+                          ),
               ],
             ),
           ),
-        ),
+        ],),
       ),
-    );
+      )));
   }
 }

@@ -6,8 +6,8 @@ class AddIngredientPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double baseWidth = 400;
-    double fem = MediaQuery.of(context).size.width / baseWidth;
+    // double baseWidth = 400;
+    // double fem = MediaQuery.of(context).size.width / baseWidth;
 
     return Container(
       margin: const EdgeInsets.fromLTRB(0, 0, 8, 15),
