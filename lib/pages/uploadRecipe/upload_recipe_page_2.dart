@@ -156,9 +156,21 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
                           ],
                         ),
                       ),
+                    
                     ],
                   ),
                 ),
+              Container(
+                margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                width: MediaQuery.of(context).size.width,
+                height: 5,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Color(0xff353841),
+                  ),
+                ),
+              ),
+
               ],
             ),
           ),
