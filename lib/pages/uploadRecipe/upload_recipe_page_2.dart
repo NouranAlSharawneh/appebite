@@ -94,7 +94,7 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.fromLTRB(8 * fem, 0 * fem, 6 * fem, 0 * fem),
+                  margin: EdgeInsets.fromLTRB(0* fem, 0 * fem, 6 * fem, 0 * fem),
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,7 +112,7 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(6 * fem, 0 * fem, 0 * fem, 0 * fem),
+                        margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 0 * fem),
                         width: double.infinity,
                         height: 33 * fem,
                         child: Row(
@@ -171,12 +171,38 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
                 ),
               ),
 
+              SizedBox(
+                width: 391*fem,
+                height: 394*fem,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.fromLTRB(0*fem, 20*fem, 57*fem, 16*fem),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 18*fem),
+                            child: Text(
+                              'Rate recipe ',
+                              style: GoogleFonts.poppins(
+                                fontSize: 17*ffem,
+                                fontWeight: FontWeight.w700,
+                                height: 1.2125*ffem/fem,
+                                color: const Color(0xffffffff),
+                              ),
+                            ),
+                          ), 
+                        ],
+                      ),
+                  ),
               ],
             ),
           ),
-        ),
+        ]),
       ),
-    );
+      ),),);
   }
 }
 
@@ -189,6 +215,19 @@ class MealDropdown extends StatefulWidget {
 
 class _MealDropdownState extends State<MealDropdown> {
   String selectedMeal = 'Breakfast';
+
+  String getMealIcon(String mealType) {
+    switch (mealType) {
+      case 'Breakfast':
+        return '🥐';
+      case 'Dinner':
+        return '🍲';
+      case 'Lunch':
+        return '🍔';
+      default:
+        return '';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -212,7 +251,7 @@ class _MealDropdownState extends State<MealDropdown> {
           child: Row(
             children: [
               Container(
-                margin: const EdgeInsets.fromLTRB(0, 1.18 , 9, 0),
+                margin: const EdgeInsets.fromLTRB(10, 1.18 , 9, 0),
                 child: Text(
                   getMealIcon(value),
                   style: GoogleFonts.poppins(
@@ -240,18 +279,5 @@ class _MealDropdownState extends State<MealDropdown> {
         );
       }).toList(),
     );
-  }
-
-  String getMealIcon(String mealType) {
-    switch (mealType) {
-      case 'Breakfast':
-        return '🥐';
-      case 'Dinner':
-        return '🍲';
-      case 'Lunch':
-        return '🍔';
-      default:
-        return '';
-    }
   }
 }
