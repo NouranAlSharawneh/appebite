@@ -95,7 +95,7 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.fromLTRB(0* fem, 0 * fem, 6 * fem, 0 * fem),
+                  margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 6 * fem, 0 * fem),
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -157,74 +157,178 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
                           ],
                         ),
                       ),
-                    
                     ],
                   ),
                 ),
-              Container(
-                margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-                width: MediaQuery.of(context).size.width,
-                height: 5,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: Color(0xff353841),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                  width: MediaQuery.of(context).size.width,
+                  height: 5,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      color: Color(0xff353841),
+                    ),
                   ),
                 ),
-              ),
-
-              SizedBox(
-  width: 391 * fem,
-  height: 394 * fem,
-  child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Container(
-        margin: EdgeInsets.fromLTRB(0 * fem, 20 * fem, 57 * fem, 16 * fem),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 18 * fem),
-              child: Text(
-                'Rate recipe ',
-                style: GoogleFonts.poppins(
-                  fontSize: 17 * ffem,
-                  fontWeight: FontWeight.w700,
-                  color: const Color(0xffffffff),
+                SizedBox(
+                  width: 391 * fem,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0 * fem, 20 * fem, 57 * fem, 16 * fem),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 18 * fem),
+                              child: Text(
+                                'Rate recipe ',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 17 * ffem,
+                                  fontWeight: FontWeight.w700,
+                                  color: const Color(0xffffffff),
+                                ),
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                RatingBar.builder(
+                                  initialRating: 2.5,
+                                  itemCount: 5,
+                                  allowHalfRating: true,
+                                  itemSize: 50.0,
+                                  glowColor: const Color.fromRGBO(111, 71, 11, 0.5),
+                                  unratedColor: const Color(0xff353842),
+                                  onRatingUpdate: (rating) {
+                                    // print(rating);
+                                  },
+                                  direction: Axis.horizontal,
+                                  itemBuilder: (context, _) => const Icon(
+                                    Icons.star_rounded,
+                                    color: Color.fromRGBO(255, 173, 48, 1),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                RatingBar.builder(
-                  initialRating: 2.5,
-                  itemCount: 5,
-                  allowHalfRating: true,
-                  itemSize: 50.0,
-                  glowColor: const Color.fromRGBO(111, 71, 11, 0.5),
-                  unratedColor: const Color(0xff353842),
-                  onRatingUpdate: (rating) {
-                    print(rating);
-                  },
-                  direction: Axis.horizontal,
-                  itemBuilder: (context, _) => const Icon(
-                    Icons.star_rounded,
-                    color: Color.fromRGBO(255, 173, 48, 1),
+                SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0 * fem, 20 * fem, 57 * fem, 16 * fem),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 18 * fem),
+                              child: Text(
+                                'Steps ',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 17 * ffem,
+                                  fontWeight: FontWeight.w700,
+                                  color: const Color(0xffffffff),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: double.infinity,
+                              height: 112 * fem,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 8 * fem, 0 * fem),
+                                    width: 24 * fem,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 16 * fem),
+                                          // width: double.infinity,
+                                          height: 24 * fem,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xffe6955b),
+                                            borderRadius: BorderRadius.circular(12 * fem),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              '1',
+                                              textAlign: TextAlign.center,
+                                              style: GoogleFonts.poppins(
+                                                fontSize: 12 * ffem,
+                                                fontWeight: FontWeight.w700,
+                                                height: 1.2125 * ffem / fem,
+                                                color: const Color(0xffffffff),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox (
+                                          width: 24,
+                                          height: 24,
+                                          child: Icon(
+                                            Icons.drag_indicator_outlined,
+                                            size: 24,
+                                            color: Color(0xff686f82),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.fromLTRB(16 * fem, 5 * fem, 16 * fem, 16 * fem),
+                                    width: 250 * fem,
+                                    height: 100 * fem,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: const Color(0xff353842)),
+                                      color: const Color(0xff353842),
+                                      borderRadius: BorderRadius.circular(8 * fem),
+                                    ),
+                                    child: TextField(
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 12 * ffem,
+                                        fontWeight: FontWeight.w500,
+                                        height: 1 * ffem / fem,
+                                        letterSpacing: 0.5 * fem,
+                                        color: const Color(0xff686f82),
+                                      ),
+                                      decoration: InputDecoration(
+                                        hintText: 'Tell a little about your food',
+                                        hintStyle: GoogleFonts.poppins(
+                                          fontSize: 12 * ffem,
+                                          fontWeight: FontWeight.w500,
+                                          height: 1.2125 * ffem / fem,
+                                          letterSpacing: 0.5 * fem,
+                                          color: const Color(0xff686f82),
+                                        ),
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
-          ],
+          ),
         ),
       ),
-    ],
-  ),
-),
-
-        ]),
-      ),
-      ),),);
+    );
   }
 }
 
