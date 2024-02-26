@@ -14,7 +14,7 @@ class UploadFormButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-            margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 21*fem),
+            margin: EdgeInsets.fromLTRB(0*fem, 20*fem, 0*fem, 21*fem),
             width: double.infinity,
             height: 56*fem,
             child: Row(
