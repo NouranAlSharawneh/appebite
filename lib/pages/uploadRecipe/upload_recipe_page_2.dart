@@ -1,9 +1,9 @@
 import 'package:appebite/pages/uploadRecipe/widgets/page_2/add_ingredient_field.dart';
 import 'package:appebite/pages/uploadRecipe/widgets/page_2/upload_recipe_categories.dart';
 import 'package:appebite/pages/uploadRecipe/widgets/page_2/upload_recipe_divider.dart';
+import 'package:appebite/pages/uploadRecipe/widgets/page_2/upload_recipe_rating.dart';
 import 'package:appebite/pages/uploadRecipe/widgets/title_heading.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class UploadRecipePage2 extends StatefulWidget {
@@ -105,70 +105,6 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-
-class UploadRecipeRating extends StatelessWidget {
-  const UploadRecipeRating({
-    super.key,
-    required this.fem,
-    required this.ffem,
-  });
-
-  final double fem;
-  final double ffem;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            margin: EdgeInsets.fromLTRB(0 * fem, 20 * fem, 0 * fem, 16 * fem),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 18 * fem),
-                  child: Text(
-                    'Rate recipe ',
-                    style: GoogleFonts.poppins(
-                      fontSize: 17 * ffem,
-                      fontWeight: FontWeight.w700,
-                      color: const Color(0xffffffff),
-                    ),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    RatingBar.builder(
-                      initialRating: 2.5,
-                      itemCount: 5,
-                      allowHalfRating: true,
-                      itemSize: 50.0,
-                      glowColor: const Color(0xff272a32),
-                      unratedColor: const Color(0xff353842),
-                      onRatingUpdate: (rating) {
-                        // print(rating);
-                      },
-                      direction: Axis.horizontal,
-                      itemBuilder: (context, _) => const Icon(
-                        Icons.star_rounded,
-                        color: Color.fromRGBO(255, 173, 48, 1),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }
