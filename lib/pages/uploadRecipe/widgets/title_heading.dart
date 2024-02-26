@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -11,7 +13,7 @@ class TitleHeading extends StatelessWidget {
 
   final double fem;
   final double ffem;
-  final String dynamicValue; // Add this parameter
+  final String dynamicValue;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,62 @@ class TitleHeading extends StatelessWidget {
           Container(
             margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 240 * fem, 0 * fem),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                if (Platform.isIOS) {
+                  // iOS specific dialog
+                  showCupertinoDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return CupertinoAlertDialog(
+                        title: const Text("Confirmation"),
+                        content: const Text("Are you sure you want to cancel?"),
+                        actions: [
+                          CupertinoDialogAction(
+                            onPressed: () {
+                              Navigator.of(context).pop(); // Close the dialog
+                            },
+                            child: const Text("No"),
+                          ),
+                          CupertinoDialogAction(
+                            onPressed: () {
+                              Navigator.of(context).pop(); // Close the dialog
+                              // Redirect to the home page
+                              Navigator.pushReplacementNamed(context, '/home');
+                            },
+                            child: const Text("Yes"),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                } else {
+                  // Android and other platforms
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text("Confirmation"),
+                        content: const Text("Are you sure you want to cancel?"),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop(); // Close the dialog
+                            },
+                            child: const Text("No"),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop(); 
+                              Navigator.pushReplacementNamed(context, '/home');
+                            },
+                            child: const Text("Yes"),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
+              },
               style: TextButton.styleFrom(
                 padding: EdgeInsets.zero,
               ),
