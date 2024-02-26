@@ -1,5 +1,6 @@
 import 'package:appebite/pages/uploadRecipe/widgets/page_2/add_ingredient_field.dart';
 import 'package:appebite/pages/uploadRecipe/widgets/page_2/upload_recipe_categories.dart';
+import 'package:appebite/pages/uploadRecipe/widgets/page_2/upload_recipe_divider.dart';
 import 'package:appebite/pages/uploadRecipe/widgets/title_heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -109,26 +110,6 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
   }
 }
 
-
-class UploadRecipeDivider extends StatelessWidget {
-  const UploadRecipeDivider({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-      width: MediaQuery.of(context).size.width,
-      height: 5,
-      child: Container(
-        decoration: const BoxDecoration(
-          color: Color(0xff353841),
-        ),
-      ),
-    );
-  }
-}
 
 class UploadRecipeRating extends StatelessWidget {
   const UploadRecipeRating({
