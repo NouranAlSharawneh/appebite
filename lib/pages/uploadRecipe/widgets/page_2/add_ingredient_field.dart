@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart'; // Import Cupertino library
 import 'package:google_fonts/google_fonts.dart';
 
 class AddIngredientPage extends StatelessWidget {
@@ -6,58 +7,126 @@ class AddIngredientPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // double baseWidth = 400;
-    // double fem = MediaQuery.of(context).size.width / baseWidth;
+    return Dismissible(
+      key: UniqueKey(),
+      confirmDismiss: (DismissDirection direction) async {
+        bool confirmed = await showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            // Use CupertinoAlertDialog for iOS
+            if (Theme.of(context).platform == TargetPlatform.iOS) {
+              return CupertinoAlertDialog(
+                title: const Text("Confirm Deletion"),
+                content: const Text("Are you sure you want to delete this ingredient?"),
+                actions: [
+                  CupertinoDialogAction(
+                    onPressed: () {
+                      Navigator.of(context).pop(false); // Do not delete
+                    },
+                    child: const Text("Cancel"),
+                  ),
+                  CupertinoDialogAction(
+                    onPressed: () {
+                      Navigator.of(context).pop(true); // Confirm deletion
+                    },
+                    child: const Text("Delete"),
+                  ),
+                ],
+              );
+            } else {
+              // Use AlertDialog for Android and other platforms
+              return AlertDialog(
+                title: const Text("Confirm Deletion"),
+                content: const Text("Are you sure you want to delete this ingredient?"),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop(false); // Do not delete
+                    },
+                    child: const Text("Cancel"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop(true); // Confirm deletion
+                    },
+                    child: const Text("Delete"),
+                  ),
+                ],
+              );
+            }
+          },
+        );
 
-    return Container(
-      margin: const EdgeInsets.fromLTRB(0, 0, 8, 15),
-      width: double.infinity,
-      height: 56,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            margin: const EdgeInsets.fromLTRB(0, 0, 8, 0),
-            width: 24,
-            height: 24,
-            child: const Icon(
-              Icons.drag_indicator_outlined,
-              size: 24,
-              color: Color(0xff686f82),
-            ),
-          ),
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.fromLTRB(21.65, 5, 21.65, 0),
-              height: double.infinity,
-              decoration: BoxDecoration(
-                border: Border.all(color: const Color(0xff353842)),
-                color: const Color(0xff353842),
-                borderRadius: BorderRadius.circular(32),
+        return confirmed ?? false;
+      },
+      onDismissed: (DismissDirection direction) {
+        // Handle ingredient deletion here
+        // You can call a function or perform deletion based on user confirmation
+        // For example:
+        // if (direction == DismissDirection.endToStart) {
+        //   // User confirmed deletion, perform deletion logic
+        //   deleteIngredient();
+        // }
+      },
+      background: Container(
+        color: const Color(0xffff7269),
+        alignment: Alignment.centerRight,
+        padding: const EdgeInsets.only(right: 20.0),
+        child: const Icon(
+          Icons.delete,
+          color: Colors.white,
+        ),
+      ),
+      child: Container(
+        margin: const EdgeInsets.fromLTRB(0, 0, 8, 15),
+        width: double.infinity,
+        height: 56,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              margin: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+              width: 24,
+              height: 24,
+              child: const Icon(
+                Icons.drag_indicator_outlined,
+                size: 24,
+                color: Color(0xff686f82),
               ),
-              child: TextField(
-                style: GoogleFonts.poppins(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500,
-                  height: 1.2,
-                  color: const Color(0xffffffff),
+            ),
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(21.65, 5, 21.65, 0),
+                height: double.infinity,
+                decoration: BoxDecoration(
+                  border: Border.all(color: const Color(0xff353842)),
+                  color: const Color(0xff353842),
+                  borderRadius: BorderRadius.circular(32),
                 ),
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  filled: true,
-                  fillColor: const Color(0xff353842),
-                  hintText: 'Enter ingredient',
-                  hintStyle: GoogleFonts.poppins(
+                child: TextField(
+                  style: GoogleFonts.poppins(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
-                    height: 1.2125,
-                    color: const Color(0xff686f82),
+                    height: 1.2,
+                    color: const Color(0xffffffff),
+                  ),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    filled: true,
+                    fillColor: const Color(0xff353842),
+                    hintText: 'Enter ingredient',
+                    hintStyle: GoogleFonts.poppins(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      height: 1.2125,
+                      color: const Color(0xff686f82),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
