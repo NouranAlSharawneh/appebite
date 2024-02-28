@@ -68,7 +68,7 @@ class _MOCaloriesState extends State<MOCalories> {
                           fontSize: 20 * widget.ffem,
                           fontWeight: FontWeight.w400,
                           height: 1.5 * widget.ffem / widget.fem,
-                          color: const Color(0xffffffff),
+                          color: const Color(0xff686f82),
                         ),
                       ),
                     ),
