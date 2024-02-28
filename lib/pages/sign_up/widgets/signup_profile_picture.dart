@@ -43,7 +43,7 @@ class _SignUpProfilePictureState extends State<SignUpProfilePicture> {
     return Center(
       child: SizedBox(
         width: 315 * widget.fem,
-        height: 70,
+        height: 75 * widget.fem,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,

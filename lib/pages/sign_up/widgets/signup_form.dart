@@ -24,7 +24,7 @@ class _SignUpFormState extends State<SignUpForm> {
     return Container(
       margin: EdgeInsets.fromLTRB(0 * widget.fem, 0 * widget.fem, 16.5 * widget.fem, 18.83 * widget.fem),
       width: 316 * widget.fem,
-      height: 318.17 * widget.fem,
+      height: 330 * widget.fem,
       child: SizedBox(
         width: 316 * widget.fem,
         height: 313 * widget.fem,
