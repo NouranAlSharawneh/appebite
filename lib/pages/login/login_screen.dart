@@ -1,4 +1,3 @@
-// Noran, Progress: UI DONE, FUNCTIONALITY TO BE ADDED 
 import 'package:appebite/pages/login/widgets/divider_section.dart';
 import 'package:appebite/pages/login/widgets/forget_password.dart';
 import 'package:appebite/pages/login/widgets/input_field.dart';
@@ -7,13 +6,20 @@ import 'package:appebite/pages/login/widgets/signup_section.dart';
 import 'package:appebite/pages/login/widgets/title_section.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:const Color(0xff272a32),
+      backgroundColor: const Color(0xff272a32),
       body: SingleChildScrollView(
         child: _buildLoginScreen(context),
       ),
@@ -29,19 +35,34 @@ class LoginPage extends StatelessWidget {
         decoration: const BoxDecoration(
           color: Color(0xff272a32),
         ),
-        child: const Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 150,
             ),
-            TitleSection(),
-            InputField(label: 'Email', hint: 'Enter email'),
-            InputField(label: 'Enter password', hint: 'Enter password', isPassword: true),
-            ForgetPassword(),
-            LoginButton(),
-            DividerSection(),
-            Center(child: SignUpSection()),
+            const TitleSection(),
+            Form(
+              key: _formKey,
+              autovalidateMode: AutovalidateMode.disabled,
+              child: Column(
+                children: [
+                  const InputField(
+                    label: 'Email',
+                    hint: 'Enter email',
+                  ),
+                  const InputField(
+                    label: 'Enter password',
+                    hint: 'Enter password',
+                    isPassword: true,                   
+                  ),
+                  const ForgetPassword(),
+                  LoginButton(formKey: _formKey),
+                ],
+              ),
+            ),
+            const DividerSection(),
+            const Center(child: SignUpSection()),
           ],
         ),
       ),

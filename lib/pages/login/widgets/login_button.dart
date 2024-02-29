@@ -1,8 +1,11 @@
+import 'package:appebite/pages/uploadRecipe/upload_recipe.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginButton extends StatelessWidget {
-  const LoginButton({super.key});
+  const LoginButton({super.key, required this.formKey});
+  final formKey;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -10,7 +13,15 @@ class LoginButton extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
-          Navigator.pushReplacementNamed(context, '/next_page');
+          // TODO: REPLACE WITH THE HOMEPAGE WHEN ADDED
+          final isValid = formKey.currentState.validate();
+          if(isValid) {
+            formKey.currentState!.save();
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const UploadRecipe()), 
+            );
+          }
         },
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.symmetric(horizontal: 126, vertical: 18),

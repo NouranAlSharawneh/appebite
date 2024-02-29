@@ -14,11 +14,13 @@ class InputField extends StatefulWidget {
   final String label;
 
   @override
-  _InputFieldState createState() => _InputFieldState();
+  State<InputField> createState() => _InputFieldState();
 }
 
 class _InputFieldState extends State<InputField> {
   bool _obscureText = true;
+  String emailInput = '';
+  String passwordInput = '';
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class _InputFieldState extends State<InputField> {
             ),
           ),
           Container(
-            padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+            padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
             width: double.infinity,
             decoration: BoxDecoration(
               color: const Color(0xff353842),
@@ -53,14 +55,31 @@ class _InputFieldState extends State<InputField> {
                     child: Stack(
                       alignment: Alignment.centerRight,
                       children: [
-                        TextField(
+                        TextFormField(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Enter a password';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            passwordInput = value!;
+                          },
                           obscureText: _obscureText,
                           style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                             hintText: widget.hint,
                             hintStyle:
-                                const TextStyle(color: Color(0xff686f82)),
+                                const TextStyle(
+                                  color: Color(0xff686f82),
+                                  height: 1,
+                                  ),
                             border: InputBorder.none,
+                            errorStyle: const TextStyle(
+                              color: Color(0xffff7269),
+                              fontSize: 12.0,
+                              height: 0.1, // Adjust height to position error text
+                            ),
                           ),
                         ),
                         IconButton(
@@ -81,13 +100,32 @@ class _InputFieldState extends State<InputField> {
                   )
                 : SizedBox(
                     height: 45,
-                    child: TextField(
+                    child: TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Enter an email';
+                        } else if (!value.contains("@") || !value.contains(".")) {
+                          return 'Invalid a email format';
+                        }
+                        return null;
+                      },
+                      onSaved: (value) {
+                        emailInput = value!;
+                      },
                       style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         hintText: widget.hint,
                         hintStyle:
-                            const TextStyle(color: Color(0xff686f82)),
+                            const TextStyle(
+                              color: Color(0xff686f82),
+                              height: 1,
+                              ),
                         border: InputBorder.none,
+                        errorStyle: const TextStyle(
+                          color: Color(0xffff7269),
+                          fontSize: 12.0,
+                          height: 0.5,                       
+                        ),
                       ),
                     ),
                   ),
