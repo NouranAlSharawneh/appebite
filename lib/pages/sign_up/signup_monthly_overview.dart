@@ -1,6 +1,6 @@
-import 'package:appebite/pages/sign_up/widgets/mo_calories_tracker.dart';
-import 'package:appebite/pages/sign_up/widgets/mo_chart.dart';
-import 'package:appebite/pages/sign_up/widgets/mo_title.dart';
+import 'package:appebite/pages/sign_up/widgets/monthly_overview/mo_calories_tracker.dart';
+import 'package:appebite/pages/sign_up/widgets/monthly_overview/mo_chart.dart';
+import 'package:appebite/pages/sign_up/widgets/monthly_overview/mo_title.dart';
 import 'package:flutter/material.dart';
 
 class SignUpMonthlyOverview extends StatelessWidget {

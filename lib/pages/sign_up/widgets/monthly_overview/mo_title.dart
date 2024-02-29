@@ -1,4 +1,4 @@
-import 'package:appebite/pages/sign_up/signup_account_confirmation.dart';
+import 'package:appebite/pages/sign_up/widgets/monthly_overview/signup_account_confirmation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

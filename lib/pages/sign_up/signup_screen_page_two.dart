@@ -1,12 +1,12 @@
-import 'package:appebite/pages/sign_up/widgets/signup_accent_button.dart';
-import 'package:appebite/pages/sign_up/widgets/signup_birthyear.dart';
-import 'package:appebite/pages/sign_up/widgets/signup_divider.dart';
-import 'package:appebite/pages/sign_up/widgets/signup_gender.dart';
-import 'package:appebite/pages/sign_up/widgets/signup_information.dart';
-import 'package:appebite/pages/sign_up/widgets/signup_navigator.dart';
-import 'package:appebite/pages/sign_up/widgets/signup_personal_information.dart';
-import 'package:appebite/pages/sign_up/widgets/signup_terms_and_conditions.dart';
-import 'package:appebite/pages/sign_up/widgets/signup_title.dart';
+import 'package:appebite/pages/sign_up/widgets/common/signup_divider.dart';
+import 'package:appebite/pages/sign_up/widgets/page_2/signup_accent_button.dart';
+import 'package:appebite/pages/sign_up/widgets/page_2/signup_birthyear.dart';
+import 'package:appebite/pages/sign_up/widgets/page_2/signup_information.dart';
+import 'package:appebite/pages/sign_up/widgets/page_2/signup_gender.dart';
+import 'package:appebite/pages/sign_up/widgets/common/signup_navigator.dart';
+import 'package:appebite/pages/sign_up/widgets/page_2/signup_personal_information.dart';
+import 'package:appebite/pages/sign_up/widgets/page_2/signup_terms_and_conditions.dart';
+import 'package:appebite/pages/sign_up/widgets/common/signup_title.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPageTwo extends StatelessWidget {

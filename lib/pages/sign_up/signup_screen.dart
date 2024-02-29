@@ -1,8 +1,8 @@
-import 'package:appebite/pages/sign_up/widgets/signup_button.dart';
-import 'package:appebite/pages/sign_up/widgets/signup_divider.dart';
-import 'package:appebite/pages/sign_up/widgets/signup_form.dart';
-import 'package:appebite/pages/sign_up/widgets/signup_navigator.dart';
-import 'package:appebite/pages/sign_up/widgets/signup_title.dart';
+import 'package:appebite/pages/sign_up/widgets/common/signup_divider.dart';
+import 'package:appebite/pages/sign_up/widgets/page_1/signup_button.dart';
+import 'package:appebite/pages/sign_up/widgets/page_1/signup_form.dart';
+import 'package:appebite/pages/sign_up/widgets/common/signup_navigator.dart';
+import 'package:appebite/pages/sign_up/widgets/common/signup_title.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatelessWidget {

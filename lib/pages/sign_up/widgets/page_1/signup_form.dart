@@ -1,6 +1,6 @@
+import 'package:appebite/pages/sign_up/widgets/page_2/signup_profile_picture.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:appebite/pages/sign_up/widgets/signup_profile_picture.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({
