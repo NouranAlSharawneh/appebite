@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({super.key, required this.formKey});
-  final formKey;
+  final GlobalKey<FormState> formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class LoginButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {
           // TODO: REPLACE WITH THE HOMEPAGE WHEN ADDED
-          final isValid = formKey.currentState.validate();
+          final isValid = formKey.currentState!.validate();
           if(isValid) {
             formKey.currentState!.save();
             Navigator.push(

@@ -5,8 +5,10 @@ import 'package:appebite/pages/sign_up/widgets/common/signup_navigator.dart';
 import 'package:appebite/pages/sign_up/widgets/common/signup_title.dart';
 import 'package:flutter/material.dart';
 
+// TOD0: CHANGE TO A STATEFUL 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
+  static final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +30,16 @@ class SignUpPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SignUpTitle(fem: fem, ffem: ffem),
-            SignUpForm(fem: fem, ffem: ffem),
-            SignUpButton(fem: fem, ffem: ffem),
+            Form(
+              key: _formKey,
+              autovalidateMode: AutovalidateMode.disabled,
+              child: Column(
+                children: [
+                  SignUpForm(fem: fem, ffem: ffem),
+                  SignUpButton(fem: fem, ffem: ffem, formKey: _formKey),
+                ],
+              ),
+            ),
             SignUpDivider(fem: fem),
             SignUpNavigator(fem: fem, ffem: ffem),
           ],

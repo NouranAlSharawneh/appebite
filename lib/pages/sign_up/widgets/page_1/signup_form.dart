@@ -18,6 +18,10 @@ class SignUpForm extends StatefulWidget {
 
 class _SignUpFormState extends State<SignUpForm> {
   bool _obscureText = true;
+  String firstNameInput = '';
+  String lastNameInput = '';
+  String emailInput = '';
+  String passwordInput = '';
 
   @override
   Widget build(BuildContext context) {
@@ -76,9 +80,18 @@ class _SignUpFormState extends State<SignUpForm> {
                           color: const Color(0xff353842),
                           borderRadius: BorderRadius.circular(10.0),
                         ),
-                        child: const TextField(
-                          style: TextStyle(color: Colors.white),
-                          decoration: InputDecoration(
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Enter first name';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            firstNameInput = value!;
+                          },
+                          style: const TextStyle(color: Colors.white),
+                          decoration: const InputDecoration(
                             prefixIcon: Icon(
                               Icons.person,
                               color: Color.fromRGBO(104, 111, 130, 100),
@@ -88,11 +101,17 @@ class _SignUpFormState extends State<SignUpForm> {
                                 TextStyle(color: Color(0xff686f82)),
                             contentPadding: EdgeInsets.all(12.0),
                             border: InputBorder.none,
+                            errorStyle: TextStyle(
+                              color: Color(0xffff7269),
+                              fontSize: 12.0,
+                              height: 0.5
+                            ),
                           ),
                         ),
                       ),
                     ),
-                    const SizedBox(width: 16.0), // Add some spacing between text fields
+
+                    const SizedBox(width: 25.0), // Add some spacing between text fields
 
                     // "Last name" text field
                     Expanded(
@@ -101,9 +120,18 @@ class _SignUpFormState extends State<SignUpForm> {
                           color: const Color(0xff353842),
                           borderRadius: BorderRadius.circular(10.0),
                         ),
-                        child: const TextField(
-                          style: TextStyle(color: Colors.white),
-                          decoration: InputDecoration(
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Enter last name';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            lastNameInput = value!;
+                          },
+                          style: const TextStyle(color: Colors.white),
+                          decoration: const InputDecoration(
                             hintText: 'last name',
                             prefixIcon: Icon(
                               Icons.person,
@@ -142,9 +170,9 @@ class _SignUpFormState extends State<SignUpForm> {
                         color: const Color(0xff353842),
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      child: const TextField(
-                        style: TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
+                      child: TextFormField(
+                        style:const TextStyle(color: Colors.white),
+                        decoration:const InputDecoration(
                           prefixIcon: Icon(
                             Icons.email,
                             color: Color.fromRGBO(104, 111, 130, 100),
@@ -187,7 +215,7 @@ class _SignUpFormState extends State<SignUpForm> {
                         child: Stack(
                           alignment: Alignment.centerRight,
                           children: [
-                            TextField(
+                            TextFormField(
                               style: const TextStyle(color: Colors.white),
                               obscureText: _obscureText,
                               decoration: const InputDecoration(
