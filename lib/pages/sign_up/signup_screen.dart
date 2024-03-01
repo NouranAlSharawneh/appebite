@@ -3,12 +3,19 @@ import 'package:appebite/pages/sign_up/widgets/page_1/signup_button.dart';
 import 'package:appebite/pages/sign_up/widgets/page_1/signup_form.dart';
 import 'package:appebite/pages/sign_up/widgets/common/signup_navigator.dart';
 import 'package:appebite/pages/sign_up/widgets/common/signup_title.dart';
+import 'package:appebite/pages/sign_up/widgets/page_2/signup_profile_picture.dart';
 import 'package:flutter/material.dart';
 
-// TOD0: CHANGE TO A STATEFUL 
-class SignUpPage extends StatelessWidget {
+
+class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
-  static final _formKey = GlobalKey<FormState>();
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  final formKey = GlobalKey<FormState>(); 
 
   @override
   Widget build(BuildContext context) {
@@ -31,15 +38,17 @@ class SignUpPage extends StatelessWidget {
           children: [
             SignUpTitle(fem: fem, ffem: ffem),
             Form(
-              key: _formKey,
+              key: formKey,
               autovalidateMode: AutovalidateMode.disabled,
               child: Column(
                 children: [
                   SignUpForm(fem: fem, ffem: ffem),
-                  SignUpButton(fem: fem, ffem: ffem, formKey: _formKey),
+                  SignUpProfilePicture(fem: fem, ffem: ffem),
+                  SignUpButton(fem: fem, ffem: ffem, formKey: formKey),
                 ],
               ),
             ),
+
             SignUpDivider(fem: fem),
             SignUpNavigator(fem: fem, ffem: ffem),
           ],
