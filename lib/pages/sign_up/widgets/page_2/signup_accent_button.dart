@@ -8,11 +8,19 @@ class SignUpAccentButton extends StatelessWidget {
     required this.fem,
     required this.ffem,
     required this.selectedGender,
+    required this.currentWeight,
+    required this.currentHeight,
+    required this.birthYear,
   });
 
   final double fem;
   final double ffem;
   final String selectedGender;
+  final String currentWeight;
+  final String currentHeight;
+  final int birthYear;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +29,9 @@ class SignUpAccentButton extends StatelessWidget {
       child: TextButton(
         onPressed: () {
           print('Selected Gender: $selectedGender');
+          print('Current Weight: $currentWeight kg');
+          print('Current Height: $currentHeight cm');
+          print('Birthyear: $birthYear old');
           Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const SignUpMonthlyOverview()), 

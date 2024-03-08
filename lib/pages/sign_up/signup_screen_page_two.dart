@@ -12,6 +12,9 @@ import 'package:appebite/pages/sign_up/widgets/common/signup_title.dart';
 class SignUpPageTwo extends StatefulWidget {
   SignUpPageTwo({Key? key}) : super(key: key);
   String selectedGender = '';
+  String currentWeight = ''; 
+  String currentHeight = '';
+  int birthYear = 0;
 
   @override
 State<SignUpPageTwo> createState() => _SignUpPageTwoState();
@@ -55,10 +58,38 @@ class _SignUpPageTwoState extends State<SignUpPageTwo> {
                         });
                       },
                     ),
-                    SignUpInformation(fem: fem, ffem: ffem),
-                    SignUpBirthYear(fem: fem, ffem: ffem, ),
+                    SignUpInformation(
+                      fem: fem, 
+                      ffem: ffem,
+                      onWeightChanged: (value) {
+                          setState(() {
+                            widget.currentWeight = value;
+                          });
+                        },
+                          onHeightChanged: (value) {
+                            setState(() {
+                              widget.currentHeight = value;
+                            });
+                          },
+                      ),
+                    SignUpBirthYear(
+                      fem: fem, 
+                      ffem: ffem, 
+                      onBirthYearChanged: (value) {
+                          setState(() {
+                            widget.birthYear = value;
+                          });
+                        },
+                      ),
                     SignUpTermsAndConditions(fem: fem, ffem: ffem),
-                    SignUpAccentButton(fem: fem, ffem: ffem, selectedGender: widget.selectedGender),
+                    SignUpAccentButton(
+                      fem: fem, 
+                      ffem: ffem, 
+                      selectedGender: widget.selectedGender,
+                      currentWeight: widget.currentWeight,
+                      currentHeight: widget.currentHeight,
+                      birthYear: widget.birthYear,
+                      ),
                   ],
                 ),
               ),

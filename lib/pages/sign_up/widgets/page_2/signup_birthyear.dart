@@ -7,10 +7,12 @@ class SignUpBirthYear extends StatefulWidget {
     Key? key,
     required this.fem,
     required this.ffem,
+    required this.onBirthYearChanged,
   }) : super(key: key);
 
   final double fem;
   final double ffem;
+  final Function(int) onBirthYearChanged;
 
   @override
   State<SignUpBirthYear> createState() => _SignUpBirthYearState();
@@ -58,6 +60,7 @@ class _SignUpBirthYearState extends State<SignUpBirthYear> {
                 setState(() {
                   _selectedYear = dateTime;
                   showYear = "${dateTime.year}";
+                  widget.onBirthYearChanged(dateTime.year);
                 });
                 Navigator.pop(context);
               },

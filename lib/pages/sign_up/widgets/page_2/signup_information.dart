@@ -6,7 +6,12 @@ class SignUpInformation extends StatelessWidget {
     super.key,
     required this.fem,
     required this.ffem,
+    required this.onWeightChanged,
+    required this.onHeightChanged,
   });
+
+  final Function(String) onWeightChanged;
+  final Function(String) onHeightChanged;
 
   final double fem;
   final double ffem;
@@ -48,6 +53,9 @@ class SignUpInformation extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8*fem),
                   ),
                     child: TextField(
+                      onChanged: (value) {
+                          onWeightChanged(value);
+                        },
                         style: const TextStyle(color: Colors.white),      
                         textAlign: TextAlign.justify, 
                         keyboardType: TextInputType.number,                         
@@ -101,6 +109,9 @@ class SignUpInformation extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8*fem),
                   ),
                     child: TextField(
+                      onChanged: (value) {
+                        onHeightChanged(value);
+                        },
                         style: const TextStyle(color: Colors.white),  
                         textAlign: TextAlign.justify,
                         keyboardType: TextInputType.number,                               
