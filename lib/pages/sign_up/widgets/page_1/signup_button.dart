@@ -25,7 +25,7 @@ class SignUpButton extends StatelessWidget {
             formKey.currentState!.save();
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const SignUpPageTwo()), 
+              MaterialPageRoute(builder: (context) => SignUpPageTwo()), 
             );
           }
         },

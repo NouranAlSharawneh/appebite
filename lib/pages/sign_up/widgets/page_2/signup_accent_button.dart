@@ -7,10 +7,12 @@ class SignUpAccentButton extends StatelessWidget {
     super.key,
     required this.fem,
     required this.ffem,
+    required this.selectedGender,
   });
 
   final double fem;
   final double ffem;
+  final String selectedGender;
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +20,7 @@ class SignUpAccentButton extends StatelessWidget {
       margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 11.5*fem, 50*fem),
       child: TextButton(
         onPressed: () {
+          print('Selected Gender: $selectedGender');
           Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const SignUpMonthlyOverview()), 

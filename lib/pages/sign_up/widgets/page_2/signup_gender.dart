@@ -6,10 +6,12 @@ class SignUpGender extends StatefulWidget {
     Key? key,
     required this.fem,
     required this.ffem,
+    required this.onGenderSelected,
   }) : super(key: key);
 
   final double fem;
   final double ffem;
+  final Function(String) onGenderSelected;
 
   @override
   State<SignUpGender> createState() => _SignUpGenderState();
@@ -34,6 +36,7 @@ class _SignUpGenderState extends State<SignUpGender> {
                   setState(() {
                     maleOpacity = 1.0;
                     femaleOpacity = 0.5;
+                    widget.onGenderSelected('Male');
                     // Handle the male selection action here 
                   });
                 },
@@ -56,6 +59,7 @@ class _SignUpGenderState extends State<SignUpGender> {
                   setState(() {
                     maleOpacity = 0.5;
                     femaleOpacity = 1.0;
+                    widget.onGenderSelected('Female');
                     // Handle the female selection action here 
                   });
                 },

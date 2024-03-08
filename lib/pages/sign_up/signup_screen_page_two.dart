@@ -10,7 +10,8 @@ import 'package:appebite/pages/sign_up/widgets/page_2/signup_terms_and_condition
 import 'package:appebite/pages/sign_up/widgets/common/signup_title.dart';
 
 class SignUpPageTwo extends StatefulWidget {
-  const SignUpPageTwo({Key? key}) : super(key: key);
+  SignUpPageTwo({Key? key}) : super(key: key);
+  String selectedGender = '';
 
   @override
 State<SignUpPageTwo> createState() => _SignUpPageTwoState();
@@ -45,11 +46,19 @@ class _SignUpPageTwoState extends State<SignUpPageTwo> {
                 autovalidateMode: AutovalidateMode.disabled,
                 child: Column(
                   children: [
-                    SignUpGender(fem: fem, ffem: ffem),
+                    SignUpGender(
+                      fem: fem, 
+                      ffem: ffem,
+                      onGenderSelected: (String gender) {
+                        setState(() {
+                          widget.selectedGender = gender;
+                        });
+                      },
+                    ),
                     SignUpInformation(fem: fem, ffem: ffem),
                     SignUpBirthYear(fem: fem, ffem: ffem, ),
                     SignUpTermsAndConditions(fem: fem, ffem: ffem),
-                    SignUpAccentButton(fem: fem, ffem: ffem),
+                    SignUpAccentButton(fem: fem, ffem: ffem, selectedGender: widget.selectedGender),
                   ],
                 ),
               ),
