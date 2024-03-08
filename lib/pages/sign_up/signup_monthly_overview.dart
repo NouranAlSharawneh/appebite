@@ -4,8 +4,8 @@ import 'package:appebite/pages/sign_up/widgets/monthly_overview/mo_title.dart';
 import 'package:flutter/material.dart';
 
 class SignUpMonthlyOverview extends StatelessWidget {
-  const SignUpMonthlyOverview({super.key});
-
+  const SignUpMonthlyOverview({super.key, required this.caloriesPerMonth});
+  final int caloriesPerMonth;
   @override
   Widget build(BuildContext context) {
     double baseWidth = 400;
@@ -29,7 +29,11 @@ class SignUpMonthlyOverview extends StatelessWidget {
           children: [
             MOTitle(fem: fem, ffem: ffem),
             MOChart(fem: fem),
-            MOCalories(fem: fem, ffem: ffem),
+            MOCalories(
+              fem: fem, 
+              ffem: ffem,
+              initialCaloriesValue: caloriesPerMonth,
+              ),
           ],
         ),
       ),

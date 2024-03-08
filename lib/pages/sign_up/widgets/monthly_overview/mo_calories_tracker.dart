@@ -6,17 +6,26 @@ class MOCalories extends StatefulWidget {
     Key? key,
     required this.fem,
     required this.ffem,
+    required this.initialCaloriesValue,
   }) : super(key: key);
 
   final double fem;
   final double ffem;
+  final int initialCaloriesValue;
 
   @override
   State<MOCalories> createState() => _MOCaloriesState();
+  
 }
 
 class _MOCaloriesState extends State<MOCalories> {
-  TextEditingController caloriesController = TextEditingController(text: '60000');
+  late TextEditingController caloriesController;
+
+  @override
+  void initState() {
+    super.initState();
+    caloriesController = TextEditingController(text: widget.initialCaloriesValue.toString());
+  }
 
   @override
   Widget build(BuildContext context) {

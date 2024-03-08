@@ -51,8 +51,8 @@ class _SignUpBirthYearState extends State<SignUpBirthYear> {
             height: 300,
             child: YearPicker(
               
-              firstDate: DateTime(DateTime.now().year - 10, 1),
-              lastDate: DateTime(2025),
+              firstDate: DateTime(DateTime.now().year - 50, 1),
+              lastDate: DateTime(DateTime.now().year),
               initialDate: DateTime.now(),
               selectedDate: _selectedYear,
               onChanged: (DateTime dateTime) {
