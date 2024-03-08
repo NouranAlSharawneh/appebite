@@ -1,4 +1,3 @@
-import 'package:appebite/pages/sign_up/widgets/page_2/signup_profile_picture.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -28,7 +27,7 @@ class _SignUpFormState extends State<SignUpForm> {
     return Container(
       margin: EdgeInsets.fromLTRB(0 * widget.fem, 0 * widget.fem, 16.5 * widget.fem, 18.83 * widget.fem),
       width: 316 * widget.fem,
-      height: 330 * widget.fem,
+      height: 290 * widget.fem,
       child: SizedBox(
         width: 316 * widget.fem,
         height: 313 * widget.fem,
@@ -53,7 +52,7 @@ class _SignUpFormState extends State<SignUpForm> {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 16.0),
+                    const SizedBox(width: 17.0),
                     // "Last name" label
                     Expanded(
                       child: Text(
@@ -90,7 +89,7 @@ class _SignUpFormState extends State<SignUpForm> {
                           onSaved: (value) {
                             firstNameInput = value!;
                           },
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white,),
                           decoration: const InputDecoration(
                             prefixIcon: Icon(
                               Icons.person,
@@ -98,7 +97,7 @@ class _SignUpFormState extends State<SignUpForm> {
                             ),
                             hintText: 'first name',
                             hintStyle:
-                                TextStyle(color: Color(0xff686f82)),
+                                TextStyle(color: Color(0xff686f82),),
                             contentPadding: EdgeInsets.all(12.0),
                             border: InputBorder.none,
                             errorStyle: TextStyle(
@@ -141,6 +140,11 @@ class _SignUpFormState extends State<SignUpForm> {
                                 TextStyle(color: Color(0xff686f82)),
                             contentPadding: EdgeInsets.all(12.0),
                             border: InputBorder.none,
+                            errorStyle: TextStyle(
+                              color: Color(0xffff7269),
+                              fontSize: 12.0,
+                              height: 0.5
+                            ),
                           ),
                         ),
                       ),
@@ -171,6 +175,17 @@ class _SignUpFormState extends State<SignUpForm> {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: TextFormField(
+                        validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Enter an email';
+                        } else if (!value.contains("@") || !value.contains(".") || value.length < 8) {
+                          return 'Invalid a email format';
+                        }
+                        return null;
+                      },
+                      onSaved: (value) {
+                        emailInput = value!;
+                      },
                         style:const TextStyle(color: Colors.white),
                         decoration:const InputDecoration(
                           prefixIcon: Icon(
@@ -181,6 +196,11 @@ class _SignUpFormState extends State<SignUpForm> {
                           hintStyle: TextStyle(color: Color(0xff686f82)),
                           contentPadding: EdgeInsets.all(12.0),
                           border: InputBorder.none,
+                          errorStyle: TextStyle(
+                              color: Color(0xffff7269),
+                              fontSize: 12.0,
+                              height: 0.5
+                            ),
                         ),
                       ),
                     ),
@@ -211,12 +231,43 @@ class _SignUpFormState extends State<SignUpForm> {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: SizedBox(
-                        height: 45,
+                        height: 50,
                         child: Stack(
                           alignment: Alignment.centerRight,
                           children: [
                             TextFormField(
-                              style: const TextStyle(color: Colors.white),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Enter your password';
+                                }
+                                if (value.length < 8) {
+                                  return 'Password must be at least 8 characters';
+                                }
+                                bool hasUppercase = value.contains(RegExp(r'[A-Z]'));
+                                bool hasLowercase = value.contains(RegExp(r'[a-z]'));
+                                bool hasDigit = value.contains(RegExp(r'\d'));
+                                RegExp hasSpecialChar = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@_#\$&*~]).{8,}$');
+
+                                if (!hasUppercase) {
+                                    return 'Password must include at least one uppercase letter';
+                                  }
+
+                                  if (!hasLowercase) {
+                                    return 'Password must include at least one lowercase letter';
+                                  }
+
+                                  if (!hasDigit) {
+                                    return 'Password must include at least one number';
+                                    }
+                                  if (!hasSpecialChar.hasMatch(value)) {
+                                    return 'Password must include at least one special character';
+                                  }
+                                  return null;
+                              },
+                              onSaved: (value) {
+                                passwordInput = value!;
+                              },
+                              style: const TextStyle(color: Colors.white,),
                               obscureText: _obscureText,
                               decoration: const InputDecoration(
                                 hintText: 'Enter your password',
@@ -224,9 +275,14 @@ class _SignUpFormState extends State<SignUpForm> {
                                   Icons.lock,
                                   color: Color.fromRGBO(104, 111, 130, 100),
                                 ),
-                                hintStyle: TextStyle(color: Color(0xff686f82)),
+                                hintStyle: TextStyle(color: Color(0xff686f82),),
                                 contentPadding: EdgeInsets.all(12.0),
                                 border: InputBorder.none,
+                                errorStyle: TextStyle(
+                                  color: Color(0xffff7269),
+                                  fontSize: 12.0,
+                                  height: 0.5
+                                ),
                               ),
                             ),
                             IconButton(
@@ -250,8 +306,6 @@ class _SignUpFormState extends State<SignUpForm> {
                 ),
               ],
             ),
-
-            SignUpProfilePicture(fem: widget.fem, ffem: widget.ffem),
           ],
         ),
       ),
