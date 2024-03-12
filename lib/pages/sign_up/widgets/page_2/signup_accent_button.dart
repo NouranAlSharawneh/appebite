@@ -34,10 +34,10 @@ class SignUpAccentButton extends StatelessWidget {
     int age = DateTime.now().year - birthYear;
 
     if (selectedGender.toLowerCase() == 'male') {
-      double rawCalories = (66.5 + (13.8 * weight) + (5 * height) - (6.8 * age)) * 30;
+      double rawCalories = (66.5 + (13.8 * weight) + (5 * height) - (6.8 * age)) * 32;
       return _roundToNearestHundred(rawCalories).toInt();
     } else if (selectedGender.toLowerCase() == 'female') {
-      double rawCalories = (655 + (9.6 * weight) + (1.8 * height) - (4.7 * age)) * 30;
+      double rawCalories = (655 + (9.6 * weight) + (1.8 * height) - (4.7 * age)) * 32;
       return _roundToNearestHundred(rawCalories).toInt();
     } else {
       return 0;

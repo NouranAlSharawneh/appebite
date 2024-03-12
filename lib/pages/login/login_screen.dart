@@ -5,6 +5,7 @@ import 'package:appebite/pages/login/widgets/login_button.dart';
 import 'package:appebite/pages/login/widgets/signup_section.dart';
 import 'package:appebite/pages/login/widgets/title_section.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

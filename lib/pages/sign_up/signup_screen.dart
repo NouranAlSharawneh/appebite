@@ -5,6 +5,7 @@ import 'package:appebite/pages/sign_up/widgets/common/signup_navigator.dart';
 import 'package:appebite/pages/sign_up/widgets/common/signup_title.dart';
 import 'package:appebite/pages/sign_up/widgets/page_2/signup_profile_picture.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 class SignUpPage extends StatefulWidget {

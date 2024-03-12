@@ -8,6 +8,7 @@ import 'package:appebite/pages/sign_up/widgets/common/signup_navigator.dart';
 import 'package:appebite/pages/sign_up/widgets/page_2/signup_personal_information.dart';
 import 'package:appebite/pages/sign_up/widgets/page_2/signup_terms_and_conditions.dart';
 import 'package:appebite/pages/sign_up/widgets/common/signup_title.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUpPageTwo extends StatefulWidget {
   SignUpPageTwo({Key? key}) : super(key: key);
