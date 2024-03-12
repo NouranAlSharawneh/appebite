@@ -5,7 +5,7 @@ import 'package:appebite/pages/sign_up/widgets/common/signup_navigator.dart';
 import 'package:appebite/pages/sign_up/widgets/common/signup_title.dart';
 import 'package:appebite/pages/sign_up/widgets/page_2/signup_profile_picture.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 
 
 class SignUpPage extends StatefulWidget {
@@ -17,6 +17,8 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final formKey = GlobalKey<FormState>(); 
+  String emailInput = '';
+  String passwordInput = '';
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +45,28 @@ class _SignUpPageState extends State<SignUpPage> {
               autovalidateMode: AutovalidateMode.disabled,
               child: Column(
                 children: [
-                  SignUpForm(fem: fem, ffem: ffem),
+                  SignUpForm(
+                    fem: fem, 
+                    ffem: ffem,
+                    onEmailSaved: (value) {
+                        setState(() {
+                          emailInput = value;
+                        });
+                      },
+                      onPasswordSaved: (value) {
+                        setState(() {
+                          passwordInput = value;
+                        });
+                      },
+                    ),
                   SignUpProfilePicture(fem: fem, ffem: ffem),
-                  SignUpButton(fem: fem, ffem: ffem, formKey: formKey),
+                  SignUpButton(
+                    fem: fem, 
+                    ffem: ffem, 
+                    formKey: formKey,
+                    emailInput: emailInput,
+                    passwordInput: passwordInput,
+                    ),
                 ],
               ),
             ),

@@ -6,22 +6,29 @@ class SignUpForm extends StatefulWidget {
     Key? key,
     required this.fem,
     required this.ffem,
+    required this.onEmailSaved,
+    required this.onPasswordSaved,
   }) : super(key: key);
 
   final double fem;
   final double ffem;
+  final Function(String) onEmailSaved;
+  final Function(String) onPasswordSaved;
 
   @override
   State<SignUpForm> createState() => _SignUpFormState();
+  String get emailInput => _SignUpFormState.emailInput;
+  String get passwordInput => _SignUpFormState.passwordInput;
 }
 
 class _SignUpFormState extends State<SignUpForm> {
   bool _obscureText = true;
   String firstNameInput = '';
   String lastNameInput = '';
-  String emailInput = '';
-  String passwordInput = '';
+  static String emailInput = '';
+  static String passwordInput = '';
 
+SignUpForm get signUpFormWidget => widget;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -185,6 +192,7 @@ class _SignUpFormState extends State<SignUpForm> {
                       },
                       onSaved: (value) {
                         emailInput = value!;
+                        widget.onEmailSaved(value);
                       },
                         style:const TextStyle(color: Colors.white),
                         decoration:const InputDecoration(
@@ -266,6 +274,7 @@ class _SignUpFormState extends State<SignUpForm> {
                               },
                               onSaved: (value) {
                                 passwordInput = value!;
+                                widget.onPasswordSaved(value);
                               },
                               style: const TextStyle(color: Colors.white,),
                               obscureText: _obscureText,
