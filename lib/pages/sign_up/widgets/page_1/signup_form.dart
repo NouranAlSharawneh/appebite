@@ -1,43 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SignUpForm extends StatefulWidget {
+class SignUpForm extends StatelessWidget {
   const SignUpForm({
     Key? key,
     required this.fem,
     required this.ffem,
-    required this.onEmailSaved,
-    required this.onPasswordSaved,
+    required this.emailController,
+    required this.passwordController,
+    this.firstNameController,
+    this.lastNameController,
   }) : super(key: key);
 
   final double fem;
   final double ffem;
-  final Function(String) onEmailSaved;
-  final Function(String) onPasswordSaved;
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
+  final TextEditingController? firstNameController;
+  final TextEditingController? lastNameController;
 
-  @override
-  State<SignUpForm> createState() => _SignUpFormState();
-  String get emailInput => _SignUpFormState.emailInput;
-  String get passwordInput => _SignUpFormState.passwordInput;
-}
-
-class _SignUpFormState extends State<SignUpForm> {
-  bool _obscureText = true;
-  String firstNameInput = '';
-  String lastNameInput = '';
-  static String emailInput = '';
-  static String passwordInput = '';
-
-SignUpForm get signUpFormWidget => widget;
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(0 * widget.fem, 0 * widget.fem, 16.5 * widget.fem, 18.83 * widget.fem),
-      width: 316 * widget.fem,
-      height: 290 * widget.fem,
+      margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 16.5 * fem, 18.83 * fem),
+      width: 316 * fem,
+      height: 290 * fem,
       child: SizedBox(
-        width: 316 * widget.fem,
-        height: 313 * widget.fem,
+        width: 316 * fem,
+        height: 313 * fem,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -52,9 +42,9 @@ SignUpForm get signUpFormWidget => widget;
                       child: Text(
                         'First name',
                         style: GoogleFonts.poppins(
-                          fontSize: 14 * widget.ffem,
+                          fontSize: 14 * ffem,
                           fontWeight: FontWeight.w400,
-                          height: 1.5 * widget.ffem / widget.fem,
+                          height: 1.5 * ffem / fem,
                           color: const Color(0xffffffff),
                         ),
                       ),
@@ -65,9 +55,9 @@ SignUpForm get signUpFormWidget => widget;
                       child: Text(
                         'Last name',
                         style: GoogleFonts.poppins(
-                          fontSize: 14 * widget.ffem,
+                          fontSize: 14 * ffem,
                           fontWeight: FontWeight.w400,
-                          height: 1.5 * widget.ffem / widget.fem,
+                          height: 1.5 * ffem / fem,
                           color: const Color(0xffffffff),
                         ),
                       ),
@@ -87,14 +77,12 @@ SignUpForm get signUpFormWidget => widget;
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: TextFormField(
+                          controller: firstNameController,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Enter first name';
                             }
                             return null;
-                          },
-                          onSaved: (value) {
-                            firstNameInput = value!;
                           },
                           style: const TextStyle(color: Colors.white,),
                           decoration: const InputDecoration(
@@ -104,13 +92,13 @@ SignUpForm get signUpFormWidget => widget;
                             ),
                             hintText: 'first name',
                             hintStyle:
-                                TextStyle(color: Color(0xff686f82),),
+                            TextStyle(color: Color(0xff686f82),),
                             contentPadding: EdgeInsets.all(12.0),
                             border: InputBorder.none,
                             errorStyle: TextStyle(
-                              color: Color(0xffff7269),
-                              fontSize: 12.0,
-                              height: 0.5
+                                color: Color(0xffff7269),
+                                fontSize: 12.0,
+                                height: 0.5
                             ),
                           ),
                         ),
@@ -127,14 +115,12 @@ SignUpForm get signUpFormWidget => widget;
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: TextFormField(
+                          controller: lastNameController,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Enter last name';
                             }
                             return null;
-                          },
-                          onSaved: (value) {
-                            lastNameInput = value!;
                           },
                           style: const TextStyle(color: Colors.white),
                           decoration: const InputDecoration(
@@ -144,13 +130,13 @@ SignUpForm get signUpFormWidget => widget;
                               color: Color.fromRGBO(104, 111, 130, 100),
                             ),
                             hintStyle:
-                                TextStyle(color: Color(0xff686f82)),
+                            TextStyle(color: Color(0xff686f82)),
                             contentPadding: EdgeInsets.all(12.0),
                             border: InputBorder.none,
                             errorStyle: TextStyle(
-                              color: Color(0xffff7269),
-                              fontSize: 12.0,
-                              height: 0.5
+                                color: Color(0xffff7269),
+                                fontSize: 12.0,
+                                height: 0.5
                             ),
                           ),
                         ),
@@ -168,9 +154,9 @@ SignUpForm get signUpFormWidget => widget;
                     Text(
                       'Email address',
                       style: GoogleFonts.poppins(
-                        fontSize: 14 * widget.ffem,
+                        fontSize: 14 * ffem,
                         fontWeight: FontWeight.w400,
-                        height: 1.5 * widget.ffem / widget.fem,
+                        height: 1.5 * ffem / fem,
                         color: const Color(0xffffffff),
                       ),
                     ),
@@ -183,17 +169,14 @@ SignUpForm get signUpFormWidget => widget;
                       ),
                       child: TextFormField(
                         validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Enter an email';
-                        } else if (!value.contains("@") || !value.contains(".") || value.length < 8) {
-                          return 'Invalid a email format';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        emailInput = value!;
-                        widget.onEmailSaved(value);
-                      },
+                          if (value!.isEmpty) {
+                            return 'Enter an email';
+                          } else if (!value.contains("@") || !value.contains(".") || value.length < 8) {
+                            return 'Invalid a email format';
+                          }
+                          return null;
+                        },
+                        controller: emailController,
                         style:const TextStyle(color: Colors.white),
                         decoration:const InputDecoration(
                           prefixIcon: Icon(
@@ -208,7 +191,7 @@ SignUpForm get signUpFormWidget => widget;
                               color: Color(0xffff7269),
                               fontSize: 12.0,
                               height: 0.5
-                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -224,9 +207,9 @@ SignUpForm get signUpFormWidget => widget;
                     Text(
                       'Password',
                       style: GoogleFonts.poppins(
-                        fontSize: 14 * widget.ffem,
+                        fontSize: 14 * ffem,
                         fontWeight: FontWeight.w400,
-                        height: 1.5 * widget.ffem / widget.fem,
+                        height: 1.5 * ffem / fem,
                         color: const Color(0xffffffff),
                       ),
                     ),
@@ -257,27 +240,24 @@ SignUpForm get signUpFormWidget => widget;
                                 RegExp hasSpecialChar = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@_#\$&*~]).{8,}$');
 
                                 if (!hasUppercase) {
-                                    return 'Password must include at least one uppercase letter';
-                                  }
+                                  return 'Password must include at least one uppercase letter';
+                                }
 
-                                  if (!hasLowercase) {
-                                    return 'Password must include at least one lowercase letter';
-                                  }
+                                if (!hasLowercase) {
+                                  return 'Password must include at least one lowercase letter';
+                                }
 
-                                  if (!hasDigit) {
-                                    return 'Password must include at least one number';
-                                    }
-                                  if (!hasSpecialChar.hasMatch(value)) {
-                                    return 'Password must include at least one special character';
-                                  }
-                                  return null;
+                                if (!hasDigit) {
+                                  return 'Password must include at least one number';
+                                }
+                                if (!hasSpecialChar.hasMatch(value)) {
+                                  return 'Password must include at least one special character';
+                                }
+                                return null;
                               },
-                              onSaved: (value) {
-                                passwordInput = value!;
-                                widget.onPasswordSaved(value);
-                              },
+                              controller: passwordController,
                               style: const TextStyle(color: Colors.white,),
-                              obscureText: _obscureText,
+                              obscureText: true,
                               decoration: const InputDecoration(
                                 hintText: 'Enter your password',
                                 prefixIcon: Icon(
@@ -288,23 +268,17 @@ SignUpForm get signUpFormWidget => widget;
                                 contentPadding: EdgeInsets.all(12.0),
                                 border: InputBorder.none,
                                 errorStyle: TextStyle(
-                                  color: Color(0xffff7269),
-                                  fontSize: 12.0,
-                                  height: 0.5
+                                    color: Color(0xffff7269),
+                                    fontSize: 12.0,
+                                    height: 0.5
                                 ),
                               ),
                             ),
                             IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  _obscureText = !_obscureText;
-                                });
-                              },
-                              icon: Icon(
-                                _obscureText
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
-                                color: const Color.fromRGBO(104, 111, 130, 100),
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.visibility_off,
+                                color: Color.fromRGBO(104, 111, 130, 100),
                               ),
                             ),
                           ],

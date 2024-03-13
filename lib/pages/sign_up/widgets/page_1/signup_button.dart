@@ -1,5 +1,4 @@
 import 'package:appebite/pages/sign_up/signup_screen_page_two.dart';
-import 'package:appebite/pages/sign_up/widgets/page_1/signup_form.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -9,22 +8,22 @@ class SignUpButton extends StatelessWidget {
     required this.fem,
     required this.ffem,
     required this.formKey,
-    required this.emailInput,
-    required this.passwordInput,
+    required this.emailController,
+    required this.passwordController,
   }) : super(key: key);
 
   final double fem;
   final double ffem;
   final GlobalKey<FormState> formKey;
-  final String emailInput;
-  final String passwordInput;
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
 
   Future<void> _handleSignUp(BuildContext context) async {
     try {
       // Create user using email and password
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailInput,
-        password: passwordInput,
+        email: emailController.text,
+        password: passwordController.text,
       );
 
       // Navigate to the next page after successful sign-up
@@ -33,9 +32,9 @@ class SignUpButton extends StatelessWidget {
         MaterialPageRoute(builder: (context) => SignUpPageTwo()),
       );
     } catch (error) {
-    if (error is FirebaseAuthException) {
-      print(error);
-} 
+      if (error is FirebaseAuthException) {
+        print(error);
+      }
       // Handle sign-up errors
       showDialog(
         context: context,
@@ -48,7 +47,7 @@ class SignUpButton extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text('OK'),
+                child: const Text('OK'),
               ),
             ],
           );
@@ -94,7 +93,7 @@ class SignUpButton extends StatelessWidget {
                 SizedBox(
                   width: 20 * fem,
                   height: 20 * fem,
-                  child:const Icon(
+                  child: const Icon(
                     Icons.arrow_right_alt_outlined,
                     color: Color(0xffffffff),
                   ),

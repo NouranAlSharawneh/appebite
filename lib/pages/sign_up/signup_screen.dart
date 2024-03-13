@@ -9,16 +9,28 @@ import 'package:flutter/material.dart';
 
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+  const SignUpPage({Key? key});
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
 
+
 class _SignUpPageState extends State<SignUpPage> {
-  final formKey = GlobalKey<FormState>(); 
-  String emailInput = '';
-  String passwordInput = '';
+  final formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _firstnameController = TextEditingController();
+  final TextEditingController _lastnameController = TextEditingController();
+
+   @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _firstnameController.dispose();
+    _lastnameController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,58 +38,50 @@ class _SignUpPageState extends State<SignUpPage> {
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
     return Scaffold(
-      backgroundColor:const Color(0xff272a32) ,
-      resizeToAvoidBottomInset : false,
+      backgroundColor: const Color(0xff272a32),
+      resizeToAvoidBottomInset: false,
       body: SizedBox(
-      width: double.infinity,
-      child: Container(
-        padding: EdgeInsets.fromLTRB(34*fem, 14*fem, 22.5*fem, 8*fem),
         width: double.infinity,
-        decoration: const BoxDecoration (
-          color: Color(0xff272a32),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SignUpTitle(fem: fem, ffem: ffem),
-            Form(
-              key: formKey,
-              autovalidateMode: AutovalidateMode.disabled,
-              child: Column(
-                children: [
-                  SignUpForm(
-                    fem: fem, 
-                    ffem: ffem,
-                    onEmailSaved: (value) {
-                        setState(() {
-                          emailInput = value;
-                        });
-                      },
-                      onPasswordSaved: (value) {
-                        setState(() {
-                          passwordInput = value;
-                        });
-                      },
+        child: Container(
+          padding: EdgeInsets.fromLTRB(34 * fem, 14 * fem, 22.5 * fem, 8 * fem),
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            color: Color(0xff272a32),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SignUpTitle(fem: fem, ffem: ffem),
+              Form(
+                key: formKey,
+                autovalidateMode: AutovalidateMode.disabled,
+                child: Column(
+                  children: [
+                    SignUpForm(
+                      fem: fem,
+                      ffem: ffem,
+                      emailController: _emailController,
+                      passwordController: _passwordController,
+                      firstNameController: _firstnameController,
+                      lastNameController: _lastnameController,
                     ),
-                  SignUpProfilePicture(fem: fem, ffem: ffem),
-                  SignUpButton(
-                    fem: fem, 
-                    ffem: ffem, 
-                    formKey: formKey,
-                    emailInput: emailInput,
-                    passwordInput: passwordInput,
+                    SignUpProfilePicture(fem: fem, ffem: ffem),
+                    SignUpButton(
+                      fem: fem,
+                      ffem: ffem,
+                      formKey: formKey,
+                      emailController: _emailController,
+                      passwordController: _passwordController,
                     ),
-                ],
+                  ],
+                ),
               ),
-            ),
-
-            SignUpDivider(fem: fem),
-            SignUpNavigator(fem: fem, ffem: ffem),
-          ],
+              SignUpDivider(fem: fem),
+              SignUpNavigator(fem: fem, ffem: ffem),
+            ],
+          ),
         ),
       ),
-    )
     );
   }
 }
-

@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
+  try {
   WidgetsFlutterBinding.ensureInitialized();
   Platform.isAndroid ? await Firebase.initializeApp(
     options: const FirebaseOptions(
@@ -13,7 +14,10 @@ void main() async {
       messagingSenderId: '196553709875', 
       projectId: 'appebite-ad82b')
   ) : await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(const MyApp());   } catch (e) {
+    print('Error initializing Firebase: $e');
+    // Handle initialization error
+  }
 }
 
 class MyApp extends StatelessWidget {
