@@ -7,11 +7,13 @@ class InputField extends StatefulWidget {
     required this.label,
     required this.hint,
     this.isPassword = false,
+    required this.controller,
   }) : super(key: key);
 
   final String hint;
   final bool isPassword;
   final String label;
+  final TextEditingController controller;
 
   @override
   State<InputField> createState() => _InputFieldState();
@@ -57,6 +59,7 @@ class _InputFieldState extends State<InputField> {
                       alignment: Alignment.centerRight,
                       children: [
                         TextFormField(
+                          controller: widget.controller,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Enter a password';
@@ -102,6 +105,7 @@ class _InputFieldState extends State<InputField> {
                 : SizedBox(
                     height: 45,
                     child: TextFormField(
+                      controller: widget.controller,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Enter an email';

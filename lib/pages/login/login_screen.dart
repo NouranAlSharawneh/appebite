@@ -16,6 +16,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   Widget _buildLoginScreen(BuildContext context) {
     return SizedBox(
@@ -38,17 +40,19 @@ class _LoginPageState extends State<LoginPage> {
               autovalidateMode: AutovalidateMode.disabled,
               child: Column(
                 children: [
-                  const InputField(
+                  InputField(
                     label: 'Email',
                     hint: 'Enter email',
+                    controller: _emailController,
                   ),
-                  const InputField(
+                  InputField(
                     label: 'Enter password',
                     hint: 'Enter password',
+                    controller: _passwordController,
                     isPassword: true,                   
                   ),
                   const ForgetPassword(),
-                  LoginButton(formKey: _formKey),
+                  LoginButton(formKey: _formKey, emailController: _emailController, passwordController: _passwordController,),
                 ],
               ),
             ),

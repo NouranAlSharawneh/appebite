@@ -20,38 +20,27 @@ class SignUpButton extends StatelessWidget {
 
   Future<void> _handleSignUp(BuildContext context) async {
     try {
-      // Create user using email and password
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
+      // Validate form
+      if (formKey.currentState!.validate()) {
+        // Create user using email and password
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
 
-      // Navigate to the next page after successful sign-up
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => SignUpPageTwo()),
-      );
-    } catch (error) {
-      if (error is FirebaseAuthException) {
-        print(error);
+        // Navigate to the next page after successful sign-up
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SignUpPageTwo()),
+        );
       }
-      // Handle sign-up errors
-      showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: const Text('Sign-Up Error'),
-            content: Text(error.toString()),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('OK'),
-              ),
-            ],
-          );
-        },
+    } catch (error) {
+      // Display error message using ScaffoldMessenger
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Sign-up failed. ${error.toString()}'),
+          duration: const Duration(seconds: 3),
+        ),
       );
     }
   }
@@ -61,7 +50,7 @@ class SignUpButton extends StatelessWidget {
     return Container(
       margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 11.5 * fem, 50 * fem),
       child: TextButton(
-        onPressed: () => _handleSignUp(context), // Call the handleSignUp function
+        onPressed: () => _handleSignUp(context), 
         style: TextButton.styleFrom(padding: EdgeInsets.zero),
         child: SizedBox(
           width: 315 * fem,

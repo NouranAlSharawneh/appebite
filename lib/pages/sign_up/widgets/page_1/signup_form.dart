@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SignUpForm extends StatelessWidget {
+class SignUpForm extends StatefulWidget {
   const SignUpForm({
     Key? key,
     required this.fem,
@@ -20,14 +20,27 @@ class SignUpForm extends StatelessWidget {
   final TextEditingController passwordController;
 
   @override
+  _SignUpFormState createState() => _SignUpFormState();
+}
+
+class _SignUpFormState extends State<SignUpForm> {
+  bool _obscureText = true;
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 16.5 * fem, 18.83 * fem),
-      width: 316 * fem,
-      height: 290 * fem,
+      margin: EdgeInsets.fromLTRB(0 * widget.fem, 0 * widget.fem, 16.5 * widget.fem, 18.83 * widget.fem),
+      width: 316 * widget.fem,
+      height: 290 * widget.fem,
       child: SizedBox(
-        width: 316 * fem,
-        height: 313 * fem,
+        width: 316 * widget.fem,
+        height: 313 * widget.fem,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -42,9 +55,9 @@ class SignUpForm extends StatelessWidget {
                       child: Text(
                         'First name',
                         style: GoogleFonts.poppins(
-                          fontSize: 14 * ffem,
+                          fontSize: 14 * widget.ffem,
                           fontWeight: FontWeight.w400,
-                          height: 1.5 * ffem / fem,
+                          height: 1.5 * widget.ffem / widget.fem,
                           color: const Color(0xffffffff),
                         ),
                       ),
@@ -55,9 +68,9 @@ class SignUpForm extends StatelessWidget {
                       child: Text(
                         'Last name',
                         style: GoogleFonts.poppins(
-                          fontSize: 14 * ffem,
+                          fontSize: 14 * widget.ffem,
                           fontWeight: FontWeight.w400,
-                          height: 1.5 * ffem / fem,
+                          height: 1.5 * widget.ffem / widget.fem,
                           color: const Color(0xffffffff),
                         ),
                       ),
@@ -77,7 +90,7 @@ class SignUpForm extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: TextFormField(
-                          controller: firstNameController,
+                          controller: widget.firstNameController,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Enter first name';
@@ -115,7 +128,7 @@ class SignUpForm extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: TextFormField(
-                          controller: lastNameController,
+                          controller: widget.lastNameController,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Enter last name';
@@ -154,9 +167,9 @@ class SignUpForm extends StatelessWidget {
                     Text(
                       'Email address',
                       style: GoogleFonts.poppins(
-                        fontSize: 14 * ffem,
+                        fontSize: 14 * widget.ffem,
                         fontWeight: FontWeight.w400,
-                        height: 1.5 * ffem / fem,
+                        height: 1.5 * widget.ffem / widget.fem,
                         color: const Color(0xffffffff),
                       ),
                     ),
@@ -176,7 +189,7 @@ class SignUpForm extends StatelessWidget {
                           }
                           return null;
                         },
-                        controller: emailController,
+                        controller: widget.emailController,
                         style:const TextStyle(color: Colors.white),
                         decoration:const InputDecoration(
                           prefixIcon: Icon(
@@ -207,9 +220,9 @@ class SignUpForm extends StatelessWidget {
                     Text(
                       'Password',
                       style: GoogleFonts.poppins(
-                        fontSize: 14 * ffem,
+                        fontSize: 14 * widget.ffem,
                         fontWeight: FontWeight.w400,
-                        height: 1.5 * ffem / fem,
+                        height: 1.5 * widget.ffem / widget.fem,
                         color: const Color(0xffffffff),
                       ),
                     ),
@@ -255,9 +268,9 @@ class SignUpForm extends StatelessWidget {
                                 }
                                 return null;
                               },
-                              controller: passwordController,
+                              controller: widget.passwordController,
                               style: const TextStyle(color: Colors.white,),
-                              obscureText: true,
+                              obscureText: _obscureText,
                               decoration: const InputDecoration(
                                 hintText: 'Enter your password',
                                 prefixIcon: Icon(
@@ -275,9 +288,9 @@ class SignUpForm extends StatelessWidget {
                               ),
                             ),
                             IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.visibility_off,
+                              onPressed: _togglePasswordVisibility,
+                              icon: Icon(
+                                _obscureText ? Icons.visibility : Icons.visibility_off,
                                 color: Color.fromRGBO(104, 111, 130, 100),
                               ),
                             ),
@@ -295,4 +308,3 @@ class SignUpForm extends StatelessWidget {
     );
   }
 }
-
