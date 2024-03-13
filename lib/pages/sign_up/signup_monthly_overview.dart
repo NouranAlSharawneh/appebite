@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 
 class SignUpMonthlyOverview extends StatelessWidget {
   const SignUpMonthlyOverview({super.key, required this.caloriesPerMonth});
+
   final int caloriesPerMonth;
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 400;

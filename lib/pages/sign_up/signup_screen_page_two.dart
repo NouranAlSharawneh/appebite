@@ -12,10 +12,11 @@ import 'package:appebite/pages/sign_up/widgets/common/signup_title.dart';
 // ignore: must_be_immutable
 class SignUpPageTwo extends StatefulWidget {
   SignUpPageTwo({Key? key}) : super(key: key);
-  String selectedGender = '';
-  String currentWeight = ''; 
-  String currentHeight = '';
+
   int birthYear = 0;
+  String currentHeight = '';
+  String currentWeight = ''; 
+  String selectedGender = '';
 
   @override
 State<SignUpPageTwo> createState() => _SignUpPageTwoState();

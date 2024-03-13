@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:appebite/pages/loadingScreen/loading_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,9 @@ void main() async {
       messagingSenderId: '196553709875', 
       projectId: 'appebite-ad82b')
   ) : await Firebase.initializeApp();
-  runApp(const MyApp());   } catch (e) {
+    runApp(const MyApp());   
+  } 
+  catch (e) {
     print('Error initializing Firebase: $e');
     // Handle initialization error
   }

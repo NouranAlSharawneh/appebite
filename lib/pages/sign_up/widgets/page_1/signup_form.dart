@@ -12,12 +12,12 @@ class SignUpForm extends StatelessWidget {
     this.lastNameController,
   }) : super(key: key);
 
+  final TextEditingController emailController;
   final double fem;
   final double ffem;
-  final TextEditingController emailController;
-  final TextEditingController passwordController;
   final TextEditingController? firstNameController;
   final TextEditingController? lastNameController;
+  final TextEditingController passwordController;
 
   @override
   Widget build(BuildContext context) {

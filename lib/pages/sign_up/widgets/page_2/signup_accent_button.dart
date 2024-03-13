@@ -13,14 +13,12 @@ class SignUpAccentButton extends StatelessWidget {
     required this.birthYear,
   });
 
+  final int birthYear;
+  final String currentHeight;
+  final String currentWeight;
   final double fem;
   final double ffem;
   final String selectedGender;
-  final String currentWeight;
-  final String currentHeight;
-  final int birthYear;
-
-
 
   @override
   Widget build(BuildContext context) {

@@ -11,9 +11,9 @@ class TitleHeading extends StatelessWidget {
     required this.dynamicValue,
   }) : super(key: key);
 
+  final String dynamicValue;
   final double fem;
   final double ffem;
-  final String dynamicValue;
 
   @override
   Widget build(BuildContext context) {

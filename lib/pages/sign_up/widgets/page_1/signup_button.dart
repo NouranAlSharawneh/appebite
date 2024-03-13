@@ -12,10 +12,10 @@ class SignUpButton extends StatelessWidget {
     required this.passwordController,
   }) : super(key: key);
 
+  final TextEditingController emailController;
   final double fem;
   final double ffem;
   final GlobalKey<FormState> formKey;
-  final TextEditingController emailController;
   final TextEditingController passwordController;
 
   Future<void> _handleSignUp(BuildContext context) async {

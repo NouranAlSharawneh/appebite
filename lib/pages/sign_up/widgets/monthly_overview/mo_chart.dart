@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 class MOChart extends StatefulWidget {
   const MOChart({super.key, required this.fem,});
+
   final double fem;
+
   @override
   State<MOChart> createState() => _MOChartState();
 }

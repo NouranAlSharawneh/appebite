@@ -2,12 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ServingsAndCaloriesInput extends StatelessWidget {
-  final String text1;
-  final String text2;
-  // final TextEditingController controller1;
-  // final TextEditingController controller2;
-  final double gapWidth;
-
   const ServingsAndCaloriesInput({
     Key? key,
     required this.text1,
@@ -16,6 +10,13 @@ class ServingsAndCaloriesInput extends StatelessWidget {
     // required this.controller2,
     this.gapWidth = 10.0,
   }) : super(key: key);
+
+  // final TextEditingController controller1;
+  // final TextEditingController controller2;
+  final double gapWidth;
+
+  final String text1;
+  final String text2;
 
   @override
   Widget build(BuildContext context) {

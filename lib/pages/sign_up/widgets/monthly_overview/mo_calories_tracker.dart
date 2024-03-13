@@ -15,7 +15,6 @@ class MOCalories extends StatefulWidget {
 
   @override
   State<MOCalories> createState() => _MOCaloriesState();
-  
 }
 
 class _MOCaloriesState extends State<MOCalories> {

@@ -17,16 +17,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xff272a32),
-      body: SingleChildScrollView(
-        child: _buildLoginScreen(context),
-      ),
-    );
-  }
-
   Widget _buildLoginScreen(BuildContext context) {
     return SizedBox(
       width: double.infinity,
@@ -66,6 +56,16 @@ class _LoginPageState extends State<LoginPage> {
             const Center(child: SignUpSection()),
           ],
         ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xff272a32),
+      body: SingleChildScrollView(
+        child: _buildLoginScreen(context),
       ),
     );
   }

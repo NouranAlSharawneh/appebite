@@ -20,24 +20,8 @@ class SignUpBirthYear extends StatefulWidget {
 
 class _SignUpBirthYearState extends State<SignUpBirthYear> {
   String showYear = 'Select Year';
+
   DateTime _selectedYear = DateTime.now();
-
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: _selectedYear,
-      firstDate: DateTime(1900),
-      lastDate: DateTime.now(),
-      initialDatePickerMode: DatePickerMode.year,
-    );
-
-    if (picked != null && picked != _selectedYear) {
-      setState(() {
-        _selectedYear = picked;
-        showYear = DateFormat('yyyy').format(_selectedYear);
-      });
-    }
-  }
 
   selectYear(context) async {
     print("Calling year picker");
@@ -69,6 +53,23 @@ class _SignUpBirthYearState extends State<SignUpBirthYear> {
         );
       },
     );
+  }
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: _selectedYear,
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+      initialDatePickerMode: DatePickerMode.year,
+    );
+
+    if (picked != null && picked != _selectedYear) {
+      setState(() {
+        _selectedYear = picked;
+        showYear = DateFormat('yyyy').format(_selectedYear);
+      });
+    }
   }
 
   @override

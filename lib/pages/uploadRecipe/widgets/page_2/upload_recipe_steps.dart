@@ -17,8 +17,8 @@ class UploadRecipeSteps extends StatefulWidget {
 }
 
 class _UploadRecipeStepsState extends State<UploadRecipeSteps> {
-  List<int> stepNumbers = [1];
   List<TextEditingController> controllers = [TextEditingController()];
+  List<int> stepNumbers = [1];
 
   @override
   Widget build(BuildContext context) {

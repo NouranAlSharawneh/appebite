@@ -18,8 +18,8 @@ class SignUpGender extends StatefulWidget {
 }
 
 class _SignUpGenderState extends State<SignUpGender> {
-  double maleOpacity = 1.0;
   double femaleOpacity = 1.0;
+  double maleOpacity = 1.0;
 
   @override
   Widget build(BuildContext context) {

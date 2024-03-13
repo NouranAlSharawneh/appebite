@@ -10,11 +10,10 @@ class SignUpInformation extends StatelessWidget {
     required this.onHeightChanged,
   });
 
-  final Function(String) onWeightChanged;
-  final Function(String) onHeightChanged;
-
   final double fem;
   final double ffem;
+  final Function(String) onHeightChanged;
+  final Function(String) onWeightChanged;
 
   @override
   Widget build(BuildContext context) {

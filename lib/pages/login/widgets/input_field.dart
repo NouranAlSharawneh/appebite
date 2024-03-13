@@ -18,9 +18,10 @@ class InputField extends StatefulWidget {
 }
 
 class _InputFieldState extends State<InputField> {
-  bool _obscureText = true;
   String emailInput = '';
   String passwordInput = '';
+
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {

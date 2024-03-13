@@ -19,8 +19,14 @@ class SignUpProfilePicture extends StatefulWidget {
 }
 
 class _SignUpProfilePictureState extends State<SignUpProfilePicture> {
-  late ImagePicker _picker;
   File? _image;
+  late ImagePicker _picker;
+
+  @override
+  void initState() {
+    super.initState();
+    _picker = ImagePicker();
+  }
 
   Future<void> _pickImage() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
@@ -30,12 +36,6 @@ class _SignUpProfilePictureState extends State<SignUpProfilePicture> {
         _image = File(pickedFile.path);
       });
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _picker = ImagePicker();
   }
 
   @override

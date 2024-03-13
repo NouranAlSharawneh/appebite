@@ -15,6 +15,23 @@ import 'package:flutter/foundation.dart'
 /// );
 /// ```
 class DefaultFirebaseOptions {
+  static const FirebaseOptions android = FirebaseOptions(
+    apiKey: 'AIzaSyAbHKBwBBfa_zKCGshx3PBVLYycNhu26Sk',
+    appId: '1:196553709875:android:63aed6d9166bfe6548c646',
+    messagingSenderId: '196553709875',
+    projectId: 'appebite-ad82b',
+    storageBucket: 'appebite-ad82b.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyCvzdLWlYmigx-uRkEHbssG6vkmiITsVXs',
+    appId: '1:196553709875:ios:be19fe0a9aa6fbbb48c646',
+    messagingSenderId: '196553709875',
+    projectId: 'appebite-ad82b',
+    storageBucket: 'appebite-ad82b.appspot.com',
+    iosBundleId: 'com.example.appebite',
+  );
+
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
       throw UnsupportedError(
@@ -48,21 +65,4 @@ class DefaultFirebaseOptions {
         );
     }
   }
-
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAbHKBwBBfa_zKCGshx3PBVLYycNhu26Sk',
-    appId: '1:196553709875:android:63aed6d9166bfe6548c646',
-    messagingSenderId: '196553709875',
-    projectId: 'appebite-ad82b',
-    storageBucket: 'appebite-ad82b.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCvzdLWlYmigx-uRkEHbssG6vkmiITsVXs',
-    appId: '1:196553709875:ios:be19fe0a9aa6fbbb48c646',
-    messagingSenderId: '196553709875',
-    projectId: 'appebite-ad82b',
-    storageBucket: 'appebite-ad82b.appspot.com',
-    iosBundleId: 'com.example.appebite',
-  );
 }

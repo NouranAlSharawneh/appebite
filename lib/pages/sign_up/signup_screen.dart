@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key? key});
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -18,10 +18,11 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final formKey = GlobalKey<FormState>();
+
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _firstnameController = TextEditingController();
   final TextEditingController _lastnameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
    @override
   void dispose() {
