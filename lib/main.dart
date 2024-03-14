@@ -1,4 +1,4 @@
-import 'dart:io';
+// import 'dart:io';
 import 'package:appebite/firebase_options.dart';
 import 'package:appebite/pages/loadingScreen/loading_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
