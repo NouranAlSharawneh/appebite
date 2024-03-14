@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:appebite/pages/sign_up/signup_screen_page_two.dart';
 
@@ -21,10 +20,10 @@ class SignUpButton extends StatelessWidget {
   final TextEditingController emailController;
   final double fem;
   final double ffem;
-  final GlobalKey<FormState> formKey;
-  final TextEditingController passwordController;
   final TextEditingController firstNameController;
+  final GlobalKey<FormState> formKey;
   final TextEditingController lastNameController;
+  final TextEditingController passwordController;
   final File? profilePicture;
 
   Future<void> _handleSignUp(BuildContext context) async {
@@ -36,10 +35,9 @@ class SignUpButton extends StatelessWidget {
           email: emailController.text,
           password: passwordController.text,
         );
-
         // Store user data in Firestore
         FirebaseFirestore.instance.collection("Users").doc(userCredential.user!.email).set({
-          'email': userCredential.user!.email,
+          'email': emailController.text,
           'firstName': firstNameController.text,
           'lastName': lastNameController.text,
         });
