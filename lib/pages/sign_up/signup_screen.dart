@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:appebite/pages/sign_up/widgets/common/signup_divider.dart';
 import 'package:appebite/pages/sign_up/widgets/page_1/signup_button.dart';
 import 'package:appebite/pages/sign_up/widgets/page_1/signup_form.dart';
@@ -23,6 +24,8 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _firstnameController = TextEditingController();
   final TextEditingController _lastnameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  
+  File? _image;
 
    @override
   void dispose() {
@@ -66,13 +69,24 @@ class _SignUpPageState extends State<SignUpPage> {
                       firstNameController: _firstnameController,
                       lastNameController: _lastnameController,
                     ),
-                    SignUpProfilePicture(fem: fem, ffem: ffem),
+                    SignUpProfilePicture(
+                      fem: fem, 
+                      ffem: ffem,
+                      onImageSelected: (File? image) {
+                        setState(() {
+                          _image = image;
+                        });
+                      },                  
+                      ),
                     SignUpButton(
                       fem: fem,
                       ffem: ffem,
                       formKey: formKey,
                       emailController: _emailController,
                       passwordController: _passwordController,
+                      firstNameController: _firstnameController,
+                      lastNameController: _lastnameController,
+                      profilePicture: _image,
                     ),
                   ],
                 ),

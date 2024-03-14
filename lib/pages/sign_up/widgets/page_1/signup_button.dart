@@ -1,6 +1,9 @@
-import 'package:appebite/pages/sign_up/signup_screen_page_two.dart';
-import 'package:flutter/material.dart';
+import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
+import 'package:appebite/pages/sign_up/signup_screen_page_two.dart';
 
 class SignUpButton extends StatelessWidget {
   const SignUpButton({
@@ -10,6 +13,9 @@ class SignUpButton extends StatelessWidget {
     required this.formKey,
     required this.emailController,
     required this.passwordController,
+    required this.firstNameController,
+    required this.lastNameController,
+    required this.profilePicture,
   }) : super(key: key);
 
   final TextEditingController emailController;
@@ -17,16 +23,26 @@ class SignUpButton extends StatelessWidget {
   final double ffem;
   final GlobalKey<FormState> formKey;
   final TextEditingController passwordController;
+  final TextEditingController firstNameController;
+  final TextEditingController lastNameController;
+  final File? profilePicture;
 
   Future<void> _handleSignUp(BuildContext context) async {
     try {
       // Validate form
       if (formKey.currentState!.validate()) {
         // Create user using email and password
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text,
           password: passwordController.text,
         );
+
+        // Store user data in Firestore
+        FirebaseFirestore.instance.collection("Users").doc(userCredential.user!.email).set({
+          'email': userCredential.user!.email,
+          'firstName': firstNameController.text,
+          'lastName': lastNameController.text,
+        });
 
         // Navigate to the next page after successful sign-up
         Navigator.push(
@@ -35,11 +51,12 @@ class SignUpButton extends StatelessWidget {
         );
       }
     } catch (error) {
+      print(error);
       // Display error message using ScaffoldMessenger
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Sign-up failed. ${error.toString()}'),
-          duration: const Duration(seconds: 3),
+          duration: const Duration(seconds: 6),
         ),
       );
     }
@@ -50,7 +67,7 @@ class SignUpButton extends StatelessWidget {
     return Container(
       margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 11.5 * fem, 50 * fem),
       child: TextButton(
-        onPressed: () => _handleSignUp(context), 
+        onPressed: () => _handleSignUp(context),
         style: TextButton.styleFrom(padding: EdgeInsets.zero),
         child: SizedBox(
           width: 315 * fem,

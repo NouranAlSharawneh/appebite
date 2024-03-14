@@ -20,7 +20,7 @@ class SignUpForm extends StatefulWidget {
   final TextEditingController passwordController;
 
   @override
-  _SignUpFormState createState() => _SignUpFormState();
+  State<SignUpForm> createState() => _SignUpFormState();
 }
 
 class _SignUpFormState extends State<SignUpForm> {

@@ -1,4 +1,3 @@
-// doesnt work yet.
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,10 +8,12 @@ class SignUpProfilePicture extends StatefulWidget {
     Key? key,
     required this.fem,
     required this.ffem,
+    required this.onImageSelected,
   }) : super(key: key);
 
   final double fem;
   final double ffem;
+  final Function(File?) onImageSelected;
 
   @override
   State<SignUpProfilePicture> createState() => _SignUpProfilePictureState();
@@ -29,14 +30,17 @@ class _SignUpProfilePictureState extends State<SignUpProfilePicture> {
   }
 
   Future<void> _pickImage() async {
-    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+  final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
 
-    if (pickedFile != null) {
-      setState(() {
-        _image = File(pickedFile.path);
-      });
-    }
+  if (pickedFile != null) {
+    setState(() {
+      _image = File(pickedFile.path);
+    });
+
+    widget.onImageSelected(_image);
   }
+}
+
 
   @override
   Widget build(BuildContext context) {
