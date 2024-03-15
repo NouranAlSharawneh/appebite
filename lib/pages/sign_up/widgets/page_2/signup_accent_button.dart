@@ -1,6 +1,10 @@
-import 'package:appebite/pages/sign_up/signup_monthly_overview.dart';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:appebite/pages/sign_up/signup_monthly_overview.dart';
 
 class SignUpAccentButton extends StatelessWidget {
   const SignUpAccentButton({
@@ -11,13 +15,23 @@ class SignUpAccentButton extends StatelessWidget {
     required this.currentWeight,
     required this.currentHeight,
     required this.birthYear,
+    required this.emailController,
+    required this.passwordController,
+    required this.firstNameController,
+    required this.lastNameController,
+    required this.profilePicture,
   });
 
   final int birthYear;
   final String currentHeight;
   final String currentWeight;
+  final TextEditingController emailController;
   final double fem;
   final double ffem;
+  final TextEditingController firstNameController;
+  final TextEditingController lastNameController;
+  final TextEditingController passwordController;
+  final File? profilePicture;
   final String selectedGender;
 
   @override
@@ -48,16 +62,20 @@ class SignUpAccentButton extends StatelessWidget {
 }
 
 
-      int caloriesPerMonth = calculateCalories();
+    int caloriesPerMonth = calculateCalories();
     return Container(
       margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 11.5*fem, 50*fem),
       child: TextButton(
         onPressed: () {
+          print('Selected Gender: $emailController');
+          print('Selected Gender: $firstNameController');
+          print('Selected Gender: $lastNameController');
           print('Selected Gender: $selectedGender');
           print('Current Weight: $currentWeight kg');
           print('Current Height: $currentHeight cm');
           print('Birthyear: $birthYear old');
           print('Calories per month: $caloriesPerMonth');
+
           Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => SignUpMonthlyOverview(caloriesPerMonth: caloriesPerMonth)), 

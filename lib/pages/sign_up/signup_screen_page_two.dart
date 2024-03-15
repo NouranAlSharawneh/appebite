@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:appebite/pages/sign_up/widgets/common/signup_divider.dart';
 import 'package:appebite/pages/sign_up/widgets/page_2/signup_accent_button.dart';
@@ -9,20 +11,31 @@ import 'package:appebite/pages/sign_up/widgets/page_2/signup_personal_informatio
 import 'package:appebite/pages/sign_up/widgets/page_2/signup_terms_and_conditions.dart';
 import 'package:appebite/pages/sign_up/widgets/common/signup_title.dart';
 
-// ignore: must_be_immutable
 class SignUpPageTwo extends StatefulWidget {
-  SignUpPageTwo({Key? key}) : super(key: key);
+  const SignUpPageTwo({
+    Key? key,
+    required this.emailController,
+    required this.firstNameController,
+    required this.lastNameController,
+    required this.profilePicture, 
+    required this.passwordController,
+  }) : super(key: key);
 
+  final TextEditingController emailController;
+  final TextEditingController firstNameController;
+  final TextEditingController lastNameController;
+  final TextEditingController passwordController;
+  final File? profilePicture;
+
+  @override
+  State<StatefulWidget> createState() => _SignUpPageTwoState();
+}
+
+class _SignUpPageTwoState extends State<SignUpPageTwo> {
   int birthYear = 0;
   String currentHeight = '';
   String currentWeight = ''; 
   String selectedGender = '';
-
-  @override
-State<SignUpPageTwo> createState() => _SignUpPageTwoState();
-}
-
-class _SignUpPageTwoState extends State<SignUpPageTwo> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
@@ -56,7 +69,7 @@ class _SignUpPageTwoState extends State<SignUpPageTwo> {
                       ffem: ffem,
                       onGenderSelected: (String gender) {
                         setState(() {
-                          widget.selectedGender = gender;
+                          selectedGender = gender;
                         });
                       },
                     ),
@@ -65,12 +78,12 @@ class _SignUpPageTwoState extends State<SignUpPageTwo> {
                       ffem: ffem,
                       onWeightChanged: (value) {
                           setState(() {
-                            widget.currentWeight = value;
+                            currentWeight = value;
                           });
                         },
                           onHeightChanged: (value) {
                             setState(() {
-                              widget.currentHeight = value;
+                              currentHeight = value;
                             });
                           },
                       ),
@@ -79,7 +92,7 @@ class _SignUpPageTwoState extends State<SignUpPageTwo> {
                       ffem: ffem, 
                       onBirthYearChanged: (value) {
                           setState(() {
-                            widget.birthYear = value;
+                            birthYear = value;
                           });
                         },
                       ),
@@ -87,10 +100,15 @@ class _SignUpPageTwoState extends State<SignUpPageTwo> {
                     SignUpAccentButton(
                       fem: fem, 
                       ffem: ffem, 
-                      selectedGender: widget.selectedGender,
-                      currentWeight: widget.currentWeight,
-                      currentHeight: widget.currentHeight,
-                      birthYear: widget.birthYear,
+                      selectedGender: selectedGender,
+                      currentWeight: currentWeight,
+                      currentHeight: currentHeight,
+                      birthYear: birthYear,
+                      emailController: widget.emailController,
+                      firstNameController: widget.firstNameController,
+                      lastNameController: widget.lastNameController,
+                      passwordController: widget.passwordController,
+                      profilePicture: widget.profilePicture,
                       ),
                   ],
                 ),
