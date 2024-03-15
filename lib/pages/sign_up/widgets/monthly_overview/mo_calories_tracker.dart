@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MOCalories extends StatefulWidget {
   const MOCalories({
@@ -19,17 +21,40 @@ class MOCalories extends StatefulWidget {
 
 class _MOCaloriesState extends State<MOCalories> {
   late TextEditingController caloriesController;
+  late String userId;
 
   @override
   void initState() {
     super.initState();
-    caloriesController = TextEditingController(text: widget.initialCaloriesValue.toString());
+    caloriesController =
+        TextEditingController(text: widget.initialCaloriesValue.toString());
+    getUserId();
+  }
+
+  Future<void> getUserId() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      userId = user.uid;
+    }
+  }
+
+  void updateCaloriesInFirestore(int newCalories) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(userId)
+          .update({'caloriesPerMonth': newCalories});
+      print('Calories updated successfully.');
+    } catch (error) {
+      print('Failed to update calories: $error');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(25.5 * widget.fem, 0 * widget.fem, 59.5 * widget.fem, 120 * widget.fem),
+      margin: EdgeInsets.fromLTRB(25.5 * widget.fem, 0 * widget.fem,
+          59.5 * widget.fem, 120 * widget.fem),
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8 * widget.fem),
@@ -38,7 +63,8 @@ class _MOCaloriesState extends State<MOCalories> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            margin: EdgeInsets.fromLTRB(0 * widget.fem, 0 * widget.fem, 0 * widget.fem, 13 * widget.fem),
+            margin: EdgeInsets.fromLTRB(0 * widget.fem, 0 * widget.fem,
+                0 * widget.fem, 13 * widget.fem),
             width: double.infinity,
             height: 78 * widget.fem,
             decoration: BoxDecoration(
@@ -79,6 +105,11 @@ class _MOCaloriesState extends State<MOCalories> {
                           color: const Color(0xff686f82),
                         ),
                       ),
+                      onChanged: (newValue) {
+                        // Update the calories in Firestore
+                        int newCalories = int.tryParse(newValue) ?? 0;
+                        updateCaloriesInFirestore(newCalories);
+                      },
                     ),
                   ),
                   Padding(
