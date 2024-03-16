@@ -111,7 +111,7 @@ class _SignUpFormState extends State<SignUpForm> {
                             errorStyle: TextStyle(
                                 color: Color(0xffff7269),
                                 fontSize: 12.0,
-                                height: 0.5
+                                height: 0.02
                             ),
                           ),
                         ),
@@ -149,7 +149,7 @@ class _SignUpFormState extends State<SignUpForm> {
                             errorStyle: TextStyle(
                                 color: Color(0xffff7269),
                                 fontSize: 12.0,
-                                height: 0.5
+                                height: 0.02
                             ),
                           ),
                         ),
@@ -203,7 +203,7 @@ class _SignUpFormState extends State<SignUpForm> {
                           errorStyle: TextStyle(
                               color: Color(0xffff7269),
                               fontSize: 12.0,
-                              height: 0.5
+                              height: 0.02
                           ),
                         ),
                       ),
@@ -283,7 +283,7 @@ class _SignUpFormState extends State<SignUpForm> {
                                 errorStyle: TextStyle(
                                     color: Color(0xffff7269),
                                     fontSize: 12.0,
-                                    height: 0.5
+                                    height: 0.02
                                 ),
                               ),
                             ),
@@ -291,7 +291,7 @@ class _SignUpFormState extends State<SignUpForm> {
                               onPressed: _togglePasswordVisibility,
                               icon: Icon(
                                 _obscureText ? Icons.visibility : Icons.visibility_off,
-                                color: Color.fromRGBO(104, 111, 130, 100),
+                                color: const Color.fromRGBO(104, 111, 130, 100),
                               ),
                             ),
                           ],

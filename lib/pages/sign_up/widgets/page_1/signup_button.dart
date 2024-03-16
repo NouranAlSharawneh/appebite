@@ -44,7 +44,13 @@ class _SignUpButtonState extends State<SignUpButton> {
                 0 * widget.fem, 0 * widget.fem, 11.5 * widget.fem, 50 * widget.fem),
             child: TextButton(
               onPressed: () {
-                // Pass data to next page
+                // TODO: TURN THE VALIDATION BACK ON
+                // Validate the form
+                // if (!widget.formKey.currentState!.validate()) {
+                //   return;
+                // }
+
+                // If the form is valid, navigate to the next page
                 Navigator.push(
                   context,
                   MaterialPageRoute(

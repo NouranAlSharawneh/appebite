@@ -11,6 +11,7 @@ class SignUpAccentButton extends StatefulWidget {
     Key? key,
     required this.fem,
     required this.ffem,
+    required this.formKey,
     required this.selectedGender,
     required this.currentWeight,
     required this.currentHeight,
@@ -22,12 +23,13 @@ class SignUpAccentButton extends StatefulWidget {
     required this.profilePicture,
   }) : super(key: key);
 
+  final GlobalKey<FormState> formKey;
+  final double fem;
+  final double ffem;
   final int birthYear;
   final String currentHeight;
   final String currentWeight;
   final TextEditingController emailController;
-  final double fem;
-  final double ffem;
   final TextEditingController firstNameController;
   final TextEditingController lastNameController;
   final TextEditingController passwordController;
@@ -40,6 +42,7 @@ class SignUpAccentButton extends StatefulWidget {
 
 class _SignUpAccentButtonState extends State<SignUpAccentButton> {
   bool _isLoading = false;
+  bool _genderNotSelected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -74,9 +77,21 @@ class _SignUpAccentButtonState extends State<SignUpAccentButton> {
     int caloriesPerMonth = calculateCalories();
 
     void handleSignUp(BuildContext context) async {
+      if (!widget.formKey.currentState!.validate()) {
+        return;
+      }
+      
+      if (widget.selectedGender.isEmpty) {
+        setState(() {
+          _genderNotSelected = true;
+        });
+        return;
+      }
+
       setState(() {
         _isLoading = true;
       });
+
 
       try {
         // Create user using email and password
@@ -138,7 +153,7 @@ class _SignUpAccentButtonState extends State<SignUpAccentButton> {
       }
     }
 
-    return Container(
+     return Container(
       margin: EdgeInsets.fromLTRB(0 * widget.fem, 0 * widget.fem, 11.5 * widget.fem, 50 * widget.fem),
       child: _isLoading
           ? const Center(
@@ -146,36 +161,45 @@ class _SignUpAccentButtonState extends State<SignUpAccentButton> {
                 valueColor: AlwaysStoppedAnimation<Color>(Color(0xffff7269)),
               ),
             )
-          : TextButton(
-              onPressed: () => handleSignUp(context),
-              style: TextButton.styleFrom(padding: EdgeInsets.zero),
-              child: SizedBox(
-                width: 315 * widget.fem,
-                height: 60 * widget.fem,
-                child: Container(
-                  padding: EdgeInsets.fromLTRB(
-                      102.5 * widget.fem, 18 * widget.fem, 104.5 * widget.fem, 18 * widget.fem),
-                  width: double.infinity,
-                  height: double.infinity,
-                  decoration: BoxDecoration(
-                    color: const Color(0xffff7269),
-                    borderRadius: BorderRadius.circular(10 * widget.fem),
+          : Column(
+              children: [
+                if (_genderNotSelected) // Display validation message
+                  const Text(
+                    'Please select a gender',
+                    style: TextStyle(color: Colors.red),
                   ),
-                  child: Container(
-                    margin: EdgeInsets.fromLTRB(0 * widget.fem, 0 * widget.fem, 9 * widget.fem, 0 * widget.fem),
-                    child: Text(
-                      'Sign up',
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.poppins(
-                        fontSize: 16 * widget.ffem,
-                        fontWeight: FontWeight.w600,
-                        height: 1.5 * widget.ffem / widget.fem,
-                        color: const Color(0xffffffff),
+                TextButton(
+                  onPressed: () => handleSignUp(context),
+                  style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                  child: SizedBox(
+                    width: 315 * widget.fem,
+                    height: 60 * widget.fem,
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(
+                          102.5 * widget.fem, 18 * widget.fem, 104.5 * widget.fem, 18 * widget.fem),
+                      width: double.infinity,
+                      height: double.infinity,
+                      decoration: BoxDecoration(
+                        color: const Color(0xffff7269),
+                        borderRadius: BorderRadius.circular(10 * widget.fem),
+                      ),
+                      child: Container(
+                        margin: EdgeInsets.fromLTRB(0 * widget.fem, 0 * widget.fem, 9 * widget.fem, 0 * widget.fem),
+                        child: Text(
+                          'Sign up',
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.poppins(
+                            fontSize: 16 * widget.ffem,
+                            fontWeight: FontWeight.w600,
+                            height: 1.5 * widget.ffem / widget.fem,
+                            color: const Color(0xffffffff),
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
+              ],
             ),
     );
   }
