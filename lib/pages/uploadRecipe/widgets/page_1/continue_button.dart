@@ -28,15 +28,18 @@ class ContinueButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        print('Food Name: $foodName');
-        print('Description: $description');
-        print('Servings: $servings');
-        print('Calories: $calories');
-        print('Cooking Duration: $cookingDuration');
-
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const UploadRecipePage2()),
+          MaterialPageRoute(
+            builder: (context) => UploadRecipePage2(
+              foodName: foodName,
+              description: description,
+              servings: servings,
+              calories: calories,
+              cookingDuration: cookingDuration,
+              selectedImage: selectedImage,
+            ),
+          ),
         );
       },
       style: TextButton.styleFrom(

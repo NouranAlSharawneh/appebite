@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:appebite/pages/uploadRecipe/widgets/page_2/add_ingredient_field.dart';
 import 'package:appebite/pages/uploadRecipe/widgets/page_2/upload_recipe_categories.dart';
 import 'package:appebite/pages/uploadRecipe/widgets/page_2/upload_recipe_divider.dart';
@@ -9,7 +11,22 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class UploadRecipePage2 extends StatefulWidget {
-  const UploadRecipePage2({Key? key}) : super(key: key);
+  final String foodName;
+  final String description;
+  final String servings;
+  final String calories;
+  final double cookingDuration;
+  final File? selectedImage;
+
+  const UploadRecipePage2({
+    Key? key,
+    required this.foodName,
+    required this.description,
+    required this.servings,
+    required this.calories,
+    required this.cookingDuration,
+    required this.selectedImage,
+  }) : super(key: key);
 
   @override
   State<UploadRecipePage2> createState() => _UploadRecipePage2State();
@@ -102,7 +119,16 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
                 const UploadRecipeDivider(),
                 UploadRecipeRating(fem: fem, ffem: ffem),
                 UploadRecipeSteps(fem: fem, ffem: ffem),
-                UploadFormButtons(fem: fem, ffem: ffem),
+                UploadFormButtons(
+                  fem: fem, 
+                  ffem: ffem,
+                  foodName: widget.foodName,
+                  description: widget.description,
+                  servings: widget.servings,
+                  calories: widget.calories,
+                  cookingDuration: widget.cookingDuration,
+                  selectedImage: widget.selectedImage,
+                  ),
               ],
             ),
           ),
