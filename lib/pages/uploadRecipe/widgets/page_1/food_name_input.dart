@@ -6,10 +6,12 @@ class FoodInput extends StatelessWidget {
     super.key,
     required this.fem,
     required this.ffem,
+    required this.foodNameController,
   });
 
   final double fem;
   final double ffem;
+  final TextEditingController foodNameController;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +35,7 @@ class FoodInput extends StatelessWidget {
             ),
           ),
           TextField(
+            controller: foodNameController,
             style: GoogleFonts.poppins(
               fontSize: 15 * ffem,
               fontWeight: FontWeight.w500,

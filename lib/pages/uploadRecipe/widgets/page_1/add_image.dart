@@ -8,36 +8,30 @@ class AddImage extends StatefulWidget {
     Key? key,
     required this.fem,
     required this.ffem,
+    required this.onImageSelected,
   }) : super(key: key);
 
   final double fem;
   final double ffem;
+  final Function(File?) onImageSelected;
 
   @override
   State<AddImage> createState() => _AddImageState();
 }
 
 class _AddImageState extends State<AddImage> {
-  late ImagePicker _imagePicker;
-  late PickedFile _pickedImage;
-
-  @override
-  void initState() {
-    super.initState();
-    _imagePicker = ImagePicker();
-    _pickedImage = PickedFile('');
-  }
+  File? _image;
+  final ImagePicker _picker = ImagePicker();
 
   Future<void> _pickImage() async {
-    try {
-      final pickedImage = await _imagePicker.getImage(source: ImageSource.gallery);
-      if (pickedImage != null) {
-        setState(() {
-          _pickedImage = pickedImage;
-        });
-      }
-    } catch (e) {
-      print('Error picking image: $e');
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+
+      widget.onImageSelected(_image);
     }
   }
 
@@ -61,8 +55,8 @@ class _AddImageState extends State<AddImage> {
               margin: EdgeInsets.fromLTRB(0 * widget.fem, 0 * widget.fem, 0 * widget.fem, 40 * widget.fem),
               width: 80 * widget.fem,
               height: 40 * widget.fem,
-              child: _pickedImage.path.isNotEmpty
-                  ? Image.file(File(_pickedImage.path), fit: BoxFit.cover)
+              child: _image != null
+                  ? Image.file(_image!, fit: BoxFit.cover)
                   : const Icon(Icons.photo_rounded, size: 80, color: Color(0xff8e94a4)),
             ),
             Container(

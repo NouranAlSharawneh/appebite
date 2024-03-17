@@ -6,10 +6,12 @@ class DescriptionInput extends StatelessWidget {
     super.key,
     required this.fem,
     required this.ffem,
+    required this.descriptionController,
   });
 
   final double fem;
   final double ffem;
+  final TextEditingController descriptionController;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +45,7 @@ class DescriptionInput extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.fromLTRB(16 * fem, 3 * fem, 16 * fem, 0),
                 child: TextField(
+                  controller: descriptionController,
                   style: GoogleFonts.poppins(
                     fontSize: 12 * ffem,
                     fontWeight: FontWeight.w500,

@@ -1,22 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-// inactiveColor: const Color(0xff686e81),
-              // activeColor: const Color(0xffff7269),
+
 class CookingDuration extends StatefulWidget {
   const CookingDuration({
     Key? key,
     required this.fem,
     required this.ffem,
+    required this.value,
+    required this.onChanged,
   }) : super(key: key);
 
   final double fem;
   final double ffem;
+  final double value;
+  final ValueChanged<double> onChanged;
 
   @override
   State<CookingDuration> createState() => _CookingDurationState();
 }
 
 class _CookingDurationState extends State<CookingDuration> {
+  late double _currentSliderValue;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentSliderValue = widget.value;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,88 +92,63 @@ class _CookingDurationState extends State<CookingDuration> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(32 * widget.fem),
             ),
-            child: const SliderContainer(),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class SliderContainer extends StatefulWidget {
-  const SliderContainer({super.key});
-
-  @override
-  State<SliderContainer> createState() => _SliderContainerState();
-}
-
-class _SliderContainerState extends State<SliderContainer> {
-  double _currentSliderValue = 30;
-
-  @override
-  Widget build(BuildContext context) {
-    return SliderTheme(
-      data: SliderTheme.of(context).copyWith(
-        trackHeight: 6,
-        overlayShape: const RoundSliderOverlayShape(overlayRadius: 0), 
-        thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 8), 
-        trackShape: const RoundedRectSliderTrackShape(), 
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            margin: const EdgeInsets.fromLTRB(0,0,0,20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Column(
               children: [
-                Text(
-                    '<10',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      height: 1,
-                      letterSpacing: 0.5,
-                      color: const Color(0xffff7269),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '<10',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.poppins(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        height: 1,
+                        letterSpacing: 0.5,
+                        color: const Color(0xffff7269),
+                      ),
                     ),
-                  ),
-                Text(
-                    '30',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      height: 1,
-                      letterSpacing: 0.5,
-                      color: const Color(0xffff7269),
+                    Text(
+                      '30',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.poppins(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        height: 1,
+                        letterSpacing: 0.5,
+                        color: const Color(0xffff7269),
+                      ),
                     ),
-                  ),
-                Text(
-                    '60>',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      height: 1,
-                      letterSpacing: 0.5,
-                      color: const Color(0xff686e81),
+                    Text(
+                      '60>',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.poppins(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        height: 1,
+                        letterSpacing: 0.5,
+                        color: const Color(0xff686e81),
+                      ),
                     ),
-                  ),
+                  ],
+                ),
+                Slider(
+                  value: _currentSliderValue,
+                  min: 0,
+                  max: 60,
+                  divisions: null,
+                  inactiveColor: const Color(0xff686e81),
+                  activeColor: const Color(0xffff7269),
+                  label: _currentSliderValue.round().toString(),
+                  onChanged: (double val) {
+                    setState(() {
+                      _currentSliderValue = val;
+                      widget.onChanged(val);
+                    });
+                  },
+                ),
               ],
             ),
-          ),
-          Slider(
-            value: _currentSliderValue,
-            min: 0,
-            max: 60,
-            divisions: null,      
-            inactiveColor: const Color(0xff686e81),
-            activeColor: const Color(0xffff7269),
-            label: _currentSliderValue.round().toString(),
-            onChanged: (double val) => setState(() {
-              _currentSliderValue = val;
-            }),
           ),
         ],
       ),

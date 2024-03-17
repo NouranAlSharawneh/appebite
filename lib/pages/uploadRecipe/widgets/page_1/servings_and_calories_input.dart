@@ -6,17 +6,16 @@ class ServingsAndCaloriesInput extends StatelessWidget {
     Key? key,
     required this.text1,
     required this.text2,
-    // required this.controller1,
-    // required this.controller2,
+    required this.servingsController,
+    required this.caloriesController,
     this.gapWidth = 10.0,
   }) : super(key: key);
 
-  // final TextEditingController controller1;
-  // final TextEditingController controller2;
   final double gapWidth;
-
   final String text1;
   final String text2;
+  final TextEditingController servingsController;
+  final TextEditingController caloriesController;
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +30,13 @@ class ServingsAndCaloriesInput extends StatelessWidget {
               children: [
                 Text(
                   text1,
-                      style: GoogleFonts.poppins(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w700,
-                        height: 1,
-                        letterSpacing: 0.5,
-                        color: const Color(0xffffffff),
-                      ),                 
+                  style: GoogleFonts.poppins(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700,
+                    height: 1,
+                    letterSpacing: 0.5,
+                    color: const Color(0xffffffff),
+                  ),
                 ),
                 SizedBox(width: gapWidth),
                 Expanded(
@@ -49,29 +48,30 @@ class ServingsAndCaloriesInput extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         color: const Color(0xff353842),
                       ),
-                  child: TextField(
-                    keyboardType: TextInputType.number,
-                    style: GoogleFonts.poppins(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 0.5 ,
-                    color: const Color(0xff686f82),
-                    
-                  ),textAlign: TextAlign.left,
-                    decoration: InputDecoration(
-                    hintStyle: GoogleFonts.poppins(
-                      fontSize: 13 ,
-                      height: 1 ,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: 0.5,
-                      color: const Color(0xff686f82),
+                      child: TextField(
+                        controller: servingsController,
+                        keyboardType: TextInputType.number,
+                        style: GoogleFonts.poppins(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 0.5,
+                          color: const Color(0xff686f82),
+                        ),
+                        textAlign: TextAlign.left,
+                        decoration: InputDecoration(
+                          hintStyle: GoogleFonts.poppins(
+                            fontSize: 13,
+                            height: 1,
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: 0.5,
+                            color: const Color(0xff686f82),
+                          ),
+                          prefixIcon: const Icon(Icons.people_sharp, color: Color(0xff686f82)),
+                          contentPadding: const EdgeInsets.symmetric(vertical: 12),
+                          border: InputBorder.none,
+                        ),
+                      ),
                     ),
-                    prefixIcon: const Icon(Icons.people_sharp, color: Color(0xff686f82),),
-                    contentPadding: const EdgeInsets.symmetric(vertical: 12), 
-                    border: InputBorder.none,
-                  ),
-                  ),
-                ),
                   ),
                 ),
               ],
@@ -84,11 +84,11 @@ class ServingsAndCaloriesInput extends StatelessWidget {
                 Text(
                   text2,
                   style: GoogleFonts.poppins(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 0.5,
-                        color: const Color(0xffffffff),
-                      ),
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 0.5,
+                    color: const Color(0xffffffff),
+                  ),
                 ),
                 SizedBox(width: gapWidth),
                 Expanded(
@@ -100,30 +100,30 @@ class ServingsAndCaloriesInput extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         color: const Color(0xff353842),
                       ),
-                  child: TextField(
-                    // controller: controller2,
-                    textAlign: TextAlign.left,
-                    keyboardType: TextInputType.number,
-                    style: GoogleFonts.poppins(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 0.5 ,
-                    color: const Color(0xff686f82),
-                  ),
-                    decoration: InputDecoration(
-                    hintStyle: GoogleFonts.poppins(
-                      fontSize: 12 ,
-                      fontWeight: FontWeight.w500,
-                      height: 1.2,                      
-                      letterSpacing: 0.5,
-                      color: const Color(0xff686f82),
+                      child: TextField(
+                        controller: caloriesController,
+                        textAlign: TextAlign.left,
+                        keyboardType: TextInputType.number,
+                        style: GoogleFonts.poppins(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 0.5,
+                          color: const Color(0xff686f82),
+                        ),
+                        decoration: InputDecoration(
+                          hintStyle: GoogleFonts.poppins(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            height: 1.2,
+                            letterSpacing: 0.5,
+                            color: const Color(0xff686f82),
+                          ),
+                          prefixIcon: const Icon(Icons.sports_gymnastics, color: Color(0xff686f82)),
+                          contentPadding: const EdgeInsets.symmetric(vertical: 12),
+                          border: InputBorder.none,
+                        ),
+                      ),
                     ),
-                    prefixIcon: const Icon(Icons.sports_gymnastics, color: Color(0xff686f82),),
-                    contentPadding: const EdgeInsets.symmetric(vertical: 12), 
-                    border: InputBorder.none,
-                  ),
-                  ),
-                ),
                   ),
                 ),
               ],
