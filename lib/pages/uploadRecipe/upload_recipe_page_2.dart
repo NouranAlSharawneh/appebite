@@ -79,7 +79,7 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
         child: SizedBox(
           width: double.infinity,
           child: Container(
-            padding: EdgeInsets.fromLTRB(34 * fem, 34 * fem, 22.5 * fem, 8 * fem),
+            padding: EdgeInsets.fromLTRB(26 * fem, 34 * fem, 26 * fem, 8 * fem),
             width: double.infinity,
             decoration: const BoxDecoration(
               color: Color(0xff272a32),
