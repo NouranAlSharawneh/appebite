@@ -1,14 +1,13 @@
 import 'dart:io';
-
-import 'package:appebite/pages/uploadRecipe/widgets/page_2/add_ingredient_field.dart';
-import 'package:appebite/pages/uploadRecipe/widgets/page_2/upload_recipe_categories.dart';
-import 'package:appebite/pages/uploadRecipe/widgets/page_2/upload_recipe_divider.dart';
-import 'package:appebite/pages/uploadRecipe/widgets/page_2/upload_recipe_form_button.dart';
-import 'package:appebite/pages/uploadRecipe/widgets/page_2/upload_recipe_rating.dart';
-import 'package:appebite/pages/uploadRecipe/widgets/page_2/upload_recipe_steps.dart';
-import 'package:appebite/pages/uploadRecipe/widgets/title_heading.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:appebite/pages/uploadRecipe/widgets/title_heading.dart';
+import 'package:appebite/pages/uploadRecipe/widgets/page_2/upload_recipe_steps.dart';
+import 'package:appebite/pages/uploadRecipe/widgets/page_2/upload_recipe_rating.dart';
+import 'package:appebite/pages/uploadRecipe/widgets/page_2/add_ingredient_field.dart';
+import 'package:appebite/pages/uploadRecipe/widgets/page_2/upload_recipe_divider.dart';
+import 'package:appebite/pages/uploadRecipe/widgets/page_2/upload_recipe_categories.dart';
+import 'package:appebite/pages/uploadRecipe/widgets/page_2/upload_recipe_form_button.dart';
 
 class UploadRecipePage2 extends StatefulWidget {
   final String foodName;
@@ -33,8 +32,10 @@ class UploadRecipePage2 extends StatefulWidget {
 }
 
 class _UploadRecipePage2State extends State<UploadRecipePage2> {
+  TextEditingController cuisineTypeController = TextEditingController();
   List<Widget> ingredientFields = [];
   double ratingValue = 2.5;
+  String selectedMeal = 'Breakfast';
 
   @override
   void initState() {
@@ -56,6 +57,13 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
   void updateRating(double newRating) {
     setState(() {
       ratingValue = newRating;
+    });
+  }
+
+   // Function to update the rating value
+  void updateMeal(String value) {
+    setState(() {
+      selectedMeal = value;
     });
   }
 
@@ -123,7 +131,12 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
                     ],
                   ),
                 ),
-                UploadRecipeCategories(fem: fem, ffem: ffem),
+                UploadRecipeCategories(
+                  fem: fem, 
+                  ffem: ffem,
+                  cuisineTypeController: cuisineTypeController,
+                  category: updateMeal,
+                  ),
                 const UploadRecipeDivider(),
                 UploadRecipeRating(
                   fem: fem, 
@@ -142,6 +155,8 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
                   selectedImage: widget.selectedImage,
                   // page two
                   ratingValue: ratingValue,
+                  cuisineType: cuisineTypeController.text, 
+                  category: selectedMeal
                   ),
               ],
             ),

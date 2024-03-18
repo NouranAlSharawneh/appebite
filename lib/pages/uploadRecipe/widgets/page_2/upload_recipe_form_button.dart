@@ -17,6 +17,8 @@ class UploadFormButtons extends StatelessWidget {
     required this.cookingDuration,
     required this.selectedImage,
     required this.ratingValue,
+    required this.category, // Accept the category parameter
+    required this.cuisineType,
   }) : super(key: key);
 
   final double fem;
@@ -28,60 +30,63 @@ class UploadFormButtons extends StatelessWidget {
   final double cookingDuration;
   final File? selectedImage;
   final double ratingValue;
+  final String category; // Declare the category parameter
+  final String cuisineType;
 
   @override
   Widget build(BuildContext context) {
     // Function to handle the upload of recipe details to Firestore
-Future<void> uploadRecipe() async {
-  try {
-    // Get the current user
-    User? user = FirebaseAuth.instance.currentUser;
+    Future<void> uploadRecipe() async {
+      try {
+        // Get the current user
+        User? user = FirebaseAuth.instance.currentUser;
 
-    if (user != null) {
-      String imageUrl = ''; // Initialize imageUrl variable
+        if (user != null) {
+          String imageUrl = ''; // Initialize imageUrl variable
 
-      // Upload image to Firebase Storage if an image is selected
-      if (selectedImage != null) {
-        // Generate a unique filename for the image
-        String fileName = '${DateTime.now().millisecondsSinceEpoch}-${user.uid}.jpg';
+          // Upload image to Firebase Storage if an image is selected
+          if (selectedImage != null) {
+            // Generate a unique filename for the image
+            String fileName = '${DateTime.now().millisecondsSinceEpoch}-${user.uid}.jpg';
 
-        // Reference to the image location in Firebase Storage
-        Reference ref = FirebaseStorage.instance.ref().child('recipe_images').child(fileName);
+            // Reference to the image location in Firebase Storage
+            Reference ref = FirebaseStorage.instance.ref().child('recipe_images').child(fileName);
 
-        // Upload the image file to Firebase Storage
-        TaskSnapshot taskSnapshot = await ref.putFile(selectedImage!);
+            // Upload the image file to Firebase Storage
+            TaskSnapshot taskSnapshot = await ref.putFile(selectedImage!);
 
-        // Get the download URL of the uploaded image
-        imageUrl = await taskSnapshot.ref.getDownloadURL();
+            // Get the download URL of the uploaded image
+            imageUrl = await taskSnapshot.ref.getDownloadURL();
+          }
+
+          // Store recipe data in Firestore under "recipes posted" collection
+          await FirebaseFirestore.instance
+              .collection("Users")
+              .doc(user.uid)
+              .collection('recipes_posted')
+              .add({
+            'foodName': foodName,
+            'description': description,
+            'servings': servings,
+            'calories': calories,
+            'cookingDuration': cookingDuration,
+            'imageUrl': imageUrl, // Store the URL of the uploaded image
+            'RecipeRating': ratingValue,
+            'CuisineType': cuisineType,
+            'Category': category, // Store the category
+          });
+
+          // Navigate to a new page or perform any other action after upload
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => const UploadRecipePage2()),
+          // );
+        }
+      } catch (error) {
+        print('Error uploading recipe: $error');
+        // Handle error
       }
-
-      // Store recipe data in Firestore under "recipes posted" collection
-      await FirebaseFirestore.instance
-          .collection("Users")
-          .doc(user.uid)
-          .collection('recipes_posted')
-          .add({
-        'foodName': foodName,
-        'description': description,
-        'servings': servings,
-        'calories': calories,
-        'cookingDuration': cookingDuration,
-        'imageUrl': imageUrl, // Store the URL of the uploaded image
-        'RecipeRating' : ratingValue,
-      });
-
-      // Navigate to a new page or perform any other action after upload
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => const UploadRecipePage2()),
-      // );
     }
-  } catch (error) {
-    print('Error uploading recipe: $error');
-    // Handle error
-  }
-}
-
 
     return Container(
       margin: EdgeInsets.fromLTRB(0 * fem, 20 * fem, 0 * fem, 21 * fem),

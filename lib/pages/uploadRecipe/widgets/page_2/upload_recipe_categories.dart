@@ -1,15 +1,20 @@
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class UploadRecipeCategories extends StatelessWidget {
   const UploadRecipeCategories({
-    super.key,
+    Key? key,
     required this.fem,
     required this.ffem,
-  });
+    required this.cuisineTypeController,
+    required this.category,
+  }) : super(key: key);
 
   final double fem;
   final double ffem;
+  final TextEditingController cuisineTypeController;
+  final Function(String) category;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +50,7 @@ class UploadRecipeCategories extends StatelessWidget {
                     color: const Color(0xff353841),
                     borderRadius: BorderRadius.circular(5 * fem),
                   ),
-                  child: const MealDropdown(),
+                  child: MealDropdown(onMealSelected: category),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(11.74 * fem, 7.59 * fem, 11.74 * fem, 8.41 * fem),
@@ -56,6 +61,7 @@ class UploadRecipeCategories extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5 * fem),
                   ),
                   child: TextField(
+                    controller: cuisineTypeController,
                     style: GoogleFonts.poppins(
                       fontSize: 13 * ffem,
                       fontWeight: FontWeight.w400,
@@ -83,7 +89,8 @@ class UploadRecipeCategories extends StatelessWidget {
 }
 
 class MealDropdown extends StatefulWidget {
-  const MealDropdown({super.key});
+  const MealDropdown({required this.onMealSelected,super.key});
+  final Function(String) onMealSelected;
 
   @override
   State<MealDropdown> createState() => _MealDropdownState();
@@ -118,6 +125,7 @@ class _MealDropdownState extends State<MealDropdown> {
       onChanged: (String? newValue) {
         setState(() {
           selectedMeal = newValue!;
+          widget.onMealSelected(selectedMeal);
         });
       },
       items: <String>['Breakfast', 'Lunch', 'Dinner']
