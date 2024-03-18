@@ -17,7 +17,7 @@ class UploadFormButtons extends StatelessWidget {
     required this.cookingDuration,
     required this.selectedImage,
     required this.ratingValue,
-    required this.category, // Accept the category parameter
+    required this.category,
     required this.cuisineType,
   }) : super(key: key);
 
@@ -70,10 +70,10 @@ class UploadFormButtons extends StatelessWidget {
             'servings': servings,
             'calories': calories,
             'cookingDuration': cookingDuration,
-            'imageUrl': imageUrl, // Store the URL of the uploaded image
+            'imageUrl': imageUrl,
             'RecipeRating': ratingValue,
             'CuisineType': cuisineType,
-            'Category': category, // Store the category
+            'Category': category,
           });
 
           // Navigate to a new page or perform any other action after upload
@@ -84,7 +84,12 @@ class UploadFormButtons extends StatelessWidget {
         }
       } catch (error) {
         print('Error uploading recipe: $error');
-        // Handle error
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Uploading recipe failed. ${error.toString()}'),
+            duration: const Duration(seconds: 6),
+          ),
+          );
       }
     }
 
