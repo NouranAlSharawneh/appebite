@@ -16,6 +16,7 @@ class UploadFormButtons extends StatelessWidget {
     required this.calories,
     required this.cookingDuration,
     required this.selectedImage,
+    required this.ratingValue,
   }) : super(key: key);
 
   final double fem;
@@ -26,6 +27,7 @@ class UploadFormButtons extends StatelessWidget {
   final String calories;
   final double cookingDuration;
   final File? selectedImage;
+  final double ratingValue;
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +67,7 @@ Future<void> uploadRecipe() async {
         'calories': calories,
         'cookingDuration': cookingDuration,
         'imageUrl': imageUrl, // Store the URL of the uploaded image
+        'RecipeRating' : ratingValue,
       });
 
       // Navigate to a new page or perform any other action after upload

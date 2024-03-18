@@ -34,6 +34,7 @@ class UploadRecipePage2 extends StatefulWidget {
 
 class _UploadRecipePage2State extends State<UploadRecipePage2> {
   List<Widget> ingredientFields = [];
+  double ratingValue = 2.5;
 
   @override
   void initState() {
@@ -48,6 +49,13 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
       ingredientFields.add(
         const AddIngredientPage(),
       );
+    });
+  }
+
+  // Function to update the rating value
+  void updateRating(double newRating) {
+    setState(() {
+      ratingValue = newRating;
     });
   }
 
@@ -117,7 +125,11 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
                 ),
                 UploadRecipeCategories(fem: fem, ffem: ffem),
                 const UploadRecipeDivider(),
-                UploadRecipeRating(fem: fem, ffem: ffem),
+                UploadRecipeRating(
+                  fem: fem, 
+                  ffem: ffem,
+                  onRatingUpdate: updateRating,
+                  ),
                 UploadRecipeSteps(fem: fem, ffem: ffem),
                 UploadFormButtons(
                   fem: fem, 
@@ -128,6 +140,8 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
                   calories: widget.calories,
                   cookingDuration: widget.cookingDuration,
                   selectedImage: widget.selectedImage,
+                  // page two
+                  ratingValue: ratingValue,
                   ),
               ],
             ),

@@ -7,10 +7,12 @@ class UploadRecipeRating extends StatelessWidget {
     super.key,
     required this.fem,
     required this.ffem,
+    required this.onRatingUpdate
   });
 
   final double fem;
   final double ffem;
+  final Function(double) onRatingUpdate;
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +47,7 @@ class UploadRecipeRating extends StatelessWidget {
                       itemSize: 50.0,
                       glowColor: const Color(0xff272a32),
                       unratedColor: const Color(0xff353842),
-                      onRatingUpdate: (rating) {
-                        // print(rating);
-                      },
+                      onRatingUpdate: onRatingUpdate,
                       direction: Axis.horizontal,
                       itemBuilder: (context, _) => const Icon(
                         Icons.star_rounded,
