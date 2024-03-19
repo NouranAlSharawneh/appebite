@@ -1,3 +1,4 @@
+import 'package:appebite/pages/settings/settings_edit_information.dart';
 import 'package:appebite/pages/uploadRecipe/upload_recipe.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -35,7 +36,7 @@ class LoginButton extends StatelessWidget {
               if (userCredential.user != null) {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const UploadRecipe()), 
+                  MaterialPageRoute(builder: (context) => const SettingsEditInformation()), 
                 );
               }
             } catch (e) {

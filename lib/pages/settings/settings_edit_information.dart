@@ -1,14 +1,157 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'dart:io';
 
+import 'package:appebite/pages/uploadRecipe/upload_recipe.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
+import 'package:quickalert/quickalert.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:image_picker/image_picker.dart';
+///////////////////////////////////
 class SettingsEditInformation extends StatefulWidget {
   const SettingsEditInformation({Key? key}) : super(key: key);
 
   @override
-  State<SettingsEditInformation> createState() => _SettingsEditInformationState();
+  State<SettingsEditInformation> createState() =>
+      _SettingsEditInformationState();
 }
 
 class _SettingsEditInformationState extends State<SettingsEditInformation> {
+  late String _newProfilePictureUrl = '';
+  final ImagePicker _picker = ImagePicker();
+  late String _profilePictureUrl = '';
+  late String _userName = '';
+  late String _currentHeight = ''; 
+  late String _currentWeight = '';
+  late TextEditingController _weightController;
+  late TextEditingController _heightController;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchUserInfo();
+    _weightController = TextEditingController();
+    _heightController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _weightController.dispose();
+    _heightController.dispose();
+    super.dispose();
+  }
+
+  void _showSuccessDialog(BuildContext context) {
+  QuickAlert.show(
+        context: context,
+        type: QuickAlertType.success,
+        backgroundColor: const Color(0xff272a32),
+        title: 'Changes Saved',
+        titleColor: Colors.white,
+        text: "All of the changes that you \nhave made are now saved! \n",
+        textColor: const Color(0xff686f82),
+        confirmBtnColor: const Color(0xffff7269),
+        confirmBtnText: 'okay',
+        onConfirmBtnTap: () {
+          // TODO: FIX THE NAVIGATOR
+           Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const UploadRecipe()),
+      );
+        }
+      );
+}
+
+  Future<void> _fetchUserInfo() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      DocumentSnapshot userInfo = await FirebaseFirestore.instance
+          .collection("Users")
+          .doc(user.uid)
+          .get();
+
+      setState(() {
+        _userName = userInfo['firstName'];
+        _profilePictureUrl = userInfo['profilePictureUrl'];
+        _newProfilePictureUrl = _profilePictureUrl;
+        _currentHeight = userInfo['height']; 
+        _currentWeight = userInfo['weight'];
+
+        _weightController.text = _currentWeight;
+        _heightController.text = _currentHeight;
+      });
+    }
+  }
+
+    Future<void> _changeProfilePicture() async {
+    final XFile? pickedFile =
+        await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      // Upload the selected image to Firebase Storage
+      Reference ref = FirebaseStorage.instance
+          .ref()
+          .child('profile_pictures')
+          .child(FirebaseAuth.instance.currentUser!.uid);
+      UploadTask uploadTask = ref.putFile(File(pickedFile.path));
+      TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() => null);
+      String newUrl = await taskSnapshot.ref.getDownloadURL();
+
+      setState(() {
+        _newProfilePictureUrl = newUrl;
+      });
+    }
+  }
+
+  //TODO: ADD A NAVIGATOR LATER HERE
+  void _cancelChange() {
+    setState(() {
+      _newProfilePictureUrl = _profilePictureUrl;
+      _currentHeight = _currentHeight;
+      _currentWeight = _currentWeight;
+    });
+  }
+
+void _saveChange() async {
+  // Check if height and weight are not empty
+  if (_currentHeight.isNotEmpty && _currentWeight.isNotEmpty) {
+    // Save the new picture URL to database
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        String newUrl = _newProfilePictureUrl;
+
+        // Update profile picture URL in Firestore
+        await FirebaseFirestore.instance
+            .collection("Users")
+            .doc(user.uid)
+            .update({'profilePictureUrl': newUrl,
+                     'height': _currentHeight, // Update height in Firestore
+                     'weight': _currentWeight}); // Update weight in Firestore
+
+        // Update local state
+        setState(() {
+          _profilePictureUrl = newUrl;
+        });
+
+        // Show success dialog
+        _showSuccessDialog(context);
+      }
+    } catch (e) {
+      print("Error saving profile picture: $e");
+    }
+  } else {
+    // Show snackbar message if height or weight is empty
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Please fill both height and weight fields.'),
+        duration: Duration(seconds: 3),
+      ),
+    );
+  }
+}
+
+    
   @override
   Widget build(BuildContext context) {
     double baseWidth = 400;
@@ -45,7 +188,7 @@ class _SettingsEditInformationState extends State<SettingsEditInformation> {
                           color: const Color(0xffffffff),
                         ),
                       ),
-                      const Spacer(), // Add Spacer widget to occupy maximum space between widgets
+                      const Spacer(),
                       SizedBox(
                         width: 32 * fem,
                         height: 32 * fem,
@@ -62,7 +205,7 @@ class _SettingsEditInformationState extends State<SettingsEditInformation> {
               Container(
                 margin: const EdgeInsets.only(top: 10),
                 child: Text(
-                  'Hello user name,',
+                  'Hello $_userName,',
                   style: GoogleFonts.poppins(
                     fontSize: 13 * ffem,
                     fontWeight: FontWeight.w400,
@@ -71,52 +214,75 @@ class _SettingsEditInformationState extends State<SettingsEditInformation> {
                   ),
                 ),
               ),
-              const SizedBox(height: 80,),
-              Center(
-                child: SizedBox(
-                  width: 300 * fem,
-                  height: 74 * fem,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Edit profile picture',
-                        style: GoogleFonts.poppins(
-                          fontSize: 14 * ffem,
-                          fontWeight: FontWeight.w600,
-                          height: 1.5 * ffem / fem,
-                          color: const Color(0xffffffff),
-                        ),
-                      ),
-                      const Spacer(),
-                      Container(
-                        width: 73 * fem,
-                        height: double.infinity,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: const Color(0xffe6955b)),
-                          color: const Color(0xff686e81),
-                          borderRadius: BorderRadius.circular(10 * fem),
-                        ),
-                        child: Center(
-                          child: Opacity(
-                            opacity: 0.8,
-                            child: SizedBox(
-                              width: 73 * fem,
-                              height: 74 * fem,
-                              child: Image.asset(
-                                'assets/images/profile.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
+              const SizedBox(
+                height: 80,
+              ),
+              GestureDetector(
+                onTap: _changeProfilePicture,
+                child: Center(
+                  child: SizedBox(
+                    width: 300 * fem,
+                    height: 74 * fem,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Edit profile picture',
+                          style: GoogleFonts.poppins(
+                            fontSize: 14 * ffem,
+                            fontWeight: FontWeight.w600,
+                            height: 1.5 * ffem / fem,
+                            color: const Color(0xffffffff),
                           ),
                         ),
-                      ),
-                    ],
+                        const Spacer(),
+                        Container(
+                          width: 73 * fem,
+                          height: double.infinity,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: const Color(0xffe6955b),
+                              width: 3,
+                            ),
+                            color: const Color(0xff272a32),
+                            borderRadius: BorderRadius.circular(10 * fem),
+                          ),
+                          child: Center(
+                            child: _newProfilePictureUrl.isEmpty
+                                ? const CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(Color(0xffff7269)),
+                                ) 
+                                : Opacity(
+                                    opacity: 0.8,
+                                    child: SizedBox(
+                                      width: 73 * fem,
+                                      height: 74 * fem,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(10 * fem),
+                                        child: _newProfilePictureUrl.startsWith("http")
+                                            ? Image.network(
+                                                _newProfilePictureUrl,
+                                                fit: BoxFit.cover,
+                                              )
+                                            : Image.file(
+                                                File(_newProfilePictureUrl),
+                                                fit: BoxFit.cover,
+                                              ),
+                                      ),
+                                    ),
+                                  ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-              const SizedBox(height: 60,),
+
+              const SizedBox(
+                height: 60,
+              ),
               Text(
                 'Personal information',
                 style: GoogleFonts.poppins(
@@ -165,6 +331,12 @@ class _SettingsEditInformationState extends State<SettingsEditInformation> {
                                   style: const TextStyle(color: Colors.white),
                                   textAlign: TextAlign.justify,
                                   keyboardType: TextInputType.number,
+                                  controller: _weightController, 
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _currentWeight = value; 
+                                      });
+                                    },
                                   decoration: InputDecoration(
                                     contentPadding: EdgeInsets.fromLTRB(10 * fem, 0 * fem, 12 * fem, 10 * fem),
                                     prefix: Text(
@@ -176,13 +348,13 @@ class _SettingsEditInformationState extends State<SettingsEditInformation> {
                                         height: 1.5 * ffem / fem,
                                       ),
                                     ),
-                                    hintText: '55',
+                                    hintText: _currentWeight,
                                     hintStyle: const TextStyle(color: Color(0xff686f82)),
                                     border: InputBorder.none,
                                     errorStyle: const TextStyle(
-                                      color: Color(0xffff7269),
-                                      fontSize: 12.0,
-                                      height: 0.02
+                                        color: Color(0xffff7269),
+                                        fontSize: 12.0,
+                                        height: 0.02
                                     ),
                                   ),
                                 ),
@@ -222,6 +394,12 @@ class _SettingsEditInformationState extends State<SettingsEditInformation> {
                                   style: const TextStyle(color: Colors.white),
                                   textAlign: TextAlign.justify,
                                   keyboardType: TextInputType.number,
+                                  controller: _heightController,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _currentHeight = value;
+                                      });
+                                    },
                                   decoration: InputDecoration(
                                     contentPadding: EdgeInsets.fromLTRB(10 * fem, 0 * fem, 12 * fem, 10 * fem),
                                     prefix: Text(
@@ -233,13 +411,13 @@ class _SettingsEditInformationState extends State<SettingsEditInformation> {
                                         height: 1.5 * ffem / fem,
                                       ),
                                     ),
-                                    hintText: '173',
+                                    hintText: _currentHeight,
                                     hintStyle: const TextStyle(color: Color(0xff686f82)),
                                     border: InputBorder.none,
                                     errorStyle: const TextStyle(
-                                      color: Color(0xffff7269),
-                                      fontSize: 12.0,
-                                      height: 0.02
+                                        color: Color(0xffff7269),
+                                        fontSize: 12.0,
+                                        height: 0.02
                                     ),
                                   ),
                                 ),
@@ -252,7 +430,9 @@ class _SettingsEditInformationState extends State<SettingsEditInformation> {
                   ),
                 ),
               ),
-              const SizedBox(height: 60,),
+              const SizedBox(
+                height: 60,
+              ),
               SizedBox(
                 width: double.infinity,
                 height: 56 * fem,
@@ -268,9 +448,7 @@ class _SettingsEditInformationState extends State<SettingsEditInformation> {
                         borderRadius: BorderRadius.circular(32 * fem),
                       ),
                       child: TextButton(
-                        onPressed: () {
-                          // Handle cancel button press
-                        },
+                        onPressed: _cancelChange,
                         child: Text(
                           'Cancel',
                           textAlign: TextAlign.center,
@@ -285,28 +463,26 @@ class _SettingsEditInformationState extends State<SettingsEditInformation> {
                     ),
                     const Spacer(),
                     Container(
-                      width: 156 * fem,
-                      height: double.infinity,
-                      decoration: BoxDecoration(
-                        color: const Color(0xffff7269),
-                        borderRadius: BorderRadius.circular(32 * fem),
-                      ),
-                      child: TextButton(
-                        onPressed: () {
-                          // Handle save button press
-                        },
-                        child: Text(
-                          'Save',
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.poppins(
-                            fontSize: 15 * ffem,
-                            fontWeight: FontWeight.w700,
-                            height: 1.2,
-                            color: Colors.white
-                          )
+                        width: 156 * fem,
+                        height: double.infinity,
+                        decoration: BoxDecoration(
+                          color: const Color(0xffff7269),
+                          borderRadius: BorderRadius.circular(32 * fem),
+                        ),
+                        child: TextButton(
+                            onPressed: _saveChange,
+                            child: Text(
+                                'Save',
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.poppins(
+                                    fontSize: 15 * ffem,
+                                    fontWeight: FontWeight.w700,
+                                    height: 1.2,
+                                    color: Colors.white
+                                )
+                            )
                         )
-                      )
-                    )                     
+                    )
                   ],
                 ),
               ),
