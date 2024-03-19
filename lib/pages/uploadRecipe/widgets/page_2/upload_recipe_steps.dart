@@ -119,7 +119,7 @@ class _UploadRecipeStepsState extends State<UploadRecipeSteps> {
                         },
                       );
 
-                      return confirmed ?? false;
+                      return confirmed;
                     },
                     onDismissed: (DismissDirection direction) {
                       // Handle step deletion here

@@ -33,10 +33,10 @@ class UploadFormButtons extends StatelessWidget {
   final double fem;
   final double ffem;
   final String foodName;
-  final File? selectedImage;
-  final double ratingValue;
-  final String servings;
   final List<Widget> ingredientFields;
+  final double ratingValue;
+  final File? selectedImage;
+  final String servings;
 
   @override
   Widget build(BuildContext context) {
