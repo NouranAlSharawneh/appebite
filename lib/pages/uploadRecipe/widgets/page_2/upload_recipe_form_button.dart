@@ -1,10 +1,12 @@
 import 'dart:io';
-import 'package:appebite/pages/uploadRecipe/widgets/page_2/add_ingredient_field.dart';
+import 'package:appebite/pages/login/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:quickalert/quickalert.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:appebite/pages/uploadRecipe/widgets/page_2/add_ingredient_field.dart';
 
 class UploadFormButtons extends StatelessWidget {
   const UploadFormButtons({
@@ -19,93 +21,145 @@ class UploadFormButtons extends StatelessWidget {
     required this.selectedImage,
     required this.ratingValue,
     required this.category,
-    required this.cuisineType, required this.ingredientFields,
+    required this.cuisineType, 
+    required this.ingredientFields,
   }) : super(key: key);
 
+  final String calories;
+  final String category; 
+  final double cookingDuration;
+  final String cuisineType;
+  final String description;
   final double fem;
   final double ffem;
   final String foodName;
-  final String description;
-  final String servings;
-  final String calories;
-  final double cookingDuration;
   final File? selectedImage;
   final double ratingValue;
-  final String category; 
-  final String cuisineType;
+  final String servings;
   final List<Widget> ingredientFields;
 
   @override
   Widget build(BuildContext context) {
     // Function to handle the upload of recipe details to Firestore
     Future<void> uploadRecipe() async {
-      try {
-        // Get the current user
-        User? user = FirebaseAuth.instance.currentUser;
+  try {
+// Show loader
+    showDialog(
+      context: context,
+      barrierDismissible: false, // Prevent user from dismissing the dialog
+      builder: (BuildContext context) {
+        return const Center(
+          child: CircularProgressIndicator(
+            strokeWidth: 4.0,
+            valueColor: AlwaysStoppedAnimation<Color>(Color(0xffff7269)),
+          ), // Loader widget
+        );
+      },
+    );
 
-        if (user != null) {
-          String imageUrl = ''; // Initialize imageUrl variable
+    // Get the current user
+    User? user = FirebaseAuth.instance.currentUser;
 
-          // Upload image to Firebase Storage if an image is selected
-          if (selectedImage != null) {
-            // Generate a unique filename for the image
-            String fileName = '${DateTime.now().millisecondsSinceEpoch}-${user.uid}.jpg';
-
-            // Reference to the image location in Firebase Storage
-            Reference ref = FirebaseStorage.instance.ref().child('recipe_images').child(fileName);
-
-            // Upload the image file to Firebase Storage
-            TaskSnapshot taskSnapshot = await ref.putFile(selectedImage!);
-
-            // Get the download URL of the uploaded image
-            imageUrl = await taskSnapshot.ref.getDownloadURL();
-          }
-
-          // Store ingredients in a List
-          List<String> ingredients = [];
-          for (Widget ingredientField in ingredientFields) {
-            if (ingredientField is AddIngredientPage) {
-              // Access the TextField's value and add to the ingredients list
-              String ingredient = ingredientField.controller.text;
-              ingredients.add(ingredient);
-            }
-          }
-          print(ingredients);
-
-          // Store recipe data in Firestore under "recipes posted" collection
-          await FirebaseFirestore.instance
-              .collection("Users")
-              .doc(user.uid)
-              .collection('recipes_posted')
-              .add({
-            'foodName': foodName,
-            'description': description,
-            'servings': servings,
-            'calories': calories,
-            'cookingDuration': cookingDuration,
-            'imageUrl': imageUrl,
-            'RecipeRating': ratingValue,
-            'CuisineType': cuisineType,
-            'Category': category,
-            'Ingredients': ingredients,
-          });
-
-          // Navigate to a new page or perform any other action after upload
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => const UploadRecipePage2()),
-          // );
-        }
-      } catch (error) {
-        print('Error uploading recipe: $error');
+    if (user != null) {
+      // Check if any required fields are empty
+      if (foodName.isEmpty || description.isEmpty || servings.isEmpty || calories.isEmpty || cuisineType.isEmpty || category.isEmpty || selectedImage == null || ingredientFields.isEmpty) {
+        // Show scaffold message if any required field is empty
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Uploading recipe failed. ${error.toString()}'),
-            duration: const Duration(seconds: 6),
+          const SnackBar(
+            content: Text('Please fill in all fields.'),
+            duration: Duration(seconds: 5),
           ),
-          );
+        );
+        return; // Exit the function if any field is empty
       }
+
+      String imageUrl = ''; // Initialize imageUrl variable
+
+      // Upload image to Firebase Storage if an image is selected
+      if (selectedImage != null) {
+        // Generate a unique filename for the image
+        String fileName = '${DateTime.now().millisecondsSinceEpoch}-${user.uid}.jpg';
+
+        // Reference to the image location in Firebase Storage
+        Reference ref = FirebaseStorage.instance.ref().child('recipe_images').child(fileName);
+
+        // Upload the image file to Firebase Storage
+        TaskSnapshot taskSnapshot = await ref.putFile(selectedImage!);
+
+        // Get the download URL of the uploaded image
+        imageUrl = await taskSnapshot.ref.getDownloadURL();
+      }
+
+      // Store ingredients in a List
+      List<String> ingredients = [];
+      for (Widget ingredientField in ingredientFields) {
+        if (ingredientField is AddIngredientPage) {
+          // Access the TextField's value
+          String ingredient = ingredientField.controller.text;
+          
+          // Add ingredient to the list if it's not empty
+          if (ingredient.isNotEmpty) {
+            ingredients.add(ingredient);
+          }
+        }
+      }
+
+      print(ingredients);
+
+      // Hide loader after upload is complete
+        Navigator.pop(context);
+
+      QuickAlert.show(
+        context: context,
+        type: QuickAlertType.success,
+        backgroundColor: const Color(0xff272a32),
+        title: 'Recipe Uploaded',
+        titleColor: Colors.white,
+        text: "Your recipe has been uploaded, \nyou can see it on your home page \n",
+        textColor: const Color(0xff686f82),
+        confirmBtnColor: const Color(0xffff7269),
+        confirmBtnText: 'Back home',
+        onConfirmBtnTap: () {
+           Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const LoginPage()),
+      );
+        }
+      );
+
+      // Store recipe data in Firestore under "recipes posted" collection
+      await FirebaseFirestore.instance
+          .collection("Users")
+          .doc(user.uid)
+          .collection('recipes_posted')
+          .add({
+        'foodName': foodName,
+        'description': description,
+        'servings': servings,
+        'calories': calories,
+        'cookingDuration': cookingDuration,
+        'imageUrl': imageUrl,
+        'RecipeRating': ratingValue,
+        'CuisineType': cuisineType,
+        'Category': category,
+        'Ingredients': ingredients,
+      });
+
+      // Navigate to a new page or perform any other action after upload
+     
     }
+  } catch (error) {
+    Navigator.pop(context);
+    print('Error uploading recipe: $error');
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Uploading recipe failed. ${error.toString()}'),
+        duration: const Duration(seconds: 6),
+      ),
+    );
+  }
+}
+
 
     return Container(
       margin: EdgeInsets.fromLTRB(0 * fem, 20 * fem, 0 * fem, 21 * fem),
