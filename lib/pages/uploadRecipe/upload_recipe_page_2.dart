@@ -33,7 +33,8 @@ class UploadRecipePage2 extends StatefulWidget {
 
 class _UploadRecipePage2State extends State<UploadRecipePage2> {
   TextEditingController cuisineTypeController = TextEditingController();
-  List<Widget> ingredientFields = [];
+  List<AddIngredientPage> ingredientFields = [];
+  List<TextEditingController> ingredientControllers = [];
   double ratingValue = 2.5;
   String selectedMeal = 'Breakfast';
 
@@ -46,9 +47,11 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
   }
 
   void addIngredientField() {
+    TextEditingController controller = TextEditingController(); // Create a new controller
+    ingredientControllers.add(controller); // Add the controller to the list
     setState(() {
       ingredientFields.add(
-        const AddIngredientPage(),
+        AddIngredientPage(controller: controller), // Pass the controller to the widget
       );
     });
   }
@@ -156,7 +159,8 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
                   // page two
                   ratingValue: ratingValue,
                   cuisineType: cuisineTypeController.text, 
-                  category: selectedMeal
+                  category: selectedMeal,
+                  ingredientFields: ingredientFields,
                   ),
               ],
             ),

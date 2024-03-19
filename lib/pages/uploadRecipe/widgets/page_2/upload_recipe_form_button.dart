@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:appebite/pages/uploadRecipe/widgets/page_2/add_ingredient_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,7 +19,7 @@ class UploadFormButtons extends StatelessWidget {
     required this.selectedImage,
     required this.ratingValue,
     required this.category,
-    required this.cuisineType,
+    required this.cuisineType, required this.ingredientFields,
   }) : super(key: key);
 
   final double fem;
@@ -30,8 +31,9 @@ class UploadFormButtons extends StatelessWidget {
   final double cookingDuration;
   final File? selectedImage;
   final double ratingValue;
-  final String category; // Declare the category parameter
+  final String category; 
   final String cuisineType;
+  final List<Widget> ingredientFields;
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +61,17 @@ class UploadFormButtons extends StatelessWidget {
             imageUrl = await taskSnapshot.ref.getDownloadURL();
           }
 
+          // Store ingredients in a List
+          List<String> ingredients = [];
+          for (Widget ingredientField in ingredientFields) {
+            if (ingredientField is AddIngredientPage) {
+              // Access the TextField's value and add to the ingredients list
+              String ingredient = ingredientField.controller.text;
+              ingredients.add(ingredient);
+            }
+          }
+          print(ingredients);
+
           // Store recipe data in Firestore under "recipes posted" collection
           await FirebaseFirestore.instance
               .collection("Users")
@@ -74,6 +87,7 @@ class UploadFormButtons extends StatelessWidget {
             'RecipeRating': ratingValue,
             'CuisineType': cuisineType,
             'Category': category,
+            'Ingredients': ingredients,
           });
 
           // Navigate to a new page or perform any other action after upload

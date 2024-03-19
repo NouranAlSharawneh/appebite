@@ -2,8 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart'; 
 import 'package:google_fonts/google_fonts.dart';
 
-class AddIngredientPage extends StatelessWidget {
-  const AddIngredientPage({super.key});
+class AddIngredientPage extends StatefulWidget {
+  const AddIngredientPage({Key? key, required this.controller}) : super(key: key);
+  final TextEditingController controller;
+
+  @override
+  State<AddIngredientPage> createState() => _AddIngredientPageState();
+  
+}
+
+class _AddIngredientPageState extends State<AddIngredientPage> {
+  late TextEditingController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,29 +56,29 @@ class AddIngredientPage extends StatelessWidget {
               );
             } else {
               // Use AlertDialog for Android and other platforms
-              return AlertDialog(
-                title: const Text("Confirm Deletion"),
-                content: const Text("Are you sure you want to delete this ingredient?"),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop(false); // Do not delete
-                    },
-                    child: const Text("Cancel"),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop(true); // Confirm deletion
-                    },
-                    child: const Text("Delete"),
-                  ),
-                ],
-              );
+            return AlertDialog(
+              title: const Text("Confirm Deletion"),
+              content: const Text("Are you sure you want to delete this ingredient?"),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(false); // Do not delete
+                  },
+                  child: const Text("Cancel"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(true); // Confirm deletion
+                  },
+                  child: const Text("Delete"),
+                ),
+              ],
+            );
             }
           },
         );
 
-        return confirmed ?? false;
+        return confirmed;
       },
       onDismissed: (DismissDirection direction) {
         // Handle ingredient deletion here
@@ -104,6 +125,7 @@ class AddIngredientPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(32),
                 ),
                 child: TextField(
+                  controller:widget.controller, 
                   style: GoogleFonts.poppins(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
