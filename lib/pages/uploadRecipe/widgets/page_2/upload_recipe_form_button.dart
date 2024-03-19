@@ -38,6 +38,26 @@ class UploadFormButtons extends StatelessWidget {
   final File? selectedImage;
   final String servings;
 
+  void _showSuccessDialog(BuildContext context) {
+    QuickAlert.show(
+        context: context,
+        type: QuickAlertType.success,
+        backgroundColor: const Color(0xff272a32),
+        title: 'Recipe Uploaded',
+        titleColor: Colors.white,
+        text: "Your recipe has been uploaded, \nyou can see it on your home page \n",
+        textColor: const Color(0xff686f82),
+        confirmBtnColor: const Color(0xffff7269),
+        confirmBtnText: 'Back home',
+        onConfirmBtnTap: () {
+           Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const LoginPage()),
+      );
+        }
+      );
+  }
+
   @override
   Widget build(BuildContext context) {
     // Function to handle the upload of recipe details to Firestore
@@ -109,23 +129,7 @@ class UploadFormButtons extends StatelessWidget {
       // Hide loader after upload is complete
         Navigator.pop(context);
 
-      QuickAlert.show(
-        context: context,
-        type: QuickAlertType.success,
-        backgroundColor: const Color(0xff272a32),
-        title: 'Recipe Uploaded',
-        titleColor: Colors.white,
-        text: "Your recipe has been uploaded, \nyou can see it on your home page \n",
-        textColor: const Color(0xff686f82),
-        confirmBtnColor: const Color(0xffff7269),
-        confirmBtnText: 'Back home',
-        onConfirmBtnTap: () {
-           Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const LoginPage()),
-      );
-        }
-      );
+      _showSuccessDialog(context);
 
       // Store recipe data in Firestore under "recipes posted" collection
       await FirebaseFirestore.instance
