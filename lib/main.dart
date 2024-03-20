@@ -3,7 +3,6 @@ import 'package:appebite/firebase_options.dart';
 import 'package:appebite/pages/loadingScreen/loading_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
 void main() async {
   try {
     WidgetsFlutterBinding.ensureInitialized();

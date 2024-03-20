@@ -67,7 +67,7 @@ class _UploadRecipeStepsState extends State<UploadRecipeSteps> {
                 itemCount: widget.stepsControllers.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Dismissible(
-                    key: UniqueKey(),
+                    key: ValueKey(widget.stepsControllers[index]),
                     confirmDismiss: (DismissDirection direction) async {
                       bool confirmed = await showDialog(
                         context: context,
