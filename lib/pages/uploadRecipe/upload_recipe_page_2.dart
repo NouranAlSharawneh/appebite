@@ -32,11 +32,30 @@ class UploadRecipePage2 extends StatefulWidget {
 }
 
 class _UploadRecipePage2State extends State<UploadRecipePage2> {
+  double ratingValue = 2.5;
+  String selectedMeal = 'Breakfast';
   TextEditingController cuisineTypeController = TextEditingController();
   List<AddIngredientPage> ingredientFields = [];
   List<TextEditingController> ingredientControllers = [];
-  double ratingValue = 2.5;
-  String selectedMeal = 'Breakfast';
+  List<TextEditingController> _stepsControllers = [TextEditingController()];
+  List<int> _stepNumbers = [1];
+
+  // Function to add a new step field
+  void _addStep() {
+    setState(() {
+      int newStep = _stepNumbers.length + 1;
+      _stepNumbers.add(newStep);
+      _stepsControllers.add(TextEditingController());
+    });
+  }
+
+  // Function to delete a step field
+  void _deleteStep(int index) {
+    setState(() {
+      _stepNumbers.removeAt(index);
+      _stepsControllers.removeAt(index);
+    });
+  }
 
   @override
   void initState() {
@@ -146,7 +165,13 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
                   ffem: ffem,
                   onRatingUpdate: updateRating,
                   ),
-                UploadRecipeSteps(fem: fem, ffem: ffem),
+                UploadRecipeSteps(
+                  fem: fem, 
+                  ffem: ffem,
+                  stepsControllers: _stepsControllers,
+                  addStepCallback: _addStep,
+                  deleteStepCallback: _deleteStep,
+                  ),
                 UploadFormButtons(
                   fem: fem, 
                   ffem: ffem,
@@ -161,6 +186,7 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
                   cuisineType: cuisineTypeController.text, 
                   category: selectedMeal,
                   ingredientFields: ingredientFields,
+                  stepControllers: _stepsControllers,
                   ),
               ],
             ),

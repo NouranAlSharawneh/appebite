@@ -128,7 +128,6 @@ void _saveChange() async {
             .update({'profilePictureUrl': newUrl,
                      'height': _currentHeight, // Update height in Firestore
                      'weight': _currentWeight}); // Update weight in Firestore
-
         // Update local state
         setState(() {
           _profilePictureUrl = newUrl;
@@ -279,7 +278,6 @@ void _saveChange() async {
                   ),
                 ),
               ),
-
               const SizedBox(
                 height: 60,
               ),

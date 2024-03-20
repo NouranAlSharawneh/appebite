@@ -22,7 +22,8 @@ class UploadFormButtons extends StatelessWidget {
     required this.ratingValue,
     required this.category,
     required this.cuisineType, 
-    required this.ingredientFields,
+    required this.ingredientFields, 
+    required this.stepControllers,
   }) : super(key: key);
 
   final String calories;
@@ -37,6 +38,7 @@ class UploadFormButtons extends StatelessWidget {
   final double ratingValue;
   final File? selectedImage;
   final String servings;
+ final List<TextEditingController> stepControllers;
 
   void _showSuccessDialog(BuildContext context) {
     QuickAlert.show(
@@ -124,11 +126,16 @@ class UploadFormButtons extends StatelessWidget {
         }
       }
 
+      // Store steps in a List
+      List<String> steps = stepControllers.map((controller) => controller.text).toList();
+
+
       print(ingredients);
+      print(steps);
 
       // Hide loader after upload is complete
         Navigator.pop(context);
-
+      // Displaying the dialog
       _showSuccessDialog(context);
 
       // Store recipe data in Firestore under "recipes posted" collection
@@ -147,10 +154,8 @@ class UploadFormButtons extends StatelessWidget {
         'CuisineType': cuisineType,
         'Category': category,
         'Ingredients': ingredients,
-      });
-
-      // Navigate to a new page or perform any other action after upload
-     
+        'Steps': steps,
+      });     
     }
   } catch (error) {
     Navigator.pop(context);

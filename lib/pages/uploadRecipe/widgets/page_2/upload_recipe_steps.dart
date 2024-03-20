@@ -7,19 +7,22 @@ class UploadRecipeSteps extends StatefulWidget {
     super.key,
     required this.fem,
     required this.ffem,
+    required this.stepsControllers,
+    required this.addStepCallback,
+    required this.deleteStepCallback,
   });
 
   final double fem;
   final double ffem;
+  final List<TextEditingController> stepsControllers;
+  final VoidCallback addStepCallback;
+  final Function(int) deleteStepCallback;
 
   @override
   State<UploadRecipeSteps> createState() => _UploadRecipeStepsState();
 }
 
 class _UploadRecipeStepsState extends State<UploadRecipeSteps> {
-  List<TextEditingController> controllers = [TextEditingController()];
-  List<int> stepNumbers = [1];
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -45,13 +48,7 @@ class _UploadRecipeStepsState extends State<UploadRecipeSteps> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        int newStep = stepNumbers.length + 1;
-                        stepNumbers.add(newStep);
-                        controllers.add(TextEditingController());
-                      });
-                    },
+                    onTap: widget.addStepCallback,
                     child: SizedBox(
                       width: 24 * widget.fem,
                       height: 24 * widget.fem,
@@ -67,7 +64,7 @@ class _UploadRecipeStepsState extends State<UploadRecipeSteps> {
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: stepNumbers.length,
+                itemCount: widget.stepsControllers.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Dismissible(
                     key: UniqueKey(),
@@ -122,12 +119,7 @@ class _UploadRecipeStepsState extends State<UploadRecipeSteps> {
                       return confirmed;
                     },
                     onDismissed: (DismissDirection direction) {
-                      // Handle step deletion here
-                      if (direction == DismissDirection.startToEnd) {
-                        // User confirmed deletion and dragged from the left
-                        // Perform deletion logic here
-                        // deleteStep();
-                      }
+                      widget.deleteStepCallback(index);
                     },
                     background: Container(
                       color: const Color(0xffff7269),
@@ -160,7 +152,7 @@ class _UploadRecipeStepsState extends State<UploadRecipeSteps> {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      '${stepNumbers[index]}',
+                                      '${index + 1}',
                                       textAlign: TextAlign.center,
                                       style: GoogleFonts.poppins(
                                         fontSize: 12 * widget.ffem,
@@ -171,7 +163,7 @@ class _UploadRecipeStepsState extends State<UploadRecipeSteps> {
                                     ),
                                   ),
                                 ),
-                                const SizedBox (
+                                const SizedBox(
                                   width: 24,
                                   height: 24,
                                   child: Icon(
@@ -184,7 +176,7 @@ class _UploadRecipeStepsState extends State<UploadRecipeSteps> {
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.fromLTRB(16 * widget.fem, 5 * widget.fem, 0* widget.fem, 16 * widget.fem),
+                            padding: EdgeInsets.fromLTRB(16 * widget.fem, 5 * widget.fem, 0 * widget.fem, 16 * widget.fem),
                             width: 300 * widget.fem,
                             height: 100 * widget.fem,
                             decoration: BoxDecoration(
@@ -193,7 +185,7 @@ class _UploadRecipeStepsState extends State<UploadRecipeSteps> {
                               borderRadius: BorderRadius.circular(8 * widget.fem),
                             ),
                             child: TextField(
-                              controller: controllers[index],
+                              controller: widget.stepsControllers[index],
                               style: GoogleFonts.poppins(
                                 fontSize: 12 * widget.ffem,
                                 fontWeight: FontWeight.w500,
