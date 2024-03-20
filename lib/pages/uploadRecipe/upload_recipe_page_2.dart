@@ -37,23 +37,23 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
   TextEditingController cuisineTypeController = TextEditingController();
   List<AddIngredientPage> ingredientFields = [];
   List<TextEditingController> ingredientControllers = [];
-  List<TextEditingController> _stepsControllers = [TextEditingController()];
-  List<int> _stepNumbers = [1];
+  List<TextEditingController> stepsControllers = [TextEditingController()];
+  List<int> stepNumbers = [1];
 
   // Function to add a new step field
   void _addStep() {
     setState(() {
-      int newStep = _stepNumbers.length + 1;
-      _stepNumbers.add(newStep);
-      _stepsControllers.add(TextEditingController());
+      int newStep = stepNumbers.length + 1;
+      stepNumbers.add(newStep);
+      stepsControllers.add(TextEditingController());
     });
   }
 
   // Function to delete a step field
   void _deleteStep(int index) {
     setState(() {
-      _stepNumbers.removeAt(index);
-      _stepsControllers.removeAt(index);
+      stepNumbers.removeAt(index);
+      stepsControllers.removeAt(index);
     });
   }
 
@@ -168,7 +168,7 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
                 UploadRecipeSteps(
                   fem: fem, 
                   ffem: ffem,
-                  stepsControllers: _stepsControllers,
+                  stepsControllers: stepsControllers,
                   addStepCallback: _addStep,
                   deleteStepCallback: _deleteStep,
                   ),
@@ -186,7 +186,7 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
                   cuisineType: cuisineTypeController.text, 
                   category: selectedMeal,
                   ingredientFields: ingredientFields,
-                  stepControllers: _stepsControllers,
+                  stepControllers: stepsControllers,
                   ),
               ],
             ),
