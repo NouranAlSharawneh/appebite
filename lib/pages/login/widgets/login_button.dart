@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:appebite/pages/settings/settings_edit_information.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_fonts/google_fonts.dart'; 
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({
@@ -17,8 +17,15 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Container(
-      margin: const EdgeInsets.fromLTRB(0, 10, 0, 45),
+      margin: EdgeInsets.fromLTRB(
+        0,
+        screenHeight * 0.01, 
+        0,
+        screenHeight * 0.04, 
+      ),
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () async {
@@ -27,7 +34,8 @@ class LoginButton extends StatelessWidget {
             formKey.currentState!.save();
             try {
               // Sign in user with email and password using FirebaseAuth
-              final userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+              final userCredential =
+                  await FirebaseAuth.instance.signInWithEmailAndPassword(
                 email: emailController.text,
                 password: passwordController.text,
               );
@@ -35,7 +43,7 @@ class LoginButton extends StatelessWidget {
               if (userCredential.user != null) {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const SettingsEditInformation()), 
+                  MaterialPageRoute(builder: (context) => const SettingsEditInformation()),
                 );
               }
             } catch (e) {
@@ -47,7 +55,10 @@ class LoginButton extends StatelessWidget {
           }
         },
         style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(horizontal: 126, vertical: 18),
+          padding: EdgeInsets.symmetric(
+            horizontal: MediaQuery.of(context).size.width * 0.2, 
+            vertical: screenHeight * 0.02,
+          ),
           backgroundColor: const Color(0xffff7269),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
@@ -60,7 +71,7 @@ class LoginButton extends StatelessWidget {
               'Login ',
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(
-                fontSize: 16,
+                fontSize: screenHeight * 0.020,
                 fontWeight: FontWeight.w600,
                 height: 1.5,
                 color: const Color(0xffffffff),

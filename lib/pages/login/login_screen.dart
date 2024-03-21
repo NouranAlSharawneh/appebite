@@ -6,7 +6,6 @@ import 'package:appebite/pages/login/widgets/Login_page_navigator.dart';
 import 'package:appebite/pages/login/widgets/login_section_divider.dart';
 import 'package:appebite/pages/login/widgets/login_forget_password.dart';
 
-
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -21,50 +20,63 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xff272a32),
         body: SingleChildScrollView(
           child: SizedBox(
-        width: double.infinity,
-        child: Container(
-          padding: const EdgeInsets.fromLTRB(36, 14, 36, 8),
-          width: double.infinity,
-          decoration: const BoxDecoration(
-            color: Color(0xff272a32),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 150,
+            width: double.infinity,
+            child: Container(
+              padding: EdgeInsets.fromLTRB(
+                screenWidth * 0.08, 
+                screenHeight * 0.05, 
+                screenWidth * 0.08, 
+                screenHeight * 0.02, 
               ),
-              const TitleSection(),
-              Form(
-                key: _formKey,
-                autovalidateMode: AutovalidateMode.disabled,
-                child: Column(
-                  children: [
-                    InputField(
-                      hint: 'email address',
-                      controller: _emailController,
-                    ),
-                    InputField(
-                      hint: 'password',
-                      controller: _passwordController,
-                      isPassword: true,                   
-                    ),
-                    const ForgetPassword(),
-                    LoginButton(formKey: _formKey, emailController: _emailController, passwordController: _passwordController,),
-                  ],
-                ),
+              decoration: const BoxDecoration(
+                color: Color(0xff272a32),
               ),
-              const DividerSection(),
-              const Center(child: SignUpSection()),
-            ],
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: screenHeight * 0.15, 
+                  ),
+                  const TitleSection(),
+                  Form(
+                    key: _formKey,
+                    autovalidateMode: AutovalidateMode.disabled,
+                    child: Column(
+                      children: [
+                        InputField(
+                          hint: 'email address',
+                          controller: _emailController,
+                        ),
+                        InputField(
+                          hint: 'password',
+                          controller: _passwordController,
+                          isPassword: true,
+                        ),
+                        const ForgetPassword(),
+                        LoginButton(
+                          formKey: _formKey,
+                          emailController: _emailController,
+                          passwordController: _passwordController,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const DividerSection(),
+                  const Center(child: SignUpSection()),
+                ],
+              ),
+            ),
           ),
         ),
-      ),),),
+      ),
     );
   }
 }

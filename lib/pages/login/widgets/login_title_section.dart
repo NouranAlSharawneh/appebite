@@ -6,15 +6,22 @@ class TitleSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Container(
-      margin: const EdgeInsets.fromLTRB(0, 0, 100, 50),
+      margin: EdgeInsets.fromLTRB(
+        0,
+        0,
+        0,
+        screenHeight * 0.05, 
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'Hello,',
             style: GoogleFonts.poppins(
-              fontSize: 40,
+              fontSize: screenHeight * 0.05, 
               fontWeight: FontWeight.w600,
               height: 1,
               color: const Color(0xffffffff),
@@ -23,7 +30,7 @@ class TitleSection extends StatelessWidget {
           Text(
             'Welcome Back!',
             style: GoogleFonts.poppins(
-              fontSize: 20,
+              fontSize: screenHeight * 0.025, 
               fontWeight: FontWeight.w400,
               height: 1.5,
               color: const Color(0xffffffff),
