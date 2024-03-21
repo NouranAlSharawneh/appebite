@@ -24,12 +24,12 @@ class _LoginResetPasswordState extends State<LoginResetPassword> {
         context: context,
         type: QuickAlertType.success,
         backgroundColor: const Color(0xff272a32),
-        title: 'Password Reset Successful',
+        title: 'Password Reset Successful!',
         titleColor: Colors.white,
-        text: "A password reset link has been sent to your email. \n",
+        text: "\nA password reset link has been \nsent to your email. \n*check your spam*",
         textColor: const Color(0xff686f82),
         confirmBtnColor: const Color(0xffff7269),
-        confirmBtnText: 'Back home',
+        confirmBtnText: 'okay',
         onConfirmBtnTap: () {
            Navigator.push(
         context,
