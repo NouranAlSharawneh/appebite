@@ -16,7 +16,7 @@ class LoginButton extends StatefulWidget {
   final TextEditingController passwordController;
 
   @override
-  _LoginButtonState createState() => _LoginButtonState();
+  State<LoginButton> createState() => _LoginButtonState();
 }
 
 class _LoginButtonState extends State<LoginButton> {
@@ -55,9 +55,14 @@ class _LoginButtonState extends State<LoginButton> {
                     if (userCredential.user != null) {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const SettingsEditInformation()),
+                        PageRouteBuilder(
+                          transitionDuration: Duration.zero,
+                          pageBuilder: (context, animation, secondaryAnimation) =>
+                              FadeTransition(
+                            opacity: animation,
+                            child: const SettingsEditInformation(),
+                          ),
+                        ),
                       );
                     }
                   } catch (e) {

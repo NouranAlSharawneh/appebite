@@ -13,9 +13,16 @@ class ForgetPassword extends StatelessWidget {
         child: TextButton(
           onPressed: () {
             Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const LoginResetPassword()), 
-            );
+            context,
+            PageRouteBuilder(
+              transitionDuration: Duration.zero,
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  FadeTransition(
+                opacity: animation,
+                child: const LoginResetPassword(),
+              ),
+            ),
+          );
           },
           child: Text('Forgot Password?',
           textAlign: TextAlign.center,

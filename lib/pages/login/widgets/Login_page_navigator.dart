@@ -14,9 +14,16 @@ class SignUpSection extends StatelessWidget {
         child: TextButton(
           onPressed: () {
             Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const SignUpPage()), 
-            );
+            context,
+            PageRouteBuilder(
+              transitionDuration: Duration.zero,
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  FadeTransition(
+                opacity: animation,
+                child: const SignUpPage(),
+              ),
+            ),
+          );
           },
           style: TextButton.styleFrom(
             padding: EdgeInsets.zero,

@@ -31,10 +31,17 @@ class _LoginResetPasswordState extends State<LoginResetPassword> {
         confirmBtnColor: const Color(0xffff7269),
         confirmBtnText: 'okay',
         onConfirmBtnTap: () {
-           Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const LoginPage()),
-      );
+          Navigator.push(
+            context,
+            PageRouteBuilder(
+              transitionDuration: Duration.zero,
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  FadeTransition(
+                opacity: animation,
+                child: const LoginPage(),
+              ),
+            ),
+          );
         }
       );
     }
@@ -77,7 +84,17 @@ class _LoginResetPasswordState extends State<LoginResetPassword> {
               const SizedBox(height: 70,),
               GestureDetector(
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      transitionDuration: Duration.zero,
+                      pageBuilder: (context, animation, secondaryAnimation) =>
+                          FadeTransition(
+                        opacity: animation,
+                        child: const LoginPage(),
+                      ),
+                    ),
+                  );
                 },
                 child: Icon(
                   Icons.arrow_back,
