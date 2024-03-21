@@ -1,32 +1,11 @@
-// import 'dart:io';
-import 'package:appebite/firebase_options.dart';
-import 'package:appebite/pages/loadingScreen/loading_screen.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-void main() async {
-  try {
-    WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-    // Platform.isAndroid
-    //     ? await Firebase.initializeApp(
-    //       name: 'appebite-ad82b',
-    //         options: const FirebaseOptions(
-    //           apiKey: 'AIzaSyAbHKBwBBfa_zKCGshx3PBVLYycNhu26Sk', 
-    //           appId: '1:196553709875:android:63aed6d9166bfe6548c646', 
-    //           messagingSenderId: '196553709875', 
-    //           projectId: 'appebite-ad82b',
-    //           // storageBucket: 'gs://appebite-ad82b.appspot.com',
-    //         ),
-    //       )
-    //     : await Firebase.initializeApp();
+import 'package:appebite/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:appebite/pages/loadingScreen/loading_screen.dart';
 
-    runApp(const MyApp());
-  } catch (e) {
-    print('Error initializing Firebase: $e');
-    // Handle initialization error
-  }
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -34,20 +13,44 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        textTheme: const TextTheme(
-          titleLarge: TextStyle(
-            fontFamily: 'Poppins',
-            fontSize: 40,
-            color: Colors.white,
-            fontWeight: FontWeight.w100,
-          ),
-        ),
+    return FutureBuilder(
+      // Initialize Firebase asynchronously
+      future: Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
       ),
-      home: const LoadingScreen(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          // Firebase initialization in progress, show loading indicator
+          return const MaterialApp(
+            home: Scaffold(
+              body: Center(
+                child: CircularProgressIndicator.adaptive(),
+              ),
+            ),
+          );
+        } else if (snapshot.hasError) {
+          // Firebase initialization failed, show error message
+          return MaterialApp(
+            home: Scaffold(
+              body: Center(
+                child: Text(
+                  'Error initializing Firebase: ${snapshot.error}',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          );
+        } else {
+          // Firebase initialized successfully, proceed with the app
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              useMaterial3: true,
+            ),
+            home: const LoadingScreen(),
+          );
+        }
+      },
     );
   }
 }

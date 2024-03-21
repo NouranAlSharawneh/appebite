@@ -1,7 +1,7 @@
-// noran - loading page/ status: finished, waits three seconds and then navigates to the login page
-import 'package:appebite/pages/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:appebite/pages/login/login_screen.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
@@ -48,8 +48,12 @@ class _LoadingScreenState extends State<LoadingScreen> with SingleTickerProvider
               ),
             ),
             Text('Appebite',
-            style: Theme.of(context).textTheme.titleLarge,
-            )
+            style: GoogleFonts.poppins(
+                  fontSize: 40,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w300,
+                ),            
+            ),
           ]
         ),
       ),
