@@ -7,7 +7,7 @@ class TitleSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(0, 0, 171.5, 50),
+      margin: const EdgeInsets.fromLTRB(0, 0, 100, 50),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -16,8 +16,7 @@ class TitleSection extends StatelessWidget {
             style: GoogleFonts.poppins(
               fontSize: 40,
               fontWeight: FontWeight.w600,
-              height: 1.2575,
-              letterSpacing: -0.1650000066,
+              height: 1,
               color: const Color(0xffffffff),
             ),
           ),
@@ -27,7 +26,6 @@ class TitleSection extends StatelessWidget {
               fontSize: 20,
               fontWeight: FontWeight.w400,
               height: 1.5,
-              letterSpacing: -0.2,
               color: const Color(0xffffffff),
             ),
           ),
