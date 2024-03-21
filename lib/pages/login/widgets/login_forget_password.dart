@@ -1,3 +1,4 @@
+import 'package:appebite/pages/login/widgets/login_reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -10,7 +11,12 @@ class ForgetPassword extends StatelessWidget {
       child: Container(
         alignment: Alignment.topLeft,
         child: TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const LoginResetPassword()), 
+            );
+          },
           child: Text('Forgot Password?',
           textAlign: TextAlign.center,
           style: GoogleFonts.poppins(
