@@ -32,7 +32,7 @@ class _InputFieldState extends State<InputField> {
         children: [
           Container(
             child: widget.isPassword
-                ? Stack(
+                ? Stack(               
                     alignment: Alignment.centerRight,
                     children: [
                       TextFormField(
@@ -64,18 +64,26 @@ class _InputFieldState extends State<InputField> {
                               const TextStyle(color: Color(0xff686f82)),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(13),
-                            borderSide: BorderSide(
-                              color: hasError
-                                  ? const Color(0xffff7269) 
-                                  : const Color(0xff686f82),
+                            borderSide: const BorderSide(
+                              color:Color(0xff686f82),
+                            ),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(13),
+                            borderSide: const BorderSide(
+                              color:  Color(0xffff7269) 
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(13),
-                            borderSide: BorderSide(
-                              color: hasError
-                                  ? const Color(0xffff7269) 
-                                  : const Color(0xff686f82),
+                            borderSide: const BorderSide(
+                              color:Color(0xff686f82),
+                            ),
+                          ),
+                        focusedErrorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(13),
+                            borderSide: const BorderSide(
+                              color: Color(0xffff7269) 
                             ),
                           ),
                           errorStyle: const TextStyle(
@@ -97,7 +105,10 @@ class _InputFieldState extends State<InputField> {
                               : Icons.visibility,
                           color: const Color.fromRGBO(104, 111, 130, 100),
                         ),
-                        padding: const EdgeInsets.only(right: 10),
+                        padding: 
+                          hasError ?
+                            const EdgeInsets.only(right: 10) 
+                            : const EdgeInsets.only(bottom: 20, right: 10),
                       ),
                     ],
                   )
@@ -131,19 +142,27 @@ class _InputFieldState extends State<InputField> {
                       labelStyle:
                           const TextStyle(color: Color(0xff686f82)),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(13),
-                        borderSide: BorderSide(
-                          color: hasError
-                              ? const Color(0xffff7269) 
-                              : const Color(0xff686f82),
-                        ),
-                      ),
+                            borderRadius: BorderRadius.circular(13),
+                            borderSide: const BorderSide(
+                              color:Color(0xff686f82),
+                            ),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(13),
+                            borderSide: const BorderSide(
+                              color:  Color(0xffff7269) 
+                            ),
+                          ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(13),
-                        borderSide: BorderSide(
-                          color: hasError
-                              ? const Color(0xffff7269) 
-                              : const Color(0xff686f82),
+                        borderSide: const BorderSide(
+                          color:Color(0xff686f82),
+                        ),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(13),
+                        borderSide: const BorderSide(
+                          color: Color(0xffff7269) 
                         ),
                       ),
                       errorStyle: const TextStyle(
