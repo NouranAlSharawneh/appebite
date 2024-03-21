@@ -39,8 +39,7 @@ class _InputFieldState extends State<InputField> {
                         controller: widget.controller,
                         validator: (value) {
                           setState(() {
-                            hasError = value!.isNotEmpty &&
-                                (!value.contains("@") || !value.contains("."));
+                            hasError = true;
                           });
                           if (value!.isEmpty) {
                             return 'Enter a password';
@@ -107,8 +106,9 @@ class _InputFieldState extends State<InputField> {
                         ),
                         padding: 
                           hasError ?
-                            const EdgeInsets.only(right: 10) 
-                            : const EdgeInsets.only(bottom: 20, right: 10),
+                            const EdgeInsets.only(right: 10, bottom: 10, ) 
+                            // no validation
+                            : const EdgeInsets.only(bottom: 10, right: 10, top:0),
                       ),
                     ],
                   )
