@@ -41,22 +41,21 @@ class _SignUpProfilePictureState extends State<SignUpProfilePicture> {
   }
 }
 
-
   @override
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
         width: 315 * widget.fem,
-        height: 75 * widget.fem,
+        height: 85 * widget.fem,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  margin: EdgeInsets.fromLTRB(39 * widget.fem, 20 * widget.fem, 0 * widget.fem, 0 * widget.fem),
+                  margin: EdgeInsets.only(top: 20 * widget.fem),
                   child: Text(
                     'Add your profile picture  ',
                     style: GoogleFonts.poppins(
@@ -74,7 +73,7 @@ class _SignUpProfilePictureState extends State<SignUpProfilePicture> {
                     margin: EdgeInsets.only(right: 10 * widget.fem, top: 20),
                     child: _image != null
                         ? CircleAvatar(
-                            radius: 24 * widget.ffem,
+                            radius: 30 * widget.ffem,
                             backgroundImage: FileImage(_image!),
                           )
                         : Icon(

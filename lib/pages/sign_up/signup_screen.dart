@@ -41,17 +41,12 @@ class _SignUpPageState extends State<SignUpPage> {
     double baseWidth = 391;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Scaffold(
-      backgroundColor: const Color(0xff272a32),
-      resizeToAvoidBottomInset: false,
-      body: SizedBox(
-        width: double.infinity,
-        child: Container(
-          padding: EdgeInsets.fromLTRB(34 * fem, 14 * fem, 22.5 * fem, 8 * fem),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: const Color(0xff272a32),
+        resizeToAvoidBottomInset: false,
+        body: SizedBox(
           width: double.infinity,
-          decoration: const BoxDecoration(
-            color: Color(0xff272a32),
-          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [

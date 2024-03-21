@@ -25,6 +25,7 @@ class SignUpForm extends StatefulWidget {
 
 class _SignUpFormState extends State<SignUpForm> {
   bool _obscureText = true;
+  bool hasError = false;
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -34,61 +35,57 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.fromLTRB(0 * widget.fem, 0 * widget.fem, 16.5 * widget.fem, 18.83 * widget.fem),
-      width: 316 * widget.fem,
-      height: 290 * widget.fem,
-      child: SizedBox(
+    return SingleChildScrollView(
+      child: Container(
+        margin: EdgeInsets.only(top: 16.5 * widget.fem),
         width: 316 * widget.fem,
-        height: 313 * widget.fem,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // First row: Labels
-                Row(
-                  children: [
-                    // "First name" label
-                    Expanded(
-                      child: Text(
-                        'First name',
-                        style: GoogleFonts.poppins(
-                          fontSize: 14 * widget.ffem,
-                          fontWeight: FontWeight.w400,
-                          height: 1.5 * widget.ffem / widget.fem,
-                          color: const Color(0xffffffff),
+        height: 320 * widget.fem, 
+        child: SizedBox(
+          width: 316 * widget.fem,
+          height: 320 * widget.fem,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // First row: Labels
+                  Row(
+                    children: [
+                      // "First name" label
+                      Expanded(
+                        child: Text(
+                          'First name',
+                          style: GoogleFonts.poppins(
+                            fontSize: 14 * widget.ffem,
+                            fontWeight: FontWeight.w400,
+                            height: 1.5 * widget.ffem / widget.fem,
+                            color: const Color(0xffffffff),
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(width: 17.0),
-                    // "Last name" label
-                    Expanded(
-                      child: Text(
-                        'Last name',
-                        style: GoogleFonts.poppins(
-                          fontSize: 14 * widget.ffem,
-                          fontWeight: FontWeight.w400,
-                          height: 1.5 * widget.ffem / widget.fem,
-                          color: const Color(0xffffffff),
+                      const SizedBox(width: 17.0),
+                      // "Last name" label
+                      Expanded(
+                        child: Text(
+                          'Last name',
+                          style: GoogleFonts.poppins(
+                            fontSize: 14 * widget.ffem,
+                            fontWeight: FontWeight.w400,
+                            height: 1.5 * widget.ffem / widget.fem,
+                            color: const Color(0xffffffff),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8.0), // Add some spacing between rows
-
-                // Second row: Text Fields
-                Row(
-                  children: [
-                    // "First name" text field
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: const Color(0xff353842),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
+                    ],
+                  ),
+                  const SizedBox(height: 8.0),
+    
+                  // Second row: Text Fields
+                  Row(
+                    children: [
+                      // "First name" text field
+                      Expanded(
                         child: TextFormField(
                           controller: widget.firstNameController,
                           validator: (value) {
@@ -98,35 +95,54 @@ class _SignUpFormState extends State<SignUpForm> {
                             return null;
                           },
                           style: const TextStyle(color: Colors.white,),
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(
+                          decoration: InputDecoration(
+                            prefixIcon: const Icon(
                               Icons.person,
                               color: Color.fromRGBO(104, 111, 130, 100),
                             ),
+                            filled: true,
+                            fillColor: const Color(0xff353842),
                             hintText: 'first name',
                             hintStyle:
-                            TextStyle(color: Color(0xff686f82),),
-                            contentPadding: EdgeInsets.all(12.0),
-                            border: InputBorder.none,
-                            errorStyle: TextStyle(
-                                color: Color(0xffff7269),
-                                fontSize: 12.0,
-                                height: 0.02
+                            const TextStyle(color:Color(0xff686f82),),
+                            contentPadding: const EdgeInsets.all(12.0),
+                            border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(13),
+                            borderSide: const BorderSide(
+                              color:Color(0xff686f82),
                             ),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(13),
+                            borderSide: const BorderSide(
+                              color:  Color(0xffff7269) 
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(13),
+                            borderSide: const BorderSide(
+                              color:Color(0xff686f82),
+                            ),
+                          ),
+                        focusedErrorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(13),
+                            borderSide: const BorderSide(
+                              color: Color(0xffff7269) 
+                            ),
+                          ),
+                          errorStyle: const TextStyle(
+                            color: Color(0xffff7269),
+                            fontSize: 12.0,
+                            height: 1, 
+                          ),
                           ),
                         ),
                       ),
-                    ),
-
-                    const SizedBox(width: 25.0), // Add some spacing between text fields
-
-                    // "Last name" text field
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: const Color(0xff353842),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
+    
+                      const SizedBox(width: 25.0), // Add some spacing between text fields
+    
+                      // "Last name" text field
+                      Expanded(
                         child: TextFormField(
                           controller: widget.lastNameController,
                           validator: (value) {
@@ -136,51 +152,70 @@ class _SignUpFormState extends State<SignUpForm> {
                             return null;
                           },
                           style: const TextStyle(color: Colors.white),
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             hintText: 'last name',
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.person,
                               color: Color.fromRGBO(104, 111, 130, 100),
                             ),
                             hintStyle:
-                            TextStyle(color: Color(0xff686f82)),
-                            contentPadding: EdgeInsets.all(12.0),
-                            border: InputBorder.none,
-                            errorStyle: TextStyle(
-                                color: Color(0xffff7269),
-                                fontSize: 12.0,
-                                height: 0.02
+                            const TextStyle(color: Color(0xff686f82)),
+                            contentPadding: const EdgeInsets.all(12.0),
+                            filled: true,
+                            fillColor: const Color(0xff353842),
+                            border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(13),
+                            borderSide: const BorderSide(
+                              color:Color(0xff686f82),
                             ),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(13),
+                            borderSide: const BorderSide(
+                              color:  Color(0xffff7269) 
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(13),
+                            borderSide: const BorderSide(
+                              color:Color(0xff686f82),
+                            ),
+                          ),
+                        focusedErrorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(13),
+                            borderSide: const BorderSide(
+                              color: Color(0xffff7269) 
+                            ),
+                          ),
+                          errorStyle: const TextStyle(
+                            color: Color(0xffff7269),
+                            fontSize: 12.0,
+                            height: 1, 
+                          ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16.0), // Add some spacing between rows
-
-                // Third row: Labels
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // "Email" label
-                    Text(
-                      'Email address',
-                      style: GoogleFonts.poppins(
-                        fontSize: 14 * widget.ffem,
-                        fontWeight: FontWeight.w400,
-                        height: 1.5 * widget.ffem / widget.fem,
-                        color: const Color(0xffffffff),
+                    ],
+                  ),
+                  const SizedBox(height: 16.0), // Add some spacing between rows
+    
+                  // Third row: Labels
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // "Email" label
+                      Text(
+                        'Email address',
+                        style: GoogleFonts.poppins(
+                          fontSize: 14 * widget.ffem,
+                          fontWeight: FontWeight.w400,
+                          height: 1.5 * widget.ffem / widget.fem,
+                          color: const Color(0xffffffff),
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 8.0),
-                    // Fourth row: Text Field
-                    Container(
-                      decoration: BoxDecoration(
-                        color: const Color(0xff353842),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: TextFormField(
+                      const SizedBox(height: 8.0),
+                      // Fourth row: Text Field
+                      TextFormField(
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Enter an email';
@@ -190,57 +225,81 @@ class _SignUpFormState extends State<SignUpForm> {
                           return null;
                         },
                         controller: widget.emailController,
-                        style:const TextStyle(color: Colors.white),
-                        decoration:const InputDecoration(
-                          prefixIcon: Icon(
+                        style
+                        : const TextStyle(color: Colors.white),
+                        decoration:InputDecoration(
+                          prefixIcon: const Icon(
                             Icons.email,
                             color: Color.fromRGBO(104, 111, 130, 100),
                           ),
                           hintText: 'Enter your email',
-                          hintStyle: TextStyle(color: Color(0xff686f82)),
-                          contentPadding: EdgeInsets.all(12.0),
-                          border: InputBorder.none,
-                          errorStyle: TextStyle(
-                              color: Color(0xffff7269),
-                              fontSize: 12.0,
-                              height: 0.02
+                          hintStyle: const TextStyle(color: Color(0xff686f82)),
+                          contentPadding: const EdgeInsets.all(15.0),
+                          filled: true,
+                          fillColor: const Color(0xff353842),
+                          border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(13),
+                          borderSide: const BorderSide(
+                            color:Color(0xff686f82),
                           ),
                         ),
+                        errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(13),
+                          borderSide: const BorderSide(
+                            color:  Color(0xffff7269) 
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(13),
+                          borderSide: const BorderSide(
+                            color:Color(0xff686f82),
+                          ),
+                        ),
+                      focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(13),
+                          borderSide: const BorderSide(
+                            color: Color(0xffff7269) 
+                          ),
+                        ),
+                        errorStyle: const TextStyle(
+                          color: Color(0xffff7269),
+                          fontSize: 12.0,
+                          height: 1, 
+                        ),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16.0),
-
-                // Fifth row: Labels
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // "Password" label
-                    Text(
-                      'Password',
-                      style: GoogleFonts.poppins(
-                        fontSize: 14 * widget.ffem,
-                        fontWeight: FontWeight.w400,
-                        height: 1.5 * widget.ffem / widget.fem,
-                        color: const Color(0xffffffff),
+                    ],
+                  ),
+                  const SizedBox(height: 16.0),
+    
+                  // Fifth row: Labels
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // "Password" label
+                      Text(
+                        'Password',
+                        style: GoogleFonts.poppins(
+                          fontSize: 14 * widget.ffem,
+                          fontWeight: FontWeight.w400,
+                          height: 1.5 * widget.ffem / widget.fem,
+                          color: const Color(0xffffffff),
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 8.0),
-
-                    // Sixth row: Text Field
-                    Container(
-                      decoration: BoxDecoration(
-                        color: const Color(0xff353842),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: SizedBox(
-                        height: 50,
+                      const SizedBox(height: 8.0),
+    
+                      // Sixth row: Text Field
+                      SizedBox(
+                        // height: 50,
                         child: Stack(
                           alignment: Alignment.centerRight,
                           children: [
                             TextFormField(
                               validator: (value) {
+                                setState(() {
+                              hasError = true;
+                            });
+    
                                 if (value!.isEmpty) {
                                   return 'Enter your password';
                                 }
@@ -251,15 +310,15 @@ class _SignUpFormState extends State<SignUpForm> {
                                 bool hasLowercase = value.contains(RegExp(r'[a-z]'));
                                 bool hasDigit = value.contains(RegExp(r'\d'));
                                 RegExp hasSpecialChar = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@_#\$&*~]).{8,}$');
-
+    
                                 if (!hasUppercase) {
                                   return 'Password must include at least one uppercase letter';
                                 }
-
+    
                                 if (!hasLowercase) {
                                   return 'Password must include at least one lowercase letter';
                                 }
-
+    
                                 if (!hasDigit) {
                                   return 'Password must include at least one number';
                                 }
@@ -271,20 +330,45 @@ class _SignUpFormState extends State<SignUpForm> {
                               controller: widget.passwordController,
                               style: const TextStyle(color: Colors.white,),
                               obscureText: _obscureText,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 hintText: 'Enter your password',
-                                prefixIcon: Icon(
+                                prefixIcon: const Icon(
                                   Icons.lock,
                                   color: Color.fromRGBO(104, 111, 130, 100),
                                 ),
-                                hintStyle: TextStyle(color: Color(0xff686f82),),
-                                contentPadding: EdgeInsets.all(12.0),
-                                border: InputBorder.none,
-                                errorStyle: TextStyle(
-                                    color: Color(0xffff7269),
-                                    fontSize: 12.0,
-                                    height: 0.02
+                                hintStyle: const TextStyle(color: Color(0xff686f82),),
+                                contentPadding: const EdgeInsets.all(15.0),
+                                filled: true,
+                                fillColor: const Color(0xff353842),
+                                border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(13),
+                                borderSide: const BorderSide(
+                                  color:Color(0xff686f82),
                                 ),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(13),
+                                borderSide: const BorderSide(
+                                  color:  Color(0xffff7269) 
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(13),
+                                borderSide: const BorderSide(
+                                  color:Color(0xff686f82),
+                                ),
+                              ),
+                            focusedErrorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(13),
+                                borderSide: const BorderSide(
+                                  color: Color(0xffff7269) 
+                                ),
+                              ),
+                              errorStyle: const TextStyle(
+                                color: Color(0xffff7269),
+                                fontSize: 12.0,
+                                height: 1, 
+                              ),
                               ),
                             ),
                             IconButton(
@@ -293,16 +377,21 @@ class _SignUpFormState extends State<SignUpForm> {
                                 _obscureText ? Icons.visibility : Icons.visibility_off,
                                 color: const Color.fromRGBO(104, 111, 130, 100),
                               ),
+                              padding: 
+                            hasError ?
+                              const EdgeInsets.only(right: 10, bottom: 20, ) 
+                              // no validation
+                              : const EdgeInsets.only(bottom: 5, right: 10, top:0),
                             ),
                           ],
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ],
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

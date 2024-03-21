@@ -14,50 +14,31 @@ class SignUpTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(0*fem, 100, 13.5*fem, 23*fem),
-      width: 313*fem,
-      height: 75*fem,
-      // for the title of the page
-      child: Container(
-      margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 122*fem, 0*fem),
-      width: 191*fem,
-      height: double.infinity,
-      child: SizedBox(
-        width: double.infinity,
-        height: 68*fem,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-    Container(
-      margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 5*fem),
-      child: Text(
-        'Create an account',
-        style: GoogleFonts.poppins(
-          fontSize: 20*ffem,
-          fontWeight: FontWeight.w600,
-          height: 1.5*ffem/fem,
-          color: const Color(0xffffffff),
-        ),
+      margin: EdgeInsets.fromLTRB(30*fem, 60, 0*fem, 30*fem),
+      width: double.infinity,
+
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+    Text(
+      'Create an account',
+      style: GoogleFonts.poppins(
+      fontSize: 20*ffem,
+      fontWeight: FontWeight.w600,
+      height: 1.5*ffem/fem,
+      color: const Color(0xffffffff),
       ),
-    ),
-    Container(
-      constraints: BoxConstraints (
-        maxWidth: 190*fem,
+    ), Text(
+      'Let’s help you set up your \naccount, it won’t take long.',
+      style: GoogleFonts.poppins(
+        fontSize: 11*ffem,
+        fontWeight: FontWeight.w400,
+        height: 1.5*ffem/fem,
+        color: const Color(0xffffffff),
       ),
-      child: Text(
-        'Let’s help you set up your account, it won’t take long.',
-        style: GoogleFonts.poppins(
-          fontSize: 11*ffem,
-          fontWeight: FontWeight.w400,
-          height: 1.5*ffem/fem,
-          color: const Color(0xffffffff),
-        ),
       ),
-    ),
-          ],
-        ),
+        ],
       ),
-    ),
     );
   }
 }
