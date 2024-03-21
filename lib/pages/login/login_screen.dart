@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     ),
                   ),
-                  const DividerSection(),
+                  const Center(child: DividerSection()),
                   const Center(child: SignUpSection()),
                 ],
               ),
