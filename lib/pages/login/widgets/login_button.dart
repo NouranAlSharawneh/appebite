@@ -1,6 +1,5 @@
-import 'package:appebite/pages/settings/settings_edit_information.dart';
-import 'package:appebite/pages/uploadRecipe/upload_recipe.dart';
 import 'package:flutter/material.dart';
+import 'package:appebite/pages/settings/settings_edit_information.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart'; 
 

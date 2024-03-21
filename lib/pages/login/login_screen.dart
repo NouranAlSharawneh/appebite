@@ -1,9 +1,9 @@
-import 'package:appebite/pages/login/widgets/divider_section.dart';
-import 'package:appebite/pages/login/widgets/forget_password.dart';
-import 'package:appebite/pages/login/widgets/input_field.dart';
+import 'package:appebite/pages/login/widgets/login_section_divider.dart';
+import 'package:appebite/pages/login/widgets/login_forget_password.dart';
+import 'package:appebite/pages/login/widgets/Login_input_fields.dart';
 import 'package:appebite/pages/login/widgets/login_button.dart';
-import 'package:appebite/pages/login/widgets/signup_section.dart';
-import 'package:appebite/pages/login/widgets/title_section.dart';
+import 'package:appebite/pages/login/widgets/Login_page_navigator.dart';
+import 'package:appebite/pages/login/widgets/login_title_section.dart';
 import 'package:flutter/material.dart';
 
 
