@@ -76,8 +76,8 @@ class _LoginResetPasswordState extends State<LoginResetPassword> {
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xff272a32),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 36.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

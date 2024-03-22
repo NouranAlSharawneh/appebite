@@ -1,14 +1,13 @@
 import 'dart:io';
-
-import 'package:appebite/pages/uploadRecipe/upload_recipe.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:image_picker/image_picker.dart';
-///////////////////////////////////
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:appebite/pages/uploadRecipe/upload_recipe.dart';
+
 class SettingsEditInformation extends StatefulWidget {
   const SettingsEditInformation({Key? key}) : super(key: key);
 
@@ -18,14 +17,21 @@ class SettingsEditInformation extends StatefulWidget {
 }
 
 class _SettingsEditInformationState extends State<SettingsEditInformation> {
+  late String _currentHeight = ''; 
+  late String _currentWeight = '';
+  late TextEditingController _heightController;
   late String _newProfilePictureUrl = '';
   final ImagePicker _picker = ImagePicker();
   late String _profilePictureUrl = '';
   late String _userName = '';
-  late String _currentHeight = ''; 
-  late String _currentWeight = '';
   late TextEditingController _weightController;
-  late TextEditingController _heightController;
+
+  @override
+  void dispose() {
+    _weightController.dispose();
+    _heightController.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -35,33 +41,33 @@ class _SettingsEditInformationState extends State<SettingsEditInformation> {
     _heightController = TextEditingController();
   }
 
-  @override
-  void dispose() {
-    _weightController.dispose();
-    _heightController.dispose();
-    super.dispose();
-  }
-
   void _showSuccessDialog(BuildContext context) {
-  QuickAlert.show(
-        context: context,
-        type: QuickAlertType.success,
-        backgroundColor: const Color(0xff272a32),
-        title: 'Changes Saved',
-        titleColor: Colors.white,
-        text: "All of the changes that you \nhave made are now saved! \n",
-        textColor: const Color(0xff686f82),
-        confirmBtnColor: const Color(0xffff7269),
-        confirmBtnText: 'okay',
-        onConfirmBtnTap: () {
-          // TODO: FIX THE NAVIGATOR
-           Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const UploadRecipe()),
-      );
-        }
-      );
-}
+    QuickAlert.show(
+      context: context,
+      type: QuickAlertType.success,
+      backgroundColor: const Color(0xff272a32),
+      title: 'Changes Saved',
+      titleColor: Colors.white,
+      text: "All of the changes that you \nhave made are now saved! \n",
+      textColor: const Color(0xff686f82),
+      confirmBtnColor: const Color(0xffff7269),
+      confirmBtnText: 'okay',
+      onConfirmBtnTap: () {
+        // TODO: FIX THE NAVIGATOR
+        Navigator.push(
+          context,
+          PageRouteBuilder(
+            transitionDuration: Duration.zero,
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                FadeTransition(
+              opacity: animation,
+              child: const UploadRecipe(),
+            ),
+          ),
+        );
+      }
+    );
+  }
 
   Future<void> _fetchUserInfo() async {
     User? user = FirebaseAuth.instance.currentUser;
@@ -84,7 +90,7 @@ class _SettingsEditInformationState extends State<SettingsEditInformation> {
     }
   }
 
-    Future<void> _changeProfilePicture() async {
+  Future<void> _changeProfilePicture() async {
     final XFile? pickedFile =
         await _picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
@@ -110,6 +116,19 @@ class _SettingsEditInformationState extends State<SettingsEditInformation> {
       _currentHeight = _currentHeight;
       _currentWeight = _currentWeight;
     });
+
+    // Navigator.push(
+    //     context,
+    //     PageRouteBuilder(
+    //       transitionDuration: Duration.zero,
+    //       pageBuilder: (context, animation, secondaryAnimation) =>
+    //           FadeTransition(
+    //         opacity: animation,
+    //         child: const HomePage(),
+    //       ),
+    //     ),
+    //   );
+
   }
 
 void _saveChange() async {
@@ -137,12 +156,17 @@ void _saveChange() async {
         _showSuccessDialog(context);
       }
     } catch (e) {
-      print("Error saving profile picture: $e");
+      ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Error saving profile picture: $e'),
+        duration: const Duration(seconds: 3),
+      ),
+    );
     }
   } else {
     // Show snackbar message if height or weight is empty
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Text('Please fill both height and weight fields.'),
         duration: Duration(seconds: 3),
       ),
@@ -150,7 +174,6 @@ void _saveChange() async {
   }
 }
 
-    
   @override
   Widget build(BuildContext context) {
     double baseWidth = 400;
@@ -163,7 +186,7 @@ void _saveChange() async {
       body: SizedBox(
         width: double.infinity,
         child: Container(
-          padding: EdgeInsets.fromLTRB(26 * fem, 120 * fem, 26 * fem, 8 * fem),
+          padding: EdgeInsets.fromLTRB(36 * fem, 120 * fem, 36 * fem, 8 * fem),
           width: double.infinity,
           decoration: const BoxDecoration(
             color: Color(0xff272a32),
@@ -214,13 +237,13 @@ void _saveChange() async {
                 ),
               ),
               const SizedBox(
-                height: 80,
+                height: 50,
               ),
               GestureDetector(
                 onTap: _changeProfilePicture,
                 child: Center(
                   child: SizedBox(
-                    width: 300 * fem,
+                    width: 250 * fem,
                     height: 74 * fem,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -279,7 +302,7 @@ void _saveChange() async {
                 ),
               ),
               const SizedBox(
-                height: 60,
+                height: 50,
               ),
               Text(
                 'Personal information',
@@ -292,141 +315,150 @@ void _saveChange() async {
               ),
               Center(
                 child: Container(
-                  margin: EdgeInsets.fromLTRB(0 * fem, 20 * fem, 0 * fem, 28 * fem),
-                  width: 250 * fem,
+                  margin: EdgeInsets.fromLTRB(0 * fem, 30 * fem, 0 * fem, 15 * fem),
+                  width: 270 * fem,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8 * fem),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 27 * fem),
-                        width: double.infinity,
-                        height: 28 * fem,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 37 * fem, 2 * fem),
-                              child: Text(
-                                'Current weight',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 11 * ffem,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.5 * ffem / fem,
-                                  color: const Color(0xffffffff),
-                                ),
-                              ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Current weight',
+                            style: GoogleFonts.poppins(
+                              fontSize: 11 * ffem,
+                              fontWeight: FontWeight.w400,
+                              color: const Color(0xffffffff),
                             ),
-                            Expanded(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff353842),
-                                  borderRadius: BorderRadius.circular(8 * fem),
+                          ),
+                          const SizedBox(width: 15,),
+                          Expanded(
+                            child: TextFormField(
+                              controller: _weightController, 
+                                onChanged: (value) {
+                                  setState(() {
+                                    _currentWeight = value; 
+                                  });
+                                },
+                              style: const TextStyle(color: Colors.white),
+                              textAlign: TextAlign.justify,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                prefix: Text(
+                                  'kg  ',
+                                  style: TextStyle(
+                                    color: const Color(0xff686f82),
+                                    fontSize: 12 * ffem,
+                                    fontWeight: FontWeight.w400,
+                                  ),
                                 ),
-                                child: TextFormField(
-                                  style: const TextStyle(color: Colors.white),
-                                  textAlign: TextAlign.justify,
-                                  keyboardType: TextInputType.number,
-                                  controller: _weightController, 
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _currentWeight = value; 
-                                      });
-                                    },
-                                  decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.fromLTRB(10 * fem, 0 * fem, 12 * fem, 10 * fem),
-                                    prefix: Text(
-                                      'kg  ',
-                                      style: TextStyle(
-                                        color: const Color(0xff686f82),
-                                        fontSize: 12 * ffem,
-                                        fontWeight: FontWeight.w400,
-                                        height: 1.5 * ffem / fem,
-                                      ),
-                                    ),
-                                    hintText: _currentWeight,
-                                    hintStyle: const TextStyle(color: Color(0xff686f82)),
-                                    border: InputBorder.none,
-                                    errorStyle: const TextStyle(
-                                        color: Color(0xffff7269),
-                                        fontSize: 12.0,
-                                        height: 0.02
-                                    ),
+                                hintText: _currentWeight,
+                                hintStyle: const TextStyle(color: Color(0xff686f82)),
+                                filled: true,
+                                fillColor: const Color.fromRGBO(55, 56, 66, 1),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(13),
+                                  borderSide: const BorderSide(
+                                    color:Color(0xff686f82),
+                                  ),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(13),
+                                  borderSide: const BorderSide(
+                                    color:  Color(0xffff7269) 
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(13),
+                                  borderSide: const BorderSide(
+                                    color:Color(0xff686f82),
+                                  ),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(13),
+                                  borderSide: const BorderSide(
+                                    color: Color(0xffff7269) 
                                   ),
                                 ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      Container(
-                        width: double.infinity,
-                        height: 28 * fem,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8 * fem),
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.fromLTRB(0 * fem, 3 * fem, 39 * fem, 0 * fem),
-                              child: Text(
-                                'Current height',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 11 * ffem,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.5 * ffem / fem,
-                                  color: const Color(0xffffffff),
-                                ),
-                              ),
+                      const SizedBox(height: 15,),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Current height',
+                            style: GoogleFonts.poppins(
+                              fontSize: 11 * ffem,
+                              fontWeight: FontWeight.w400,
+                              color: const Color(0xffffffff),
                             ),
-                            Expanded(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff353842),
-                                  borderRadius: BorderRadius.circular(8 * fem),
+                          ),
+                          const SizedBox(width: 15,),
+                          Expanded(
+                            child: TextFormField(
+                              controller: _heightController, 
+                                onChanged: (value) {
+                                  setState(() {
+                                    _currentHeight = value; 
+                                  });
+                                },
+                              style: const TextStyle(color: Colors.white),
+                              textAlign: TextAlign.justify,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),                    
+                                prefix: Text(
+                                  'cm  ',
+                                  style: TextStyle(
+                                    color: const Color(0xff686f82),
+                                    fontSize: 12 * ffem,
+                                    fontWeight: FontWeight.w400,
+                                  ),
                                 ),
-                                child: TextFormField(
-                                  style: const TextStyle(color: Colors.white),
-                                  textAlign: TextAlign.justify,
-                                  keyboardType: TextInputType.number,
-                                  controller: _heightController,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _currentHeight = value;
-                                      });
-                                    },
-                                  decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.fromLTRB(10 * fem, 0 * fem, 12 * fem, 10 * fem),
-                                    prefix: Text(
-                                      'cm  ',
-                                      style: TextStyle(
-                                        color: const Color(0xff686f82),
-                                        fontSize: 12 * ffem,
-                                        fontWeight: FontWeight.w400,
-                                        height: 1.5 * ffem / fem,
-                                      ),
-                                    ),
-                                    hintText: _currentHeight,
-                                    hintStyle: const TextStyle(color: Color(0xff686f82)),
-                                    border: InputBorder.none,
-                                    errorStyle: const TextStyle(
-                                        color: Color(0xffff7269),
-                                        fontSize: 12.0,
-                                        height: 0.02
-                                    ),
+                                hintText: _currentHeight,
+                                hintStyle: const TextStyle(color: Color(0xff686f82)),
+                                filled: true,
+                                fillColor: const Color(0xff353842),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(13),
+                                  borderSide: const BorderSide(
+                                    color:Color(0xff686f82),
+                                  ),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(13),
+                                  borderSide: const BorderSide(
+                                    color:  Color(0xffff7269) 
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(13),
+                                  borderSide: const BorderSide(
+                                    color:Color(0xff686f82),
+                                  ),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(13),
+                                  borderSide: const BorderSide(
+                                    color: Color(0xffff7269) 
                                   ),
                                 ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ),
+                )
               ),
               const SizedBox(
                 height: 60,

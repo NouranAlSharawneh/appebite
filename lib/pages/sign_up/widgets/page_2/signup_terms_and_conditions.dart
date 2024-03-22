@@ -22,30 +22,33 @@ class SignUpTermsAndConditions extends StatefulWidget {
 class _SignUpTermsAndConditionsState extends State<SignUpTermsAndConditions> {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(
-          width: 35,
-          child: Checkbox(
-            value: widget.isChecked,
-            onChanged: (bool? value) {
-              setState(() {
-                widget.updateIsChecked(value ?? false);
-              });
-            },
-            activeColor: const Color(0xffe7965b),
+    return Container(
+      margin: EdgeInsets.only(top:15*widget.fem),
+      child: Row(
+        children: [
+          SizedBox(
+            width: 35,
+            child: Checkbox.adaptive(
+              value: widget.isChecked,
+              onChanged: (bool? value) {
+                setState(() {
+                  widget.updateIsChecked(value ?? false);
+                });
+              },
+              activeColor: const Color(0xffe7965b),
+            ),
           ),
-        ),
-        Text(
-          'Accept terms & Condition',
-          textAlign: TextAlign.center,
-          style: GoogleFonts.poppins(
-            fontSize: 11 * widget.ffem,
-            fontWeight: FontWeight.w400,
-            color: const Color(0xffe7965b),
+          Text(
+            'Accept terms & Condition',
+            textAlign: TextAlign.center,
+            style: GoogleFonts.poppins(
+              fontSize: 12 * widget.ffem,
+              fontWeight: FontWeight.w400,
+              color: const Color(0xffe7965b),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

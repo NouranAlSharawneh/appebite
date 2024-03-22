@@ -45,50 +45,53 @@ class _SignUpPageState extends State<SignUpPage> {
       backgroundColor: const Color(0xff272a32),
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: SizedBox(
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SignUpTitle(fem: fem, ffem: ffem),
-              Form(
-                key: formKey,
-                autovalidateMode: AutovalidateMode.disabled,
-                child: Column(
-                  children: [
-                    SignUpForm(
-                      fem: fem,
-                      ffem: ffem,
-                      emailController: _emailController,
-                      passwordController: _passwordController,
-                      firstNameController: _firstnameController,
-                      lastNameController: _lastnameController,
-                    ),
-                    SignUpProfilePicture(
-                      fem: fem, 
-                      ffem: ffem,
-                      onImageSelected: (File? image) {
-                        setState(() {
-                          _image = image;
-                        });
-                      },                  
+        child: Container(
+          margin: EdgeInsets.fromLTRB(36*fem,50*fem,36*fem,0*fem),
+          child: SizedBox(
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SignUpTitle(fem: fem, ffem: ffem),
+                Form(
+                  key: formKey,
+                  autovalidateMode: AutovalidateMode.disabled,
+                  child: Column(
+                    children: [
+                      SignUpForm(
+                        fem: fem,
+                        ffem: ffem,
+                        emailController: _emailController,
+                        passwordController: _passwordController,
+                        firstNameController: _firstnameController,
+                        lastNameController: _lastnameController,
                       ),
-                    SignUpButton(
-                      fem: fem,
-                      ffem: ffem,
-                      formKey: formKey,
-                      emailController: _emailController,
-                      passwordController: _passwordController,
-                      firstNameController: _firstnameController,
-                      lastNameController: _lastnameController,
-                      profilePicture: _image,
-                    ),
-                  ],
+                      SignUpProfilePicture(
+                        fem: fem, 
+                        ffem: ffem,
+                        onImageSelected: (File? image) {
+                          setState(() {
+                            _image = image;
+                          });
+                        },                  
+                        ),
+                      SignUpButton(
+                        fem: fem,
+                        ffem: ffem,
+                        formKey: formKey,
+                        emailController: _emailController,
+                        passwordController: _passwordController,
+                        firstNameController: _firstnameController,
+                        lastNameController: _lastnameController,
+                        profilePicture: _image,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              SignUpDivider(fem: fem),
-              SignUpNavigator(fem: fem, ffem: ffem),
-            ],
+                SignUpDivider(fem: fem),
+                SignUpNavigator(fem: fem, ffem: ffem),
+              ],
+            ),
           ),
         ),
       ),

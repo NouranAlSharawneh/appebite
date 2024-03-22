@@ -14,7 +14,7 @@ class SignUpTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(30*fem, 60, 0*fem, 30*fem),
+      margin: EdgeInsets.fromLTRB(36*fem,50*fem,36*fem,30*fem),
       width: double.infinity,
 
       child: Column(
@@ -23,7 +23,7 @@ class SignUpTitle extends StatelessWidget {
     Text(
       'Create an account',
       style: GoogleFonts.poppins(
-      fontSize: 20*ffem,
+      fontSize: 25*ffem,
       fontWeight: FontWeight.w600,
       height: 1.5*ffem/fem,
       color: const Color(0xffffffff),
@@ -31,7 +31,7 @@ class SignUpTitle extends StatelessWidget {
     ), Text(
       'Let’s help you set up your \naccount, it won’t take long.',
       style: GoogleFonts.poppins(
-        fontSize: 11*ffem,
+        fontSize: 13*ffem,
         fontWeight: FontWeight.w400,
         height: 1.5*ffem/fem,
         color: const Color(0xffffffff),

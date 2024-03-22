@@ -31,9 +31,9 @@ class _LoginPageState extends State<LoginPage> {
             width: double.infinity,
             child: Container(
               padding: EdgeInsets.fromLTRB(
-                screenWidth * 0.08, 
+                screenWidth * 0.1, 
                 screenHeight * 0.05, 
-                screenWidth * 0.08, 
+                screenWidth * 0.1, 
                 screenHeight * 0.02, 
               ),
               decoration: const BoxDecoration(

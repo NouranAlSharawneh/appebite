@@ -57,7 +57,7 @@ Widget build(BuildContext context) {
     body: SafeArea(
       child: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SignUpTitle(fem: fem, ffem: ffem),
             SignUpPersonalInformation(fem: fem, ffem: ffem),
@@ -126,8 +126,8 @@ Widget build(BuildContext context) {
                 ),
               ),
             ),
-            SignUpDivider(fem: fem),
-            SignUpNavigator(fem: fem, ffem: ffem),
+            Center(child: SignUpDivider(fem: fem)),
+            Center(child: SignUpNavigator(fem: fem, ffem: ffem)),
           ],
         ),
       ),
