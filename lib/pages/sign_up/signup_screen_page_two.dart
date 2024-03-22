@@ -36,6 +36,14 @@ class _SignUpPageTwoState extends State<SignUpPageTwo> {
   String currentWeight = ''; 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String selectedGender = '';
+  bool isChecked = false; 
+
+
+  void updateIsChecked(bool value) {
+    setState(() {
+      isChecked = value;
+    });
+  }
 
   @override
 Widget build(BuildContext context) {
@@ -92,7 +100,13 @@ Widget build(BuildContext context) {
                         });
                       },
                     ),
-                    SignUpTermsAndConditions(fem: fem, ffem: ffem),
+                    const SizedBox(height: 15,),
+                    SignUpTermsAndConditions(
+                      fem: fem, 
+                      ffem: ffem,
+                      isChecked: isChecked,
+                      updateIsChecked: updateIsChecked,
+                      ),
                     SignUpAccentButton(
                       fem: fem,
                       ffem: ffem,
@@ -101,6 +115,7 @@ Widget build(BuildContext context) {
                       currentWeight: currentWeight,
                       currentHeight: currentHeight,
                       birthYear: birthYear,
+                      termsAndConditionsChecked: isChecked,
                       emailController: widget.emailController,
                       firstNameController: widget.firstNameController,
                       lastNameController: widget.lastNameController,

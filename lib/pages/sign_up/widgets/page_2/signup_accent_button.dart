@@ -20,7 +20,8 @@ class SignUpAccentButton extends StatefulWidget {
     required this.passwordController,
     required this.firstNameController,
     required this.lastNameController,
-    required this.profilePicture,
+    required this.profilePicture, 
+    required this.termsAndConditionsChecked,
   }) : super(key: key);
 
   final GlobalKey<FormState> formKey;
@@ -35,6 +36,7 @@ class SignUpAccentButton extends StatefulWidget {
   final TextEditingController passwordController;
   final File? profilePicture;
   final String selectedGender;
+  final bool termsAndConditionsChecked;
 
   @override
   State<SignUpAccentButton> createState() => _SignUpAccentButtonState();
@@ -80,18 +82,28 @@ class _SignUpAccentButtonState extends State<SignUpAccentButton> {
       if (!widget.formKey.currentState!.validate()) {
         return;
       }
+
+      if (!widget.termsAndConditionsChecked) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Please accept terms and conditions.'),
+          ),
+        );
+    return;
+  }
       
       if (widget.selectedGender.isEmpty) {
-        setState(() {
-          _genderNotSelected = true;
-        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Please select a gender'),
+          ),
+        );
         return;
       }
 
       setState(() {
         _isLoading = true;
       });
-
 
       try {
         // Create user using email and password
