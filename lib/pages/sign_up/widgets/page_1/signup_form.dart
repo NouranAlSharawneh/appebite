@@ -105,7 +105,7 @@ class _SignUpFormState extends State<SignUpForm> {
                             hintText: 'first name',
                             hintStyle:
                             const TextStyle(color:Color(0xff686f82),),
-                            contentPadding: const EdgeInsets.all(12.0),
+                            contentPadding: const EdgeInsets.symmetric(vertical:12.0),
                             border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(13),
                             borderSide: const BorderSide(
@@ -160,7 +160,7 @@ class _SignUpFormState extends State<SignUpForm> {
                             ),
                             hintStyle:
                             const TextStyle(color: Color(0xff686f82)),
-                            contentPadding: const EdgeInsets.all(12.0),
+                            contentPadding: const EdgeInsets.symmetric(vertical:12.0),
                             filled: true,
                             fillColor: const Color(0xff353842),
                             border: OutlineInputBorder(
@@ -232,9 +232,9 @@ class _SignUpFormState extends State<SignUpForm> {
                             Icons.email,
                             color: Color.fromRGBO(104, 111, 130, 100),
                           ),
-                          hintText: 'Enter your email',
+                          hintText: 'email address',
                           hintStyle: const TextStyle(color: Color(0xff686f82)),
-                          contentPadding: const EdgeInsets.all(15.0),
+                          contentPadding: const EdgeInsets.symmetric(vertical: 15),                          
                           filled: true,
                           fillColor: const Color(0xff353842),
                           border: OutlineInputBorder(
@@ -331,13 +331,13 @@ class _SignUpFormState extends State<SignUpForm> {
                               style: const TextStyle(color: Colors.white,),
                               obscureText: _obscureText,
                               decoration: InputDecoration(
-                                hintText: 'Enter your password',
+                                hintText: 'password',
                                 prefixIcon: const Icon(
                                   Icons.lock,
                                   color: Color.fromRGBO(104, 111, 130, 100),
                                 ),
                                 hintStyle: const TextStyle(color: Color(0xff686f82),),
-                                contentPadding: const EdgeInsets.all(15.0),
+                                contentPadding: const EdgeInsets.symmetric(vertical: 15),
                                 filled: true,
                                 fillColor: const Color(0xff353842),
                                 border: OutlineInputBorder(
