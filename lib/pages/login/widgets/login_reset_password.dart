@@ -150,7 +150,7 @@ class _LoginResetPasswordState extends State<LoginResetPassword> {
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: const Color(0xff353842),
-                        labelText: 'email Address',
+                        labelText: 'email address',
                         hintStyle: const TextStyle(
                           color: Color(0xff686f82),
                           height: 1,
@@ -181,7 +181,6 @@ class _LoginResetPasswordState extends State<LoginResetPassword> {
                       onPressed: resetPassword,
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(
-                          // horizontal: screenWidth * 0.4,
                           vertical: screenHeight * 0.02,
                         ),
                         backgroundColor: const Color(0xffff7269),

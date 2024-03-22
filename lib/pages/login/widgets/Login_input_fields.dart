@@ -106,9 +106,9 @@ class _InputFieldState extends State<InputField> {
                         ),
                         padding: 
                           hasError ?
-                            const EdgeInsets.only(right: 10, bottom: 10, ) 
+                            const EdgeInsets.only(right: 10, bottom: 20, ) 
                             // no validation
-                            : const EdgeInsets.only(bottom: 10, right: 10, top:0),
+                            : const EdgeInsets.only(bottom: 5, right: 10, top:0),
                       ),
                     ],
                   )

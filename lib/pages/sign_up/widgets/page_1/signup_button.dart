@@ -40,8 +40,7 @@ class _SignUpButtonState extends State<SignUpButton> {
             ),
           )
         : Container(
-            margin: EdgeInsets.fromLTRB(
-                0 * widget.fem, 0 * widget.fem, 11.5 * widget.fem, 50 * widget.fem),
+            margin: EdgeInsets.only(bottom: 40 * widget.fem),
             child: TextButton(
               onPressed: () {
                 // Validate the form
@@ -51,7 +50,7 @@ class _SignUpButtonState extends State<SignUpButton> {
 
                 if (widget.profilePicture == null) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text('Please attach an image'),
                     ),
                   );
@@ -77,8 +76,6 @@ class _SignUpButtonState extends State<SignUpButton> {
                 width: 315 * widget.fem,
                 height: 60 * widget.fem,
                 child: Container(
-                  padding: EdgeInsets.fromLTRB(
-                      102.5 * widget.fem, 18 * widget.fem, 104.5 * widget.fem, 18 * widget.fem),
                   width: double.infinity,
                   height: double.infinity,
                   decoration: BoxDecoration(
@@ -87,6 +84,7 @@ class _SignUpButtonState extends State<SignUpButton> {
                   ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
                         margin: EdgeInsets.fromLTRB(
