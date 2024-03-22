@@ -14,57 +14,54 @@ class SignUpNavigator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 14.5*fem, 0),
-      child: TextButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            PageRouteBuilder(
-              transitionDuration: Duration.zero,
-              pageBuilder: (context, animation, secondaryAnimation) =>
-                  FadeTransition(
-                opacity: animation,
-                child: const LoginPage(),
-              ),
+    return TextButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          PageRouteBuilder(
+            transitionDuration: Duration.zero,
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                FadeTransition(
+              opacity: animation,
+              child: const LoginPage(),
             ),
-          );
-        },
-        style: TextButton.styleFrom (
-          padding: EdgeInsets.zero,
-        ),
-        child: RichText(
-          text: TextSpan(
-            style: GoogleFonts.poppins(
-              fontSize: 11*ffem,
-              fontWeight: FontWeight.w500,
-              height: 1.5*ffem/fem,
-              color:const Color(0xff000000),
-            ),
-            children: [
-              TextSpan(
-                text: 'Already a member?',
-                style: GoogleFonts.poppins(
-                  fontSize: 13*ffem,
-                  fontWeight: FontWeight.w500,
-                  height: 1.5*ffem/fem,
-                  color: const Color(0xff686f82),
-                ),
-              ),
-              const TextSpan(
-                text: ' ',
-              ),
-              TextSpan(
-                text: 'Login',
-                style: GoogleFonts.poppins(
-                  fontSize: 13*ffem,
-                  fontWeight: FontWeight.w500,
-                  height: 1.5*ffem/fem,
-                  color: const Color(0xffe7965b),
-                ),
-              ),
-            ],
           ),
+        );
+      },
+      style: TextButton.styleFrom (
+        padding: EdgeInsets.zero,
+      ),
+      child: RichText(
+        text: TextSpan(
+          style: GoogleFonts.poppins(
+            fontSize: 11*ffem,
+            fontWeight: FontWeight.w500,
+            height: 1.5*ffem/fem,
+            color:const Color(0xff000000),
+          ),
+          children: [
+            TextSpan(
+              text: 'Already a member?',
+              style: GoogleFonts.poppins(
+                fontSize: 13*ffem,
+                fontWeight: FontWeight.w500,
+                height: 1.5*ffem/fem,
+                color: const Color(0xff686f82),
+              ),
+            ),
+            const TextSpan(
+              text: ' ',
+            ),
+            TextSpan(
+              text: 'Login',
+              style: GoogleFonts.poppins(
+                fontSize: 13*ffem,
+                fontWeight: FontWeight.w500,
+                height: 1.5*ffem/fem,
+                color: const Color(0xffe7965b),
+              ),
+            ),
+          ],
         ),
       ),
     );
