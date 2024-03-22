@@ -23,10 +23,10 @@ class _LoginPageState extends State<LoginPage> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: const Color(0xff272a32),
-        body: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: const Color(0xff272a32),
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: SizedBox(
             width: double.infinity,
             child: Container(
