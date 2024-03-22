@@ -48,81 +48,72 @@ Widget build(BuildContext context) {
     resizeToAvoidBottomInset: false,
     body: SafeArea(
       child: SingleChildScrollView(
-        child: SizedBox(
-          width: double.infinity,
-          child: Container(
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              color: Color(0xff272a32),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SignUpTitle(fem: fem, ffem: ffem),
-                SignUpPersonalInformation(fem: fem, ffem: ffem),
-                Container(
-                  padding: EdgeInsets.fromLTRB(30 * fem, 14 * fem, 30 * fem, 8 * fem),
-                  child: Form(
-                    key: formKey,
-                    autovalidateMode: AutovalidateMode.disabled,
-                    child: Column(
-                      children: [
-                        SignUpGender(
-                          fem: fem,
-                          ffem: ffem,
-                          onGenderSelected: (String gender) {
-                            setState(() {
-                              selectedGender = gender;
-                            });
-                          },
-                        ),
-                        SignUpInformation(
-                          fem: fem,
-                          ffem: ffem,
-                          onWeightChanged: (value) {
-                            setState(() {
-                              currentWeight = value;
-                            });
-                          },
-                          onHeightChanged: (value) {
-                            setState(() {
-                              currentHeight = value;
-                            });
-                          },
-                        ),
-                        SignUpBirthYear(
-                          fem: fem,
-                          ffem: ffem,
-                          onBirthYearChanged: (value) {
-                            setState(() {
-                              birthYear = value;
-                            });
-                          },
-                        ),
-                        SignUpTermsAndConditions(fem: fem, ffem: ffem),
-                        SignUpAccentButton(
-                          fem: fem,
-                          ffem: ffem,
-                          formKey: formKey,
-                          selectedGender: selectedGender,
-                          currentWeight: currentWeight,
-                          currentHeight: currentHeight,
-                          birthYear: birthYear,
-                          emailController: widget.emailController,
-                          firstNameController: widget.firstNameController,
-                          lastNameController: widget.lastNameController,
-                          passwordController: widget.passwordController,
-                          profilePicture: widget.profilePicture,
-                        ),
-                      ],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SignUpTitle(fem: fem, ffem: ffem),
+            SignUpPersonalInformation(fem: fem, ffem: ffem),
+            Container(
+              padding: EdgeInsets.fromLTRB(30 * fem, 14 * fem, 30 * fem, 8 * fem),
+              child: Form(
+                key: formKey,
+                autovalidateMode: AutovalidateMode.disabled,
+                child: Column(
+                  children: [
+                    SignUpGender(
+                      fem: fem,
+                      ffem: ffem,
+                      onGenderSelected: (String gender) {
+                        setState(() {
+                          selectedGender = gender;
+                        });
+                      },
                     ),
-                  ),
+                    SignUpInformation(
+                      fem: fem,
+                      ffem: ffem,
+                      onWeightChanged: (value) {
+                        setState(() {
+                          currentWeight = value;
+                        });
+                      },
+                      onHeightChanged: (value) {
+                        setState(() {
+                          currentHeight = value;
+                        });
+                      },
+                    ),
+                    SignUpBirthYear(
+                      fem: fem,
+                      ffem: ffem,
+                      onBirthYearChanged: (value) {
+                        setState(() {
+                          birthYear = value;
+                        });
+                      },
+                    ),
+                    SignUpTermsAndConditions(fem: fem, ffem: ffem),
+                    SignUpAccentButton(
+                      fem: fem,
+                      ffem: ffem,
+                      formKey: formKey,
+                      selectedGender: selectedGender,
+                      currentWeight: currentWeight,
+                      currentHeight: currentHeight,
+                      birthYear: birthYear,
+                      emailController: widget.emailController,
+                      firstNameController: widget.firstNameController,
+                      lastNameController: widget.lastNameController,
+                      passwordController: widget.passwordController,
+                      profilePicture: widget.profilePicture,
+                    ),
+                  ],
                 ),
-                SignUpDivider(fem: fem),
-                SignUpNavigator(fem: fem, ffem: ffem),
-              ],
+              ),
             ),
-          ),
+            SignUpDivider(fem: fem),
+            SignUpNavigator(fem: fem, ffem: ffem),
+          ],
         ),
       ),
     ),
