@@ -18,8 +18,9 @@ class SignUpInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 83 * fem, 28 * fem),
+      margin: EdgeInsets.fromLTRB(0 * fem, 30 * fem, 0 * fem, 30 * fem),
       width: 300 * fem,
+      height: 190,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8 * fem),
       ),
@@ -29,12 +30,13 @@ class SignUpInformation extends StatelessWidget {
           Container(
             margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 27 * fem),
             width: double.infinity,
-            height: 28 * fem,
+            height: 38 * fem,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 37 * fem, 2 * fem),
+                  margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 37 * fem, 12 * fem),
                   child: Text(
                     'Current weight',
                     style: GoogleFonts.poppins(
@@ -46,53 +48,73 @@ class SignUpInformation extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xff353842),
-                      borderRadius: BorderRadius.circular(8 * fem),
-                    ),
-                    child: TextFormField(
-                      onChanged: (value) {
-                        onWeightChanged(value);
-                      },
-                      style: const TextStyle(color: Colors.white),
-                      textAlign: TextAlign.justify,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.fromLTRB(10 * fem, 0 * fem, 12 * fem, 10 * fem),
-                        prefix: Text(
-                          'kg  ',
-                          style: TextStyle(
-                            color: const Color(0xff686f82),
-                            fontSize: 12 * ffem,
-                            fontWeight: FontWeight.w400,
-                            height: 1.5 * ffem / fem,
-                          ),
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter weight';
+                      }
+                      return null;
+                    },
+                    onChanged: (value) {
+                      onWeightChanged(value);
+                    },
+                    style: const TextStyle(color: Colors.white),
+                    textAlign: TextAlign.justify,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.fromLTRB(10 * fem, 0 * fem, 12 * fem, 10 * fem),
+                      prefix: Text(
+                        'kg  ',
+                        style: TextStyle(
+                          color: const Color(0xff686f82),
+                          fontSize: 12 * ffem,
+                          fontWeight: FontWeight.w400,
+                          height: 1 * ffem / fem,
                         ),
-                        hintText: '55',
-                        hintStyle: const TextStyle(color: Color(0xff686f82)),
-                        border: InputBorder.none,
-                        errorStyle: const TextStyle(
-                                color: Color(0xffff7269),
-                                fontSize: 12.0,
-                                height: 0.02
-                            ),
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter weight';
-                        }
-                        return null;
-                      },
+                      hintText: '55',
+                      hintStyle: const TextStyle(color: Color(0xff686f82)),
+                      filled: true,
+                      fillColor: const Color(0xff353842),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(13),
+                        borderSide: const BorderSide(
+                          color:Color(0xff686f82),
+                        ),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(13),
+                        borderSide: const BorderSide(
+                          color:  Color(0xffff7269) 
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(13),
+                        borderSide: const BorderSide(
+                          color:Color(0xff686f82),
+                        ),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(13),
+                        borderSide: const BorderSide(
+                          color: Color(0xffff7269) 
+                        ),
+                      ),
+                      errorStyle: const TextStyle(
+                        color: Color(0xffff7269),
+                        fontSize: 12.0,
+                        height: 1, 
+                      ),
                     ),
                   ),
                 ),
+                const SizedBox(height: 5),
               ],
             ),
           ),
           Container(
             width: double.infinity,
-            height: 28 * fem,
+            height: 38 * fem,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8 * fem),
             ),
@@ -112,49 +134,67 @@ class SignUpInformation extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xff353842),
-                      borderRadius: BorderRadius.circular(8 * fem),
-                    ),
-                    child: TextFormField(
-                      onChanged: (value) {
-                        onHeightChanged(value);
-                      },
-                      
-                      style: const TextStyle(color: Colors.white),
-                      textAlign: TextAlign.justify,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.fromLTRB(10 * fem, 0 * fem, 12 * fem, 10 * fem),
-                        prefix: Text(
-                          'cm  ',
-                          style: TextStyle(
-                            color: const Color(0xff686f82),
-                            fontSize: 12 * ffem,
-                            fontWeight: FontWeight.w400,
-                            height: 1.5 * ffem / fem,
-                          ),
+                  child: TextFormField(
+                    onChanged: (value) {
+                      onHeightChanged(value);
+                    },                  
+                    style: const TextStyle(color: Colors.white),
+                    textAlign: TextAlign.justify,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.fromLTRB(5 * fem, 0 * fem, 12 * fem, 5 * fem),
+                      prefix: Text(
+                        'cm  ',
+                        style: TextStyle(
+                          color: const Color(0xff686f82),
+                          fontSize: 12 * ffem,
+                          fontWeight: FontWeight.w400,
+                          height: 1.5 * ffem / fem,
                         ),
-                        hintText: '173',
-                        hintStyle: const TextStyle(color: Color(0xff686f82)),
-                        border: InputBorder.none,
-                        errorStyle: const TextStyle(
-                                color: Color(0xffff7269),
-                                fontSize: 12.0,
-                                height: 0.02
-                            ),
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter height';
-                        }
-                        return null;
-                      },
-                      
+                      hintText: '173',
+                      hintStyle: const TextStyle(color: Color(0xff686f82)),
+                      filled: true,
+                      fillColor: const Color(0xff353842),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(13),
+                        borderSide: const BorderSide(
+                          color:Color(0xff686f82),
+                        ),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(13),
+                        borderSide: const BorderSide(
+                          color:  Color(0xffff7269) 
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(13),
+                        borderSide: const BorderSide(
+                          color:Color(0xff686f82),
+                        ),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(13),
+                        borderSide: const BorderSide(
+                          color: Color(0xffff7269) 
+                        ),
+                      ),
+                      errorStyle: const TextStyle(
+                        color: Color(0xffff7269),
+                        fontSize: 12.0,
+                        height: 1, 
+                      ),
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter height';
+                      }
+                      return null;
+                    },
                   ),
                 ),
+                const SizedBox(height: 5),
               ],
             ),
           ),

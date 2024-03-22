@@ -32,11 +32,9 @@ class _LoadingScreenState extends State<LoadingScreen> with SingleTickerProvider
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      backgroundColor: const Color(0xff272a32),
+      body: SizedBox(
         width: double.infinity,
-        decoration: const BoxDecoration(
-          color: Color.fromRGBO(38, 43, 52, 1),
-        ),
         child: Column(
           children: [
             Padding(
