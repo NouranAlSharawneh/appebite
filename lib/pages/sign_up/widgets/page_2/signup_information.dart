@@ -18,7 +18,7 @@ class SignUpInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(0 * fem, 30 * fem, 0 * fem, 30 * fem),
+      margin: EdgeInsets.fromLTRB(0 * fem, 30 * fem, 0 * fem, 15 * fem),
       width: 270 * fem,
       // height: 190,
       decoration: BoxDecoration(

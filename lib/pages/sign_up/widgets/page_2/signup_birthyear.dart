@@ -24,23 +24,25 @@ class _SignUpBirthYearState extends State<SignUpBirthYear> {
   DateTime _selectedYear = DateTime.now();
 
   selectYear(context) async {
-    print("Calling year picker");
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Select Year"),
+          backgroundColor: const Color(0xff272a32),
+          title: const Text(
+            "Select birthyear",
+            style: TextStyle(color: Colors.white, fontSize: 20), 
+          ),
+          contentTextStyle: const TextStyle(color: Colors.white), 
+          titleTextStyle: const TextStyle(color: Colors.white),
           content: SizedBox(
             width: 300,
-            height: 300,
-            child: YearPicker(
-              
-              firstDate: DateTime(DateTime.now().year - 50, 1),
+            child: YearPicker(             
+              firstDate: DateTime(DateTime.now().year - 90, 1),
               lastDate: DateTime(DateTime.now().year),
               initialDate: DateTime.now(),
               selectedDate: _selectedYear,
               onChanged: (DateTime dateTime) {
-                print(dateTime.year);
                 setState(() {
                   _selectedYear = dateTime;
                   showYear = "${dateTime.year}";
@@ -55,12 +57,20 @@ class _SignUpBirthYearState extends State<SignUpBirthYear> {
     );
   }
 
-  Future<void> _selectDate(BuildContext context) async {
+  Future<void> selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: _selectedYear,
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
+      builder:(context, Widget? child) => 
+        Theme(data: ThemeData().copyWith(
+          colorScheme: const ColorScheme.dark(
+            primary: Colors.red, 
+            onPrimary: Colors.white,
+        )
+      ), child: child!,
+      ),
       initialDatePickerMode: DatePickerMode.year,
     );
 
@@ -74,58 +84,48 @@ class _SignUpBirthYearState extends State<SignUpBirthYear> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.fromLTRB(0* widget.fem, 0 * widget.fem, 84.5 * widget.fem, 34 * widget.fem),
+    return SizedBox(
       width: double.infinity,
-      height: 28 * widget.fem,
+      height: 45 * widget.fem,
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            margin: EdgeInsets.fromLTRB(0 * widget.fem, 0 * widget.fem, 63 * widget.fem, 3 * widget.fem),
-            child: Text(
-              'Birth year ',
-              style: GoogleFonts.poppins(
-                fontSize: 11 * widget.ffem,
-                fontWeight: FontWeight.w400,
-                height: 1.5 * widget.ffem / widget.fem,
-                color: const Color(0xffffffff),
-              ),
+          Text(
+            'Birth year',
+            style: GoogleFonts.poppins(
+              fontSize: 11 * widget.ffem,
+              fontWeight: FontWeight.w400,
+              color: const Color(0xffffffff),
             ),
           ),
+          SizedBox(width: 41*widget.fem,),
           GestureDetector(
             onTap: () => selectYear(context),
             child: Container(
-              padding: EdgeInsets.fromLTRB(0 * widget.fem, 0 * widget.fem, 40 * widget.fem, 0 * widget.fem),
               height: double.infinity,
               decoration: BoxDecoration(
                 color: const Color(0xff353841),
-                borderRadius: BorderRadius.circular(5 * widget.fem),
+                borderRadius: BorderRadius.circular(13 * widget.fem),
+                border: Border.all(
+                        color:const Color(0xff686f82),
+                        width: 0.3,
+                      )
               ),
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    margin: EdgeInsets.fromLTRB(0 * widget.fem, 4 * widget.fem, 0 * widget.fem, 0 * widget.fem),
-                    // width: 21 * widget.fem,
-                    height: 21.21 * widget.fem,
-                  ),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(0 * widget.fem, 0 * widget.fem, 26 * widget.fem, 0 * widget.fem),
-                    width: 0 * widget.fem,
-                    height: 1 * widget.fem,
+                    width: 180 * widget.fem,
+                    padding: EdgeInsets.only(left:30 * widget.fem),
                     decoration: const BoxDecoration(
-                      color: Color(0xff252830),
+                      color: Color(0xff353841),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(0 * widget.fem, 6.59 * widget.fem, 0 * widget.fem, 0 * widget.fem),
+
                     child: Text(
                       showYear,
                       style: GoogleFonts.poppins(
-                        fontSize: 11 * widget.ffem,
+                        fontSize: 12 * widget.ffem,
                         fontWeight: FontWeight.w400,
-                        height: 1.5 * widget.ffem / widget.fem,
                         color: const Color(0xffffffff),
                       ),
                     ),
