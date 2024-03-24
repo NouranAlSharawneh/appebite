@@ -40,19 +40,19 @@ class _AddImageState extends State<AddImage> {
     return GestureDetector(
       onTap: _pickImage,
       child: Container(
-        margin: EdgeInsets.fromLTRB(0 * widget.fem, 0 * widget.fem, 0 * widget.fem, 24 * widget.fem),
-        padding: EdgeInsets.fromLTRB(0 * widget.fem, 15 * widget.fem, 0 * widget.fem, 16 * widget.fem),
+        margin: EdgeInsets.symmetric(vertical: 10 * widget.fem),
+        padding: EdgeInsets.symmetric(vertical: 15 * widget.fem,),
         width: double.infinity,
         decoration: BoxDecoration(
           border: Border.all(color: const Color(0xff686f82), width: 3),
           color: const Color(0xff353842),
-          borderRadius: BorderRadius.circular(16 * widget.fem),
+          borderRadius: BorderRadius.circular(13 * widget.fem),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              margin: EdgeInsets.fromLTRB(0 * widget.fem, 0 * widget.fem, 0 * widget.fem, 40 * widget.fem),
+              margin: EdgeInsets.only(bottom: 50 * widget.fem),
               width: 80 * widget.fem,
               height: 40 * widget.fem,
               child: _image != null
@@ -67,8 +67,6 @@ class _AddImageState extends State<AddImage> {
                 style: GoogleFonts.poppins(
                   fontSize: 15 * widget.ffem,
                   fontWeight: FontWeight.w700,
-                  height: 1 * widget.ffem / widget.fem,
-                  letterSpacing: 0.5 * widget.fem,
                   color: const Color(0xff8e94a4),
                 ),
               ),
@@ -79,8 +77,6 @@ class _AddImageState extends State<AddImage> {
               style: GoogleFonts.poppins(
                 fontSize: 12 * widget.ffem,
                 fontWeight: FontWeight.w500,
-                height: 1 * widget.ffem / widget.fem,
-                letterSpacing: 0.5 * widget.fem,
                 color: const Color(0xff9fa5c0),
               ),
             ),

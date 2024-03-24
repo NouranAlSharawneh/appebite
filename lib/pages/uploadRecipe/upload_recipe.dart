@@ -40,58 +40,60 @@ class _UploadRecipeState extends State<UploadRecipe> {
     double ffem = fem * 0.97;
     return Scaffold(
       backgroundColor: const Color(0xff272a32),
-      body: SingleChildScrollView(
-        child: SizedBox(
-          width: double.infinity,
-          child: Container(
-            padding: EdgeInsets.fromLTRB(26 * fem, 34 * fem, 26 * fem, 8 * fem),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: SizedBox(
             width: double.infinity,
-            decoration: const BoxDecoration(
-              color: Color(0xff272a32),
-            ),
-            child: Form(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  TitleHeading(fem: fem, ffem: ffem, dynamicValue: '1'),
-                  AddImage(
-                    fem: fem,
-                    ffem: ffem,
-                    onImageSelected: (File? image) {
-                      setState(() {
-                        selectedImage = image;
-                      });
-                    },
-                  ),
-                  FoodInput(fem: fem, ffem: ffem, foodNameController: foodNameController),
-                  DescriptionInput(fem: fem, ffem: ffem, descriptionController: descriptionController),
-                  CookingDuration(
-                    fem: fem,
-                    ffem: ffem,
-                    value: cookingDuration,
-                    onChanged: (value) {
-                      setState(() {
-                        cookingDuration = value;
-                      });
-                    },
-                  ),
-                  ServingsAndCaloriesInput(
-                    text1: 'Servings',
-                    text2: 'Calories',
-                    servingsController: servingsController,
-                    caloriesController: caloriesController,
-                  ),
-                  ContinueButton(
-                    fem: fem,
-                    ffem: ffem,
-                    foodName: foodNameController.text,
-                    description: descriptionController.text,
-                    servings: servingsController.text,
-                    calories: caloriesController.text,
-                    cookingDuration: cookingDuration,
-                    selectedImage: selectedImage,
-                  ),
-                ],
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 36 * fem),
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                color: Color(0xff272a32),
+              ),
+              child: Form(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    TitleHeading(fem: fem, ffem: ffem, dynamicValue: '1'),
+                    AddImage(
+                      fem: fem,
+                      ffem: ffem,
+                      onImageSelected: (File? image) {
+                        setState(() {
+                          selectedImage = image;
+                        });
+                      },
+                    ),
+                    FoodInput(fem: fem, ffem: ffem, foodNameController: foodNameController),
+                    DescriptionInput(fem: fem, ffem: ffem, descriptionController: descriptionController),
+                    CookingDuration(
+                      fem: fem,
+                      ffem: ffem,
+                      value: cookingDuration,
+                      onChanged: (value) {
+                        setState(() {
+                          cookingDuration = value;
+                        });
+                      },
+                    ),
+                    ServingsAndCaloriesInput(
+                      text1: 'Servings',
+                      text2: 'Calories',
+                      servingsController: servingsController,
+                      caloriesController: caloriesController,
+                    ),
+                    ContinueButton(
+                      fem: fem,
+                      ffem: ffem,
+                      foodName: foodNameController.text,
+                      description: descriptionController.text,
+                      servings: servingsController.text,
+                      calories: caloriesController.text,
+                      cookingDuration: cookingDuration,
+                      selectedImage: selectedImage,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
