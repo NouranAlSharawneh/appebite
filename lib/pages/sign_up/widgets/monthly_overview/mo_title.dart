@@ -14,10 +14,9 @@ class MOTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.fromLTRB(1.5*fem, 0*fem, 15*fem, 35*fem),
+    return SizedBox(
       width: double.infinity,
-      height: 95*fem,
+      height: 100*fem,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -33,21 +32,19 @@ class MOTitle extends StatelessWidget {
                     style: GoogleFonts.poppins(
                       fontSize: 20*ffem,
                       fontWeight: FontWeight.w600,
-                      height: 1.5*ffem/fem,
                       color: const Color(0xffffffff),
                     ),
                   ),
                 ),
                 Container(
                   constraints: BoxConstraints (
-                    maxWidth: 230*fem,
+                    maxWidth: 250*fem,
                   ),
                   child: Text(
                     'Taking into account your height, weight, age, and gender, our recommendation is that you consume a daily amount of food with your specific calorie target.',
                     style: GoogleFonts.poppins(
-                      fontSize: 11*ffem,
+                      fontSize: 12*ffem,
                       fontWeight: FontWeight.w400,
-                      height: 1.4*ffem/fem,
                       color: const Color(0xffffffff),
                     ),
                   ),
