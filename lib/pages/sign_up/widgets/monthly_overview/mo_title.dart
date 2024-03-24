@@ -21,8 +21,7 @@ class MOTitle extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 40*fem, 0*fem),
+          SizedBox(
             height: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,7 +40,7 @@ class MOTitle extends StatelessWidget {
                 ),
                 Container(
                   constraints: BoxConstraints (
-                    maxWidth: 222*fem,
+                    maxWidth: 230*fem,
                   ),
                   child: Text(
                     'Taking into account your height, weight, age, and gender, our recommendation is that you consume a daily amount of food with your specific calorie target.',
@@ -56,12 +55,20 @@ class MOTitle extends StatelessWidget {
               ],
             ),
           ),
+          const Spacer(),
           TextButton(
             onPressed: () {
               Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const SignUpAccountConfirmation()), 
-            );
+                context,
+                PageRouteBuilder(
+                  transitionDuration: Duration.zero,
+                  pageBuilder: (context, animation, secondaryAnimation) =>
+                      FadeTransition(
+                    opacity: animation,
+                    child: const SignUpAccountConfirmation(),
+                  ),
+                ),
+              );
             },
             style: TextButton.styleFrom (
               padding: EdgeInsets.zero,

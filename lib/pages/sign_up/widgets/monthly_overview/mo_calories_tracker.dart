@@ -44,7 +44,6 @@ class _MOCaloriesState extends State<MOCalories> {
           .collection('Users')
           .doc(userId)
           .update({'caloriesPerMonth': newCalories});
-      print('Calories updated successfully.');
     } catch (error) {
       print('Failed to update calories: $error');
     }
@@ -53,9 +52,8 @@ class _MOCaloriesState extends State<MOCalories> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(25.5 * widget.fem, 0 * widget.fem,
-          59.5 * widget.fem, 120 * widget.fem),
-      width: double.infinity,
+      margin: EdgeInsets.only(top: 13 * widget.fem),
+      width: 280,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8 * widget.fem),
       ),
@@ -63,8 +61,7 @@ class _MOCaloriesState extends State<MOCalories> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            margin: EdgeInsets.fromLTRB(0 * widget.fem, 0 * widget.fem,
-                0 * widget.fem, 13 * widget.fem),
+            margin: EdgeInsets.only(bottom: 15 * widget.fem),
             width: double.infinity,
             height: 78 * widget.fem,
             decoration: BoxDecoration(
