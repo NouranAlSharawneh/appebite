@@ -77,8 +77,8 @@ class _UploadRecipeState extends State<UploadRecipe> {
                       },
                     ),
                     ServingsAndCaloriesInput(
-                      text1: 'Servings',
-                      text2: 'Calories',
+                      text1: 'Serving',
+                      text2: 'Calorie',
                       servingsController: servingsController,
                       caloriesController: caloriesController,
                     ),

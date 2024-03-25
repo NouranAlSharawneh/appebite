@@ -46,6 +46,7 @@ class ContinueButton extends StatelessWidget {
         padding: EdgeInsets.zero,
       ),
       child: Container(
+        margin: const EdgeInsets.only(top: 20),
         width: 327 * fem,
         height: 56 * fem,
         decoration: BoxDecoration(

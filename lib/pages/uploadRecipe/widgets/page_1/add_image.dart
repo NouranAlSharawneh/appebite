@@ -41,7 +41,7 @@ class _AddImageState extends State<AddImage> {
       onTap: _pickImage,
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10 * widget.fem),
-        padding: EdgeInsets.symmetric(vertical: 15 * widget.fem,),
+        padding: EdgeInsets.only(top: 10 * widget.fem, bottom: 10 * widget.fem,),
         width: double.infinity,
         decoration: BoxDecoration(
           border: Border.all(color: const Color(0xff686f82), width: 3),
@@ -51,16 +51,18 @@ class _AddImageState extends State<AddImage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              margin: EdgeInsets.only(bottom: 50 * widget.fem),
-              width: 80 * widget.fem,
-              height: 40 * widget.fem,
+            SizedBox(
+              width: 200 * widget.fem,
+              height: 100 * widget.fem,
               child: _image != null
-                  ? Image.file(_image!, fit: BoxFit.cover)
+                  ? ClipRRect(
+                    borderRadius: BorderRadius.circular(13 * widget.fem),
+                    child: Image.file(_image!, fit: BoxFit.cover),
+                  )
                   : const Icon(Icons.photo_rounded, size: 80, color: Color(0xff8e94a4)),
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(0 * widget.fem, 0 * widget.fem, 0 * widget.fem, 8 * widget.fem),
+              margin: EdgeInsets.only(bottom: 5 * widget.fem),
               child: Text(
                 'Add Cover Photo',
                 textAlign: TextAlign.center,

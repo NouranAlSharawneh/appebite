@@ -31,22 +31,17 @@ class _CookingDurationState extends State<CookingDuration> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(8 * widget.fem, 0 * widget.fem, 5.5 * widget.fem, 31 * widget.fem),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(32 * widget.fem),
-      ),
+      margin: EdgeInsets.symmetric(vertical: 10*widget.fem),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: EdgeInsets.fromLTRB(0 * widget.fem, 0 * widget.fem, 0 * widget.fem, 22 * widget.fem),
+            margin: EdgeInsets.only(bottom: 22 * widget.fem),
             child: RichText(
               text: TextSpan(
                 style: GoogleFonts.poppins(
                   fontSize: 17 * widget.ffem,
                   fontWeight: FontWeight.w700,
-                  height: 1 * widget.ffem / widget.fem,
                   color: const Color(0xff3d5480),
                 ),
                 children: [
@@ -55,8 +50,6 @@ class _CookingDurationState extends State<CookingDuration> {
                     style: GoogleFonts.poppins(
                       fontSize: 17 * widget.ffem,
                       fontWeight: FontWeight.w700,
-                      height: 1.2125 * widget.ffem / widget.fem,
-                      letterSpacing: 0.5 * widget.fem,
                       color: const Color(0xffffffff),
                     ),
                   ),
@@ -65,21 +58,14 @@ class _CookingDurationState extends State<CookingDuration> {
                     style: GoogleFonts.poppins(
                       fontSize: 17 * widget.ffem,
                       fontWeight: FontWeight.w700,
-                      height: 1 * widget.ffem / widget.fem,
-                      letterSpacing: 0.5 * widget.fem,
                       color: const Color(0xffffffff),
                     ),
                   ),
-                  const TextSpan(
-                    text: ' ',
-                  ),
                   TextSpan(
-                    text: '(in minutes)',
+                    text: ' (in minutes)',
                     style: GoogleFonts.poppins(
                       fontSize: 12 * widget.ffem,
                       fontWeight: FontWeight.w500,
-                      height: 1.2125 * widget.ffem / widget.fem,
-                      letterSpacing: 0.5 * widget.fem,
                       color: const Color(0xff686f82),
                     ),
                   ),
@@ -87,11 +73,8 @@ class _CookingDurationState extends State<CookingDuration> {
               ),
             ),
           ),
-          Container(
+          SizedBox(
             width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(32 * widget.fem),
-            ),
             child: Column(
               children: [
                 Row(
@@ -103,8 +86,6 @@ class _CookingDurationState extends State<CookingDuration> {
                       style: GoogleFonts.poppins(
                         fontSize: 15,
                         fontWeight: FontWeight.w500,
-                        height: 1,
-                        letterSpacing: 0.5,
                         color: const Color(0xffff7269),
                       ),
                     ),
@@ -114,8 +95,6 @@ class _CookingDurationState extends State<CookingDuration> {
                       style: GoogleFonts.poppins(
                         fontSize: 15,
                         fontWeight: FontWeight.w500,
-                        height: 1,
-                        letterSpacing: 0.5,
                         color: const Color(0xffff7269),
                       ),
                     ),
@@ -125,14 +104,12 @@ class _CookingDurationState extends State<CookingDuration> {
                       style: GoogleFonts.poppins(
                         fontSize: 15,
                         fontWeight: FontWeight.w500,
-                        height: 1,
-                        letterSpacing: 0.5,
                         color: const Color(0xff686e81),
                       ),
                     ),
                   ],
                 ),
-                Slider(
+                Slider.adaptive(
                   value: _currentSliderValue,
                   min: 0,
                   max: 60,

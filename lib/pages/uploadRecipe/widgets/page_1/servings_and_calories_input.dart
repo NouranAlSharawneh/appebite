@@ -21,20 +21,19 @@ class ServingsAndCaloriesInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.fromLTRB(8, 0, 5.5, 31),
+      margin: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
             child: Row(
+              
               children: [
                 Text(
                   text1,
                   style: GoogleFonts.poppins(
                     fontSize: 17,
                     fontWeight: FontWeight.w700,
-                    height: 1,
-                    letterSpacing: 0.5,
                     color: const Color(0xffffffff),
                   ),
                 ),
@@ -45,7 +44,7 @@ class ServingsAndCaloriesInput extends StatelessWidget {
                     height: 50,
                     child: Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(13),
                         color: const Color(0xff353842),
                       ),
                       child: TextField(
@@ -54,20 +53,15 @@ class ServingsAndCaloriesInput extends StatelessWidget {
                         style: GoogleFonts.poppins(
                           fontSize: 13,
                           fontWeight: FontWeight.w500,
-                          letterSpacing: 0.5,
-                          color: const Color(0xff686f82),
+                          color: const Color(0xffffffff),
                         ),
                         textAlign: TextAlign.left,
                         decoration: InputDecoration(
                           hintStyle: GoogleFonts.poppins(
                             fontSize: 13,
-                            height: 1,
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: 0.5,
                             color: const Color(0xff686f82),
                           ),
                           prefixIcon: const Icon(Icons.people_sharp, color: Color(0xff686f82)),
-                          contentPadding: const EdgeInsets.symmetric(vertical: 12),
                           border: InputBorder.none,
                         ),
                       ),
@@ -86,7 +80,6 @@ class ServingsAndCaloriesInput extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     fontSize: 17,
                     fontWeight: FontWeight.w700,
-                    letterSpacing: 0.5,
                     color: const Color(0xffffffff),
                   ),
                 ),
@@ -97,7 +90,7 @@ class ServingsAndCaloriesInput extends StatelessWidget {
                     height: 50,
                     child: Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(13),
                         color: const Color(0xff353842),
                       ),
                       child: TextField(
@@ -107,19 +100,14 @@ class ServingsAndCaloriesInput extends StatelessWidget {
                         style: GoogleFonts.poppins(
                           fontSize: 13,
                           fontWeight: FontWeight.w500,
-                          letterSpacing: 0.5,
-                          color: const Color(0xff686f82),
+                          color: const Color(0xffffffff),
                         ),
                         decoration: InputDecoration(
                           hintStyle: GoogleFonts.poppins(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            height: 1.2,
-                            letterSpacing: 0.5,
+                            fontSize: 13,
                             color: const Color(0xff686f82),
                           ),
                           prefixIcon: const Icon(Icons.sports_gymnastics, color: Color(0xff686f82)),
-                          contentPadding: const EdgeInsets.symmetric(vertical: 12),
                           border: InputBorder.none,
                         ),
                       ),
