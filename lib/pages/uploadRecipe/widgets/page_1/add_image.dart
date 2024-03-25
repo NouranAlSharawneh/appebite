@@ -22,6 +22,7 @@ class AddImage extends StatefulWidget {
 class _AddImageState extends State<AddImage> {
   File? _image;
   final ImagePicker _picker = ImagePicker();
+  bool _imageSelected = false;
 
   Future<void> _pickImage() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
@@ -29,6 +30,7 @@ class _AddImageState extends State<AddImage> {
     if (pickedFile != null) {
       setState(() {
         _image = File(pickedFile.path);
+        _imageSelected = true;
       });
 
       widget.onImageSelected(_image);
@@ -56,15 +58,15 @@ class _AddImageState extends State<AddImage> {
               height: 100 * widget.fem,
               child: _image != null
                   ? ClipRRect(
-                    borderRadius: BorderRadius.circular(13 * widget.fem),
-                    child: Image.file(_image!, fit: BoxFit.cover),
-                  )
-                  : const Icon(Icons.photo_rounded, size: 80, color: Color(0xff8e94a4)),
+                      borderRadius: BorderRadius.circular(13 * widget.fem),
+                      child: Image.file(_image!, fit: BoxFit.cover),
+                    )
+                  : Icon(Icons.photo_rounded, size: 80, color: Color(0xff8e94a4)),
             ),
             Container(
               margin: EdgeInsets.only(bottom: 5 * widget.fem),
               child: Text(
-                'Add Cover Photo',
+                _imageSelected ? 'Change Cover Photo' : 'Add Cover Photo',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
                   fontSize: 15 * widget.ffem,
