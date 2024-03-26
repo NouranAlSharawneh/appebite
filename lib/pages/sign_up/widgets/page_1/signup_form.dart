@@ -39,12 +39,10 @@ class _SignUpFormState extends State<SignUpForm> {
       child: Container(
         margin: EdgeInsets.only(top: 16.5 * widget.fem),
         width: 316 * widget.fem,
-        height: 320 * widget.fem, 
         child: SizedBox(
           width: 316 * widget.fem,
-          height: 320 * widget.fem,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,7 +103,7 @@ class _SignUpFormState extends State<SignUpForm> {
                             hintText: 'first name',
                             hintStyle:
                             const TextStyle(color:Color(0xff686f82),),
-                            contentPadding: const EdgeInsets.symmetric(vertical:12.0),
+                            contentPadding: EdgeInsets.symmetric(vertical:15.0 * widget.fem, horizontal: 12* widget.fem),
                             border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(13),
                             borderSide: const BorderSide(
@@ -160,7 +158,7 @@ class _SignUpFormState extends State<SignUpForm> {
                             ),
                             hintStyle:
                             const TextStyle(color: Color(0xff686f82)),
-                            contentPadding: const EdgeInsets.symmetric(vertical:12.0),
+                            contentPadding: EdgeInsets.symmetric(vertical:15.0 * widget.fem, horizontal: 12* widget.fem),
                             filled: true,
                             fillColor: const Color(0xff353842),
                             border: OutlineInputBorder(
@@ -234,7 +232,7 @@ class _SignUpFormState extends State<SignUpForm> {
                           ),
                           hintText: 'email address',
                           hintStyle: const TextStyle(color: Color(0xff686f82)),
-                          contentPadding: const EdgeInsets.symmetric(vertical: 15),                          
+                          contentPadding: EdgeInsets.symmetric(vertical:15.0 * widget.fem, horizontal: 12* widget.fem),                          
                           filled: true,
                           fillColor: const Color(0xff353842),
                           border: OutlineInputBorder(
@@ -290,101 +288,89 @@ class _SignUpFormState extends State<SignUpForm> {
     
                       // Sixth row: Text Field
                       SizedBox(
-                        // height: 50,
-                        child: Stack(
-                          alignment: Alignment.centerRight,
-                          children: [
-                            TextFormField(
-                              validator: (value) {
-                                setState(() {
+                        child: TextFormField(
+                          validator: (value) {
+                            setState(() {
                               hasError = true;
                             });
-    
-                                if (value!.isEmpty) {
-                                  return 'Enter your password';
-                                }
-                                if (value.length < 8) {
-                                  return 'Password must be at least 8 characters';
-                                }
-                                bool hasUppercase = value.contains(RegExp(r'[A-Z]'));
-                                bool hasLowercase = value.contains(RegExp(r'[a-z]'));
-                                bool hasDigit = value.contains(RegExp(r'\d'));
-                                RegExp hasSpecialChar = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@_#\$&*~]).{8,}$');
-    
-                                if (!hasUppercase) {
-                                  return 'Password must include at least one uppercase letter';
-                                }
-    
-                                if (!hasLowercase) {
-                                  return 'Password must include at least one lowercase letter';
-                                }
-    
-                                if (!hasDigit) {
-                                  return 'Password must include at least one number';
-                                }
-                                if (!hasSpecialChar.hasMatch(value)) {
-                                  return 'Password must include at least one special character';
-                                }
-                                return null;
-                              },
-                              controller: widget.passwordController,
-                              style: const TextStyle(color: Colors.white,),
-                              obscureText: _obscureText,
-                              decoration: InputDecoration(
-                                hintText: 'password',
-                                prefixIcon: const Icon(
-                                  Icons.lock,
-                                  color: Color.fromRGBO(104, 111, 130, 100),
-                                ),
-                                hintStyle: const TextStyle(color: Color(0xff686f82),),
-                                contentPadding: const EdgeInsets.symmetric(vertical: 15),
-                                filled: true,
-                                fillColor: const Color(0xff353842),
-                                border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(13),
-                                borderSide: const BorderSide(
-                                  color:Color(0xff686f82),
-                                ),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(13),
-                                borderSide: const BorderSide(
-                                  color:  Color(0xffff7269) 
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(13),
-                                borderSide: const BorderSide(
-                                  color:Color(0xff686f82),
-                                ),
-                              ),
-                            focusedErrorBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(13),
-                                borderSide: const BorderSide(
-                                  color: Color(0xffff7269) 
-                                ),
-                              ),
-                              errorStyle: const TextStyle(
-                                color: Color(0xffff7269),
-                                fontSize: 12.0,
-                                height: 1, 
-                              ),
+
+                            if (value!.isEmpty) {
+                              return 'Enter a password';
+                            }
+                            if (value.length < 8) {
+                              return 'Password must be at least 8 characters';
+                            }
+                            bool hasUppercase = value.contains(RegExp(r'[A-Z]'));
+                            bool hasLowercase = value.contains(RegExp(r'[a-z]'));
+                            bool hasDigit = value.contains(RegExp(r'\d'));
+                            RegExp hasSpecialChar = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@_#\$&*~]).{8,}$');
+
+                            if (!hasUppercase) {
+                              return 'Password must include at least one uppercase letter';
+                            }
+
+                            if (!hasLowercase) {
+                              return 'Password must include at least one lowercase letter';
+                            }
+
+                            if (!hasDigit) {
+                              return 'Password must include at least one number';
+                            }
+                            if (!hasSpecialChar.hasMatch(value)) {
+                              return 'Password must include at least one special character';
+                            }
+                            return null;
+                          },
+                          controller: widget.passwordController,
+                          style: const TextStyle(color: Colors.white),
+                          obscureText: _obscureText,
+                          decoration: InputDecoration(
+                            hintText: 'password',
+                            prefixIcon: const Icon(
+                              Icons.lock,
+                              color: Color.fromRGBO(104, 111, 130, 100),
+                            ),
+                            hintStyle: const TextStyle(color: Color(0xff686f82)),
+                            filled: true,
+                            fillColor: const Color(0xff353842),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(13),
+                              borderSide: const BorderSide(
+                                color: Color(0xff686f82),
                               ),
                             ),
-                            IconButton(
+                            errorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(13),
+                              borderSide: const BorderSide(
+                                color: Color(0xffff7269),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(13),
+                              borderSide: const BorderSide(
+                                color: Color(0xff686f82),
+                              ),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(13),
+                              borderSide: const BorderSide(
+                                color: Color(0xffff7269),
+                              ),
+                            ),
+                            errorStyle: const TextStyle(
+                              color: Color(0xffff7269),
+                              fontSize: 12.0,
+                            ),
+                            suffixIcon: IconButton(
                               onPressed: _togglePasswordVisibility,
                               icon: Icon(
                                 _obscureText ? Icons.visibility : Icons.visibility_off,
                                 color: const Color.fromRGBO(104, 111, 130, 100),
                               ),
-                              padding: 
-                            hasError ?
-                              const EdgeInsets.only(right: 10, bottom: 20, ) 
-                              // no validation
-                              : const EdgeInsets.only(bottom: 5, right: 10, top:0),
                             ),
-                          ],
-                        ),
+                            contentPadding: EdgeInsets.symmetric(vertical:15.0 * widget.fem, horizontal: 12* widget.fem),
+                          ),
+                        )
                       ),
                     ],
                   ),
