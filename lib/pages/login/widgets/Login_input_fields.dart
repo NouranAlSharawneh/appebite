@@ -32,86 +32,74 @@ class _InputFieldState extends State<InputField> {
         children: [
           Container(
             child: widget.isPassword
-                ? Stack(               
-                    alignment: Alignment.centerRight,
-                    children: [
-                      TextFormField(
-                        controller: widget.controller,
-                        validator: (value) {
-                          setState(() {
-                            hasError = true;
-                          });
-                          if (value!.isEmpty) {
-                            return 'Enter a password';
-                          }
-                          return null;
-                        },
-                        onSaved: (value) {
-                          passwordInput = value!;
-                        },
-                        obscureText: _obscureText,
-                        style: const TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: const Color(0xff353842),
-                          labelText: widget.hint,
-                          hintStyle: const TextStyle(
-                            color: Color(0xff686f82),
-                            height: 1,
-                          ),
-                          labelStyle:
-                              const TextStyle(color: Color(0xff686f82)),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(13),
-                            borderSide: const BorderSide(
-                              color:Color(0xff686f82),
-                            ),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(13),
-                            borderSide: const BorderSide(
-                              color:  Color(0xffff7269) 
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(13),
-                            borderSide: const BorderSide(
-                              color:Color(0xff686f82),
-                            ),
-                          ),
-                        focusedErrorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(13),
-                            borderSide: const BorderSide(
-                              color: Color(0xffff7269) 
-                            ),
-                          ),
-                          errorStyle: const TextStyle(
-                            color: Color(0xffff7269),
-                            fontSize: 12.0,
-                            height: 1, 
-                          ),
+                ? TextFormField(
+                    controller: widget.controller,
+                    validator: (value) {
+                      setState(() {
+                        hasError = true;
+                      });
+                      if (value!.isEmpty) {
+                        return 'Enter a password';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      passwordInput = value!;
+                    },
+                    obscureText: _obscureText,
+                    style: const TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xff353842),
+                      labelText: widget.hint,
+                      hintStyle: const TextStyle(
+                        color: Color(0xff686f82),
+                        height: 1,
+                      ),
+                      labelStyle:
+                          const TextStyle(color: Color(0xff686f82)),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(13),
+                        borderSide: const BorderSide(
+                          color:Color(0xff686f82),
                         ),
                       ),
-                      IconButton(
-                        onPressed: () {
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(13),
+                        borderSide: const BorderSide(
+                          color:  Color(0xffff7269) 
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(13),
+                        borderSide: const BorderSide(
+                          color:Color(0xff686f82),
+                        ),
+                      ),
+                    focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(13),
+                        borderSide: const BorderSide(
+                          color: Color(0xffff7269) 
+                        ),
+                      ),
+                      errorStyle: const TextStyle(
+                        color: Color(0xffff7269),
+                        fontSize: 12.0,
+                        height: 1, 
+                      ), 
+                    suffixIcon: IconButton(
+                      onPressed: () {
                           setState(() {
                             _obscureText = !_obscureText;
                           });
                         },
-                        icon: Icon(
-                          _obscureText
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          color: const Color.fromRGBO(104, 111, 130, 100),
-                        ),
-                        padding: 
-                          hasError ?
-                            const EdgeInsets.only(right: 10, bottom: 20, ) 
-                            // no validation
-                            : const EdgeInsets.only(bottom: 5, right: 10, top:0),
+                      icon: Icon(
+                        _obscureText ? Icons.visibility : Icons.visibility_off,
+                        color: const Color.fromRGBO(104, 111, 130, 100),
                       ),
-                    ],
-                  )
+                    ),
+                  ),
+                )
                 : TextFormField(
                     controller: widget.controller,
                     validator: (value) {
