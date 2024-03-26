@@ -14,7 +14,7 @@ class SignUpPersonalInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(36 * fem, 0 * fem, 0 * fem, 8 * fem),
+      padding: EdgeInsets.only(bottom: 15 * fem),
       child: Text(
         'Personal information ',
         style: GoogleFonts.poppins(

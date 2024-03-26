@@ -14,7 +14,7 @@ class SignUpTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(36*fem,50*fem,36*fem,30*fem),
+      margin: EdgeInsets.only(bottom: 30*fem),
       width: double.infinity,
 
       child: Column(

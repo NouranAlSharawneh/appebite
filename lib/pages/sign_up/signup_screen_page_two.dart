@@ -56,14 +56,15 @@ Widget build(BuildContext context) {
     resizeToAvoidBottomInset: false,
     body: SafeArea(
       child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SignUpTitle(fem: fem, ffem: ffem),
-            SignUpPersonalInformation(fem: fem, ffem: ffem),
-            Container(
-              padding: EdgeInsets.fromLTRB(30 * fem, 14 * fem, 30 * fem, 8 * fem),
-              child: Form(
+        child: Container(
+                    margin: EdgeInsets.fromLTRB(36*fem,50*fem,36*fem,0*fem),
+
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SignUpTitle(fem: fem, ffem: ffem),
+              SignUpPersonalInformation(fem: fem, ffem: ffem),
+              Form(
                 key: formKey,
                 autovalidateMode: AutovalidateMode.disabled,
                 child: Column(
@@ -125,10 +126,10 @@ Widget build(BuildContext context) {
                   ],
                 ),
               ),
-            ),
-            Center(child: SignUpDivider(fem: fem)),
-            Center(child: SignUpNavigator(fem: fem, ffem: ffem)),
-          ],
+              Center(child: SignUpDivider(fem: fem)),
+              Center(child: SignUpNavigator(fem: fem, ffem: ffem)),
+            ],
+          ),
         ),
       ),
     ),
