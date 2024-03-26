@@ -66,11 +66,11 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
   }
 
   void addIngredientField() {
-    TextEditingController controller = TextEditingController(); // Create a new controller
-    ingredientControllers.add(controller); // Add the controller to the list
+    TextEditingController controller = TextEditingController(); 
+    ingredientControllers.add(controller);
     setState(() {
       ingredientFields.add(
-        AddIngredientPage(controller: controller), // Pass the controller to the widget
+        AddIngredientPage(controller: controller), 
       );
     });
   }
@@ -95,100 +95,103 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
 
-    return Scaffold(
-      backgroundColor: const Color(0xff272a32),
-      body: SingleChildScrollView(
-        child: SizedBox(
-          width: double.infinity,
-          child: Container(
-            padding: EdgeInsets.fromLTRB(26 * fem, 34 * fem, 26 * fem, 8 * fem),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: const Color(0xff272a32),
+        body: SingleChildScrollView(
+          child: SizedBox(
             width: double.infinity,
-            decoration: const BoxDecoration(
-              color: Color(0xff272a32),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                TitleHeading(fem: fem, ffem: ffem, dynamicValue: '2'),
-                SizedBox(
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 4 * fem, 19 * fem),
-                        width: double.infinity,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 198 * fem, 0 * fem),
-                              child: Text(
-                                'Ingredients',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 17 * ffem,
-                                  fontWeight: FontWeight.w700,
-                                  letterSpacing: 0.5 * fem,
-                                  color: const Color(0xffffffff),
+            child: Container(
+              // adjust
+              padding: EdgeInsets.symmetric(horizontal: 26 * fem),
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                color: Color(0xff272a32),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  TitleHeading(fem: fem, ffem: ffem, dynamicValue: '2'),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 4 * fem, 19 * fem),
+                          width: double.infinity,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 198 * fem, 0 * fem),
+                                child: Text(
+                                  'Ingredients',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 17 * ffem,
+                                    fontWeight: FontWeight.w700,
+                                    letterSpacing: 0.5 * fem,
+                                    color: const Color(0xffffffff),
+                                  ),
                                 ),
                               ),
-                            ),
-                            GestureDetector(
-                              onTap: addIngredientField,
-                              child: Container(
-                                margin: EdgeInsets.fromLTRB(0 * fem, 1 * fem, 0 * fem, 0 * fem),
-                                width: 24 * fem,
-                                height: 24 * fem,
-                                child: Icon(
-                                  Icons.add,
-                                  size: 24 * fem,
-                                  color: const Color(0xffff7269),
+                              GestureDetector(
+                                onTap: addIngredientField,
+                                child: Container(
+                                  margin: EdgeInsets.fromLTRB(0 * fem, 1 * fem, 0 * fem, 0 * fem),
+                                  width: 24 * fem,
+                                  height: 24 * fem,
+                                  child: Icon(
+                                    Icons.add,
+                                    size: 24 * fem,
+                                    color: const Color(0xffff7269),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      ...ingredientFields,
-                    ],
+                        ...ingredientFields,
+                      ],
+                    ),
                   ),
-                ),
-                UploadRecipeCategories(
-                  fem: fem, 
-                  ffem: ffem,
-                  cuisineTypeController: cuisineTypeController,
-                  category: updateMeal,
-                  ),
-                const UploadRecipeDivider(),
-                UploadRecipeRating(
-                  fem: fem, 
-                  ffem: ffem,
-                  onRatingUpdate: updateRating,
-                  ),
-                UploadRecipeSteps(
-                  fem: fem, 
-                  ffem: ffem,
-                  stepsControllers: stepsControllers,
-                  addStepCallback: _addStep,
-                  deleteStepCallback: _deleteStep,
-                  ),
-                UploadFormButtons(
-                  fem: fem, 
-                  ffem: ffem,
-                  foodName: widget.foodName,
-                  description: widget.description,
-                  servings: widget.servings,
-                  calories: widget.calories,
-                  cookingDuration: widget.cookingDuration,
-                  selectedImage: widget.selectedImage,
-                  // page two
-                  ratingValue: ratingValue,
-                  cuisineType: cuisineTypeController.text, 
-                  category: selectedMeal,
-                  ingredientFields: ingredientFields,
-                  stepControllers: stepsControllers,
-                  ),
-              ],
+                  UploadRecipeCategories(
+                    fem: fem, 
+                    ffem: ffem,
+                    cuisineTypeController: cuisineTypeController,
+                    category: updateMeal,
+                    ),
+                  const UploadRecipeDivider(),
+                  UploadRecipeRating(
+                    fem: fem, 
+                    ffem: ffem,
+                    onRatingUpdate: updateRating,
+                    ),
+                  UploadRecipeSteps(
+                    fem: fem, 
+                    ffem: ffem,
+                    stepsControllers: stepsControllers,
+                    addStepCallback: _addStep,
+                    deleteStepCallback: _deleteStep,
+                    ),
+                  UploadFormButtons(
+                    fem: fem, 
+                    ffem: ffem,
+                    foodName: widget.foodName,
+                    description: widget.description,
+                    servings: widget.servings,
+                    calories: widget.calories,
+                    cookingDuration: widget.cookingDuration,
+                    selectedImage: widget.selectedImage,
+                    // page two
+                    ratingValue: ratingValue,
+                    cuisineType: cuisineTypeController.text, 
+                    category: selectedMeal,
+                    ingredientFields: ingredientFields,
+                    stepControllers: stepsControllers,
+                    ),
+                ],
+              ),
             ),
           ),
         ),

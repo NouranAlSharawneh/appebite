@@ -32,15 +32,16 @@ class _LoginPageState extends State<LoginPage> {
             child: Container(
               padding: EdgeInsets.fromLTRB(
                 screenWidth * 0.1, 
-                screenHeight * 0.05, 
+                screenHeight * 0, 
                 screenWidth * 0.1, 
-                screenHeight * 0.02, 
+                screenHeight * 0, 
               ),
               decoration: const BoxDecoration(
                 color: Color(0xff272a32),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
                     height: screenHeight * 0.15, 
