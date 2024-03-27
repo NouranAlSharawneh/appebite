@@ -1,7 +1,9 @@
+import 'package:appebite/app/modules/home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:appebite/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:appebite/pages/loadingScreen/loading_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,6 +47,8 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+              textTheme: GoogleFonts.poppinsTextTheme(),
               useMaterial3: true,
             ),
             home: const LoadingScreen(),
