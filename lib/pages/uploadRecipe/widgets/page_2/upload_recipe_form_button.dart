@@ -163,7 +163,6 @@ class UploadFormButtons extends StatelessWidget {
     }
   } catch (error) {
     Navigator.pop(context);
-    print('Error uploading recipe: $error');
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text('Uploading recipe failed. ${error.toString()}'),

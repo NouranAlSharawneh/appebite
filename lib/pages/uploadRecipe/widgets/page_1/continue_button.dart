@@ -30,14 +30,19 @@ class ContinueButton extends StatelessWidget {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => UploadRecipePage2(
+          PageRouteBuilder(
+            transitionDuration: Duration.zero,
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                FadeTransition(
+              opacity: animation,
+              child: UploadRecipePage2(
               foodName: foodName,
               description: description,
               servings: servings,
               calories: calories,
               cookingDuration: cookingDuration,
               selectedImage: selectedImage,
+            ),
             ),
           ),
         );

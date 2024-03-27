@@ -20,7 +20,7 @@ class SignUpAccentButton extends StatefulWidget {
     required this.passwordController,
     required this.firstNameController,
     required this.lastNameController,
-    required this.profilePicture, 
+    required this.profilePicture,
     required this.termsAndConditionsChecked,
   }) : super(key: key);
 
@@ -97,7 +97,7 @@ class _SignUpAccentButtonState extends State<SignUpAccentButton> {
         );
         return;
       }
-      
+
       if (!widget.termsAndConditionsChecked) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -106,7 +106,6 @@ class _SignUpAccentButtonState extends State<SignUpAccentButton> {
         );
         return;
       }
-      
 
       setState(() {
         _isLoading = true;
@@ -176,35 +175,29 @@ class _SignUpAccentButtonState extends State<SignUpAccentButton> {
 
     return Container(
       margin: EdgeInsets.only(bottom: 20 * widget.fem, top: 10 * widget.fem),
-      child: _isLoading
-          ? const Center(
-              child: CircularProgressIndicator.adaptive(
-                valueColor: AlwaysStoppedAnimation<Color>(Color(0xffff7269)),
-              ),
-            )
-          : TextButton(
-              onPressed: () => handleSignUp(context),
-              style: TextButton.styleFrom(padding: EdgeInsets.zero),
-              child: SizedBox(
-                width: 315 * widget.fem,
-                height: 60 * widget.fem,
-                child: Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: const Color(0xffff7269),
-                    borderRadius: BorderRadius.circular(10 * widget.fem),
-                  ),
-                  child: Text(
-                    'Sign up',
-                    style: GoogleFonts.poppins(
-                      fontSize: 16 * widget.ffem,
-                      fontWeight: FontWeight.w600,
-                      color: const Color(0xffffffff),
-                    ),
-                  ),
-                ),
+      child: TextButton(
+        onPressed: _isLoading ? null : () => handleSignUp(context),
+        style: TextButton.styleFrom(padding: EdgeInsets.zero),
+        child: SizedBox(
+          width: 315 * widget.fem,
+          height: 60 * widget.fem,
+          child: Container(
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: _isLoading ? const Color.fromARGB(255, 246, 134, 126) : const Color(0xffff7269),
+              borderRadius: BorderRadius.circular(10 * widget.fem),
+            ),
+            child: Text(
+              'Sign up',
+              style: GoogleFonts.poppins(
+                fontSize: 16 * widget.ffem,
+                fontWeight: FontWeight.w600,
+                color: const Color(0xffffffff),
               ),
             ),
+          ),
+        ),
+      ),
     );
   }
 }
