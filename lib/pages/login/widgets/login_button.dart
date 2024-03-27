@@ -1,7 +1,7 @@
-import 'package:appebite/pages/settings/settings_edit_information.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:appebite/pages/settings/settings_edit_information.dart';
 
 class LoginButton extends StatefulWidget {
   const LoginButton({
@@ -68,7 +68,7 @@ class _LoginButtonState extends State<LoginButton> {
                   } catch (e) {
                     // If sign-in fails, show an error message
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                           content: Text(
                               'Failed to sign in. Please check your credentials.')),
                     );
@@ -83,39 +83,44 @@ class _LoginButtonState extends State<LoginButton> {
                   });
                 }
               },
-        style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.of(context).size.width * 0.2,
-            vertical: screenHeight * 0.02,
+        style: ButtonStyle(
+          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+            EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.2,
+              vertical: screenHeight * 0.02,
+            ),
           ),
-          backgroundColor: const Color(0xffff7269),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+          backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+            if (states.contains(MaterialState.disabled)) {
+              return const Color.fromARGB(255, 246, 134, 126); 
+            }
+            return const Color(0xffff7269);
+          }),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
           ),
         ),
-        child: isLoading
-            ? const CircularProgressIndicator.adaptive(
-                valueColor: AlwaysStoppedAnimation<Color>(Color(0xffff7269)
-              ))
-            : Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Login ',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
-                      fontSize: screenHeight * 0.020,
-                      fontWeight: FontWeight.w600,
-                      height: 1.5,
-                      color: const Color(0xffffffff),
-                    ),
-                  ),
-                  const Icon(
-                    Icons.arrow_forward_sharp,
-                    color: Colors.white,
-                  ),
-                ],
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Login ',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.poppins(
+                fontSize: screenHeight * 0.020,
+                fontWeight: FontWeight.w600,
+                height: 1.5,
+                color: const Color(0xffffffff),
               ),
+            ),
+            const Icon(
+              Icons.arrow_forward_sharp,
+              color: Colors.white,
+            ),
+          ],
+        ),
       ),
     );
   }
