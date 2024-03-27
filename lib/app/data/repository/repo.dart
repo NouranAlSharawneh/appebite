@@ -10,7 +10,6 @@ class AiRepository {
   //       Uri.parse('https://api.openai.com/v1/chat/completions'),
   //       headers: {
   //         'Content-Type': 'application/json',
-  //         // 'Authorization': 'Bearer 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'
   //       },
   //       body: jsonEncode({
   //         "model": "gpt-3.5-turbo",
