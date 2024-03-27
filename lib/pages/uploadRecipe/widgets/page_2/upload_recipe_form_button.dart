@@ -94,7 +94,7 @@ class UploadFormButtons extends StatelessWidget {
         barrierDismissible: false, // Prevent user from dismissing the dialog
         builder: (BuildContext context) {
           return const Center(
-            child: CircularProgressIndicator(
+            child: CircularProgressIndicator.adaptive(
               strokeWidth: 4.0,
               valueColor: AlwaysStoppedAnimation<Color>(Color(0xffff7269)),
             ), // Loader widget

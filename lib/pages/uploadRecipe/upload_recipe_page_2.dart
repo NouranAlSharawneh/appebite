@@ -55,6 +55,7 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
       stepNumbers.removeAt(index);
       stepsControllers.removeAt(index);
     });
+    ingredientFields.removeAt(index);
   }
 
   @override
