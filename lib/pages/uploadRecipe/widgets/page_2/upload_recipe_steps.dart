@@ -25,7 +25,8 @@ class UploadRecipeSteps extends StatefulWidget {
 class _UploadRecipeStepsState extends State<UploadRecipeSteps> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10*widget.fem),
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,12 +34,12 @@ class _UploadRecipeStepsState extends State<UploadRecipeSteps> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(right: 250 * widget.fem),
-                    child: Text(
+              Container(
+                margin: EdgeInsets.only(bottom: 10*widget.fem),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
                       'Steps ',
                       style: GoogleFonts.poppins(
                         fontSize: 17 * widget.ffem,
@@ -46,20 +47,21 @@ class _UploadRecipeStepsState extends State<UploadRecipeSteps> {
                         color: const Color(0xffffffff),
                       ),
                     ),
-                  ),
-                  GestureDetector(
-                    onTap: widget.addStepCallback,
-                    child: SizedBox(
-                      width: 24 * widget.fem,
-                      height: 24 * widget.fem,
-                      child: Icon(
-                        Icons.add,
-                        size: 24 * widget.fem,
-                        color: const Color(0xffff7269),
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: widget.addStepCallback,
+                      child: SizedBox(
+                        width: 24 * widget.fem,
+                        height: 24 * widget.fem,
+                        child: Icon(
+                          Icons.add,
+                          size: 24 * widget.fem,
+                          color: const Color(0xffff7269),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               ListView.builder(
                 shrinkWrap: true,
@@ -130,9 +132,9 @@ class _UploadRecipeStepsState extends State<UploadRecipeSteps> {
                         color: Colors.white,
                       ),
                     ),
-                    child: SizedBox(
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: 15 * widget.fem),
                       width: double.infinity,
-                      height: 112 * widget.fem,
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -148,7 +150,7 @@ class _UploadRecipeStepsState extends State<UploadRecipeSteps> {
                                   height: 24 * widget.fem,
                                   decoration: BoxDecoration(
                                     color: const Color(0xffe6955b),
-                                    borderRadius: BorderRadius.circular(12 * widget.fem),
+                                    borderRadius: BorderRadius.circular(13 * widget.fem),
                                   ),
                                   child: Center(
                                     child: Text(
@@ -157,7 +159,6 @@ class _UploadRecipeStepsState extends State<UploadRecipeSteps> {
                                       style: GoogleFonts.poppins(
                                         fontSize: 12 * widget.ffem,
                                         fontWeight: FontWeight.w700,
-                                        height: 1.2125 * widget.ffem / widget.fem,
                                         color: const Color(0xffffffff),
                                       ),
                                     ),
@@ -175,34 +176,33 @@ class _UploadRecipeStepsState extends State<UploadRecipeSteps> {
                               ],
                             ),
                           ),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(16 * widget.fem, 5 * widget.fem, 0 * widget.fem, 16 * widget.fem),
-                            width: 300 * widget.fem,
-                            height: 100 * widget.fem,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: const Color(0xff353842)),
-                              color: const Color(0xff353842),
-                              borderRadius: BorderRadius.circular(8 * widget.fem),
-                            ),
-                            child: TextField(
-                              controller: widget.stepsControllers[index],
-                              style: GoogleFonts.poppins(
-                                fontSize: 12 * widget.ffem,
-                                fontWeight: FontWeight.w500,
-                                height: 1 * widget.ffem / widget.fem,
-                                letterSpacing: 0.5 * widget.fem,
-                                color: const Color(0xffffffff),
+                          Flexible(
+                            flex: 1,
+                            child: Container(
+                              padding: EdgeInsets.fromLTRB(16 * widget.fem, 5 * widget.fem, 0 * widget.fem, 16 * widget.fem),
+                              width: 300 * widget.fem,
+                              height: 100 * widget.fem,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: const Color(0xff353842)),
+                                color: const Color(0xff353842),
+                                borderRadius: BorderRadius.circular(8 * widget.fem),
                               ),
-                              decoration: InputDecoration(
-                                hintText: 'Tell a little about your food',
-                                hintStyle: GoogleFonts.poppins(
-                                  fontSize: 12 * widget.ffem,
+                              child: TextField(
+                                controller: widget.stepsControllers[index],
+                                style: GoogleFonts.poppins(
+                                  fontSize: 13 * widget.ffem,
                                   fontWeight: FontWeight.w500,
-                                  height: 1.2125 * widget.ffem / widget.fem,
-                                  letterSpacing: 0.5 * widget.fem,
-                                  color: const Color(0xff686f82),
+                                  color: const Color(0xffffffff),
                                 ),
-                                border: InputBorder.none,
+                                decoration: InputDecoration(
+                                  hintText: 'Tell a little about your food',
+                                  hintStyle: GoogleFonts.poppins(
+                                    fontSize: 12 * widget.ffem,
+                                    fontWeight: FontWeight.w500,
+                                    color: const Color(0xff686f82),
+                                  ),
+                                  border: InputBorder.none,
+                                ),
                               ),
                             ),
                           ),

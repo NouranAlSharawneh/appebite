@@ -52,10 +52,17 @@ class UploadFormButtons extends StatelessWidget {
         confirmBtnColor: const Color(0xffff7269),
         confirmBtnText: 'Back home',
         onConfirmBtnTap: () {
-           Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const LoginPage()),
-      );
+          Navigator.push(
+              context,
+              PageRouteBuilder(
+                transitionDuration: Duration.zero,
+                pageBuilder: (context, animation, secondaryAnimation) =>
+                    FadeTransition(
+                  opacity: animation,
+                  child: const LoginPage(),
+                ),
+              ),
+            );
         }
       );
   }
@@ -65,20 +72,6 @@ class UploadFormButtons extends StatelessWidget {
     // Function to handle the upload of recipe details to Firestore
     Future<void> uploadRecipe() async {
   try {
-// Show loader
-    showDialog(
-      context: context,
-      barrierDismissible: false, // Prevent user from dismissing the dialog
-      builder: (BuildContext context) {
-        return const Center(
-          child: CircularProgressIndicator(
-            strokeWidth: 4.0,
-            valueColor: AlwaysStoppedAnimation<Color>(Color(0xffff7269)),
-          ), // Loader widget
-        );
-      },
-    );
-
     // Get the current user
     User? user = FirebaseAuth.instance.currentUser;
 
@@ -94,6 +87,20 @@ class UploadFormButtons extends StatelessWidget {
         );
         return; // Exit the function if any field is empty
       }
+
+      // Show loader
+      showDialog(
+        context: context,
+        barrierDismissible: false, // Prevent user from dismissing the dialog
+        builder: (BuildContext context) {
+          return const Center(
+            child: CircularProgressIndicator(
+              strokeWidth: 4.0,
+              valueColor: AlwaysStoppedAnimation<Color>(Color(0xffff7269)),
+            ), // Loader widget
+          );
+        },
+      );
 
       String imageUrl = ''; // Initialize imageUrl variable
 
@@ -129,12 +136,9 @@ class UploadFormButtons extends StatelessWidget {
       // Store steps in a List
       List<String> steps = stepControllers.map((controller) => controller.text).toList();
 
-
-      print(ingredients);
-      print(steps);
-
       // Hide loader after upload is complete
-        Navigator.pop(context);
+      Navigator.pop(context);
+
       // Displaying the dialog
       _showSuccessDialog(context);
 
@@ -171,47 +175,44 @@ class UploadFormButtons extends StatelessWidget {
 
 
     return Container(
-      margin: EdgeInsets.fromLTRB(0 * fem, 20 * fem, 0 * fem, 21 * fem),
+      margin: EdgeInsets.symmetric(vertical: 21 * fem),
       width: double.infinity,
       height: 56 * fem,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 15 * fem, 0 * fem),
-            child: TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              style: TextButton.styleFrom(
-                padding: EdgeInsets.zero,
-              ),
-              child: SizedBox(
-                width: 156 * fem,
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            style: TextButton.styleFrom(
+              padding: EdgeInsets.zero,
+            ),
+            child: SizedBox(
+              width: 156 * fem,
+              height: double.infinity,
+              child: Container(
+                width: double.infinity,
                 height: double.infinity,
-                child: Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  decoration: BoxDecoration(
-                    color: const Color(0xff353842),
-                    borderRadius: BorderRadius.circular(32 * fem),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Back',
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.poppins(
-                        fontSize: 15 * ffem,
-                        fontWeight: FontWeight.w700,
-                        height: 1.2 * ffem / fem,
-                        color: const Color(0xff686e81),
-                      ),
+                decoration: BoxDecoration(
+                  color: const Color(0xff353842),
+                  borderRadius: BorderRadius.circular(32 * fem),
+                ),
+                child: Center(
+                  child: Text(
+                    'Back',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.poppins(
+                      fontSize: 15 * ffem,
+                      fontWeight: FontWeight.w700,
+                      color: const Color(0xff686e81),
                     ),
                   ),
                 ),
               ),
             ),
           ),
+          const Spacer(),
           TextButton(
             onPressed: uploadRecipe,
             style: TextButton.styleFrom(
@@ -231,7 +232,6 @@ class UploadFormButtons extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     fontSize: 15 * ffem,
                     fontWeight: FontWeight.w700,
-                    height: 1.2125 * ffem / fem,
                     color: const Color(0xffffffff),
                   ),
                 ),

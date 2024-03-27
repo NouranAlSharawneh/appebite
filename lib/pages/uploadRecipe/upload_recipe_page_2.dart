@@ -95,15 +95,14 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
 
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: const Color(0xff272a32),
-        body: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: const Color(0xff272a32),
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: SizedBox(
             width: double.infinity,
             child: Container(
-              // adjust
-              padding: EdgeInsets.symmetric(horizontal: 26 * fem),
+              padding: EdgeInsets.symmetric(horizontal: 36 * fem),
               width: double.infinity,
               decoration: const BoxDecoration(
                 color: Color(0xff272a32),
@@ -117,28 +116,26 @@ class _UploadRecipePage2State extends State<UploadRecipePage2> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 4 * fem, 19 * fem),
+                        SizedBox(
                           width: double.infinity,
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Container(
-                                margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 198 * fem, 0 * fem),
+                                margin: EdgeInsets.symmetric(vertical: 10*fem),
                                 child: Text(
                                   'Ingredients',
                                   style: GoogleFonts.poppins(
                                     fontSize: 17 * ffem,
                                     fontWeight: FontWeight.w700,
-                                    letterSpacing: 0.5 * fem,
                                     color: const Color(0xffffffff),
                                   ),
                                 ),
                               ),
+                              const Spacer(),
                               GestureDetector(
                                 onTap: addIngredientField,
-                                child: Container(
-                                  margin: EdgeInsets.fromLTRB(0 * fem, 1 * fem, 0 * fem, 0 * fem),
+                                child: SizedBox(
                                   width: 24 * fem,
                                   height: 24 * fem,
                                   child: Icon(

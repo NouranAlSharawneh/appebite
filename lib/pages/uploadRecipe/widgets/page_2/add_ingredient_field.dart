@@ -81,13 +81,6 @@ class _AddIngredientPageState extends State<AddIngredientPage> {
         return confirmed;
       },
       onDismissed: (DismissDirection direction) {
-        // Handle ingredient deletion here
-        // You can call a function or perform deletion based on user confirmation
-        // For example:
-        // if (direction == DismissDirection.endToStart) {
-        //   // User confirmed deletion, perform deletion logic
-        //   deleteIngredient();
-        // }
       },
       background: Container(
         color: const Color(0xffff7269),
@@ -106,7 +99,7 @@ class _AddIngredientPageState extends State<AddIngredientPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              margin: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+              margin: const EdgeInsets.only(right: 8),
               width: 24,
               height: 24,
               child: const Icon(
@@ -117,7 +110,7 @@ class _AddIngredientPageState extends State<AddIngredientPage> {
             ),
             Expanded(
               child: Container(
-                padding: const EdgeInsets.fromLTRB(21.65, 5, 21.65, 0),
+                padding: const EdgeInsets.symmetric(horizontal:20, ),
                 height: double.infinity,
                 decoration: BoxDecoration(
                   border: Border.all(color: const Color(0xff353842)),
@@ -129,7 +122,6 @@ class _AddIngredientPageState extends State<AddIngredientPage> {
                   style: GoogleFonts.poppins(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
-                    height: 1.2,
                     color: const Color(0xffffffff),
                   ),
                   decoration: InputDecoration(
@@ -140,7 +132,6 @@ class _AddIngredientPageState extends State<AddIngredientPage> {
                     hintStyle: GoogleFonts.poppins(
                       fontSize: 15,
                       fontWeight: FontWeight.w500,
-                      height: 1.2125,
                       color: const Color(0xff686f82),
                     ),
                   ),

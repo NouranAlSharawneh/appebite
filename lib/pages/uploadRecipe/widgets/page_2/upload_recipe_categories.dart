@@ -18,26 +18,23 @@ class UploadRecipeCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 6 * fem, 0 * fem),
+    return SizedBox(
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 18 * fem),
+          margin: EdgeInsets.symmetric(vertical: 10*fem),
             child: Text(
               'Categories',
               style: GoogleFonts.poppins(
                 fontSize: 17 * ffem,
                 fontWeight: FontWeight.w700,
-                letterSpacing: 0.5 * fem,
                 color: const Color(0xffffffff),
               ),
             ),
           ),
-          Container(
-            margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 0 * fem),
+          SizedBox(
             width: double.infinity,
             height: 33 * fem,
             child: Row(
@@ -45,17 +42,16 @@ class UploadRecipeCategories extends StatelessWidget {
               children: [
                 Container(
                   margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 20 * fem, 0 * fem),
-                  height: double.infinity,
                   decoration: BoxDecoration(
                     color: const Color(0xff353841),
                     borderRadius: BorderRadius.circular(5 * fem),
                   ),
                   child: MealDropdown(onMealSelected: category),
                 ),
+                const Spacer(),
                 Container(
-                  padding: EdgeInsets.fromLTRB(11.74 * fem, 7.59 * fem, 11.74 * fem, 8.41 * fem),
-                  width: 184 * fem,
-                  height: double.infinity,
+                  padding: EdgeInsets.symmetric(horizontal: 10 * fem),
+                  width: 180 * fem,
                   decoration: BoxDecoration(
                     color: const Color(0xff353841),
                     borderRadius: BorderRadius.circular(5 * fem),
@@ -70,7 +66,7 @@ class UploadRecipeCategories extends StatelessWidget {
                     decoration: InputDecoration(
                       hintText: 'Cuisine type',
                       hintStyle: GoogleFonts.poppins(
-                        fontSize: 11 * ffem,
+                        fontSize: 13 * ffem,
                         fontWeight: FontWeight.w400,
                         color: const Color(0xff686f82),
                       ),

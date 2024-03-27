@@ -21,43 +21,40 @@ class UploadRecipeRating extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            margin: EdgeInsets.fromLTRB(0 * fem, 20 * fem, 0 * fem, 16 * fem),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 18 * fem),
-                  child: Text(
-                    'Rate recipe ',
-                    style: GoogleFonts.poppins(
-                      fontSize: 17 * ffem,
-                      fontWeight: FontWeight.w700,
-                      color: const Color(0xffffffff),
-                    ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 10*fem),            
+                child: Text(
+                  'Rate recipe ',
+                  style: GoogleFonts.poppins(
+                    fontSize: 17 * ffem,
+                    fontWeight: FontWeight.w700,
+                    color: const Color(0xffffffff),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    RatingBar.builder(
-                      initialRating: 2.5,
-                      itemCount: 5,
-                      allowHalfRating: true,
-                      itemSize: 50.0,
-                      glowColor: const Color(0xff272a32),
-                      unratedColor: const Color(0xff353842),
-                      onRatingUpdate: onRatingUpdate,
-                      direction: Axis.horizontal,
-                      itemBuilder: (context, _) => const Icon(
-                        Icons.star_rounded,
-                        color: Color.fromRGBO(255, 173, 48, 1),
-                      ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  RatingBar.builder(
+                    initialRating: 2.5,
+                    itemCount: 5,
+                    allowHalfRating: true,
+                    itemSize: 50.0,
+                    glowColor: const Color(0xff272a32),
+                    unratedColor: const Color(0xff353842),
+                    onRatingUpdate: onRatingUpdate,
+                    direction: Axis.horizontal,
+                    itemBuilder: (context, _) => const Icon(
+                      Icons.star_rounded,
+                      color: Color.fromRGBO(255, 173, 48, 1),
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ],
       ),
