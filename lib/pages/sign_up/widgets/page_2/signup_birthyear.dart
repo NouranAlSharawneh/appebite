@@ -63,13 +63,15 @@ class _SignUpBirthYearState extends State<SignUpBirthYear> {
       initialDate: _selectedYear,
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
-      builder:(context, Widget? child) => 
-        Theme(data: ThemeData().copyWith(
-          colorScheme: const ColorScheme.dark(
-            primary: Colors.red, 
-            onPrimary: Colors.white,
-        )
-      ), child: child!,
+      builder:(context, child) => 
+        Theme(
+          data: ThemeData().copyWith(
+            colorScheme: const ColorScheme.light(
+              primary: Color(0xffff7269), 
+              onPrimary: Colors.white,
+              onSurface: Colors.white,
+          ),
+        ), child: child!,
       ),
       initialDatePickerMode: DatePickerMode.year,
     );
@@ -124,8 +126,8 @@ class _SignUpBirthYearState extends State<SignUpBirthYear> {
                     child: Text(
                       showYear,
                       style: GoogleFonts.poppins(
-                        fontSize: 12 * widget.ffem,
-                        fontWeight: FontWeight.w400,
+                        fontSize: 13 * widget.ffem,
+                        fontWeight: FontWeight.w500,
                         color: const Color(0xffffffff),
                       ),
                     ),
