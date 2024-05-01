@@ -159,7 +159,7 @@ class _CuisinesState extends State<Cuisines> {
                   ));
             },
             child: _buildCuisineBox('French',
-                '/Users/swtayx/Desktop/flutter_projects/appebite/assets/french.JPG'),
+                'assets/french.JPG'),
           ),
           const SizedBox(width: 10),
           GestureDetector(
@@ -191,7 +191,7 @@ class _CuisinesState extends State<Cuisines> {
                   ));
             },
             child: _buildCuisineBox('Asian',
-                '/Users/swtayx/Desktop/flutter_projects/appebite/assets/asian.JPG'),
+                'assets/asian.JPG'),
           ), // Adjust the image path
           const SizedBox(width: 10),
           GestureDetector(
@@ -223,7 +223,7 @@ class _CuisinesState extends State<Cuisines> {
                   ));
             },
             child: _buildCuisineBox('Chinese',
-                '/Users/swtayx/Desktop/flutter_projects/appebite/assets/chinese.JPG'),
+                'assets/chinese.JPG'),
           ), // Adjust the image path
           const SizedBox(width: 10),
           GestureDetector(
@@ -255,7 +255,7 @@ class _CuisinesState extends State<Cuisines> {
                   ));
             },
             child: _buildCuisineBox('American',
-                '/Users/swtayx/Desktop/flutter_projects/appebite/assets/american.JPG'),
+                'assets/american.JPG'),
           ),
         ],
       ),
