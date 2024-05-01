@@ -34,7 +34,7 @@ dependencies:
   flutter_spinkit: ^5.2.1
   get: ^4.6.6
   google_fonts: ^6.2.1
-  http: ^1.2.1
+  http: ^1.1.1
   flutter_inset_box_shadow: ^1.0.7
   fluttersax: ^0.0.6
   elm_icons: ^0.1.0
@@ -53,7 +53,6 @@ dependencies:
   date_picker_timeline: ^1.2.6
   flutter_local_notifications: ^17.1.0
   percent_indicator: ^4.2.3
-
 
 dev_dependencies:
   flutter_test:
@@ -106,6 +105,68 @@ flutter:
     - family: ReadexPro
       fonts:
         - asset: /Users/swtayx/Desktop/flutter_projects/appebite/assets/fonts/ReadexPro-Light.ttf
+    # norans mac
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/female_icon.png
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/logo.png
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/male_icon.png
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/monthly_overview.png
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/profile.png
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/home2.png
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/Chef.png
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/Inactive.png
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/profile.png
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/home2H.png
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/profile2.png
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/Chef2.png
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/Inactive2.png
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/Line1.png
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/Avatar.png
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/indian.JPG
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/italian.JPG
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/cook.png
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/Heart.png
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/ex.png
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/Group.png
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/Line.png
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/dot.png
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/Vector.png
+    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/arrow.png
+
+    # norans windows
+    # - assets/images/female_icon.png
+    # - assets/images/logo.png
+    # - assets/images/male_icon.png
+    # - assets/images/monthly_overview.png
+    # - assets/images/profile.png
+    # - assets/home2.png
+    # - assets/Chef.png
+    # - assets/Inactive.png
+    # - assets/profile.png
+    # - assets/home2H.png
+    # - assets/profile2.png
+    # - assets/Chef2.png
+    # - assets/Inactive2.png
+    # - assets/Line1.png
+    # - assets/Avatar.png
+    # - assets/indian.JPG
+    # - assets/italian.JPG
+    # - assets/images/cook.png
+    # - assets/images/Heart.png
+    # - assets/images/ex.png
+    # - assets/images/Group.png
+    # - assets/images/Line.png
+    # - assets/images/dot.png
+    # - assets/images/Vector.png
+    # - assets/images/arrow.png
+  # fonts:
+  #   - family: Poppins
+  #     fonts:
+  #       - asset: /Users/nancysharawna/Desktop/appebite/appebite/assets/fonts/Poppins-Regular.ttf
+  #       - asset: /Users/nancysharawna/Desktop/appebite/appebite/assets/fonts/Poppins-SemiBold.ttf
+  #         weight: 400
+  #   - family: ReadexPro
+  #     fonts:
+  #       - asset: /Users/nancysharawna/Desktop/appebite/appebite/assets/fonts/ReadexPro-Light.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

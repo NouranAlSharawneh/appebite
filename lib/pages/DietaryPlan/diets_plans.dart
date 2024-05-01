@@ -1,11 +1,7 @@
+import 'package:appebite/Widgets/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:appebite/pages/MeSection/home_diet_recipes.dart';
-// import 'package:appebite/modules/recipe.api.dart';
-// import 'package:appebite/pages/DietaryPlan/recipe.dart';
-//import 'package:google_fonts/google_fonts.dart';
-
-
 
 class Header extends StatelessWidget {
   const Header({super.key});
@@ -378,7 +374,9 @@ class _HomePageState extends State<DietsHomePage> {
               ),
             ),
           ),
+          const HomePage(index: 2,),
         ],
+        
       ),
     );
   }

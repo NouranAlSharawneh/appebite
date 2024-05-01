@@ -1,3 +1,4 @@
+import 'package:appebite/home_main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
@@ -35,8 +36,7 @@ class TitleHeading extends StatelessWidget {
             pageBuilder: (context, animation, secondaryAnimation) =>
                 FadeTransition(
               opacity: animation,
-              //TODO: FIX THE NAVIGATION
-              // child: const LoginPage(),
+              child: const HomeMain(),
             ),
           ),
         );

@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:appebite/pages/login/login_screen.dart';
+import 'package:appebite/home_main.dart';
 import 'package:flutter/material.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -59,7 +59,7 @@ class UploadFormButtons extends StatelessWidget {
                 pageBuilder: (context, animation, secondaryAnimation) =>
                     FadeTransition(
                   opacity: animation,
-                  child: const LoginPage(),
+                  child: const HomeMain(),
                 ),
               ),
             );

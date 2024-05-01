@@ -18,6 +18,7 @@ class _LaunchPageState extends State<LaunchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xff272a32),
       body: Stack(
         children: <Widget>[
           Container(

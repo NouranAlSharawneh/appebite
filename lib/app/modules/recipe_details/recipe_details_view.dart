@@ -1,5 +1,6 @@
 import 'package:appebite/app/data/model/recipe.dart';
 import 'package:appebite/app/data/model/response_model.dart';
+import 'package:appebite/app/modules/home/home_view.dart';
 import 'package:appebite/app/modules/recipe_details/recipe_details_controller.dart';
 import 'package:appebite/config/images.dart';
 import 'package:appebite/config/theme/theme_colors.dart';
@@ -13,14 +14,15 @@ class RecipeDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           surfaceTintColor: Colors.transparent,
           leading: IconButton(
             onPressed: () {
-              Get.back();
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (_) => const HomeView(),
+              ));
             },
             icon: const Icon(
               Icons.arrow_back_ios_new,
@@ -94,7 +96,6 @@ class RecipeDetailsView extends StatelessWidget {
             ),
           ),
         ),
-      ),
     );
   }
 }

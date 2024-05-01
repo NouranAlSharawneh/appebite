@@ -55,6 +55,7 @@ style: TextStyle(
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xff272a32),
       appBar: AppBar(
       toolbarHeight: 60,
       backgroundColor:const Color.fromRGBO(38, 43, 52, 1) ,

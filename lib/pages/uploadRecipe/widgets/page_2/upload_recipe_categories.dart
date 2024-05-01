@@ -100,9 +100,9 @@ class _MealDropdownState extends State<MealDropdown> {
       case 'Breakfast':
         return '🥐';
       case 'Dinner':
-        return '🍲';
+        return '🥘';
       case 'Lunch':
-        return '🍔';
+        return '🍝';
       default:
         return '';
     }

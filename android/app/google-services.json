@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "196553709875",
+    "project_id": "appebite-ad82b",
+    "storage_bucket": "appebite-ad82b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196553709875:android:63aed6d9166bfe6548c646",
+        "android_client_info": {
+          "package_name": "com.example.appebite"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbHKBwBBfa_zKCGshx3PBVLYycNhu26Sk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

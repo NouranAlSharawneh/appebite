@@ -5,7 +5,9 @@ import 'package:appebite/Widgets/search_bar.dart';
 import 'package:appebite/breakfast_page.dart';
 import 'package:appebite/dinner_page.dart';
 import 'package:appebite/launch_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 class HomeMain extends StatefulWidget {
@@ -17,14 +19,39 @@ class HomeMain extends StatefulWidget {
 
 class _HomeMainState extends State<HomeMain> {
   int currentTab = 0;
+  late String _profilePictureUrl = '';
+  late String _firstName = '';
+  late String _lastName = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchUserInfo();
+  }
+Future<void> _fetchUserInfo() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      DocumentSnapshot userInfo = await FirebaseFirestore.instance
+          .collection("Users")
+          .doc(user.uid)
+          .get();
+
+      setState(() {
+        _firstName = userInfo['firstName'];
+        _lastName = userInfo['lastName'];
+        _profilePictureUrl = userInfo['profilePictureUrl'];
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color(0xff272a32),
+    return Scaffold(
+      backgroundColor: const Color(0xff272a32),
       body: Stack(
         children: <Widget>[
           Scaffold(
+            backgroundColor: const Color(0xff272a32),
             body: SafeArea(
               child: SingleChildScrollView(
                 child: Padding(
@@ -36,8 +63,8 @@ class _HomeMainState extends State<HomeMain> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'User Name',
-                            style: TextStyle(
+                            _firstName.isEmpty || _lastName.isEmpty ? 'Username' : '$_firstName $_lastName,',
+                            style: const TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.w600,
                               color: Colors.white,
@@ -45,18 +72,44 @@ class _HomeMainState extends State<HomeMain> {
                               fontFamily: 'Poppins',
                             ),
                           ),
+
                           Positioned(
-                            child: Image(
-                              image: AssetImage(
-                                  '/Users/nancysharawna/Desktop/appebite/appebite/assets/Avatar.png'),
-                              fit: BoxFit.fitWidth,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.network(
+                              _profilePictureUrl,
+                              fit: BoxFit.cover,
                               height: 50,
                               width: 50,
+                              loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                                if (loadingProgress == null) {
+                                  // Image has finished loading
+                                  return child;
+                                } else {
+                                  // Image is still loading, show a grey box as a placeholder
+                                  return Container(
+                                    height: 50,
+                                    width: 50,
+                                    color: Colors.grey,
+                                  );
+                                }
+                              },
+                              errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                                // Error occurred while loading image, show a placeholder with an error icon
+                                return Container(
+                                  height: 50,
+                                  width: 50,
+                                  color: Colors.grey,
+                                  child: Icon(Icons.error, color: Colors.red),
+                                );
+                              },
                             ),
                           ),
+                        ),
+
                         ],
                       ),
-                      Row(
+                      const Row(
                         children: [
                           Text(
                             'What are you craving today?',
@@ -70,9 +123,9 @@ class _HomeMainState extends State<HomeMain> {
                           ),
                         ],
                       ),
-                      SearchBar1(),
-                     SizedBox(height: 15),
-                       Row(
+                    const SearchBar1(),
+                     const SizedBox(height: 15),
+                       const Row(
                         children: [
                           Text(
                             'Categories',
@@ -85,10 +138,10 @@ class _HomeMainState extends State<HomeMain> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
-                      Categories(),
-                       SizedBox(height: 15),
-                       Row(
+                      const SizedBox(height: 10),
+                      const Categories(),
+                       const SizedBox(height: 15),
+                       const Row(
                         children: [
                           Text(
                             'Cuisines',
@@ -101,10 +154,10 @@ class _HomeMainState extends State<HomeMain> {
                           ),
                         ],
                       ),
-                       SizedBox(height: 8),
-                       Cuisines(),
-                      SizedBox(height: 15),
-                       Row(
+                       const SizedBox(height: 8),
+                       const Cuisines(),
+                      const SizedBox(height: 15),
+                       const Row(
                         children: [
                           Text(
                             'Upload your recipe',
@@ -117,8 +170,8 @@ class _HomeMainState extends State<HomeMain> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
-                       Upload(),
+                      const SizedBox(height: 10),
+                       const Upload(),
                      
                     ],
                   ),
@@ -126,7 +179,7 @@ class _HomeMainState extends State<HomeMain> {
               ),
             ),
           ),
-          HomePage(
+          const HomePage(
             index: 0,
           ),
         ],

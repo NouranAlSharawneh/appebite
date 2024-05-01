@@ -1,11 +1,10 @@
 // ignore_for_file: must_call_super
-
+import 'package:appebite/app/modules/home/home_view.dart';
+import 'package:appebite/pages/DietaryPlan/diets_plans.dart';
+import 'package:appebite/pages/MeSection/me_page.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
-import 'package:appebite/chef_page.dart';
-import 'package:appebite/book_mark.dart';
-import 'package:appebite/profile_page.dart';
 import 'package:solar_icons/solar_icons.dart';
 import 'package:appebite/home_main.dart';
 
@@ -134,7 +133,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.pushReplacement(
                           context,
                           PageRouteBuilder(
-                            pageBuilder: (_, __, ___) => const ChefPage(),
+                            pageBuilder: (_, __, ___) => const HomeView(),
                             transitionsBuilder: (
                               context,
                               animation,
@@ -170,7 +169,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.pushReplacement(
                           context,
                           PageRouteBuilder(
-                            pageBuilder: (_, __, ___) => const BookMPage(),
+                            pageBuilder: (_, __, ___) => const DietsHomePage(),
                             transitionsBuilder: (
                               context,
                               animation,
@@ -206,7 +205,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.pushReplacement(
                           context,
                           PageRouteBuilder(
-                            pageBuilder: (_, __, ___) => const ProfilePage(),
+                            pageBuilder: (_, __, ___) => const UserBar(),
                             transitionsBuilder: (
                               context,
                               animation,
