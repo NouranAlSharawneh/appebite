@@ -96,6 +96,7 @@ flutter:
     - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/dot.png
     - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/Vector.png
     - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/arrow.png
+    
   fonts:
     - family: Poppins
       fonts:
