@@ -147,8 +147,7 @@ String _userName = '';
           children: [
             Container(
             height: 70,
-            
-            margin: const EdgeInsets.fromLTRB(30, 62, 35, 0),
+            margin: const EdgeInsets.fromLTRB(30, 92, 35, 0),
             child: Row(
               children: [
                 Expanded(
@@ -196,7 +195,6 @@ String _userName = '';
         ])
         ,),
         const InformationBar(),
-         const SizedBox(height: 0,),
         const CaloriesTracker(
           // userId: userId,
           // recipeId: recipeId,
@@ -240,7 +238,6 @@ class _UserPictureState extends State<UserPicture> {
         });
       } catch (e) {
         print('Error fetching user profile: $e');
-        // Handle error fetching user profile, if any
       }
     }
   }
@@ -260,7 +257,7 @@ class _UserPictureState extends State<UserPicture> {
             ? Image.network(_profilePictureUrl!,
             fit: BoxFit.cover, // Fit the image inside the container
             ) // Use Image.network to load image from URL
-            : Placeholder(), // Placeholder widget until image is fetched
+            : const Placeholder(), // Placeholder widget until image is fetched
       ),
     );
   }
@@ -270,7 +267,7 @@ class InformationBar extends StatelessWidget {
   const InformationBar({super.key});
 
   @override
- Widget build(context) {
+  Widget build(context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -639,52 +636,59 @@ void startNotificationTimer() {
               ),
              )
            ),
-        Positioned(
-          top: 55,
-          child: Container(
-            height: 200,
-            width: 200,
-            margin: const EdgeInsets.fromLTRB(97, 480, 0, 0),
-            child: CircularPercentIndicator(
-              animation: true,
-              animateFromLastPercent: true,
-              animationDuration: 1000,
-              radius: 100,
-              lineWidth: 13,
-              percent: percent,
-              progressColor: const Color.fromRGBO(255, 114, 105, 1),
-              backgroundColor: const Color.fromRGBO(255, 114, 105, 180),
-              circularStrokeCap: CircularStrokeCap.round,
-              center: Text(
-                "${(percent * 100).toStringAsFixed(1)}%",
-                style: const TextStyle(
-                  fontFamily: 'poppins',
-                  fontSize: 39,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
+        Center(
+          child: Positioned(
+            child: Container(
+              height: 200,
+              width: 200,
+              margin: const EdgeInsets.fromLTRB(0, 380, 0, 0),
+              child: CircularPercentIndicator(
+                animation: true,
+                animateFromLastPercent: true,
+                animationDuration: 1000,
+                radius: 100,
+                lineWidth: 13,
+                percent: percent,
+                progressColor: const Color.fromRGBO(255, 114, 105, 1),
+                backgroundColor: const Color.fromRGBO(255, 114, 105, 180),
+                circularStrokeCap: CircularStrokeCap.round,
+                center: Text(
+                  "${(percent * 100).toStringAsFixed(1)}%",
+                  style: const TextStyle(
+                    fontFamily: 'poppins',
+                    fontSize: 39,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),
           ),
         ),
-        Positioned(
-          top: 529.5,
-          left: 185,
-          child: Image.asset('assets/images/dot.png'),
-        ),
-       const  Positioned(
-          top: 660,
-          left: 155,
-          child: Text(
-            "Complete",
-            style: TextStyle(
-              fontFamily: 'poppins',
-              fontSize: 16,
-              color: Colors.white,
-              fontWeight: FontWeight.w400,
-            ),
+        Center(
+          child: Positioned(
+            top: 300,
+            child: Container(
+              margin: const EdgeInsets.fromLTRB(0, 190, 0, 0),
+              child: Image.asset('assets/images/dot.png'),),
           ),
         ),
+      Center(
+         child: Positioned(
+            child: Container(
+              margin: const EdgeInsets.fromLTRB(0, 460, 0, 0),
+              child: const Text(
+                "Complete",
+                style: TextStyle(
+                  fontFamily: 'poppins',
+                  fontSize: 16,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+          ),
+       ),
       ],
     );
   }
