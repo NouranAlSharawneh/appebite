@@ -71,41 +71,41 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/female_icon.png
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/logo.png
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/male_icon.png
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/monthly_overview.png
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/profile.png
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/home2.png
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/Chef.png
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/Inactive.png
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/profile.png
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/home2H.png
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/profile2.png
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/Chef2.png
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/Inactive2.png
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/Line1.png
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/Avatar.png
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/indian.JPG
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/italian.JPG
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/cook.png
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/Heart.png
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/ex.png
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/Group.png
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/Line.png
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/dot.png
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/Vector.png
-    - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/arrow.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/female_icon.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/logo.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/male_icon.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/monthly_overview.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/profile.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/home2.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/Chef.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/Inactive.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/profile.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/home2H.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/profile2.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/Chef2.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/Inactive2.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/Line1.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/Avatar.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/indian.JPG
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/italian.JPG
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/cook.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/Heart.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/ex.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/Group.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/Line.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/dot.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/Vector.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/arrow.png
     
   fonts:
     - family: Poppins
       fonts:
-        - asset: /Users/nancysharawna/Desktop/appebite/appebite/assets/fonts/Poppins-Regular.ttf
-        - asset: /Users/nancysharawna/Desktop/appebite/appebite/assets/fonts/Poppins-SemiBold.ttf
+        - asset: /Users/swtayx/Desktop/flutter_projects/appebite/assets/fonts/Poppins-Regular.ttf
+        - asset: /Users/swtayx/Desktop/flutter_projects/appebite/assets/fonts/Poppins-SemiBold.ttf
           weight: 400
     - family: ReadexPro
       fonts:
-        - asset: /Users/nancysharawna/Desktop/appebite/appebite/assets/fonts/ReadexPro-Light.ttf
+        - asset: /Users/swtayx/Desktop/flutter_projects/appebite/assets/fonts/ReadexPro-Light.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
