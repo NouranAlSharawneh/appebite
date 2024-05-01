@@ -14,8 +14,7 @@ class RecipeDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           surfaceTintColor: Colors.transparent,
@@ -97,7 +96,6 @@ class RecipeDetailsView extends StatelessWidget {
             ),
           ),
         ),
-      ),
     );
   }
 }

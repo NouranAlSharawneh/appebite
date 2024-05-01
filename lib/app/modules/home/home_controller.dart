@@ -1,21 +1,23 @@
 import 'dart:convert';
-
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:appebite/app/components/custom_dialog.dart';
 import 'package:appebite/app/data/Model/response_model.dart';
 import 'package:appebite/app/data/model/recipe.dart';
 import 'package:appebite/app/data/repository/repo.dart';
 import 'package:appebite/app/modules/recipe_details/recipe_details_view.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  var ingredients = <String>[].obs; // This list will hold all the ingredients
-  final ingredientTextController = TextEditingController(); // This controller will be used for textfield
-final BuildContext context;
-HomeController(this.context);
+  var ingredients = <String>[].obs; 
+  final ingredientTextController = TextEditingController(); 
+  final BuildContext context;
+
+  // Add a state variable to control the visibility of the loader
+  var isLoading = false.obs;
+
+  HomeController(this.context);
+
   void addIngredient() {
-    // This method will be used when clicking on arrow in the textfield
-    // it will add the ingredient from the textfield the list, if it is not empty
     var ingredient = ingredientTextController.text.trim();
     if (ingredient.isEmpty) return;
     ingredients.add(ingredient);
@@ -23,40 +25,36 @@ HomeController(this.context);
   }
 
   void addIngredientOnSubmit(String value) {
-    // this method will be called when pressing the enter key on keyboard
     addIngredient();
   }
 
   void removeIngredient(int index) {
-    // this method will remove ingredients from the list
     ingredients.removeAt(index);
   }
 
   void clearIngredients() {
-    // this method will remove all ingredients from the list
     ingredients.clear();
   }
 
   void createRecipe() async {
-    // this method will perform the api call, get the returned data and  convert it to recipe model object
-    //CustomDialog.showProgressDialog();
-    try {
-      ResponseModel response = await AiRepository().askAI(ingredients.toString());
-      var recipe = Recipe.fromJson(json.decode(response.resultJson));
+  try {
+    // Show loader overlay when API call is initiated
+    showLoaderOverlay();
 
-      // if no error is thrown, we will close the progress dialog and navigate to next screen
-      //CustomDialog.closeProgressDialog();
-      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>RecipeDetailsView(recipe: recipe,)));
-      //Get.to(() => const RecipeDetailsView(), arguments: {'recipe': recipe});
-    } catch (e) {
-      print(e);
-      // if any error is thrown, we will close the progress dialog and show an error toast
-      //CustomDialog.closeProgressDialog();
-      //showErrorToast(message: "An error has occurred!");
-    }
+    ResponseModel response = await AiRepository().askAI(ingredients.toString());
+    var recipe = Recipe.fromJson(json.decode(response.resultJson));
+
+    // Hide loader overlay when API call is completed
+    Navigator.of(context).pop(); // Dismiss the loader overlay
+
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => RecipeDetailsView(recipe: recipe,)));
+  } catch (e) {
+    print(e);
+    showErrorToast(message: "Error occurred while fetching recipe details.");
+    Navigator.of(context).pop(); // Ensure loader overlay is dismissed in case of error
   }
+}
 
-  // This method will be used to show error toast if any error occurs
   void showErrorToast({String? title, required String message, Color? color, Duration? duration}) {
     Get.rawSnackbar(
       title: title,
@@ -66,8 +64,33 @@ HomeController(this.context);
       onTap: (snack) {
         Get.closeAllSnackbars();
       },
-      //overlayBlur: 0.8,
       message: message,
+    );
+  }
+
+  // Method to show the loader overlay
+  void showLoaderOverlay() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return const AlertDialog(
+          backgroundColor: Color(0xff272a32),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CircularProgressIndicator(),
+              SizedBox(height: 20),
+              Text("Appy is thinking...", style: TextStyle(
+                        fontFamily: 'poppins',
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                      ),),
+            ],
+          ),
+        );
+      },
     );
   }
 }

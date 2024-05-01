@@ -1,3 +1,4 @@
+import 'package:appebite/pages/uploadRecipe/upload_recipe.dart';
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:appebite/breakfast_page.dart';
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
@@ -49,7 +50,7 @@ class _UploadState extends State<Upload> {
                       Navigator.push(
                           context,
                           PageRouteBuilder(
-                            pageBuilder: (_, __, ___) =>  const BreakfastPage(),
+                            pageBuilder: (_, __, ___) =>  const UploadRecipe(),
                             transitionsBuilder: (
                               context,
                               animation,
@@ -82,9 +83,7 @@ class _UploadState extends State<Upload> {
                   ),
                 ],
               ),
-            ),
-    
-           
+            ),         
           ],
         ));
   }
