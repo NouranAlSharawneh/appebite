@@ -1,25 +1,26 @@
 import 'package:appebite/Widgets/RecipesList.dart';
 import 'package:appebite/Widgets/nav_bar.dart';
 import 'package:appebite/home_main.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:iconly/iconly.dart';
+import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 
-class DinnerPage extends StatefulWidget {
-  const DinnerPage({super.key});
+class AsianPage extends StatefulWidget {
+  const AsianPage({super.key});
 
   @override
-  State<DinnerPage> createState() => _DinnerPageState();
+  State<AsianPage> createState() => _AsianPageState();
 }
 
-class _DinnerPageState extends State<DinnerPage> {
+class _AsianPageState extends State<AsianPage> {
   int currentTab = 0;
 
   @override
   @mustCallSuper
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
-      backgroundColor: const Color(0xff272a32),
+      return Scaffold(
+        backgroundColor: const Color(0xff272a32),
       body: Stack(
         children: <Widget>[
           Padding(
@@ -84,7 +85,7 @@ class _DinnerPageState extends State<DinnerPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Dinner',
+                            'Asian',
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
@@ -104,7 +105,7 @@ class _DinnerPageState extends State<DinnerPage> {
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.only(top: 8.0),
-              child: const MealsPage(mealType: 'Dinner'),
+              child: const MealsPage(cuisineType: 'asian'),
             ),
           ),
           const HomePage(

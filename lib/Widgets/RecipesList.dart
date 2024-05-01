@@ -1,22 +1,20 @@
+import 'package:appebite/RecipeInfo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'dart:convert';
 import 'package:iconly/iconly.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:akar_icons_flutter/akar_icons_flutter.dart';
-import 'package:appebite/RecipeInfo.dart';
 import 'package:http/http.dart' as http;
 
 class MealsPage extends StatefulWidget {
   final String mealType;
   final String cuisineType;
-  final String keywords;
-  const MealsPage(
-      {Key? key,
-      required this.mealType,
-      required this.cuisineType,
-      required this.keywords})
-      : super(key: key);
+  const MealsPage({
+    Key? key,
+    this.mealType = '',
+    this.cuisineType = '',
+  }) : super(key: key);
 
   @override
   State<MealsPage> createState() => _MealsPageState();
@@ -24,20 +22,20 @@ class MealsPage extends StatefulWidget {
 
 class _MealsPageState extends State<MealsPage> {
   List<Map<String, dynamic>> _breakfastRecipes = [];
-   Future<void>? _fetchDataFuture;
+  Future<void>? _fetchDataFuture;
 
   @override
   void initState() {
     super.initState();
-      _fetchDataFuture = fetchBreakfastRecipes(widget.mealType, widget.cuisineType, widget.keywords);
+    _fetchDataFuture =
+        fetchBreakfastRecipes(widget.mealType, widget.cuisineType);
   }
 
-  Future<void> fetchBreakfastRecipes(
-      String mealType, cuisineType, String keywords) async {
+  Future<void> fetchBreakfastRecipes(String mealType, cuisineType) async {
     final String apiKey =
         '25e156a57e0b43be98220d6f32fd8ff4'; // Replace with your Spoonacular API key
     final String apiUrl =
-        'https://api.spoonacular.com/recipes/complexSearch?type=$mealType&cuisine=$cuisineType&keywords=$keywords&number=4&offset=11&includeIngredients=eggs&apiKey=$apiKey';
+        'https://api.spoonacular.com/recipes/complexSearch?type=$mealType&cuisine=$cuisineType&number=4&offset=11&includeIngredients=eggs&apiKey=$apiKey';
 
     try {
       final response = await http.get(Uri.parse(apiUrl));
@@ -270,29 +268,29 @@ class _MealsPageState extends State<MealsPage> {
 
   @override
   Widget build(BuildContext context) {
-     return FutureBuilder(
-    future: _fetchDataFuture,
-    builder: (context, snapshot) {
-      if (snapshot.connectionState == ConnectionState.waiting) {
-        return Center(child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(Color(0xffff7269)),
-        ));
-      } else if (snapshot.hasError) {
-        return Text('Error: ${snapshot.error}');
-      } else {
-    return Container(
-      padding:
-          const EdgeInsets.only(top: 100, bottom: 100, right: 15, left: 15),
-      child: ListView.builder(
-          itemCount: _breakfastRecipes.length,
-          itemBuilder: (context, index) {
-            final recipe = _breakfastRecipes[index];
-            return RecipeCard(recipe: recipe);
-          }),
-    );
-      }
-    }
-     );
+    return FutureBuilder(
+        future: _fetchDataFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+                child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Color(0xffff7269)),
+            ));
+          } else if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          } else {
+            return Container(
+              padding: const EdgeInsets.only(
+                  top: 100, bottom: 65, right: 15, left: 15),
+              child: ListView.builder(
+                  itemCount: _breakfastRecipes.length,
+                  itemBuilder: (context, index) {
+                    final recipe = _breakfastRecipes[index];
+                    return RecipeCard(recipe: recipe);
+                  }),
+            );
+          }
+        });
   }
 }
 

@@ -1,9 +1,9 @@
+import 'package:appebite/Widgets/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:atlas_icons/atlas_icons.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:akar_icons_flutter/akar_icons_flutter.dart';
-import 'package:appebite/Widgets/nav_bar.dart';
 import 'package:solar_icons/solar_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
@@ -228,7 +228,6 @@ class _RecipeInfoState extends State<RecipeInfo> {
         nextPageToken = data['next_page_token'];
 
         if (nextPageToken != null) {
-          // Wait a bit before requesting the next page
           await Future.delayed(Duration(seconds: 3));
         }
       } else {
@@ -294,8 +293,19 @@ class _RecipeInfoState extends State<RecipeInfo> {
                         widget.recipe['image'] ??
                             '<https://via.placeholder.com/150>',
                         fit: BoxFit.cover,
-                        width: MediaQuery.of(context).size.width,
+                        width: double.infinity,
                         height: 300,
+                        errorBuilder: (BuildContext context, Object exception,
+                            StackTrace? stackTrace) {
+                          // If there's an error (e.g., 404 not found), display a local asset
+                          return const Image(
+                            image: AssetImage(
+                                '/Users/swtayx/Desktop/flutter_projects/recipes/assets/notavaliable.png'),
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: 300,
+                          );
+                        },
                       ),
                     ),
                   ),
@@ -1101,7 +1111,7 @@ class _RecipeInfoState extends State<RecipeInfo> {
           ),
         ),
       ),
-      const Padding(
+      Padding(
         padding: EdgeInsets.only(bottom: 25),
         child: HomePage(
           index: 0,
@@ -1429,7 +1439,6 @@ class _RecipeInfoState extends State<RecipeInfo> {
                                                   },
                                                 );
                                               } else {
-                                                // Show a loading indicator while waiting for initLangDetect to finish
                                                 return Center(
                                                     child:
                                                         CircularProgressIndicator());
@@ -1559,3 +1568,4 @@ class instructions extends StatelessWidget {
     );
   }
 }
+
