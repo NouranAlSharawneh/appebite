@@ -123,15 +123,15 @@ flutter:
     - assets/images/dot.png
     - assets/images/Vector.png
     - assets/images/arrow.png
-  fonts:
-    - family: Poppins
-      fonts:
-        - asset: /Users/nancysharawna/Desktop/appebite/appebite/assets/fonts/Poppins-Regular.ttf
-        - asset: /Users/nancysharawna/Desktop/appebite/appebite/assets/fonts/Poppins-SemiBold.ttf
-          weight: 400
-    - family: ReadexPro
-      fonts:
-        - asset: /Users/nancysharawna/Desktop/appebite/appebite/assets/fonts/ReadexPro-Light.ttf
+  # fonts:
+  #   - family: Poppins
+  #     fonts:
+  #       - asset: /Users/nancysharawna/Desktop/appebite/appebite/assets/fonts/Poppins-Regular.ttf
+  #       - asset: /Users/nancysharawna/Desktop/appebite/appebite/assets/fonts/Poppins-SemiBold.ttf
+  #         weight: 400
+  #   - family: ReadexPro
+  #     fonts:
+  #       - asset: /Users/nancysharawna/Desktop/appebite/appebite/assets/fonts/ReadexPro-Light.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
