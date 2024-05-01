@@ -1,13 +1,12 @@
 import 'dart:io';
-import 'package:appebite/pages/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:appebite/pages/MeSection/me_page.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:appebite/pages/uploadRecipe/upload_recipe.dart';
 
 class SettingsEditInformation extends StatefulWidget {
   const SettingsEditInformation({Key? key}) : super(key: key);
@@ -55,7 +54,6 @@ class _SettingsEditInformationState extends State<SettingsEditInformation> {
       confirmBtnText: 'okay',
       onCancelBtnTap: () => Navigator.pop(context),
       onConfirmBtnTap: () {
-        // TODO: FIX THE NAVIGATOR
         Navigator.push(
           context,
           PageRouteBuilder(
@@ -63,7 +61,7 @@ class _SettingsEditInformationState extends State<SettingsEditInformation> {
             pageBuilder: (context, animation, secondaryAnimation) =>
                 FadeTransition(
               opacity: animation,
-              child: const UploadRecipe(),
+              child: const UserBar(),
             ),
           ),
         );
@@ -110,10 +108,7 @@ class _SettingsEditInformationState extends State<SettingsEditInformation> {
       });
     }
   }
-  //TODO: remove these (added to signout)
-  // FirebaseAuth auth = FirebaseAuth.instance;
 
-  //TODO: ADD A NAVIGATOR LATER HERE
   void _cancelChange() {
     FirebaseAuth auth = FirebaseAuth.instance;
     setState(() {
@@ -122,7 +117,6 @@ class _SettingsEditInformationState extends State<SettingsEditInformation> {
       _currentWeight = _currentWeight;
     });
     
- auth.signOut();
     Navigator.push(
         context,
         PageRouteBuilder(
@@ -130,7 +124,7 @@ class _SettingsEditInformationState extends State<SettingsEditInformation> {
           pageBuilder: (context, animation, secondaryAnimation) =>
               FadeTransition(
             opacity: animation,
-            child: const LoginPage(),
+            child: const UserBar(),
           ),
         ),
       );

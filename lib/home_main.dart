@@ -25,6 +25,7 @@ class _HomeMainState extends State<HomeMain> {
       body: Stack(
         children: <Widget>[
           Scaffold(
+            backgroundColor: Color(0xff272a32),
             body: SafeArea(
               child: SingleChildScrollView(
                 child: Padding(
@@ -48,7 +49,7 @@ class _HomeMainState extends State<HomeMain> {
                           Positioned(
                             child: Image(
                               image: AssetImage(
-                                  '/Users/nancysharawna/Desktop/appebite/appebite/assets/Avatar.png'),
+                                  'assets/Avatar.png'),
                               fit: BoxFit.fitWidth,
                               height: 50,
                               width: 50,

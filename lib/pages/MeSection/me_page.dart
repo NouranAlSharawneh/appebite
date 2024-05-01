@@ -1,3 +1,4 @@
+import 'package:appebite/Widgets/nav_bar.dart';
 import 'package:appebite/pages/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:appebite/pages/MeSection/favorites.dart';
@@ -198,7 +199,8 @@ String _userName = '';
         const CaloriesTracker(
           // userId: userId,
           // recipeId: recipeId,
-        )
+        ),
+        const HomePage(index: 3,),
       ]),
     );
   }

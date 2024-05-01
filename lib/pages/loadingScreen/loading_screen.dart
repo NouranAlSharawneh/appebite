@@ -1,8 +1,4 @@
-import 'package:appebite/app/modules/home/home_view.dart';
 import 'package:appebite/home_main.dart';
-import 'package:appebite/pages/DietaryPlan/diets_plans.dart';
-import 'package:appebite/pages/MeSection/BMI_status.dart';
-import 'package:appebite/pages/MeSection/me_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // Import Firebase authentication
 import 'package:appebite/pages/login/login_screen.dart';
@@ -32,7 +28,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     if (user != null) {
       // If user is authenticated, navigate to home screen
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (_) => const UserBar (),
+        builder: (_) => const HomeMain (),
       ));
     } else {
       // If user is not authenticated, navigate to login screen
