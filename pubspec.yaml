@@ -85,7 +85,6 @@ flutter:
     - /Users/swtayx/Desktop/flutter_projects/appebite/assets/Inactive2.png
     - /Users/swtayx/Desktop/flutter_projects/appebite/assets/Line1.png
     - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/Avatar.png
-    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/indian.JPG
     - /Users/swtayx/Desktop/flutter_projects/appebite/assets/italian.JPG
     - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/cook.png
     - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/Heart.png
@@ -95,6 +94,10 @@ flutter:
     - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/dot.png
     - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/Vector.png
     - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/arrow.png
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/asian.JPG
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/french.JPG
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/chinese.JPG
+    - /Users/swtayx/Desktop/flutter_projects/appebite/assets/american.JPG
     
   fonts:
     - family: Poppins

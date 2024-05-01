@@ -123,7 +123,7 @@ Future<void> _fetchUserInfo() async {
                           ),
                         ],
                       ),
-                    const SearchBar1(),
+                    SearchBar1(),
                      const SizedBox(height: 15),
                        const Row(
                         children: [
