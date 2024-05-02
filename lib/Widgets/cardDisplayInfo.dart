@@ -35,16 +35,16 @@ class Place {
   }
 }
 
-class RecipeInfo extends StatefulWidget {
+class CardDisplayInfo extends StatefulWidget {
   final Map<String, dynamic> recipe;
 
-  const RecipeInfo({Key? key, required this.recipe}) : super(key: key);
+  const CardDisplayInfo({Key? key, required this.recipe}) : super(key: key);
 
   @override
-  _RecipeInfoState createState() => _RecipeInfoState();
+  _CardDisplayInfoState createState() => _CardDisplayInfoState();
 }
 
-class _RecipeInfoState extends State<RecipeInfo> {
+class _CardDisplayInfoState extends State<CardDisplayInfo> {
   late Future<Map<String, List<String>>> substitutesFuture;
   bool isReceiptClicked = false;
   List<Map<String, dynamic>> _breakfastRecipes = [];
@@ -1474,7 +1474,7 @@ class _RecipeInfoState extends State<RecipeInfo> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 10),
+                                padding: EdgeInsets.only(left: 0),
                                 child: Icon(
                                   Iconsax.arrow_right_3_copy,
                                   color: Color.fromARGB(255, 255, 255, 255),
@@ -1510,7 +1510,7 @@ class instructions extends StatelessWidget {
   });
 
   final bool isIconUpStep;
-  final RecipeInfo widget;
+  final CardDisplayInfo widget;
 
   @override
   Widget build(BuildContext context) {
