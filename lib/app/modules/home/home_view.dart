@@ -16,6 +16,7 @@ class HomeView extends StatelessWidget {
     // Putting the controller object
     final logic = Get.put(HomeController(context));
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: ThemeColors.lightBlack,
       body: Stack(
         children:[ SafeArea(
@@ -50,7 +51,8 @@ class HomeView extends StatelessWidget {
                 : const SizedBox()),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-          body: Padding(
+          body: SingleChildScrollView(
+          child: Padding(
             padding: const EdgeInsets.fromLTRB(36, 20, 36, 90),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -94,7 +96,7 @@ class HomeView extends StatelessWidget {
                     )),
               ],
             ),
-          ),
+          ),),
         ),
           ), HomePage(index: 1,),
       ]),

@@ -28,7 +28,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     if (user != null) {
       // If user is authenticated, navigate to home screen
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (_) => const HomeMain (),
+        builder: (_) => const HomeMain(),
       ));
     } else {
       // If user is not authenticated, navigate to login screen

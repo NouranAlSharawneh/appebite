@@ -47,6 +47,7 @@ Future<void> _fetchUserInfo() async {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xff272a32),
       body: Stack(
         children: <Widget>[
@@ -72,7 +73,6 @@ Future<void> _fetchUserInfo() async {
                               fontFamily: 'Poppins',
                             ),
                           ),
-
                           Positioned(
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
@@ -171,8 +171,7 @@ Future<void> _fetchUserInfo() async {
                         ],
                       ),
                       const SizedBox(height: 10),
-                       const Upload(),
-                     
+                      const Upload(),
                     ],
                   ),
                 ),

@@ -1,6 +1,6 @@
-import 'package:appebite/pages/sign_up/widgets/monthly_overview/signup_account_confirmation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:appebite/home_main.dart';
 
 class MOTitle extends StatelessWidget {
   const MOTitle({
@@ -62,7 +62,7 @@ class MOTitle extends StatelessWidget {
                   pageBuilder: (context, animation, secondaryAnimation) =>
                       FadeTransition(
                     opacity: animation,
-                    child: const SignUpAccountConfirmation(),
+                    child: HomeMain(),
                   ),
                 ),
               );
