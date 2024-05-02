@@ -1535,7 +1535,7 @@ class _RecipeInfoState extends State<RecipeInfo> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 50),
+                                padding: EdgeInsets.only(left: 10),
                                 child: Icon(
                                   Iconsax.arrow_right_3_copy,
                                   color: Color.fromARGB(255, 255, 255, 255),

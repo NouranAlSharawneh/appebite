@@ -154,10 +154,10 @@ Future<void> _fetchUserInfo() async {
                           ),
                         ],
                       ),
-                       const SizedBox(height: 8),
-                       const Cuisines(),
+                      const SizedBox(height: 8),
+                      const Cuisines(),
                       const SizedBox(height: 15),
-                       const Row(
+                      const Row(
                         children: [
                           Text(
                             'Upload your recipe',
@@ -172,6 +172,7 @@ Future<void> _fetchUserInfo() async {
                       ),
                       const SizedBox(height: 10),
                       const Upload(),
+                      Container(margin: const EdgeInsets.only(bottom: 130),)
                     ],
                   ),
                 ),
