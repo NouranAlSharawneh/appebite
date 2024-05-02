@@ -50,53 +50,51 @@ class HomeView extends StatelessWidget {
                 : const SizedBox()),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(36, 20, 36, 90),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Image.asset(
-                    // Setting logo
-                    Images.logo,
-                    scale: 0.65,
-                    height: 300,
+          body: Padding(
+            padding: const EdgeInsets.fromLTRB(36, 20, 36, 90),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Image.asset(
+                  // Setting logo
+                  Images.logo,
+                  scale: 0.65,
+                  height: 300,
+                ),
+                Transform(
+                  // Using transform to remove extra margin above this heading
+                  transform: Matrix4.translationValues(0.0, -20.0, 0.0),
+                  child: Text(
+                    "Appy is happy to serve!",
+                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Colors.white),
+                    textAlign: TextAlign.center,
                   ),
-                  Transform(
-                    // Using transform to remove extra margin above this heading
-                    transform: Matrix4.translationValues(0.0, -20.0, 0.0),
-                    child: Text(
-                      "Appy is happy to serve!",
-                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Colors.white),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  IngredientsTextField(
-                    onAddIngredientTap: logic.addIngredient,
-                    ingredientTextController: logic.ingredientTextController,
-                    onTextFieldSubmit: logic.addIngredientOnSubmit,
-                  ),
-                  const SizedBox(height: 20),
-                  Obx(() => Wrap(
-                        // Obx will automatically wrap widget when we add new ingredients to the list
-                        alignment: WrapAlignment.center,
-                        runSpacing: 15,
-                        spacing: 15,
-                        children: List.generate(
-                          logic.ingredients.length,
-                          (index) => ItemIngredient(
-                            text: logic.ingredients[index],
-                            onRemoveIngredientTap: () {
-                              logic.removeIngredient(index);
-                            },
-                          ),
+                ),
+                IngredientsTextField(
+                  onAddIngredientTap: logic.addIngredient,
+                  ingredientTextController: logic.ingredientTextController,
+                  onTextFieldSubmit: logic.addIngredientOnSubmit,
+                ),
+                const SizedBox(height: 20),
+                Obx(() => Wrap(
+                      // Obx will automatically wrap widget when we add new ingredients to the list
+                      alignment: WrapAlignment.center,
+                      runSpacing: 15,
+                      spacing: 15,
+                      children: List.generate(
+                        logic.ingredients.length,
+                        (index) => ItemIngredient(
+                          text: logic.ingredients[index],
+                          onRemoveIngredientTap: () {
+                            logic.removeIngredient(index);
+                          },
                         ),
-                      )),
-                ],
-              ),
+                      ),
+                    )),
+              ],
             ),
-      ),
+          ),
         ),
           ), HomePage(index: 1,),
       ]),

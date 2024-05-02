@@ -223,9 +223,9 @@ class _DietsListState extends State<DietsList> {
                   description,
                   style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 11.5,
+                    fontSize: 12,
                     fontFamily: 'poppins',
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w600,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -339,40 +339,40 @@ class _HomePageState extends State<DietsHomePage> {
                   });
                 },
               ),
+              Container(
+                margin: EdgeInsets.fromLTRB(36, 9, 36, 0),
+                child: Row(
+                children: [
+                  Text(
+                    "Recipes",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontFamily: 'poppins',
+                      fontWeight: FontWeight.w300
+                    ),
+                ),
+                Spacer(),
+                Text(
+                    "2 items",
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 134, 137, 150),
+                      fontSize: 15,
+                      fontFamily: 'poppins',
+                      fontWeight: FontWeight.w300
+                    ),
+                  ),
+                            ],
+                          ),
+              ),
               Expanded(
                 child: RecipeHomePage(selectedDiet: selectedDiet, selectedDate: selectedDate), // Pass selectedDate to RecipeHomePage
               ),
               Container(
                 height: 10,
                 margin: const EdgeInsets.only(bottom: 50),
-              )
+              ),
             ],
-          ),
-          const Positioned(
-            top: 420,
-            left: 30,
-            child: Text(
-              "Recipes",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 15,
-                fontFamily: 'poppins',
-                fontWeight: FontWeight.w300
-              ),
-            ),
-          ),
-          const Positioned(
-            top: 420,
-            left: 325,
-            child: Text(
-              "2 items",
-              style: TextStyle(
-                color: Color.fromARGB(255, 134, 137, 150),
-                fontSize: 15,
-                fontFamily: 'poppins',
-                fontWeight: FontWeight.w300
-              ),
-            ),
           ),
           const HomePage(index: 2,),
         ],
