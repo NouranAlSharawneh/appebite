@@ -35,8 +35,8 @@ class _MealsPageState extends State<MealsPage> {
     final String apiKey =
         '25e156a57e0b43be98220d6f32fd8ff4'; // Replace with your Spoonacular API key
     final String apiUrl =
-        'https://api.spoonacular.com/recipes/complexSearch?type=$mealType&cuisine=$cuisineType&number=4&offset=11&includeIngredients=eggs&apiKey=$apiKey';
-
+        'https://api.spoonacular.com/recipes/complexSearch?type=$mealType&cuisine=$cuisineType&number=4&apiKey=$apiKey';
+print(apiUrl);
     try {
       final response = await http.get(Uri.parse(apiUrl));
       if (response.statusCode == 200) {

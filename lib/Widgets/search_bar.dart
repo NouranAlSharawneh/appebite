@@ -28,7 +28,7 @@ class _SearchBar1State extends State<SearchBar1>
   String? selectedDiet;
   int selectedRating = 0;
   List<String> meals = ['Breakfast', 'Lunch', 'Dinner'];
-  List<String> cuisine = ['Italian', 'Asian', 'American', 'French', 'Chinese'];
+  List<String> cuisine = ['Italian', 'Asian', 'American', 'French', 'Chinese', 'Mediterranean', 'Middle Eastern', 'Indian', 'Spanish'];
   List<String> diet = [
     'Gluten Free',
     'Ketogenic',

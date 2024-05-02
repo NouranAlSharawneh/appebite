@@ -1,8 +1,12 @@
 import 'package:appebite/american_page.dart';
 import 'package:appebite/french_page';
+import 'package:appebite/MiddleEastern_page';
 import 'package:flutter/material.dart';
 import 'package:appebite/asian_page.dart';
+import 'package:appebite/Mediterranean_page';
 import 'package:appebite/chinese_page';
+import 'package:appebite/indian_page';
+import 'package:appebite/spanish_page';
 import 'dart:ui';
 
 import 'package:appebite/italian_page.dart';
@@ -256,6 +260,134 @@ class _CuisinesState extends State<Cuisines> {
             },
             child: _buildCuisineBox('American',
                 'assets/american.JPG'),
+          ),
+           const SizedBox(width: 10),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    pageBuilder: (_, __, ___) => const MediterraneanPage(),
+                    transitionsBuilder: (
+                      context,
+                      animation,
+                      secondaryAnimation,
+                      child,
+                    ) {
+                      return FadeTransition(
+                        opacity: Tween<double>(
+                          begin: 0.0,
+                          end: 500.0,
+                        ).animate(
+                          CurvedAnimation(
+                            parent: animation,
+                            curve: Curves
+                                .easeInOut, // Specify the desired easing curve
+                          ),
+                        ),
+                        child: child,
+                      );
+                    },
+                  ));
+            },
+            child: _buildCuisineBox('Mediterranean',
+                'assets/mediterranean.JPG'),
+          ),
+              const SizedBox(width: 10),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    pageBuilder: (_, __, ___) => const MiddleEasternPage(),
+                    transitionsBuilder: (
+                      context,
+                      animation,
+                      secondaryAnimation,
+                      child,
+                    ) {
+                      return FadeTransition(
+                        opacity: Tween<double>(
+                          begin: 0.0,
+                          end: 500.0,
+                        ).animate(
+                          CurvedAnimation(
+                            parent: animation,
+                            curve: Curves
+                                .easeInOut, // Specify the desired easing curve
+                          ),
+                        ),
+                        child: child,
+                      );
+                    },
+                  ));
+            },
+            child: _buildCuisineBox('Middle Eastern',
+                'assets/middleeasteren.JPG'),
+          ),
+            const SizedBox(width: 10),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    pageBuilder: (_, __, ___) => const IndianPage(),
+                    transitionsBuilder: (
+                      context,
+                      animation,
+                      secondaryAnimation,
+                      child,
+                    ) {
+                      return FadeTransition(
+                        opacity: Tween<double>(
+                          begin: 0.0,
+                          end: 500.0,
+                        ).animate(
+                          CurvedAnimation(
+                            parent: animation,
+                            curve: Curves
+                                .easeInOut, // Specify the desired easing curve
+                          ),
+                        ),
+                        child: child,
+                      );
+                    },
+                  ));
+            },
+            child: _buildCuisineBox('Indian',
+                'assets/indian.JPG'),
+          ),
+          const SizedBox(width: 10),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    pageBuilder: (_, __, ___) => const SpanishPage(),
+                    transitionsBuilder: (
+                      context,
+                      animation,
+                      secondaryAnimation,
+                      child,
+                    ) {
+                      return FadeTransition(
+                        opacity: Tween<double>(
+                          begin: 0.0,
+                          end: 500.0,
+                        ).animate(
+                          CurvedAnimation(
+                            parent: animation,
+                            curve: Curves
+                                .easeInOut, // Specify the desired easing curve
+                          ),
+                        ),
+                        child: child,
+                      );
+                    },
+                  ));
+            },
+            child: _buildCuisineBox('Spanish',
+                'assets/spanish.JPG'),
           ),
         ],
       ),

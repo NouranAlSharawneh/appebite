@@ -127,6 +127,10 @@ flutter:
     - assets/french.JPG
     - assets/chinese.JPG
     - assets/american.JPG
+    - assets/mediterranean.JPG
+    - assets/middleeasteren.JPG
+    - assets/indian.JPG
+    - assets/spanish.JPG
   fonts:
     - family: Poppins
       fonts:
