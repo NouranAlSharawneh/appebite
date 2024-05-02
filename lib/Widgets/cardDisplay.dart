@@ -65,7 +65,7 @@ class _CardDisplayState extends State<CardDisplay> {
           ),
         ),
         height: 160.0,
-        width: 330,
+        width: 310,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end, 
           children: [
