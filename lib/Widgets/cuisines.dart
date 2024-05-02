@@ -44,7 +44,7 @@ Widget _buildCuisineBox(String cuisineType, String backgroundImage) {
       Positioned(
         left: 30,
         right: 30,
-        top: 160,
+        top: 160, 
         bottom: 10,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
