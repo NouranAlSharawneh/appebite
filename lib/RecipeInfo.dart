@@ -497,7 +497,7 @@ class _RecipeInfoState extends State<RecipeInfo> {
                                       color: Color.fromARGB(255, 231, 149, 91),
                                       size: 22,
                                     ),
-                                    const SizedBox(width: 4),
+                                    const SizedBox(width: 3),
                                     Text(
                                       '$servings serve',
                                       style: const TextStyle(
@@ -508,7 +508,7 @@ class _RecipeInfoState extends State<RecipeInfo> {
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                    const SizedBox(width: 5),
+                                    const SizedBox(width: 3),
                                     GestureDetector(
                                       onTap: () {
                                         setState(() {
@@ -527,13 +527,13 @@ class _RecipeInfoState extends State<RecipeInfo> {
                                         size: 13,
                                       ),
                                     ),
-                                    const SizedBox(width: 16),
+                                    const SizedBox(width: 10),
                                     const Icon(
                                       Iconsax.timer_1_copy,
                                       color: Color.fromARGB(255, 231, 149, 91),
                                       size: 22,
                                     ),
-                                    const SizedBox(width: 4),
+                                    const SizedBox(width: 3),
                                     Text(
                                       '${widget.recipe['prepTime'] ?? 'N/A'} mins',
                                       style: const TextStyle(
@@ -544,13 +544,13 @@ class _RecipeInfoState extends State<RecipeInfo> {
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                    const SizedBox(width: 16),
+                                    const SizedBox(width: 10),
                                     const Icon(
                                       AkarIcons.fire,
                                       color: Color.fromARGB(255, 231, 149, 91),
                                       size: 22,
                                     ),
-                                    const SizedBox(width: 4),
+                                    const SizedBox(width: 3),
                                     Text(
                                       '${widget.recipe['calories'] ?? 'N/A'} kcal',
                                       style: const TextStyle(
@@ -890,7 +890,7 @@ class _RecipeInfoState extends State<RecipeInfo> {
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      const SizedBox(width: 70),
+                      const SizedBox(width: 40),
                       Expanded(
                         child: Icon(
                           isIconUpAlt
