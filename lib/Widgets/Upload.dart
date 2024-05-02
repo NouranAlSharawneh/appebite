@@ -75,7 +75,7 @@ class _UploadState extends State<Upload> {
                     child: Transform.scale(
                        scale: 2.4, 
                       child: const Icon(
-                        OctIcons.plus_16,
+                        Icons.add,
                         color: Color.fromARGB(255, 255, 255, 255),
                       ),
                     ),

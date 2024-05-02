@@ -39,7 +39,7 @@ class RecipeCard extends StatelessWidget {
         );
       },
       child: Card(
-        margin: const EdgeInsets.all(15),
+        margin: const EdgeInsets.fromLTRB(30, 15, 30, 00),
         elevation: 4,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),

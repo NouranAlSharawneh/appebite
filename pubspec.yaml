@@ -70,6 +70,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+<<<<<<< HEAD
     # - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/female_icon.png
     # - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/logo.png
     # - /Users/swtayx/Desktop/flutter_projects/appebite/assets/images/male_icon.png
@@ -99,6 +100,8 @@ flutter:
     # - /Users/swtayx/Desktop/flutter_projects/appebite/assets/chinese.JPG
     # - /Users/swtayx/Desktop/flutter_projects/appebite/assets/american.JPG
 
+=======
+>>>>>>> 3c4723ecf99f1aa67fe84fd9fa68c2c38aa5ec35
     - assets/images/female_icon.png
     - assets/images/logo.png
     - assets/images/male_icon.png
@@ -127,7 +130,11 @@ flutter:
     - assets/french.JPG
     - assets/chinese.JPG
     - assets/american.JPG
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 3c4723ecf99f1aa67fe84fd9fa68c2c38aa5ec35
   fonts:
     - family: Poppins
       fonts:
@@ -138,7 +145,7 @@ flutter:
       fonts:
         - asset: assets/fonts/ReadexPro-Light.ttf
     # norans mac
-    # - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/female_icon.png
+    # - assets/images/female_icon.png
     # - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/logo.png
     # - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/male_icon.png
     # - /Users/nancysharawna/Desktop/appebite/appebite/assets/images/monthly_overview.png

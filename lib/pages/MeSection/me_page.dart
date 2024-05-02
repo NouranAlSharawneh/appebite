@@ -163,8 +163,8 @@ String _userName = '';
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'poppins',
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                         SizedBox(height: 5),
@@ -173,7 +173,7 @@ String _userName = '';
                           style: TextStyle(
                             color: Color.fromRGBO(104, 108, 119, 0.965),
                             fontFamily: 'poppins',
-                            fontSize: 12,
+                            fontSize: 13,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
