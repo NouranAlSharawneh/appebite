@@ -61,6 +61,8 @@ class _RecipeInfoState extends State<RecipeInfo> {
   List<Map<String, dynamic>> ingredients = [];
   List<double> originalValues = [];
   List<double> currentValues = [];
+  bool isIconHSelected = false;
+  bool isIconCSelected = false;
 
   @override
   void initState() {
@@ -374,61 +376,79 @@ class _RecipeInfoState extends State<RecipeInfo> {
                       right: 40,
                       top: 110,
                       child: Container(
-                        padding: const EdgeInsets.all(6),
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(0, 53, 56, 66),
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color.fromARGB(125, 53, 56, 66),
-                              spreadRadius: 4,
-                              blurRadius: 3,
-                              offset: Offset(0, 0),
-                            ),
-                            BoxShadow(
-                              color: Color.fromARGB(125, 53, 56, 66),
-                              spreadRadius: 4,
-                              blurRadius: 3,
-                              offset: Offset(0, 0),
-                            ),
-                          ],
-                        ),
-                        child: const Icon(
-                          Atlas.heart,
-                          color: Colors.white,
-                          size: 30,
-                        ),
-                      ),
+                          padding: const EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(0, 53, 56, 66),
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color.fromARGB(125, 53, 56, 66),
+                                spreadRadius: 4,
+                                blurRadius: 3,
+                                offset: Offset(0, 0),
+                              ),
+                              BoxShadow(
+                                color: Color.fromARGB(125, 53, 56, 66),
+                                spreadRadius: 4,
+                                blurRadius: 3,
+                                offset: Offset(0, 0),
+                              ),
+                            ],
+                          ),
+                          child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  isIconHSelected =
+                                      !isIconHSelected; // Toggle the state
+                                });
+                              },
+                              child: Icon(
+                                isIconHSelected ? Atlas.heart : Atlas.heart,
+                                color: isIconHSelected
+                                    ? Color(0xffff7269)
+                                    : Colors.white,
+                                size: 30,
+                              ))),
                     ),
                     Positioned(
                       right: 40,
                       top: 175,
                       child: Container(
-                        padding: const EdgeInsets.all(6),
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(0, 53, 56, 66),
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color.fromARGB(125, 53, 56, 66),
-                              spreadRadius: 4,
-                              blurRadius: 3,
-                              offset: Offset(0, 0),
-                            ),
-                            BoxShadow(
-                              color: Color.fromARGB(125, 53, 56, 66),
-                              spreadRadius: 4,
-                              blurRadius: 3,
-                              offset: Offset(0, 0),
-                            ),
-                          ],
-                        ),
-                        child: const Icon(
-                          Atlas.hot_food,
-                          color: Colors.white,
-                          size: 30,
-                        ),
-                      ),
+                          padding: const EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(0, 53, 56, 66),
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color.fromARGB(125, 53, 56, 66),
+                                spreadRadius: 4,
+                                blurRadius: 3,
+                                offset: Offset(0, 0),
+                              ),
+                              BoxShadow(
+                                color: Color.fromARGB(125, 53, 56, 66),
+                                spreadRadius: 4,
+                                blurRadius: 3,
+                                offset: Offset(0, 0),
+                              ),
+                            ],
+                          ),
+                          child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  isIconCSelected =
+                                      !isIconCSelected; // Toggle the state
+                                });
+                              },
+                              child: Icon(
+                                isIconCSelected
+                                    ? Atlas.hot_food_bold
+                                    : Atlas.hot_food,
+                                color: isIconCSelected
+                                    ? Color(0xffff7269)
+                                    : Colors.white,
+                                size: 30,
+                              ))),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
@@ -477,7 +497,7 @@ class _RecipeInfoState extends State<RecipeInfo> {
                                       color: Color.fromARGB(255, 231, 149, 91),
                                       size: 22,
                                     ),
-                                    const SizedBox(width: 5),
+                                    const SizedBox(width: 4),
                                     Text(
                                       '$servings serve',
                                       style: const TextStyle(
@@ -507,13 +527,13 @@ class _RecipeInfoState extends State<RecipeInfo> {
                                         size: 13,
                                       ),
                                     ),
-                                    const SizedBox(width: 20),
+                                    const SizedBox(width: 16),
                                     const Icon(
                                       Iconsax.timer_1_copy,
                                       color: Color.fromARGB(255, 231, 149, 91),
                                       size: 22,
                                     ),
-                                    const SizedBox(width: 5),
+                                    const SizedBox(width: 4),
                                     Text(
                                       '${widget.recipe['prepTime'] ?? 'N/A'} mins',
                                       style: const TextStyle(
@@ -524,13 +544,13 @@ class _RecipeInfoState extends State<RecipeInfo> {
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                    const SizedBox(width: 20),
+                                    const SizedBox(width: 16),
                                     const Icon(
                                       AkarIcons.fire,
                                       color: Color.fromARGB(255, 231, 149, 91),
                                       size: 22,
                                     ),
-                                    const SizedBox(width: 5),
+                                    const SizedBox(width: 4),
                                     Text(
                                       '${widget.recipe['calories'] ?? 'N/A'} kcal',
                                       style: const TextStyle(
@@ -551,7 +571,7 @@ class _RecipeInfoState extends State<RecipeInfo> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
-                        left: 320,
+                        left: 300,
                         top: 303,
                       ),
                       child: Container(
