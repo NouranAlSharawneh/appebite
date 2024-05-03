@@ -9,9 +9,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
 class HomeMain extends StatefulWidget {
-  const HomeMain({super.key});
+  const HomeMain({Key? key}) : super(key: key);
 
   @override
   State<HomeMain> createState() => _HomeMainState();
@@ -28,7 +27,8 @@ class _HomeMainState extends State<HomeMain> {
     super.initState();
     _fetchUserInfo();
   }
-Future<void> _fetchUserInfo() async {
+
+  Future<void> _fetchUserInfo() async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       DocumentSnapshot userInfo = await FirebaseFirestore.instance
@@ -51,29 +51,29 @@ Future<void> _fetchUserInfo() async {
       backgroundColor: const Color(0xff272a32),
       body: Stack(
         children: <Widget>[
-          Scaffold(
-            backgroundColor: const Color(0xff272a32),
-            body: SafeArea(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.only(left: 36, top: 33, right: 36),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            _firstName.isEmpty || _lastName.isEmpty ? 'Username' : '$_firstName $_lastName,',
-                            style: const TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                              height: 1,
-                              fontFamily: 'Poppins',
-                            ),
+          SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.only(left: 36, top: 33, right: 36),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          _firstName.isEmpty || _lastName.isEmpty
+                              ? 'Username'
+                              : '$_firstName $_lastName,',
+                          style: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                            height: 1,
+                            fontFamily: 'Poppins',
                           ),
-                          Positioned(
+                        ),
+                        Positioned(
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Image.network(
@@ -106,75 +106,73 @@ Future<void> _fetchUserInfo() async {
                             ),
                           ),
                         ),
-
-                        ],
-                      ),
-                      const Row(
-                        children: [
-                          Text(
-                            'What are you craving today?',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400,
-                              color: Color.fromARGB(255, 142, 148, 164),
-                              height: 0.3,
-                              fontFamily: 'Poppins',
-                            ),
+                      ],
+                    ),
+                    const Row(
+                      children: [
+                        Text(
+                          'What are you craving today?',
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w400,
+                            color: Color.fromARGB(255, 142, 148, 164),
+                            height: 0.3,
+                            fontFamily: 'Poppins',
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
+                    ),
                     SearchBar1(),
-                     const SizedBox(height: 15),
-                       const Row(
-                        children: [
-                          Text(
-                            'Categories',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                              fontFamily: 'Poppins',
-                            ),
+                    const SizedBox(height: 15),
+                    const Row(
+                      children: [
+                        Text(
+                          'Categories',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                            fontFamily: 'Poppins',
                           ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      const Categories(),
-                       const SizedBox(height: 15),
-                       const Row(
-                        children: [
-                          Text(
-                            'Cuisines',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                              fontFamily: 'Poppins',
-                            ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    const Categories(),
+                    const SizedBox(height: 15),
+                    const Row(
+                      children: [
+                        Text(
+                          'Cuisines',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                            fontFamily: 'Poppins',
                           ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      const Cuisines(),
-                      const SizedBox(height: 15),
-                      const Row(
-                        children: [
-                          Text(
-                            'Upload your recipe',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                              fontFamily: 'Poppins',
-                            ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    const Cuisines(),
+                    const SizedBox(height: 15),
+                    const Row(
+                      children: [
+                        Text(
+                          'Upload your recipe',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                            fontFamily: 'Poppins',
                           ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      const Upload(),
-                      Container(margin: const EdgeInsets.only(bottom: 130),)
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    const Upload(),
+                    Container(margin: const EdgeInsets.only(bottom: 130),)
+                  ],
                 ),
               ),
             ),
@@ -187,6 +185,7 @@ Future<void> _fetchUserInfo() async {
     );
   }
 }
+
 
 class Categories extends StatelessWidget {
   const Categories({

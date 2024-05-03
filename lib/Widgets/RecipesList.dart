@@ -65,7 +65,7 @@ print(apiUrl);
               await fetchRecipeInstructions((recipe['id'].toString()));
           final List<String> substitutes = await fetchIngredientSubstitutes(
               recipe['id'].toString(), ingredients);
- bool isFavorited = await fetchRecipeFavoriteStatus(recipe['id'].toString());
+          bool isFavorited = await fetchRecipeFavoriteStatus(recipe['id'].toString());
           recipe['rating'] = rating;
           recipe['servings'] = servings;
           recipe['calories'] = calories;
