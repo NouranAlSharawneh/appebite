@@ -53,7 +53,7 @@ class HomeView extends StatelessWidget {
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(36, 20, 36, 90),
+            padding: const EdgeInsets.fromLTRB(36, 20, 36, 70),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -69,7 +69,7 @@ class HomeView extends StatelessWidget {
                   transform: Matrix4.translationValues(0.0, -20.0, 0.0),
                   child: Text(
                     "Appy is happy to serve!",
-                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Colors.white),
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: Colors.white),
                     textAlign: TextAlign.center,
                   ),
                 ),
