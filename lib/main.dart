@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
               textTheme: GoogleFonts.poppinsTextTheme(),
               useMaterial3: true,
             ),
-            home: const LoadingScreen(),
+            home: const Scaffold(body: LoadingScreen(),),
           );
         }
       },

@@ -27,7 +27,7 @@ class HomeView extends StatelessWidget {
             visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
             child: Obx(() => logic.ingredients.isNotEmpty // If the ingredients list is empty, we will hide the button
                 ? Padding(
-                    padding: const EdgeInsets.only(bottom: 130),
+                    padding: const EdgeInsets.only(bottom: 110),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -53,7 +53,7 @@ class HomeView extends StatelessWidget {
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(36, 20, 36, 70),
+            padding: const EdgeInsets.fromLTRB(36, 20, 36, 10),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -78,12 +78,12 @@ class HomeView extends StatelessWidget {
                   ingredientTextController: logic.ingredientTextController,
                   onTextFieldSubmit: logic.addIngredientOnSubmit,
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 15),
                 Obx(() => Wrap(
                       // Obx will automatically wrap widget when we add new ingredients to the list
                       alignment: WrapAlignment.center,
-                      runSpacing: 15,
-                      spacing: 15,
+                      runSpacing: 10,
+                      spacing: 10,
                       children: List.generate(
                         logic.ingredients.length,
                         (index) => ItemIngredient(
@@ -93,10 +93,12 @@ class HomeView extends StatelessWidget {
                           },
                         ),
                       ),
-                    )),
+                    ),
+                  ),
               ],
             ),
-          ),),
+          ),
+          ),
         ),
           ), HomePage(index: 1,),
       ]),
