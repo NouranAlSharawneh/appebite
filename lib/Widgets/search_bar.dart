@@ -137,12 +137,12 @@ class _SearchBar1State extends State<SearchBar1>
                                     child: Container(
                                       height:
                                           MediaQuery.of(context).size.height *
-                                              0.7,
+                                              0.75,
                                       decoration: const BoxDecoration(
                                         color: Color.fromARGB(250, 38, 40, 48),
                                       ),
                                       padding: const EdgeInsets.only(
-                                          top: 35.0,
+                                          top: 40.0,
                                           bottom: 10,
                                           left: 26,
                                           right: 26),
@@ -259,7 +259,7 @@ class _SearchBar1State extends State<SearchBar1>
                                             ],
                                           ),
                                           const SizedBox(
-                                            height: 30,
+                                            height: 36,
                                           ),
                                           if (selectedTab == 0)
                                             SingleChildScrollView(
@@ -296,7 +296,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                   Column(
                                                     children: [
                                                       const SizedBox(
-                                                        height: 25,
+                                                        height: 35,
                                                       ),
 
                                                       Row(
@@ -488,7 +488,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                         ],
                                                       ),
                                                       const SizedBox(
-                                                        height: 25,
+                                                        height: 28,
                                                       ),
                                                       // Rest of your code
                                                       Row(
@@ -625,7 +625,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                                                 ],
                                                                               ),
                                                                               const SizedBox(
-                                                                                height: 16,
+                                                                                height: 19,
                                                                               ),
                                                                               if (addedingredients.isEmpty)
                                                                                 const Padding(
@@ -699,7 +699,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                       ),
 
                                                       const SizedBox(
-                                                        height: 25,
+                                                        height: 28,
                                                       ),
                                                       // Rest of your code
                                                       Row(
@@ -837,7 +837,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                                                 ],
                                                                               ),
                                                                               const SizedBox(
-                                                                                height: 16,
+                                                                                height: 19,
                                                                               ),
                                                                               if (Removedingredients.isEmpty)
                                                                                 const Padding(
@@ -910,7 +910,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                         ],
                                                       ),
                                                       const SizedBox(
-                                                        height: 25,
+                                                        height: 28,
                                                       ),
 
                                                       Row(
@@ -1010,7 +1010,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                         ],
                                                       ),
                                                       const SizedBox(
-                                                        height: 62,
+                                                        height: 43,
                                                       ),
                                                       Row(
                                                         children: [
