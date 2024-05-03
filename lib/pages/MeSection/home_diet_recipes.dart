@@ -69,30 +69,31 @@ class _RecipeHomePageState extends State<RecipeHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff272a32),
-      body: Container(
-        // margin:const  EdgeInsets.only(top: 5),
-        height: 586,
-        child: _isLoading
-            ? const Center(child: CircularProgressIndicator(color: Color.fromRGBO(172, 68, 60, 1)))
-            : ListView.builder(
-                shrinkWrap: true,
-                itemCount: _recipes.length,
-                itemBuilder: (context, index) {
-                  return RecipeCard(
-                    title: _recipes[index].name,
-                    cookTime: _recipes[index].totalTime.toString(),
-                    rating: _recipes[index].rating.toString(),
-                    thumbnailUrl: _recipes[index].hostedLargeUrl.toString(),
-                    calories: _recipes[index].calories.toString(),
-                    servings: _recipes[index].servings,
-                  );
-                },
-              ),
-      ),
-    );
-  }
-}
+  backgroundColor: const Color(0xff272a32),
+  body: Transform.translate(
+    offset: Offset(0, -30), 
+    child: SizedBox(
+      // height: 656,
+      child: _isLoading
+          ? const Center(child: CircularProgressIndicator(color: Color.fromRGBO(172, 68, 60, 1)))
+          : ListView.builder(
+              shrinkWrap: true,
+              itemCount: _recipes.length,
+              itemBuilder: (context, index) {
+                return RecipeCard(
+                  title: _recipes[index].name,
+                  cookTime: _recipes[index].totalTime.toString(),
+                  rating: _recipes[index].rating.toString(),
+                  thumbnailUrl: _recipes[index].hostedLargeUrl.toString(),
+                  calories: _recipes[index].calories.toString(),
+                  servings: _recipes[index].servings,
+                );
+              },
+            ),
+    ),
+  ),
+);
+  }}
 
 
 

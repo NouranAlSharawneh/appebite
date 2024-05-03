@@ -113,16 +113,16 @@ String _userName = '';
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             ListTile(
-              title: const Text('Logout', style: TextStyle(color: Colors.white),),
-              onTap: () {
-                _showDialog(context);
-              },
-            ),
-            ListTile(
               title:const Text('User Settings', style: TextStyle(color: Colors.white),),
               onTap: () {
                 _navigateToSettings();
                 //Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text('Logout', style: TextStyle(color: Colors.white),),
+              onTap: () {
+                _showDialog(context);
               },
             ),
           ],

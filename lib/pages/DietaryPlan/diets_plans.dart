@@ -370,7 +370,7 @@ class _HomePageState extends State<DietsHomePage> {
               ),
               Container(
                 height: 10,
-                margin: const EdgeInsets.only(bottom: 50),
+                margin: const EdgeInsets.only(bottom: 130),
               ),
             ],
           ),

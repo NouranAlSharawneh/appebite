@@ -39,10 +39,10 @@ class RecipeCard extends StatelessWidget {
         );
       },
       child: Card(
-        margin: const EdgeInsets.fromLTRB(30, 15, 30, 00),
+        margin: const EdgeInsets.fromLTRB(30, 15, 30, 10),
         elevation: 4,
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(15),
           child: Stack(
             children: [
               Image.network(
@@ -59,7 +59,7 @@ class RecipeCard extends StatelessWidget {
                   width: 50,
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 255, 225, 179),
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(15),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -86,7 +86,7 @@ class RecipeCard extends StatelessWidget {
               Positioned.fill(
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(15),
                     gradient: LinearGradient(
                       begin: Alignment.bottomCenter,
                       end: Alignment.topCenter,
