@@ -1,12 +1,14 @@
 import 'package:appebite/Widgets/nav_bar.dart';
+
 import 'package:appebite/pages/Fav.dart';
+import 'package:appebite/pages/cook.dart';
 import 'package:appebite/pages/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:appebite/pages/MeSection/favorites.dart';
 import 'package:appebite/pages/MeSection/BMI_status.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 //import 'package:appebite/pages/MeSection/personal_information.dart';
-import 'package:appebite/pages/MeSection/cooked.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 //import 'package:appebite/pages/MeSection/BMI_status.dart';
 //import 'package:firebase_database/firebase_database.dart';
@@ -337,7 +339,7 @@ class InformationBar extends StatelessWidget {
                     transitionDuration: Duration.zero,
                     pageBuilder: (context ,animation, secondaryAnimation) =>
                     FadeTransition(opacity: animation, 
-                    child: const CookedPage())),
+                    child: const CookPage())),
                 );
           },
           child: Container(

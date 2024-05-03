@@ -66,6 +66,7 @@ print(apiUrl);
           final List<String> substitutes = await fetchIngredientSubstitutes(
               recipe['id'].toString(), ingredients);
  bool isFavorited = await fetchRecipeFavoriteStatus(recipe['id'].toString());
+bool isCooked = await fetchRecipeCookedStatus(recipe['id'].toString());
           recipe['rating'] = rating;
           recipe['servings'] = servings;
           recipe['calories'] = calories;
@@ -75,6 +76,7 @@ print(apiUrl);
           recipe['instructions'] = instructions;
           recipe['ingredientSubstitutes'] = substitutes;
           recipe['favorited'] = isFavorited;
+        recipe['cooked'] = isCooked;
         }
 
         setState(() {
@@ -112,6 +114,31 @@ Future<bool> fetchRecipeFavoriteStatus(String recipeId) async {
   // If the user is not signed in, return false
   return false;
 }
+Future<bool> fetchRecipeCookedStatus(String recipeId) async {
+  // Get the current user
+  User? user = FirebaseAuth.instance.currentUser;
+
+  if (user != null) {
+    // Fetch the recipe document from the user's "favorite_recipes" collection
+    DocumentSnapshot doc = await FirebaseFirestore.instance
+        .collection("Users")
+        .doc(user.uid)
+        .collection('cooked_recipes')
+        .doc(recipeId)
+        .get();
+
+    // Return the favorited status, or false if the document doesn't exist
+    if (doc.exists) {
+      return (doc.data() as Map<String, dynamic>)['cooked'] ?? false;
+    } else {
+      return false;
+    }
+  }
+
+  // If the user is not signed in, return false
+  return false;
+}
+
 
   Future<double> fetchRecipeRating(String recipeId) async {
     final String apiKey =

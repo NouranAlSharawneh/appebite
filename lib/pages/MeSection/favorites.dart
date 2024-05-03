@@ -373,7 +373,7 @@ Future<String> fetchRecipeImageUrl(String recipeId) async {
                   itemCount: _breakfastRecipes.length,
                   itemBuilder: (context, index) {
                     final recipe = _breakfastRecipes[index];
-                    return RecipeCard(recipe: recipe);
+                    return RecipeCard1(recipe: recipe);
                   }),
             );
           }
@@ -381,16 +381,17 @@ Future<String> fetchRecipeImageUrl(String recipeId) async {
   }
 }
 
-class RecipeCard extends StatelessWidget {
+class RecipeCard1 extends StatelessWidget {
   final Map<String, dynamic> recipe;
 
-  const RecipeCard({Key? key, required this.recipe}) : super(key: key);
+  const RecipeCard1({Key? key, required this.recipe}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final double rating = ((recipe['rating'] / 100) * 5) ?? 0.0;
     return GestureDetector(
       onTap: () {
+          print('tapped');
         Navigator.push(
             context,
             PageRouteBuilder(
