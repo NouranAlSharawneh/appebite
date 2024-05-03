@@ -1,4 +1,5 @@
 import 'package:appebite/Widgets/nav_bar.dart';
+import 'package:appebite/pages/Fav.dart';
 import 'package:appebite/pages/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:appebite/pages/MeSection/favorites.dart';
@@ -284,7 +285,7 @@ class InformationBar extends StatelessWidget {
                     transitionDuration: Duration.zero,
                     pageBuilder: (context ,animation, secondaryAnimation) =>
                     FadeTransition(opacity: animation, 
-                    child: const FavoritePage())),
+                    child: const FavPage())),
                 );
           },
           child: Container(

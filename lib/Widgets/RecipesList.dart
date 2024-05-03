@@ -1,4 +1,6 @@
 import 'package:appebite/RecipeInfo.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'dart:convert';
@@ -23,12 +25,14 @@ class MealsPage extends StatefulWidget {
 class _MealsPageState extends State<MealsPage> {
   List<Map<String, dynamic>> _breakfastRecipes = [];
   Future<void>? _fetchDataFuture;
+   late Future<bool> _isFavoriteFuture;
 
   @override
   void initState() {
     super.initState();
     _fetchDataFuture =
         fetchBreakfastRecipes(widget.mealType, widget.cuisineType);
+        
   }
 
   Future<void> fetchBreakfastRecipes(String mealType, cuisineType) async {
@@ -45,6 +49,7 @@ print(apiUrl);
             jsonData['results'] as Iterable<dynamic>);
 
         // Fetch and add rating, servings, calories, and prep time data for each recipe
+        
         for (var recipe in recipes) {
           final double rating =
               await fetchRecipeRating(recipe['id'].toString());
@@ -60,7 +65,7 @@ print(apiUrl);
               await fetchRecipeInstructions((recipe['id'].toString()));
           final List<String> substitutes = await fetchIngredientSubstitutes(
               recipe['id'].toString(), ingredients);
-
+ bool isFavorited = await fetchRecipeFavoriteStatus(recipe['id'].toString());
           recipe['rating'] = rating;
           recipe['servings'] = servings;
           recipe['calories'] = calories;
@@ -69,6 +74,7 @@ print(apiUrl);
           recipe['ingredients'] = ingredients;
           recipe['instructions'] = instructions;
           recipe['ingredientSubstitutes'] = substitutes;
+          recipe['favorited'] = isFavorited;
         }
 
         setState(() {
@@ -82,6 +88,30 @@ print(apiUrl);
       // Handle error appropriately, e.g., show a snackbar
     }
   }
+Future<bool> fetchRecipeFavoriteStatus(String recipeId) async {
+  // Get the current user
+  User? user = FirebaseAuth.instance.currentUser;
+
+  if (user != null) {
+    // Fetch the recipe document from the user's "favorite_recipes" collection
+    DocumentSnapshot doc = await FirebaseFirestore.instance
+        .collection("Users")
+        .doc(user.uid)
+        .collection('favorite_recipes')
+        .doc(recipeId)
+        .get();
+
+    // Return the favorited status, or false if the document doesn't exist
+    if (doc.exists) {
+      return (doc.data() as Map<String, dynamic>)['favorited'] ?? false;
+    } else {
+      return false;
+    }
+  }
+
+  // If the user is not signed in, return false
+  return false;
+}
 
   Future<double> fetchRecipeRating(String recipeId) async {
     final String apiKey =
@@ -265,9 +295,16 @@ print(apiUrl);
 
     return substitutes;
   }
+void updateRecipes() {
+  setState(() {
+    _fetchDataFuture = fetchBreakfastRecipes(widget.mealType, widget.cuisineType);
+  });
+}
 
   @override
+  
   Widget build(BuildContext context) {
+    
     return FutureBuilder(
         future: _fetchDataFuture,
         builder: (context, snapshot) {
@@ -292,6 +329,7 @@ print(apiUrl);
           }
         });
   }
+  
 }
 
 class RecipeCard extends StatelessWidget {
@@ -301,9 +339,11 @@ class RecipeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     final double rating = ((recipe['rating'] / 100) * 5) ?? 0.0;
     return GestureDetector(
       onTap: () {
+        
         Navigator.push(
             context,
             PageRouteBuilder(

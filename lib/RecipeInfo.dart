@@ -1,9 +1,14 @@
 import 'package:appebite/Widgets/nav_bar.dart';
+import 'package:appebite/pages/Fav.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:atlas_icons/atlas_icons.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:akar_icons_flutter/akar_icons_flutter.dart';
+import 'package:quickalert/models/quickalert_type.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:solar_icons/solar_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
@@ -67,7 +72,12 @@ class _RecipeInfoState extends State<RecipeInfo> {
   @override
   void initState() {
     super.initState();
-
+    isIconHSelected = widget.recipe['favorited'];
+      fetchRecipeFavoriteStatus(widget.recipe['id'].toString()).then((isFavorited) {
+    setState(() {
+      isIconHSelected = isFavorited;
+    });
+  });
     for (var ingredient in widget.recipe['ingredients']) {
       double value = ingredient['amount']['metric']['value'];
       originalValues.add(value);
@@ -84,7 +94,30 @@ class _RecipeInfoState extends State<RecipeInfo> {
     servings = widget.recipe['servings'] ??
         0; // Using ?? to provide a default value if recipe['servings'] is null
   }
+Future<bool> fetchRecipeFavoriteStatus(String recipeId) async {
+  // Get the current user
+  User? user = FirebaseAuth.instance.currentUser;
 
+  if (user != null) {
+    // Fetch the recipe document from the user's "favorite_recipes" collection
+    DocumentSnapshot doc = await FirebaseFirestore.instance
+        .collection("Users")
+        .doc(user.uid)
+        .collection('favorite_recipes')
+        .doc(recipeId)
+        .get();
+
+    // Return the favorited status, or false if the document doesn't exist
+    if (doc.exists) {
+      return (doc.data() as Map<String, dynamic>)['favorited'] ?? false;
+    } else {
+      return false;
+    }
+  }
+
+  // If the user is not signed in, return false
+  return false;
+}
   Future<void> fetchBreakfastRecipes(
       String mealType, cuisineType, String keywords) async {
     final String apiKey =
@@ -125,6 +158,28 @@ class _RecipeInfoState extends State<RecipeInfo> {
     } catch (error) {
       print('Error fetching $mealType recipes: $error');
       // Handle error appropriately, e.g., show a snackbar
+    }
+  }
+
+  Future<void> favoriteRecipe(String recipeId, bool isFavorited) async {
+    // Get the current user
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      // Get a reference to the recipe document in the user's "favorite_recipes" collection
+      DocumentReference docRef = FirebaseFirestore.instance
+          .collection("Users")
+          .doc(user.uid)
+          .collection('favorite_recipes')
+          .doc(recipeId);
+
+      if (isFavorited) {
+        // If the recipe is favorited, set the favorited status in Firestore
+        await docRef.set({'favorited': true});
+      } else {
+        // If the recipe is not favorited, delete the document from Firestore
+        await docRef.delete();
+      }
     }
   }
 
@@ -297,6 +352,12 @@ class _RecipeInfoState extends State<RecipeInfo> {
   @override
   Widget build(BuildContext context) {
     final double rating = ((widget.recipe['rating'] / 100) * 5) ?? 0.0;
+    bool _favoriteStatusChanged = false;
+    @override
+    void dispose() {
+      Navigator.pop(context, _favoriteStatusChanged);
+      super.dispose();
+    }
 
     return Scaffold(
         backgroundColor: const Color(0xff272a32),
@@ -376,39 +437,88 @@ class _RecipeInfoState extends State<RecipeInfo> {
                       right: 40,
                       top: 110,
                       child: Container(
-                          padding: const EdgeInsets.all(6),
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(0, 53, 56, 66),
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color.fromARGB(125, 53, 56, 66),
-                                spreadRadius: 4,
-                                blurRadius: 3,
-                                offset: Offset(0, 0),
-                              ),
-                              BoxShadow(
-                                color: Color.fromARGB(125, 53, 56, 66),
-                                spreadRadius: 4,
-                                blurRadius: 3,
-                                offset: Offset(0, 0),
-                              ),
-                            ],
-                          ),
-                          child: GestureDetector(
-                              onTap: () {
+                        padding: const EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(0, 53, 56, 66),
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color.fromARGB(125, 53, 56, 66),
+                              spreadRadius: 4,
+                              blurRadius: 3,
+                              offset: Offset(0, 0),
+                            ),
+                            BoxShadow(
+                              color: Color.fromARGB(125, 53, 56, 66),
+                              spreadRadius: 4,
+                              blurRadius: 3,
+                              offset: Offset(0, 0),
+                            ),
+                          ],
+                        ),
+                        child: GestureDetector(
+                            onTap: () async {
+                              if (isIconHSelected) {
+                                // Show the alert only if the recipe is favorited
+                                QuickAlert.show(
+                                  context: context,
+                                  type: QuickAlertType.confirm,
+                                  backgroundColor: const Color(0xff272a32),
+                                  title: 'Are you sure',
+                                  titleColor: Colors.white,
+                                  text:
+                                      "Are you sure you want to remove\n your ${widget.recipe['title']} recipe from favorites? \n",
+                                  textColor: const Color(0xff686f82),
+                                  confirmBtnColor: const Color(0xffff7269),
+                                  confirmBtnText: 'Yes',
+                                  cancelBtnText: 'No',
+                                  onCancelBtnTap: () => Navigator.pop(context),
+                                  onConfirmBtnTap: () {
+                                    // Only change state and call favoriteRecipe if user clicks "Yes"
+                                    setState(() {
+                                      isIconHSelected = !isIconHSelected;
+                                    });
+                                    favoriteRecipe(
+                                        widget.recipe['id'].toString(),
+                                        isIconHSelected);
+                                    Navigator.pop(context);
+                                    QuickAlert.show(
+                                        context: context,
+                                        type: QuickAlertType.success,
+                                        backgroundColor:
+                                            const Color(0xff272a32),
+                                        title: 'Recipe Removed',
+                                        titleColor: Colors.white,
+                                        text:
+                                            "Your recipe has been removed\nfrom favorites. \n",
+                                        textColor: const Color(0xff686f82),
+                                        confirmBtnColor:
+                                            const Color(0xffff7269),
+                                        confirmBtnText: 'Back home',
+                                        onConfirmBtnTap: () {
+                                          Navigator.pop(context);
+                                          Navigator.pop(context);
+                                          Navigator.pop(context);
+                                        });
+                                  },
+                                );
+                              }
+                              if (!isIconHSelected) {
                                 setState(() {
-                                  isIconHSelected =
-                                      !isIconHSelected; // Toggle the state
+                                  isIconHSelected = !isIconHSelected;
                                 });
-                              },
-                              child: Icon(
-                                isIconHSelected ? Atlas.heart : Atlas.heart,
-                                color: isIconHSelected
-                                    ? Color(0xffff7269)
-                                    : Colors.white,
-                                size: 30,
-                              ))),
+                                favoriteRecipe(widget.recipe['id'].toString(),
+                                    isIconHSelected);
+                              }
+                            },
+                            child: Icon(
+                              Atlas.heart,
+                              color: isIconHSelected
+                                  ? Color(0xffff7269)
+                                  : Colors.white,
+                              size: 30,
+                            )),
+                      ),
                     ),
                     Positioned(
                       right: 40,
