@@ -149,8 +149,10 @@ String _userName = '';
           children: [
             Container(
             height: 70,
-            margin: const EdgeInsets.fromLTRB(30, 92, 35, 0),
+            margin: const EdgeInsets.fromLTRB(30, 92, 35, 10),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
                   child: Container(
@@ -248,19 +250,24 @@ class _UserPictureState extends State<UserPicture> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
-      width: 40,
+      height: 50,
+      width: 50,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(10),
         color: Colors.white,
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(10),
         child: _profilePictureUrl != null
             ? Image.network(_profilePictureUrl!,
             fit: BoxFit.cover, // Fit the image inside the container
             ) // Use Image.network to load image from URL
-            : const Placeholder(), // Placeholder widget until image is fetched
+            : Container(
+                height: 50,
+                width: 50,
+                color: Colors.grey,
+                child: Icon(Icons.error, color: Colors.red),
+        ), // Placeholder widget until image is fetched
       ),
     );
   }
@@ -289,7 +296,7 @@ class InformationBar extends StatelessWidget {
                 );
           },
           child: Container(
-            margin: const EdgeInsets.fromLTRB(30, 0, 35, 10), // Adjust top margin here
+            margin: const EdgeInsets.fromLTRB(30, 30, 35, 10), // Adjust top margin here
             child: Stack(
               alignment: Alignment.center,
               children: [
@@ -401,7 +408,7 @@ class InformationBar extends StatelessWidget {
     }
   },
   child: Container(
-    margin: const EdgeInsets.fromLTRB(30, 10, 35, 10),
+    margin: const EdgeInsets.fromLTRB(30, 10, 35, 20),
     child: Stack(
       alignment: Alignment.center,
       children: [
@@ -551,41 +558,6 @@ void startNotificationTimer() {
     }
   }
   
-// void showNotification() async {
-//   // Initialize the plugin
-//   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-  
-//   // Initialize settings for Android and iOS
-//   const  initializationSettingsAndroid = AndroidInitializationSettings('app_icon');
-//   const  initializationSettingsIOS = IOSInitializationSettings();
-//   const  initializationSettings = InitializationSettings(android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
-  
-//   // Initialize the plugin with the settings
-//   await flutterLocalNotificationsPlugin.initialize(initializationSettings);
-
-//   // Define the notification details
-//   var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
-//     'channel_id',
-//     'Channel Name',
-//     importance: Importance.high,
-//     priority: Priority.high,
-//     ticker: 'ticker',
-//   );
-//   var iOSPlatformChannelSpecifics = IOSNotificationDetails();
-//   var platformChannelSpecifics = NotificationDetails(android: androidPlatformChannelSpecifics, iOS: iOSPlatformChannelSpecifics);
-
-//   // Create the notification
-//   await flutterLocalNotificationsPlugin.periodicallyShow(
-//     0,
-//     'Calorie Reminder',
-//     'Don\'t forget to track your calorie intake!',
-//     RepeatInterval.everyMinute, // Repeat interval
-//     platformChannelSpecifics,
-//     androidAllowWhileIdle: true, // Allow the notification to be shown even if the device is in low-power idle mode
-//   );
-// }
-
-
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -596,7 +568,7 @@ void startNotificationTimer() {
             child: Image.asset('assets/images/Vector.png'),
           ),
         Positioned(
-          top: 415,
+          top: 435,
           left: 75,
           child: Image.asset('assets/images/Line.png'),
         ),
