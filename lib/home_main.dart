@@ -172,7 +172,7 @@ Future<void> _fetchUserInfo() async {
                       ),
                       const SizedBox(height: 10),
                       const Upload(),
-                      Container(margin: const EdgeInsets.only(bottom: 100),)
+                      Container(margin: const EdgeInsets.only(bottom: 130),)
                     ],
                   ),
                 ),
