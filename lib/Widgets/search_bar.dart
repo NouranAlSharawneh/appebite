@@ -371,7 +371,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                                               selectedMeal,
                                                                           hint: const Text(
                                                                               "Select Meal",
-                                                                              style: TextStyle(fontSize: 18.0, color: Color.fromARGB(255, 255, 255, 255), fontFamily: 'Poppins')),
+                                                                              style: TextStyle(fontSize: 15.0, color: Color.fromARGB(255, 255, 255, 255), fontFamily: 'Poppins')),
                                                                           onChanged:
                                                                               (String? newValue) {
                                                                             setState(() {
@@ -463,7 +463,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                                               selectedCuisine,
                                                                           hint: const Text(
                                                                               "Select Cuisine",
-                                                                              style: TextStyle(fontSize: 18.0, color: Color.fromARGB(255, 255, 255, 255), fontFamily: 'Poppins')),
+                                                                              style: TextStyle(fontSize: 15.0, color: Color.fromARGB(255, 255, 255, 255), fontFamily: 'Poppins')),
                                                                           onChanged:
                                                                               (String? newValue) {
                                                                             setState(() {
@@ -985,7 +985,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                                               selectedDiet,
                                                                           hint: const Text(
                                                                               "Select Diet",
-                                                                              style: TextStyle(fontSize: 18.0, color: Color.fromARGB(255, 255, 255, 255), fontFamily: 'Poppins')),
+                                                                              style: TextStyle(fontSize: 15.0, color: Color.fromARGB(255, 255, 255, 255), fontFamily: 'Poppins')),
                                                                           onChanged:
                                                                               (String? newValue) {
                                                                             setState(() {
@@ -1213,7 +1213,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                             style: TextStyle(
                                                               color:
                                                                   Colors.white,
-                                                              fontSize: 17.5,
+                                                              fontSize: 15,
                                                               fontFamily:
                                                                   'Poppins',
                                                             ),
@@ -1222,6 +1222,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                               Radio<String>(
                                                             activeColor: Color(
                                                                 0xffff7269),
+                                                              
                                                             value: 'Longest',
                                                             groupValue:
                                                                 _sortOrder,
@@ -1267,7 +1268,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                             style: TextStyle(
                                                               color:
                                                                   Colors.white,
-                                                              fontSize: 17.5,
+                                                              fontSize: 15,
                                                               fontFamily:
                                                                   'Poppins',
                                                             ),
@@ -1355,7 +1356,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                             style: TextStyle(
                                                               color:
                                                                   Colors.white,
-                                                              fontSize: 17.5,
+                                                              fontSize: 15,
                                                               fontFamily:
                                                                   'Poppins',
                                                             ),
@@ -1408,7 +1409,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                             style: TextStyle(
                                                               color:
                                                                   Colors.white,
-                                                              fontSize: 17.5,
+                                                              fontSize: 15,
                                                               fontFamily:
                                                                   'Poppins',
                                                             ),
