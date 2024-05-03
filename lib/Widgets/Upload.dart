@@ -20,7 +20,10 @@ class _UploadState extends State<Upload> {
   void initState() {
     super.initState();
     _user = FirebaseAuth.instance.currentUser;
-    _recipesCollection = FirebaseFirestore.instance.collection('Users').doc(_user?.uid).collection('recipes_posted');
+    _recipesCollection = FirebaseFirestore.instance
+        .collection('Users')
+        .doc(_user?.uid)
+        .collection('recipes_posted');
   }
 
   @override
@@ -31,8 +34,8 @@ class _UploadState extends State<Upload> {
         children: [
           Container(
             margin: const EdgeInsets.all(2),
-            padding: const EdgeInsets.only(
-              top: 70, bottom: 70, left: 70, right: 70),
+            padding:
+                const EdgeInsets.only(top: 70, bottom: 70, left: 70, right: 70),
             decoration: BoxDecoration(
               color: const Color(0xff272a32),
               borderRadius: BorderRadius.circular(20),
@@ -105,7 +108,12 @@ class _UploadState extends State<Upload> {
                   children: snapshot.data!.docs.map((doc) {
                     final recipeData = doc.data() as Map<String, dynamic>;
                     print(recipeData);
-                    return CardDisplay(recipe: recipeData);
+                    return CardDisplay(
+                      recipe: recipeData,
+                      onDelete: () {
+                        doc.reference.delete();
+                      },
+                    );
                   }).toList(),
                 );
               } else {
@@ -118,5 +126,3 @@ class _UploadState extends State<Upload> {
     );
   }
 }
-
-

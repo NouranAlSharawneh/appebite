@@ -890,7 +890,7 @@ class _RecipeInfoState extends State<RecipeInfo> {
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      const SizedBox(width: 40),
+                      const SizedBox(width: 50),
                       Expanded(
                         child: Icon(
                           isIconUpAlt

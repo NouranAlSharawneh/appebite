@@ -17,37 +17,39 @@ class TitleHeading extends StatelessWidget {
 
   void _showDialog(BuildContext context) {
     QuickAlert.show(
-      context: context,
-      type: QuickAlertType.confirm,
-      backgroundColor: const Color(0xff272a32),
-      title: 'Are you sure',
-      titleColor: Colors.white,
-      text: "Are you sure you want to cancel\n, changes will not be saved? \n",
-      textColor: const Color(0xff686f82),
-      confirmBtnColor: const Color(0xffff7269),
-      confirmBtnText: 'Yes',
-      cancelBtnText: 'No',
-      onCancelBtnTap: () => Navigator.pop(context),
-      onConfirmBtnTap: () {
-        Navigator.push(
-          context,
-          PageRouteBuilder(
-            transitionDuration: Duration.zero,
-            pageBuilder: (context, animation, secondaryAnimation) =>
-                FadeTransition(
-              opacity: animation,
-              child: const HomeMain(),
+        context: context,
+        type: QuickAlertType.confirm,
+        backgroundColor: const Color(0xff272a32),
+        title: 'Are you sure',
+        titleColor: Colors.white,
+        text:
+            "Are you sure you want to cancel\n, changes will not be saved? \n",
+        textColor: const Color(0xff686f82),
+        confirmBtnColor: const Color(0xffff7269),
+        confirmBtnText: 'Yes',
+        cancelBtnText: 'No',
+        onCancelBtnTap: () => Navigator.pop(context),
+        onConfirmBtnTap: () {
+          Navigator.push(
+            context,
+            PageRouteBuilder(
+              transitionDuration: Duration.zero,
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  FadeTransition(
+                opacity: animation,
+                child: const HomeMain(),
+              ),
             ),
-          ),
-        );
-      }
-    );
+          );
+        });
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 5* fem,),
+      margin: EdgeInsets.only(
+        top: 5 * fem,
+      ),
       width: double.infinity,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
