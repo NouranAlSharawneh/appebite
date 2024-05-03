@@ -24,18 +24,18 @@ class ItemIngredient extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            width: 24,
+            width: 22,
             decoration: BoxDecoration(
               color: ThemeColors.lightBlack2,
               borderRadius: BorderRadius.circular(20),
             ),
-            height: 24,
+            height: 22,
             child: IconButton(
               onPressed: onRemoveIngredientTap,
               icon: const Icon(
                 Icons.remove,
                 color: ThemeColors.lightRed,
-                size: 15,
+                size: 12,
               ),
               constraints: const BoxConstraints(),
               padding: EdgeInsets.zero,
