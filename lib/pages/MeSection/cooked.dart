@@ -35,11 +35,10 @@ class _CookedPageState extends State<CookedPage> {
   }
 
   Future<void> fetchBreakfastRecipes(String mealType, cuisineType) async {
-    final String apiKey =
+    const String apiKey =
         '25e156a57e0b43be98220d6f32fd8ff4'; // Replace with your Spoonacular API key
     final String apiUrl =
         'https://api.spoonacular.com/recipes/complexSearch?type=$mealType&cuisine=$cuisineType&number=4&apiKey=$apiKey';
-print(apiUrl);
     try {
       final response = await http.get(Uri.parse(apiUrl));
       if (response.statusCode == 200) {
@@ -81,7 +80,6 @@ print(apiUrl);
         throw Exception('Failed to load $mealType recipes');
       }
     } catch (error) {
-      print('Error fetching $mealType recipes: $error');
       // Handle error appropriately, e.g., show a snackbar
     }
   }
@@ -197,23 +195,21 @@ int ingredientsCount = ingredientsF.length;
   }
 }
 Future<String> fetchRecipeName(String recipeId) async {
-  final String apiKey = '25e156a57e0b43be98220d6f32fd8ff4'; // Replace with your Spoonacular API key
+  const String apiKey = '25e156a57e0b43be98220d6f32fd8ff4'; // Replace with your Spoonacular API key
   final response = await http.get(Uri.parse(
       'https://api.spoonacular.com/recipes/$recipeId/information?apiKey=$apiKey'));
 
   if (response.statusCode == 200) {
     final Map<String, dynamic> responseData = json.decode(response.body);
     final String recipeName = responseData['title'] ?? ''; // Fetch the recipe title here
-    print('Recipe name for recipe $recipeId: $recipeName');
     return recipeName;
   } else {
-    print('Failed to fetch recipe name for recipe $recipeId');
     return '';
   }
 }
 
 Future<String> fetchRecipeImageUrl(String recipeId) async {
-  final String apiKey =
+  const String apiKey =
       '25e156a57e0b43be98220d6f32fd8ff4'; // Replace with your Spoonacular API key
   final response = await http.get(Uri.parse(
       'https://api.spoonacular.com/recipes/$recipeId/information?apiKey=$apiKey'));
@@ -221,16 +217,14 @@ Future<String> fetchRecipeImageUrl(String recipeId) async {
   if (response.statusCode == 200) {
     final Map<String, dynamic> responseData = json.decode(response.body);
     final String imageUrl = responseData['image'] ?? '';
-    print('Image URL for recipe $recipeId: $imageUrl');
     return imageUrl;
   } else {
-    print('Failed to fetch image URL for recipe $recipeId');
     return '';
   }
 }
 
   Future<double> fetchRecipeRating(String recipeId) async {
-    final String apiKey =
+    const String apiKey =
         '25e156a57e0b43be98220d6f32fd8ff4'; // Replace with your Spoonacular API key
     final response = await http.get(Uri.parse(
         'https://api.spoonacular.com/recipes/$recipeId/information?apiKey=$apiKey'));
@@ -238,16 +232,14 @@ Future<String> fetchRecipeImageUrl(String recipeId) async {
     if (response.statusCode == 200) {
       final Map<String, dynamic> responseData = json.decode(response.body);
       final double rating = responseData['spoonacularScore'] ?? 0.0;
-      print('Rating for recipe $recipeId: $rating');
       return rating;
     } else {
-      print('Failed to fetch rating for recipe $recipeId');
       return 0.0;
     }
   }
 
   Future<int> fetchRecipeServings(String recipeId) async {
-    final String apiKey =
+    const String apiKey =
         '25e156a57e0b43be98220d6f32fd8ff4'; // Replace with your Spoonacular API key
     final response = await http.get(Uri.parse(
         'https://api.spoonacular.com/recipes/$recipeId/information?apiKey=$apiKey'));
@@ -255,16 +247,14 @@ Future<String> fetchRecipeImageUrl(String recipeId) async {
     if (response.statusCode == 200) {
       final Map<String, dynamic> responseData = json.decode(response.body);
       final int servings = responseData['servings'] ?? 0;
-      print('Servings for recipe $recipeId: $servings');
       return servings;
     } else {
-      print('Failed to fetch servings for recipe $recipeId');
       return 0;
     }
   }
 
   Future<int> fetchRecipeCalories(String recipeId) async {
-    final String apiKey =
+    const String apiKey =
         '25e156a57e0b43be98220d6f32fd8ff4'; // Replace with your Spoonacular API key
     final response = await http.get(Uri.parse(
         'https://api.spoonacular.com/recipes/$recipeId/nutritionWidget.json?apiKey=$apiKey'));
@@ -272,16 +262,14 @@ Future<String> fetchRecipeImageUrl(String recipeId) async {
     if (response.statusCode == 200) {
       final Map<String, dynamic> responseData = json.decode(response.body);
       final int calories = int.parse(responseData['calories'].toString());
-      print('Calories for recipe $recipeId: $calories');
       return calories;
     } else {
-      print('Failed to fetch calories for recipe $recipeId');
       return 0;
     }
   }
 
   Future<int> fetchRecipePrepTime(String recipeId) async {
-    final String apiKey =
+    const String apiKey =
         '25e156a57e0b43be98220d6f32fd8ff4'; // Replace with your Spoonacular API key
     final response = await http.get(Uri.parse(
         'https://api.spoonacular.com/recipes/$recipeId/information?apiKey=$apiKey'));
@@ -289,16 +277,14 @@ Future<String> fetchRecipeImageUrl(String recipeId) async {
     if (response.statusCode == 200) {
       final Map<String, dynamic> responseData = json.decode(response.body);
       final int prepTime = responseData['readyInMinutes'] ?? 0;
-      print('Prep time for recipe $recipeId: $prepTime');
       return prepTime;
     } else {
-      print('Failed to fetch prep time for recipe $recipeId');
       return 0;
     }
   }
 
   Future<List<dynamic>> fetchRecipeIngredients(String recipeId) async {
-    final String apiKey =
+    const String apiKey =
         '25e156a57e0b43be98220d6f32fd8ff4'; // Replace with your Spoonacular API key
     final response = await http.get(Uri.parse(
         'https://api.spoonacular.com/recipes/$recipeId/ingredientWidget.json?apiKey=$apiKey'));
@@ -314,16 +300,14 @@ Future<String> fetchRecipeImageUrl(String recipeId) async {
       ingredients.retainWhere(
           (ingredient) => ingredientNames.remove(ingredient['name']));
 
-      print('Ingredients for recipe $recipeId: $ingredients');
       return ingredients;
     } else {
-      print('Failed to fetch ingredients for recipe $recipeId');
       return [];
     }
   }
 
   Future<List<String>> fetchRecipeInstructions(String recipeId) async {
-    final String apiKey =
+    const String apiKey =
         '25e156a57e0b43be98220d6f32fd8ff4'; // Replace with your Spoonacular API key
     final response = await http.get(Uri.parse(
         'https://api.spoonacular.com/recipes/$recipeId/analyzedInstructions?apiKey=$apiKey'));
@@ -342,14 +326,11 @@ Future<String> fetchRecipeImageUrl(String recipeId) async {
         instructions = instructions
             .where((step) => step.trim().isNotEmpty)
             .toList(); // Remove empty steps
-        print('Instructions for recipe $recipeId: $instructions');
         return instructions;
       } else {
-        print('No instructions found for recipe $recipeId');
         return [];
       }
     } else {
-      print('Failed to fetch instructions for recipe $recipeId');
       return [];
     }
   }
@@ -376,7 +357,7 @@ Future<String> fetchRecipeImageUrl(String recipeId) async {
   Future<List<String>> fetchIngredientSubstitutes(
       String recipeId, List<dynamic> ingredients) async {
     List<String> substitutes = [];
-    final String apiKey = '25e156a57e0b43be98220d6f32fd8ff4';
+    const String apiKey = '25e156a57e0b43be98220d6f32fd8ff4';
 
     for (var ingredient in ingredients) {
       final String ingredientName = ingredient['name'];
@@ -387,7 +368,7 @@ Future<String> fetchRecipeImageUrl(String recipeId) async {
         final response = await http.get(Uri.parse(substitutesApiUrl));
         if (response.statusCode == 200) {
           final jsonData = json.decode(response.body);
-          print('Response for $ingredientName: $jsonData'); // Debug print
+          // Debug print
           if (jsonData['status'] == 'success') {
             if (jsonData['substitutes'] != null) {
               final List<dynamic> substitutesData = jsonData['substitutes'];
@@ -396,16 +377,10 @@ Future<String> fetchRecipeImageUrl(String recipeId) async {
                   substitutesData.map((substitute) => substitute.toString()));
             }
           } else {
-            print(
-                'No substitutes found for $ingredientName: ${jsonData['message']}');
           }
         } else {
-          print(
-              'Failed to fetch substitutes for ingredient $ingredientName. Status code: ${response.statusCode}');
         }
       } catch (error) {
-        print(
-            'Error fetching substitutes for ingredient $ingredientName: $error');
       }
     }
 
@@ -418,7 +393,7 @@ Future<String> fetchRecipeImageUrl(String recipeId) async {
         future: _fetchDataFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
                 child: CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(Color(0xffff7269)),
             ));
@@ -450,7 +425,6 @@ class RecipeCard1 extends StatelessWidget {
     final double rating = ((recipe['rating'] / 100) * 5) ?? 0.0;
     return GestureDetector(
       onTap: () {
-          print('tapped');
         Navigator.push(
             context,
             PageRouteBuilder(

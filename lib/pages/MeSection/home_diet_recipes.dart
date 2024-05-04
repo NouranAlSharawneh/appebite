@@ -60,7 +60,6 @@ class _RecipeHomePageState extends State<RecipeHomePage> {
         _previousSelectedDate = widget.selectedDate; // Update previous selected date
       });
     } catch (error) {
-      print('Error fetching recipes: $error');
       setState(() {
         _isLoading = false;
       });
@@ -72,7 +71,7 @@ class _RecipeHomePageState extends State<RecipeHomePage> {
     return Scaffold(
   backgroundColor: const Color(0xff272a32),
   body: Transform.translate(
-    offset: Offset(0, -50), 
+    offset: const Offset(0, -50), 
     child: SizedBox(
       // height: 656,
       child: _isLoading

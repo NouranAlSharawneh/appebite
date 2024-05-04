@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:appebite/app/components/custom_dialog.dart';
 import 'package:appebite/app/data/Model/response_model.dart';
 import 'package:appebite/app/data/model/recipe.dart';
 import 'package:appebite/app/data/repository/repo.dart';
@@ -49,7 +48,6 @@ class HomeController extends GetxController {
 
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => RecipeDetailsView(recipe: recipe,)));
   } catch (e) {
-    print(e);
     showErrorToast(message: "Error occurred while fetching recipe details.");
     Navigator.of(context).pop(); // Ensure loader overlay is dismissed in case of error
   }

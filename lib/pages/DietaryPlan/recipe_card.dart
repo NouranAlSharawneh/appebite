@@ -1,8 +1,6 @@
-import 'package:appebite/RecipeInfo.dart';
 import 'package:appebite/plansinfo.dart';
 import 'package:flutter/material.dart';
 
-import 'package:appebite/pages/MeSection/personal_information.dart';
 // class RecipeCard extends StatelessWidget {
 //   final String title;
 //   final String rating;
@@ -295,7 +293,6 @@ int ingredientsCount = ingredients.length;
         };
       });
     } catch (error) {
-      print('Failed to fetch recipe data: $error');
     }
   })();
 }
@@ -319,13 +316,12 @@ int ingredientsCount = ingredients.length;
 
     return ingredients;
   } else {
-    print('Failed to fetch ingredients for recipe ${widget.id}');
     return [];
   }
 }
 
 Future<List<String>> fetchInstructions() async {
-  final String apiKey = '25e156a57e0b43be98220d6f32fd8ff4';
+  const String apiKey = '25e156a57e0b43be98220d6f32fd8ff4';
   final String apiUrl =
       'https://api.spoonacular.com/recipes/${widget.id}/analyzedInstructions?apiKey=$apiKey';
 
@@ -342,14 +338,11 @@ Future<List<String>> fetchInstructions() async {
         instructions.addAll(separatedSteps);
       });
       instructions = instructions.where((step) => step.trim().isNotEmpty).toList(); // Remove empty steps
-      print('Instructions for recipe ${widget.id}: $instructions');
       return instructions;
     } else {
-      print('No instructions found for recipe ${widget.id}');
       return [];
     }
   } else {
-    print('Failed to fetch instructions for recipe ${widget.id}');
     return [];
   }
 }
@@ -380,7 +373,7 @@ List<String> _splitSteps(String step) {
   Future<Map<String, List<String>>> fetchIngredientSubstitutes(
    String recipeId, List<dynamic> ingredients) async {
     Map<String, List<String>> substitutes = {};
-    final String apiKey = '25e156a57e0b43be98220d6f32fd8ff4';
+    const String apiKey = '25e156a57e0b43be98220d6f32fd8ff4';
 
     for (var ingredient in ingredients) {
       final String ingredientName = ingredient['name'];
@@ -391,7 +384,7 @@ List<String> _splitSteps(String step) {
         final response = await http.get(Uri.parse(substitutesApiUrl));
         if (response.statusCode == 200) {
           final jsonData = json.decode(response.body);
-          print('Response for $ingredientName: $jsonData'); // Debug print
+          // Debug print
           if (jsonData['status'] == 'success') {
             if (jsonData['substitutes'] != null) {
               final List<dynamic> substitutesData = jsonData['substitutes'];
@@ -401,16 +394,10 @@ List<String> _splitSteps(String step) {
                   .toList();
             }
           } else {
-            print(
-                'No substitutes found for $ingredientName: ${jsonData['message']}');
           }
         } else {
-          print(
-              'Failed to fetch substitutes for ingredient $ingredientName. Status code: ${response.statusCode}');
         }
       } catch (error) {
-        print(
-            'Error fetching substitutes for ingredient $ingredientName: $error');
       }
     }
 
@@ -424,7 +411,7 @@ List<String> _splitSteps(String step) {
  final double ratingDouble = double.parse(widget.rating);
     // For instance:
     if (recipe.isEmpty) {
-      return CircularProgressIndicator();
+      return const CircularProgressIndicator();
     } else {
       return GestureDetector(
         onTap: () {  

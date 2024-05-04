@@ -1,6 +1,4 @@
-import 'package:appebite/Widgets/RecipesList.dart';
 import 'package:appebite/Widgets/nav_bar.dart';
-import 'package:appebite/home_main.dart';
 import 'package:appebite/pages/MeSection/favorites.dart';
 import 'package:appebite/pages/MeSection/me_page.dart';
 import 'package:flutter/material.dart';
@@ -36,15 +34,15 @@ class _FavPageState extends State<FavPage> {
                 Row(
                   children: [
                     IconButton(
-                      icon: Icon(IconlyLight.arrow_left_2),
-                      color: Color(0xffff7269),
+                      icon: const Icon(IconlyLight.arrow_left_2),
+                      color: const Color(0xffff7269),
                       iconSize: 27,
                       onPressed: () {
                         Navigator.of(context).pushAndRemoveUntil(
                           PageRouteBuilder(
                             pageBuilder:
                                 (context, animation, secondaryAnimation) =>
-                                    UserBar(),
+                                    const UserBar(),
                             transitionsBuilder: (context, animation,
                                 secondaryAnimation, child) {
                               return FadeTransition(
@@ -66,7 +64,7 @@ class _FavPageState extends State<FavPage> {
                         );
                       },
                     ),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                     Container(
                       height: 60.61,
                       width: 250,
@@ -103,10 +101,10 @@ class _FavPageState extends State<FavPage> {
               ],
             ),
           ),
-          SafeArea(
+          const SafeArea(
             child: Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: const FavoritePage(),
+              padding: EdgeInsets.only(top: 8.0),
+              child: FavoritePage(),
             ),
           ),
           const HomePage(

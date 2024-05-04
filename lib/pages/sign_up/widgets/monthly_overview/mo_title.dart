@@ -62,7 +62,7 @@ class MOTitle extends StatelessWidget {
                   pageBuilder: (context, animation, secondaryAnimation) =>
                       FadeTransition(
                     opacity: animation,
-                    child: HomeMain(),
+                    child: const HomeMain(),
                   ),
                 ),
               );

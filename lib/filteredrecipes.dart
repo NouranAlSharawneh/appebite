@@ -2,7 +2,6 @@ import 'package:appebite/RecipeInfo.dart';
 import 'package:appebite/Widgets/nav_bar.dart';
 import 'package:appebite/home_main.dart';
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
-import 'package:provider/provider.dart';
 import 'package:iconly/iconly.dart';
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
@@ -10,7 +9,6 @@ import 'package:atlas_icons/atlas_icons.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:akar_icons_flutter/akar_icons_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class filteredrecipes extends StatefulWidget {
   final String inputValue;
@@ -32,7 +30,6 @@ required this.allAdIngredients,
 required this.allExIngredients,
 required this.dietType,
   }) : super(key: key){
-     print('In filteredrecipes - Sort Type: $sortType, Sort Direction: $sortDirection');
   }
 
   @override
@@ -48,7 +45,7 @@ class _filteredrecipesState extends State<filteredrecipes> {
     _fetchDataFuture = fetchBreakfastRecipes(widget.inputValue, widget.cuisine, widget.mealType, widget.sortType, widget.sortDirection, widget.allAdIngredients, widget.allExIngredients, widget.dietType);
   }
   Future<void> fetchBreakfastRecipes(String inputValue, String cuisine, String mealType, String sortType, String sortDirection, String allAdIngredients, String  allExIngredients, String dietType) async {
-    final String apiKey ='25e156a57e0b43be98220d6f32fd8ff4'; 
+    const String apiKey ='25e156a57e0b43be98220d6f32fd8ff4'; 
     final String apiUrl =
     'https://api.spoonacular.com/recipes/complexSearch?query=$inputValue&type=$mealType&cuisine=$cuisine&sort=$sortType&sortDirection=$sortDirection&includeIngredients=$allAdIngredients&excludeIngredients=$allExIngredients&diet=$dietType&number=4&apiKey=$apiKey';
     try {
@@ -56,7 +53,6 @@ class _filteredrecipesState extends State<filteredrecipes> {
       if (response.statusCode == 200) {
         final jsonData = json.decode(response.body);
         List<Map<String, dynamic>> recipes = jsonData['results'].cast<Map<String, dynamic>>();
-        print('API URL: $apiUrl');
         for (var recipe in recipes) {
           final double rating =
               await fetchRecipeRating(recipe['id'].toString());
@@ -87,13 +83,13 @@ class _filteredrecipesState extends State<filteredrecipes> {
       } else {
         throw Exception('Failed to load $inputValue recipes');
       }
+    // ignore: empty_catches
     } catch (error) {
-      print('Error fetching $inputValue recipes: $error');
     }
   }
 
   Future<double> fetchRecipeRating(String recipeId) async {
-    final String apiKey =
+    const String apiKey =
         '25e156a57e0b43be98220d6f32fd8ff4'; // Replace with your Spoonacular API key
     final response = await http.get(Uri.parse(
         'https://api.spoonacular.com/recipes/$recipeId/information?apiKey=$apiKey'));
@@ -101,16 +97,14 @@ class _filteredrecipesState extends State<filteredrecipes> {
     if (response.statusCode == 200) {
       final Map<String, dynamic> responseData = json.decode(response.body);
       final double rating = responseData['spoonacularScore'] ?? 0.0;
-      print('Rating for recipe $recipeId: $rating');
       return rating;
     } else {
-      print('Failed to fetch rating for recipe $recipeId');
       return 0.0;
     }
   }
 
   Future<int> fetchRecipeServings(String recipeId) async {
-    final String apiKey =
+    const String apiKey =
         '25e156a57e0b43be98220d6f32fd8ff4'; // Replace with your Spoonacular API key
     final response = await http.get(Uri.parse(
         'https://api.spoonacular.com/recipes/$recipeId/information?apiKey=$apiKey'));
@@ -118,16 +112,14 @@ class _filteredrecipesState extends State<filteredrecipes> {
     if (response.statusCode == 200) {
       final Map<String, dynamic> responseData = json.decode(response.body);
       final int servings = responseData['servings'] ?? 0;
-      print('Servings for recipe $recipeId: $servings');
       return servings;
     } else {
-      print('Failed to fetch servings for recipe $recipeId');
       return 0;
     }
   }
 
   Future<int> fetchRecipeCalories(String recipeId) async {
-    final String apiKey =
+    const String apiKey =
         '25e156a57e0b43be98220d6f32fd8ff4'; // Replace with your Spoonacular API key
     final response = await http.get(Uri.parse(
         'https://api.spoonacular.com/recipes/$recipeId/nutritionWidget.json?apiKey=$apiKey'));
@@ -135,16 +127,14 @@ class _filteredrecipesState extends State<filteredrecipes> {
     if (response.statusCode == 200) {
       final Map<String, dynamic> responseData = json.decode(response.body);
       final int calories = int.parse(responseData['calories'].toString());
-      print('Calories for recipe $recipeId: $calories');
       return calories;
     } else {
-      print('Failed to fetch calories for recipe $recipeId');
       return 0;
     }
   }
 
   Future<int> fetchRecipePrepTime(String recipeId) async {
-    final String apiKey =
+    const String apiKey =
         '25e156a57e0b43be98220d6f32fd8ff4'; // Replace with your Spoonacular API key
     final response = await http.get(Uri.parse(
         'https://api.spoonacular.com/recipes/$recipeId/information?apiKey=$apiKey'));
@@ -152,16 +142,14 @@ class _filteredrecipesState extends State<filteredrecipes> {
     if (response.statusCode == 200) {
       final Map<String, dynamic> responseData = json.decode(response.body);
       final int prepTime = responseData['readyInMinutes'] ?? 0;
-      print('Prep time for recipe $recipeId: $prepTime');
       return prepTime;
     } else {
-      print('Failed to fetch prep time for recipe $recipeId');
       return 0;
     }
   }
 
   Future<List<dynamic>> fetchRecipeIngredients(String recipeId) async {
-    final String apiKey =
+    const String apiKey =
         '25e156a57e0b43be98220d6f32fd8ff4'; 
     final response = await http.get(Uri.parse(
         'https://api.spoonacular.com/recipes/$recipeId/ingredientWidget.json?apiKey=$apiKey'));
@@ -176,16 +164,14 @@ class _filteredrecipesState extends State<filteredrecipes> {
       ingredients.retainWhere(
           (ingredient) => ingredientNames.remove(ingredient['name']));
 
-      print('Ingredients for recipe $recipeId: $ingredients');
       return ingredients;
     } else {
-      print('Failed to fetch ingredients for recipe $recipeId');
       return [];
     }
   }
 
   Future<List<String>> fetchRecipeInstructions(String recipeId) async {
-    final String apiKey ='25e156a57e0b43be98220d6f32fd8ff4'; 
+    const String apiKey ='25e156a57e0b43be98220d6f32fd8ff4'; 
     final response = await http.get(Uri.parse(
         'https://api.spoonacular.com/recipes/$recipeId/analyzedInstructions?apiKey=$apiKey'));
     if (response.statusCode == 200) {
@@ -200,14 +186,11 @@ class _filteredrecipesState extends State<filteredrecipes> {
           instructions.addAll(separatedSteps);
         });
         instructions = instructions.where((step) => step.trim().isNotEmpty).toList();
-        print('Instructions for recipe $recipeId: $instructions');
         return instructions;
       } else {
-        print('No instructions found for recipe $recipeId');
         return [];
       }
     } else {
-      print('Failed to fetch instructions for recipe $recipeId');
       return [];
     }
   }
@@ -234,7 +217,7 @@ class _filteredrecipesState extends State<filteredrecipes> {
   Future<List<String>> fetchIngredientSubstitutes(
       String recipeId, List<dynamic> ingredients) async {
     List<String> substitutes = [];
-    final String apiKey = '25e156a57e0b43be98220d6f32fd8ff4';
+    const String apiKey = '25e156a57e0b43be98220d6f32fd8ff4';
     for (var ingredient in ingredients) {
       final String ingredientName = ingredient['name'];
       final String substitutesApiUrl =
@@ -243,7 +226,7 @@ class _filteredrecipesState extends State<filteredrecipes> {
         final response = await http.get(Uri.parse(substitutesApiUrl));
         if (response.statusCode == 200) {
           final jsonData = json.decode(response.body);
-          print('Response for $ingredientName: $jsonData'); // Debug print
+          // Debug print
           if (jsonData['status'] == 'success') {
             if (jsonData['substitutes'] != null) {
               final List<dynamic> substitutesData = jsonData['substitutes'];
@@ -251,23 +234,16 @@ class _filteredrecipesState extends State<filteredrecipes> {
                   substitutesData.map((substitute) => substitute.toString()));
             }
           } else {
-            print(
-                'No substitutes found for $ingredientName: ${jsonData['message']}');
           }
         } else {
-          print(
-              'Failed to fetch substitutes for ingredient $ingredientName. Status code: ${response.statusCode}');
         }
       } catch (error) {
-        print(
-            'Error fetching substitutes for ingredient $ingredientName: $error');
       }
     }
     return substitutes;
   }
 
   TextEditingController _searchController = TextEditingController();
-  List<Map<String, dynamic>> _searchedRecipes = [];
   bool _isLoading = false;
   int selectedTab = 0;
   Widget currentContent = const SizedBox.shrink();
@@ -314,15 +290,15 @@ class _filteredrecipesState extends State<filteredrecipes> {
                 Row(
                   children: [
                     IconButton(
-                      icon: Icon(IconlyLight.arrow_left_2),
-                      color: Color(0xffff7269),
+                      icon: const Icon(IconlyLight.arrow_left_2),
+                      color: const Color(0xffff7269),
                       iconSize: 27,
                       onPressed: () {
                         Navigator.of(context).pushAndRemoveUntil(
                           PageRouteBuilder(
                             pageBuilder:
                                 (context, animation, secondaryAnimation) =>
-                                    HomeMain(),
+                                    const HomeMain(),
                             transitionsBuilder: (context, animation,
                                 secondaryAnimation, child) {
                               return FadeTransition(
@@ -367,7 +343,7 @@ class _filteredrecipesState extends State<filteredrecipes> {
                             Expanded(
                               child: TextField(
                                 controller: _searchController,
-                                cursorColor: Color(0xffff7269),
+                                cursorColor: const Color(0xffff7269),
                                 onSubmitted: (String value) {
                                    String mealType = selectedMeal ?? 'all';
                     String cuisineType = selectedCuisine ?? 'all';
@@ -410,20 +386,20 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
                                   hintText: "Search recipe",
-                                  hintStyle: TextStyle(
+                                  hintStyle: const TextStyle(
                                     color: Color.fromARGB(255, 104, 111, 130),
                                     fontFamily: 'Poppins',
                                     fontSize: 13,
                                   ),
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.search,
                                     color: Color.fromARGB(255, 104, 111, 130),
                                   ),
                                   suffixIcon: Padding(
                                       padding: const EdgeInsets.only(right: 13),
                                       child: IconButton(
-                                          icon: Icon(IconlyLight.filter),
-                                          color: Color(0xffff7269),
+                                          icon: const Icon(IconlyLight.filter),
+                                          color: const Color(0xffff7269),
                                           onPressed: () {
                                            showModalBottomSheet(
                               context: context,
@@ -814,11 +790,9 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                                       addedingredients
                                                                           .join(
                                                                               ', ');
-                                                                  print(
-                                                                      allAdIngredients);
                                                                 });
                                                               },
-                                                              cursorColor: Color(
+                                                              cursorColor: const Color(
                                                                   0xffff7269),
                                                               style: const TextStyle(
                                                                   color: Colors
@@ -828,7 +802,7 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                                 hintText:
                                                                     'Include ingredients',
                                                                 hintStyle:
-                                                                    TextStyle(
+                                                                    const TextStyle(
                                                                   fontSize:
                                                                       18.0,
                                                                   color: Color
@@ -841,14 +815,14 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                                       'Poppins',
                                                                 ),
                                                                 filled: true,
-                                                                fillColor: Color
+                                                                fillColor: const Color
                                                                     .fromARGB(
                                                                         255,
                                                                         53,
                                                                         56,
                                                                         66),
                                                                 contentPadding:
-                                                                    EdgeInsets.symmetric(
+                                                                    const EdgeInsets.symmetric(
                                                                         vertical:
                                                                             17.0,
                                                                         horizontal:
@@ -868,7 +842,7 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                             ),
                                                           ),
                                                           IconButton(
-                                                            icon: Icon(
+                                                            icon: const Icon(
                                                               Icons
                                                                   .arrow_drop_up,
                                                               color: Color(
@@ -898,7 +872,7 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                                         child:
                                                                             Container(
                                                                           // Change bottom sheet background color here
-                                                                          color: Color.fromARGB(
+                                                                          color: const Color.fromARGB(
                                                                               250,
                                                                               38,
                                                                               40,
@@ -912,7 +886,7 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                                               Row(
                                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                                 children: <Widget>[
-                                                                                  Text('Included Ingredients:',
+                                                                                  const Text('Included Ingredients:',
                                                                                       style: TextStyle(
                                                                                         color: Color.fromARGB(255, 255, 255, 255),
                                                                                         fontFamily: 'Poppins',
@@ -920,7 +894,7 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                                                         fontSize: 20,
                                                                                       )),
                                                                                   IconButton(
-                                                                                    icon: Icon(Icons.clear, color: Color.fromARGB(255, 255, 255, 255)),
+                                                                                    icon: const Icon(Icons.clear, color: Color.fromARGB(255, 255, 255, 255)),
                                                                                     onPressed: () {
                                                                                       Navigator.of(context).pop();
                                                                                       _Addcontroller.clear(); // Clear the text field
@@ -958,20 +932,20 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                                                       return Container(
                                                                                         decoration: BoxDecoration(
                                                                                           borderRadius: BorderRadius.circular(10),
-                                                                                          color: Color(0xffff7269),
+                                                                                          color: const Color(0xffff7269),
                                                                                         ),
-                                                                                        margin: EdgeInsets.only(bottom: 10.0),
+                                                                                        margin: const EdgeInsets.only(bottom: 10.0),
                                                                                         child: ListTile(
                                                                                           title: Text(
                                                                                             addedingredients[index],
-                                                                                            style: TextStyle(
+                                                                                            style: const TextStyle(
                                                                                               color: Color.fromARGB(255, 255, 255, 255),
                                                                                               fontFamily: 'Poppins',
                                                                                               fontWeight: FontWeight.w600,
                                                                                             ),
                                                                                           ),
                                                                                           trailing: IconButton(
-                                                                                            icon: Icon(
+                                                                                            icon: const Icon(
                                                                                               Icons.close,
                                                                                               color: Color.fromARGB(250, 38, 40, 48),
                                                                                             ),
@@ -979,7 +953,6 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                                                               setState(() {
                                                                                                 addedingredients.removeAt(index);
                                                                                                 allAdIngredients = addedingredients.join(', ');
-                                                                                                print(allAdIngredients);
                                                                                               });
                                                                                             },
                                                                                           ),
@@ -1025,11 +998,9 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                                       Removedingredients
                                                                           .join(
                                                                               ', ');
-                                                                  print(
-                                                                      allExIngredients);
                                                                 });
                                                               },
-                                                              cursorColor: Color(
+                                                              cursorColor: const Color(
                                                                   0xffff7269),
                                                               style: const TextStyle(
                                                                   color: Colors
@@ -1039,7 +1010,7 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                                 hintText:
                                                                     'Execlude ingredients',
                                                                 hintStyle:
-                                                                    TextStyle(
+                                                                    const TextStyle(
                                                                   fontSize:
                                                                       18.0,
                                                                   color: Color
@@ -1052,14 +1023,14 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                                       'Poppins',
                                                                 ),
                                                                 filled: true,
-                                                                fillColor: Color
+                                                                fillColor: const Color
                                                                     .fromARGB(
                                                                         255,
                                                                         53,
                                                                         56,
                                                                         66),
                                                                 contentPadding:
-                                                                    EdgeInsets.symmetric(
+                                                                    const EdgeInsets.symmetric(
                                                                         vertical:
                                                                             17.0,
                                                                         horizontal:
@@ -1145,13 +1116,13 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                                               ),
                                                                               if (Removedingredients.isEmpty)
                                                                                 const Padding(
-                                                                                  padding: const EdgeInsets.only(top: 2.0),
+                                                                                  padding: EdgeInsets.only(top: 2.0),
                                                                                   child: Row(
                                                                                     mainAxisAlignment: MainAxisAlignment.center,
                                                                                     children: [
                                                                                       Text(
                                                                                         'You have not execluded ingredients yet',
-                                                                                        style: const TextStyle(
+                                                                                        style: TextStyle(
                                                                                           color: Color.fromARGB(255, 104, 111, 130),
                                                                                           fontFamily: 'Poppins',
                                                                                           fontWeight: FontWeight.w400,
@@ -1170,9 +1141,9 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                                                       return Container(
                                                                                         decoration: BoxDecoration(
                                                                                           borderRadius: BorderRadius.circular(10),
-                                                                                          color: Color(0xffff7269),
+                                                                                          color: const Color(0xffff7269),
                                                                                         ),
-                                                                                        margin: EdgeInsets.only(bottom: 10.0),
+                                                                                        margin: const EdgeInsets.only(bottom: 10.0),
                                                                                         child: ListTile(
                                                                                           title: Text(
                                                                                             Removedingredients[index],
@@ -1191,7 +1162,6 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                                                               setState(() {
                                                                                                 Removedingredients.removeAt(index);
                                                                                                 allExIngredients = Removedingredients.join(', ');
-                                                                                                print(allExIngredients);
                                                                                               });
                                                                                             },
                                                                                           ),
@@ -1400,9 +1370,6 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                           Expanded(
                                                             child: InkWell(
                                                               onTap: () {
-                                                                print(
-                                                                  'alladdingredients: $allAdIngredients - allremovedingredients: $allExIngredients - selectedMeal: $selectedMeal - ',
-                                                                );
                                                                   Navigator.of(context).pop();
                                                               },
                                                               child: Container(
@@ -1416,7 +1383,7 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                                               10),
                                                                 ),
                                                                 margin:
-                                                                    EdgeInsets
+                                                                    const EdgeInsets
                                                                         .all(
                                                                             10),
                                                                 child: ListTile(
@@ -1435,15 +1402,13 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                                     ),
                                                                     leading:
                                                                         IconButton(
-                                                                      icon: Icon(
+                                                                      icon: const Icon(
                                                                           Icons
                                                                               .check,
                                                                           color:
                                                                               Colors.white),
                                                                       onPressed:
                                                                           () {
-                                                                        print(
-                                                                            'alladdingredients: $allAdIngredients - allremovedingredients: $allExIngredients');
                                                                               Navigator.of(context).pop();
                                                                       },
                                                                     )),
@@ -1510,7 +1475,7 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                                   .circular(10),
                                                         ),
                                                         margin:
-                                                            EdgeInsets.all(10),
+                                                            const EdgeInsets.all(10),
                                                         child: ListTile(
                                                           title: const Text(
                                                             'Longest to Shortest Time',
@@ -1524,7 +1489,7 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                           ),
                                                           leading:
                                                               Radio<String>(
-                                                            activeColor: Color(
+                                                            activeColor: const Color(
                                                                 0xffff7269),
                                                             value: 'Longest',
                                                             groupValue:
@@ -1564,7 +1529,7 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                                   .circular(10),
                                                         ),
                                                         margin:
-                                                            EdgeInsets.all(10),
+                                                            const EdgeInsets.all(10),
                                                         child: ListTile(
                                                           title: const Text(
                                                             'Shortest to Longest Time',
@@ -1578,7 +1543,7 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                           ),
                                                           leading:
                                                               Radio<String>(
-                                                            activeColor: Color(
+                                                            activeColor: const Color(
                                                                 0xffff7269),
                                                             value: 'Shortest',
                                                             groupValue:
@@ -1598,7 +1563,7 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                         ),
                                                       ),
                                                     ),
-                                                    SizedBox(height: 16),
+                                                    const SizedBox(height: 16),
                                                     const Row(
                                                       crossAxisAlignment:
                                                           CrossAxisAlignment
@@ -1652,7 +1617,7 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                                   .circular(10),
                                                         ),
                                                         margin:
-                                                            EdgeInsets.all(10),
+                                                            const EdgeInsets.all(10),
                                                         child: ListTile(
                                                           title: const Text(
                                                             'Highest to Lowest Calories',
@@ -1666,7 +1631,7 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                           ),
                                                           leading:
                                                               Radio<String>(
-                                                            activeColor: Color(
+                                                            activeColor: const Color(
                                                                 0xffff7269),
                                                             value: 'highest',
                                                             groupValue:
@@ -1705,7 +1670,7 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                                   .circular(10),
                                                         ),
                                                         margin:
-                                                            EdgeInsets.all(10),
+                                                            const EdgeInsets.all(10),
                                                         child: ListTile(
                                                           title: const Text(
                                                             'Lowest to Highest Calories',
@@ -1719,7 +1684,7 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                           ),
                                                           leading:
                                                               Radio<String>(
-                                                            activeColor: Color(
+                                                            activeColor: const Color(
                                                                 0xffff7269),
                                                             value: 'lowest',
                                                             groupValue:
@@ -1806,8 +1771,6 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                           Expanded(
                                                             child: InkWell(
                                                               onTap: () {
-                                                                print(
-                                                                    'sortType: $sortType - sortdireaction: $sortDirection');
                                                                       Navigator.of(context).pop();
                                                               },
                                                               child: Container(
@@ -1821,7 +1784,7 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                                               10),
                                                                 ),
                                                                 margin:
-                                                                    EdgeInsets
+                                                                    const EdgeInsets
                                                                         .all(
                                                                             10),
                                                                 child: ListTile(
@@ -1840,15 +1803,13 @@ class _filteredrecipesState extends State<filteredrecipes> {
                                                                     ),
                                                                     leading:
                                                                         IconButton(
-                                                                      icon: Icon(
+                                                                      icon: const Icon(
                                                                           Icons
                                                                               .check,
                                                                           color:
                                                                               Colors.white),
                                                                       onPressed:
                                                                           () {
-                                                                        print(
-                                                                            'sortType: $sortType - sortdireaction: $sortDirection');
                                                                               Navigator.of(context).pop();
                                                                       },
                                                                     )),

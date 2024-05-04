@@ -4,19 +4,16 @@ import 'package:appebite/pages/Fav.dart';
 import 'package:appebite/pages/cook.dart';
 import 'package:appebite/pages/login/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:appebite/pages/MeSection/favorites.dart';
 import 'package:appebite/pages/MeSection/BMI_status.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 //import 'package:appebite/pages/MeSection/personal_information.dart';
 
-import 'package:firebase_core/firebase_core.dart';
 //import 'package:appebite/pages/MeSection/BMI_status.dart';
 //import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:appebite/pages/settings/settings_edit_information.dart';
 import 'package:quickalert/quickalert.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'dart:async';
 
 class UserBar extends StatefulWidget {
@@ -48,7 +45,6 @@ String _userName = '';
           _userName = userInfo['firstName'];
         });
       } catch (e) {
-        print('Error fetching user name: $e');
       }
     }
   }
@@ -70,26 +66,12 @@ String _userName = '';
         // Navigate to login screen
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => LoginPage()),
+          MaterialPageRoute(builder: (context) => const LoginPage()),
         );
       },
     );
   }
 
-  void _logout() async {
-    await auth.signOut();
-    Navigator.push(
-      context,
-      PageRouteBuilder(
-        transitionDuration: Duration.zero,
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            FadeTransition(
-          opacity: animation,
-          child: const LoginPage(),
-        ),
-      ),
-    );
-  }
 
   void _navigateToSettings() {
   Navigator.push(
@@ -137,8 +119,6 @@ String _userName = '';
 
   @override
   Widget build(BuildContext context) {
-    const String userId = 'your_user_id';
-    const  String recipeId = 'your_recipe_id';
     return Scaffold(
       backgroundColor: const Color(0xff272a32),
       body: Stack(
@@ -165,15 +145,15 @@ String _userName = '';
                       children: [
                         Text(
                           'Hello $_userName,',
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontFamily: 'poppins',
                             fontSize: 22,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        SizedBox(height: 5),
-                        Text(
+                        const SizedBox(height: 5),
+                        const Text(
                           "View your personal page",
                           style: TextStyle(
                             color: Color.fromRGBO(104, 108, 119, 0.965),
@@ -222,7 +202,6 @@ class UserPicture extends StatefulWidget {
 
 class _UserPictureState extends State<UserPicture> {
   String? _profilePictureUrl;
-  late String _userName = '';
 
   @override
   void initState() {
@@ -241,10 +220,8 @@ class _UserPictureState extends State<UserPicture> {
 
         setState(() {
           _profilePictureUrl = userInfo['profilePictureUrl'];
-          _userName = userInfo['firstName'];
         });
       } catch (e) {
-        print('Error fetching user profile: $e');
       }
     }
   }
@@ -268,7 +245,7 @@ class _UserPictureState extends State<UserPicture> {
                 height: 50,
                 width: 50,
                 color: Colors.grey,
-                child: Icon(Icons.error, color: Colors.red),
+                child: const Icon(Icons.error, color: Colors.red),
         ), // Placeholder widget until image is fetched
       ),
     );
@@ -397,15 +374,12 @@ class InformationBar extends StatelessWidget {
               child: BMIProgressScreen(userId: userId))),
           );
         } else {
-          print('User data does not exist');
           // Handle case where user data does not exist
         }
       } else {
-        print('User not logged in');
         // Handle case where user is not logged in
       }
     } catch (error) {
-      print('Error fetching user data: $error');
       // Handle error fetching user data
     }
   },
@@ -551,11 +525,9 @@ void startNotificationTimer() {
       if (recipeSnapshot.exists) {
         return recipeSnapshot.data()!;
       } else {
-        print('Recipe document not found');
         return {};
       }
     } catch (error) {
-      print('Error fetching recipe data: $error');
       return {};
     }
   }

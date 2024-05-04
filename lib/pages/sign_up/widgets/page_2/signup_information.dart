@@ -3,12 +3,12 @@ import 'package:google_fonts/google_fonts.dart';
 
 class SignUpInformation extends StatelessWidget {
   const SignUpInformation({
-    Key? key,
+    super.key,
     required this.fem,
     required this.ffem,
     required this.onWeightChanged,
     required this.onHeightChanged,
-  }) : super(key: key);
+  });
 
   final double fem;
   final double ffem;

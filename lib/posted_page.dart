@@ -4,10 +4,7 @@ import 'package:iconly/iconly.dart';
 import 'package:atlas_icons/atlas_icons.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:akar_icons_flutter/akar_icons_flutter.dart';
-import 'package:solar_icons/solar_icons.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'dart:convert';
 import 'package:url_launcher/url_launcher.dart';
@@ -124,7 +121,7 @@ Future<Position> _determinePosition() async {
         nextPageToken = data['next_page_token'];
 
         if (nextPageToken != null) {
-          await Future.delayed(Duration(seconds: 3));
+          await Future.delayed(const Duration(seconds: 3));
         }
       } else {
         throw Exception('Failed to load supermarkets');
@@ -584,13 +581,13 @@ Future<Position> _determinePosition() async {
                           end: Alignment.bottomCenter,
                           colors: [
                             Colors.transparent,
-                            Color.fromARGB(70, 22, 22, 22).withOpacity(
+                            const Color.fromARGB(70, 22, 22, 22).withOpacity(
                                 0.2), // Adjust opacity or color as needed
                           ],
                         ),
                       ),
                       child: SingleChildScrollView(
-                        physics: BouncingScrollPhysics(),
+                        physics: const BouncingScrollPhysics(),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: List.generate(
@@ -754,7 +751,7 @@ Future<Position> _determinePosition() async {
                                         Container(
                                           padding: const EdgeInsets.only(
                                               top: 10.0, bottom: 10),
-                                          child: Row(
+                                          child: const Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
@@ -793,10 +790,10 @@ Future<Position> _determinePosition() async {
                                                                   .only(
                                                                   left: 10.0),
                                                           child: ListTile(
-                                                            leading: Icon(
+                                                            leading: const Icon(
                                                               Icons
                                                                   .shopping_cart,
-                                                              color: const Color(
+                                                              color: Color(
                                                                   0xffff7269),
                                                               size: 20,
                                                             ),
@@ -827,14 +824,12 @@ Future<Position> _determinePosition() async {
                                                                 await launchUrl(
                                                                     url);
                                                               } else {
-                                                                print(
-                                                                    'Could not launch $url');
                                                               }
                                                             },
                                                           ),
                                                         ),
-                                                        Divider(
-                                                          color: const Color
+                                                        const Divider(
+                                                          color: Color
                                                               .fromARGB(177,
                                                               255, 255, 255),
                                                           thickness: 0.5,
@@ -846,7 +841,7 @@ Future<Position> _determinePosition() async {
                                                   },
                                                 );
                                               } else {
-                                                return Center(
+                                                return const Center(
                                                     child:
                                                         CircularProgressIndicator());
                                               }
@@ -870,7 +865,7 @@ Future<Position> _determinePosition() async {
                                   size: 22,
                                 ),
                               ),
-                              const SizedBox(width: 9),
+                              SizedBox(width: 9),
                               Text(
                                 "Find nearby supermarkets",
                                 style: TextStyle(

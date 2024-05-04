@@ -21,14 +21,14 @@ class _MeListState extends State<MeList> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               "Me Screen",
               style: TextStyle(color: Colors.white),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               "You've entered this page $_counter times",
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
               textAlign: TextAlign.center,
             ),
           ],
@@ -38,7 +38,7 @@ class _MeListState extends State<MeList> {
         onPressed: () {
           Navigator.pop(context); // Pops the current page when the FAB is pressed
         },
-        child: Icon(Icons.arrow_back), // Icon for the FAB
+        child: const Icon(Icons.arrow_back), // Icon for the FAB
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat, // Positions the FAB in the center
     );

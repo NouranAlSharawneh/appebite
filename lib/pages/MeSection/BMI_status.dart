@@ -50,9 +50,7 @@ class _BMIProgressScreenState extends State<BMIProgressScreen> {
           _weightController.text = _userWeight.toStringAsFixed(1);
           _bmiValue = _calculateBMI(_userHeight, _userWeight);
         });
-      } catch (e) {
-        print('Error fetching user info: $e');
-        
+      } catch (e) {        
       }
     }
   }
@@ -233,7 +231,7 @@ class _BMIProgressScreenState extends State<BMIProgressScreen> {
                   ),
               Center(
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 9),
+                        padding: const EdgeInsets.symmetric(horizontal: 9),
                         child: Container(
                           margin: const EdgeInsets.only(top: 110),
                           child: Row(

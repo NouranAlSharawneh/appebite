@@ -44,7 +44,7 @@ class _DietsListState extends State<DietsList> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left:30, right:30) ,
+      padding: const EdgeInsets.only(left:30, right:30) ,
       child: SizedBox(
         height: 140,
         width: 603,
@@ -284,7 +284,7 @@ class _HomePageState extends State<DietsHomePage> {
               Expanded(
                 child: SafeArea(child: RecipeHomePage(selectedDiet: selectedDiet, selectedDate: selectedDate)), // Pass selectedDate to RecipeHomePage
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Container(
                 height: 1,
                 margin: const EdgeInsets.only(bottom: 1),

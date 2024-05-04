@@ -75,7 +75,7 @@ class _CardDisplayInfoState extends State<CardDisplayInfo> {
 
   Future<void> fetchBreakfastRecipes(
       String mealType, cuisineType, String keywords) async {
-    final String apiKey =
+    const String apiKey =
         '25e156a57e0b43be98220d6f32fd8ff4'; // Replace with your Spoonacular API key
     final String apiUrl =
         'https://api.spoonacular.com/recipes/complexSearch?type=$mealType&cuisine=$cuisineType&keywords=$keywords&number=4&offset=11&includeIngredients=eggs&apiKey=$apiKey';
@@ -96,7 +96,6 @@ class _CardDisplayInfoState extends State<CardDisplayInfo> {
               await fetchIngredientSubstitutes(
                   recipe['id'].toString(), ingredients);
 
-          print('Substitutes: $substitutes');
 
           recipe['ingredientsCount'] = ingredients.length;
           recipe['ingredients'] = ingredients;
@@ -111,13 +110,12 @@ class _CardDisplayInfoState extends State<CardDisplayInfo> {
         throw Exception('Failed to load $mealType recipes');
       }
     } catch (error) {
-      print('Error fetching $mealType recipes: $error');
       // Handle error appropriately, e.g., show a snackbar
     }
   }
 
   Future<List<dynamic>> fetchRecipeIngredients(String recipeId) async {
-    final String apiKey =
+    const String apiKey =
         '25e156a57e0b43be98220d6f32fd8ff4'; // Replace with your Spoonacular API key
     final response = await http.get(Uri.parse(
         'https://api.spoonacular.com/recipes/$recipeId/ingredientWidget.json?apiKey=$apiKey'));
@@ -127,10 +125,8 @@ class _CardDisplayInfoState extends State<CardDisplayInfo> {
       final List<dynamic> ingredients = List<Map<String, dynamic>>.from(
           responseData['ingredients'] as Iterable<dynamic>);
 
-      print('Ingredients for recipe $recipeId: $ingredients');
       return ingredients;
     } else {
-      print('Failed to fetch ingredients for recipe $recipeId');
       return [];
     }
   }
@@ -138,7 +134,7 @@ class _CardDisplayInfoState extends State<CardDisplayInfo> {
   Future<Map<String, List<String>>> fetchIngredientSubstitutes(
       String recipeId, List<dynamic> ingredients) async {
     Map<String, List<String>> substitutes = {};
-    final String apiKey = '25e156a57e0b43be98220d6f32fd8ff4';
+    const String apiKey = '25e156a57e0b43be98220d6f32fd8ff4';
 
     for (var ingredient in ingredients) {
       final String ingredientName = ingredient['name'];
@@ -149,7 +145,7 @@ class _CardDisplayInfoState extends State<CardDisplayInfo> {
         final response = await http.get(Uri.parse(substitutesApiUrl));
         if (response.statusCode == 200) {
           final jsonData = json.decode(response.body);
-          print('Response for $ingredientName: $jsonData'); // Debug print
+          // Debug print
           if (jsonData['status'] == 'success') {
             if (jsonData['substitutes'] != null) {
               final List<dynamic> substitutesData = jsonData['substitutes'];
@@ -159,16 +155,10 @@ class _CardDisplayInfoState extends State<CardDisplayInfo> {
                   .toList();
             }
           } else {
-            print(
-                'No substitutes found for $ingredientName: ${jsonData['message']}');
           }
         } else {
-          print(
-              'Failed to fetch substitutes for ingredient $ingredientName. Status code: ${response.statusCode}');
         }
       } catch (error) {
-        print(
-            'Error fetching substitutes for ingredient $ingredientName: $error');
       }
     }
 
@@ -228,7 +218,7 @@ class _CardDisplayInfoState extends State<CardDisplayInfo> {
         nextPageToken = data['next_page_token'];
 
         if (nextPageToken != null) {
-          await Future.delayed(Duration(seconds: 3));
+          await Future.delayed(const Duration(seconds: 3));
         }
       } else {
         throw Exception('Failed to load supermarkets');
@@ -862,7 +852,7 @@ class _CardDisplayInfoState extends State<CardDisplayInfo> {
                     return Container(); // or you can use SizedBox.shrink()
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}',
-                        style: TextStyle(fontSize: 16.0, color: Colors.red));
+                        style: const TextStyle(fontSize: 16.0, color: Colors.red));
                   } else {
                     final Map<String, List<String>> substitutes =
                         snapshot.data ?? {};
@@ -909,22 +899,22 @@ class _CardDisplayInfoState extends State<CardDisplayInfo> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(
                                       10), // This adds border radius
-                                  color: Color.fromARGB(255, 53, 56, 66),
+                                  color: const Color.fromARGB(255, 53, 56, 66),
                                 ),
                                 child: Theme(
                                   data: Theme.of(context).copyWith(
-                                    dividerColor: Color(0xffff7269),
+                                    dividerColor: const Color(0xffff7269),
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.only(
                                         left: 14.0, right: 14, bottom: 4),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton<String>(
-                                        iconEnabledColor: Color(0xffff7269),
+                                        iconEnabledColor: const Color(0xffff7269),
                                         iconDisabledColor:
-                                            Color.fromARGB(255, 104, 111, 130),
+                                            const Color.fromARGB(255, 104, 111, 130),
                                         dropdownColor:
-                                            Color.fromARGB(255, 53, 56, 66),
+                                            const Color.fromARGB(255, 53, 56, 66),
                                         menuMaxHeight: 170,
                                         borderRadius: BorderRadius.circular(10),
                                         isExpanded: true,
@@ -948,7 +938,7 @@ class _CardDisplayInfoState extends State<CardDisplayInfo> {
                                           return DropdownMenuItem<String>(
                                             value: ingredient['name'],
                                             child: Text(ingredient['name'],
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     fontSize: 16.0,
                                                     color: Colors.white,
                                                     fontFamily: 'Poppins')),
@@ -979,9 +969,9 @@ class _CardDisplayInfoState extends State<CardDisplayInfo> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Padding(
+                                                const Padding(
                                                   padding:
-                                                      const EdgeInsets.only(
+                                                      EdgeInsets.only(
                                                           top: 5.0),
                                                   child: Icon(
                                                     Icons.circle_outlined,
@@ -989,7 +979,7 @@ class _CardDisplayInfoState extends State<CardDisplayInfo> {
                                                     color: Color(0xffff7269),
                                                   ),
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   width: 10,
                                                 ),
                                                 Expanded(
@@ -999,7 +989,7 @@ class _CardDisplayInfoState extends State<CardDisplayInfo> {
                                                             right: 30.0),
                                                     child: Text(
                                                       item,
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                           fontSize: 16.0,
                                                           color: Color.fromARGB(
                                                               255,
@@ -1015,8 +1005,8 @@ class _CardDisplayInfoState extends State<CardDisplayInfo> {
                                             ),
                                           )) ??
                                       [
-                                        Padding(
-                                          padding: const EdgeInsets.only(
+                                        const Padding(
+                                          padding: EdgeInsets.only(
                                               left: 45.0, right: 15, bottom: 5),
                                           child: Row(
                                             crossAxisAlignment:
@@ -1111,7 +1101,7 @@ class _CardDisplayInfoState extends State<CardDisplayInfo> {
           ),
         ),
       ),
-      Padding(
+      const Padding(
         padding: EdgeInsets.only(bottom: 25),
         child: HomePage(
           index: 0,
@@ -1179,13 +1169,13 @@ class _CardDisplayInfoState extends State<CardDisplayInfo> {
                           end: Alignment.bottomCenter,
                           colors: [
                             Colors.transparent,
-                            Color.fromARGB(70, 22, 22, 22).withOpacity(
+                            const Color.fromARGB(70, 22, 22, 22).withOpacity(
                                 0.2), // Adjust opacity or color as needed
                           ],
                         ),
                       ),
                       child: SingleChildScrollView(
-                        physics: BouncingScrollPhysics(),
+                        physics: const BouncingScrollPhysics(),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: List.generate(
@@ -1347,7 +1337,7 @@ class _CardDisplayInfoState extends State<CardDisplayInfo> {
                                         Container(
                                           padding: const EdgeInsets.only(
                                               top: 10.0, bottom: 10),
-                                          child: Row(
+                                          child: const Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
@@ -1386,10 +1376,10 @@ class _CardDisplayInfoState extends State<CardDisplayInfo> {
                                                                   .only(
                                                                   left: 10.0),
                                                           child: ListTile(
-                                                            leading: Icon(
+                                                            leading: const Icon(
                                                               Icons
                                                                   .shopping_cart,
-                                                              color: const Color(
+                                                              color: Color(
                                                                   0xffff7269),
                                                               size: 20,
                                                             ),
@@ -1420,14 +1410,12 @@ class _CardDisplayInfoState extends State<CardDisplayInfo> {
                                                                 await launchUrl(
                                                                     url);
                                                               } else {
-                                                                print(
-                                                                    'Could not launch $url');
                                                               }
                                                             },
                                                           ),
                                                         ),
-                                                        Divider(
-                                                          color: const Color
+                                                        const Divider(
+                                                          color: Color
                                                               .fromARGB(177,
                                                               255, 255, 255),
                                                           thickness: 0.5,
@@ -1439,7 +1427,7 @@ class _CardDisplayInfoState extends State<CardDisplayInfo> {
                                                   },
                                                 );
                                               } else {
-                                                return Center(
+                                                return const Center(
                                                     child:
                                                         CircularProgressIndicator());
                                               }
@@ -1463,7 +1451,7 @@ class _CardDisplayInfoState extends State<CardDisplayInfo> {
                                   size: 22,
                                 ),
                               ),
-                              const SizedBox(width: 9),
+                              SizedBox(width: 9),
                               Text(
                                 "Find nearby supermarkets",
                                 style: TextStyle(

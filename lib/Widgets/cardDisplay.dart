@@ -1,6 +1,4 @@
 import 'package:akar_icons_flutter/akar_icons_flutter.dart';
-import 'package:appebite/RecipeInfo.dart';
-import 'package:appebite/Widgets/cardDisplayInfo.dart';
 import 'package:appebite/posted_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -33,7 +31,6 @@ class _CardDisplayState extends State<CardDisplay> {
     }
     final String imageUrl =
         widget.recipe!['imageUrl'] ?? 'https://via.placeholder.com/150';
-    final String title = widget.recipe!['foodName'] ?? 'Unknown Title';
     final double rating = widget.recipe!['RecipeRating'] ?? 0.0;
 
     return GestureDetector(
@@ -86,7 +83,7 @@ class _CardDisplayState extends State<CardDisplay> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  margin: EdgeInsets.only(left: 12, top: 8),
+                  margin: const EdgeInsets.only(left: 12, top: 8),
                   width: 32,
                   height: 30,
                   decoration: BoxDecoration(
@@ -124,7 +121,7 @@ class _CardDisplayState extends State<CardDisplay> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 235, top: 8),
+                  margin: const EdgeInsets.only(left: 235, top: 8),
                   width: 50,
                   height: 30,
                   decoration: BoxDecoration(

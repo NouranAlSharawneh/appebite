@@ -36,15 +36,15 @@ class _AmericanPageState extends State<AmericanPage> {
                 Row(
                   children: [
                     IconButton(
-                      icon: Icon(IconlyLight.arrow_left_2),
-                      color: Color(0xffff7269),
+                      icon: const Icon(IconlyLight.arrow_left_2),
+                      color: const Color(0xffff7269),
                       iconSize: 27,
                       onPressed: () {
                         Navigator.of(context).pushAndRemoveUntil(
                           PageRouteBuilder(
                             pageBuilder:
                                 (context, animation, secondaryAnimation) =>
-                                    HomeMain(),
+                                    const HomeMain(),
                             transitionsBuilder: (context, animation,
                                 secondaryAnimation, child) {
                               return FadeTransition(
@@ -66,7 +66,7 @@ class _AmericanPageState extends State<AmericanPage> {
                         );
                       },
                     ),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                     Container(
                       height: 60.61,
                       width: 250,
@@ -103,10 +103,10 @@ class _AmericanPageState extends State<AmericanPage> {
               ],
             ),
           ),
-          SafeArea(
+          const SafeArea(
             child: Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: const MealsPage(cuisineType: 'American'),
+              padding: EdgeInsets.only(top: 8.0),
+              child: MealsPage(cuisineType: 'American'),
             ),
           ),
           const HomePage(

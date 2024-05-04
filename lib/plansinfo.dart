@@ -1,19 +1,12 @@
 import 'package:appebite/Widgets/nav_bar.dart';
-import 'package:appebite/app/data/model/recipe.dart';
-import 'package:appebite/pages/Fav.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:atlas_icons/atlas_icons.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:akar_icons_flutter/akar_icons_flutter.dart';
-import 'package:quickalert/models/quickalert_type.dart';
-import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:solar_icons/solar_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'dart:convert';
 import 'package:url_launcher/url_launcher.dart';
@@ -54,7 +47,6 @@ class PlansInfo extends StatefulWidget {
 class _PlansInfoState extends State<PlansInfo> {
   late Future<Map<String, List<String>>> substitutesFuture;
   bool isReceiptClicked = false;
-  List<Map<String, dynamic>> _breakfastRecipes = [];
   bool isIconUp = false;
   bool isIconUp1 = false;
   bool isCopied = false;
@@ -98,7 +90,7 @@ class _PlansInfoState extends State<PlansInfo> {
 
   Future<void> fetchBreakfastRecipes(
       String mealType, cuisineType, String keywords) async {
-    final String apiKey =
+    const String apiKey =
         '25e156a57e0b43be98220d6f32fd8ff4'; // Replace with your Spoonacular API key
     final String apiUrl =
         'https://api.spoonacular.com/recipes/complexSearch?type=$mealType&cuisine=$cuisineType&keywords=$keywords&number=4&offset=11&includeIngredients=eggs&apiKey=$apiKey';
@@ -119,7 +111,6 @@ class _PlansInfoState extends State<PlansInfo> {
               await fetchIngredientSubstitutes(
                   recipe['id'].toString(), ingredients);
 
-          print('Substitutes: $substitutes');
 
           recipe['ingredientsCount'] = ingredients.length;
           recipe['ingredients'] = ingredients;
@@ -128,13 +119,11 @@ class _PlansInfoState extends State<PlansInfo> {
         }
 
         setState(() {
-          _breakfastRecipes = recipes;
         });
       } else {
         throw Exception('Failed to load $mealType recipes');
       }
     } catch (error) {
-      print('Error fetching $mealType recipes: $error');
       // Handle error appropriately, e.g., show a snackbar
     }
   }
@@ -142,7 +131,7 @@ class _PlansInfoState extends State<PlansInfo> {
 
 
   Future<List<dynamic>> fetchRecipeIngredients(String recipeId) async {
-    final String apiKey =
+    const String apiKey =
         '25e156a57e0b43be98220d6f32fd8ff4'; // Replace with your Spoonacular API key
     final response = await http.get(Uri.parse(
         'https://api.spoonacular.com/recipes/$recipeId/ingredientWidget.json?apiKey=$apiKey'));
@@ -152,10 +141,8 @@ class _PlansInfoState extends State<PlansInfo> {
       final List<dynamic> ingredients = List<Map<String, dynamic>>.from(
           responseData['ingredients'] as Iterable<dynamic>);
 
-      print('Ingredients for recipe $recipeId: $ingredients');
       return ingredients;
     } else {
-      print('Failed to fetch ingredients for recipe $recipeId');
       return [];
     }
   }
@@ -163,7 +150,7 @@ class _PlansInfoState extends State<PlansInfo> {
   Future<Map<String, List<String>>> fetchIngredientSubstitutes(
       String recipeId, List<dynamic> ingredients) async {
     Map<String, List<String>> substitutes = {};
-    final String apiKey = '25e156a57e0b43be98220d6f32fd8ff4';
+    const String apiKey = '25e156a57e0b43be98220d6f32fd8ff4';
 
     for (var ingredient in ingredients) {
       final String ingredientName = ingredient['name'];
@@ -174,7 +161,7 @@ class _PlansInfoState extends State<PlansInfo> {
         final response = await http.get(Uri.parse(substitutesApiUrl));
         if (response.statusCode == 200) {
           final jsonData = json.decode(response.body);
-          print('Response for $ingredientName: $jsonData'); // Debug print
+          // Debug print
           if (jsonData['status'] == 'success') {
             if (jsonData['substitutes'] != null) {
               final List<dynamic> substitutesData = jsonData['substitutes'];
@@ -184,16 +171,10 @@ class _PlansInfoState extends State<PlansInfo> {
                   .toList();
             }
           } else {
-            print(
-                'No substitutes found for $ingredientName: ${jsonData['message']}');
           }
         } else {
-          print(
-              'Failed to fetch substitutes for ingredient $ingredientName. Status code: ${response.statusCode}');
         }
       } catch (error) {
-        print(
-            'Error fetching substitutes for ingredient $ingredientName: $error');
       }
     }
 
@@ -253,7 +234,7 @@ class _PlansInfoState extends State<PlansInfo> {
         nextPageToken = data['next_page_token'];
 
         if (nextPageToken != null) {
-          await Future.delayed(Duration(seconds: 3));
+          await Future.delayed(const Duration(seconds: 3));
         }
       } else {
         throw Exception('Failed to load supermarkets');
@@ -872,7 +853,7 @@ class _PlansInfoState extends State<PlansInfo> {
                       } else if (snapshot.hasError) {
                         return Text('Error: ${snapshot.error}',
                             style:
-                                TextStyle(fontSize: 16.0, color: Colors.red));
+                                const TextStyle(fontSize: 16.0, color: Colors.red));
                       } else {
                         final Map<String, List<String>> substitutes =
                             snapshot.data ?? {};
@@ -921,22 +902,22 @@ class _PlansInfoState extends State<PlansInfo> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
                                           10), // This adds border radius
-                                      color: Color.fromARGB(255, 53, 56, 66),
+                                      color: const Color.fromARGB(255, 53, 56, 66),
                                     ),
                                     child: Theme(
                                       data: Theme.of(context).copyWith(
-                                        dividerColor: Color(0xffff7269),
+                                        dividerColor: const Color(0xffff7269),
                                       ),
                                       child: Padding(
                                         padding: const EdgeInsets.only(
                                             left: 14.0, right: 14, bottom: 4),
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton<String>(
-                                            iconEnabledColor: Color(0xffff7269),
-                                            iconDisabledColor: Color.fromARGB(
+                                            iconEnabledColor: const Color(0xffff7269),
+                                            iconDisabledColor: const Color.fromARGB(
                                                 255, 104, 111, 130),
                                             dropdownColor:
-                                                Color.fromARGB(255, 53, 56, 66),
+                                                const Color.fromARGB(255, 53, 56, 66),
                                             menuMaxHeight: 170,
                                             borderRadius:
                                                 BorderRadius.circular(10),
@@ -963,7 +944,7 @@ class _PlansInfoState extends State<PlansInfo> {
                                               return DropdownMenuItem<String>(
                                                 value: ingredient['name'],
                                                 child: Text(ingredient['name'],
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         fontSize: 16.0,
                                                         color: Colors.white,
                                                         fontFamily: 'Poppins')),
@@ -997,9 +978,9 @@ class _PlansInfoState extends State<PlansInfo> {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    Padding(
+                                                    const Padding(
                                                       padding:
-                                                          const EdgeInsets.only(
+                                                          EdgeInsets.only(
                                                               top: 5.0),
                                                       child: Icon(
                                                         Icons.circle_outlined,
@@ -1008,7 +989,7 @@ class _PlansInfoState extends State<PlansInfo> {
                                                             Color(0xffff7269),
                                                       ),
                                                     ),
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       width: 10,
                                                     ),
                                                     Expanded(
@@ -1019,7 +1000,7 @@ class _PlansInfoState extends State<PlansInfo> {
                                                                 right: 30.0),
                                                         child: Text(
                                                           item,
-                                                          style: TextStyle(
+                                                          style: const TextStyle(
                                                               fontSize: 16.0,
                                                               color: Color
                                                                   .fromARGB(
@@ -1036,8 +1017,8 @@ class _PlansInfoState extends State<PlansInfo> {
                                                 ),
                                               )) ??
                                           [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
+                                            const Padding(
+                                              padding: EdgeInsets.only(
                                                   left: 45.0,
                                                   right: 15,
                                                   bottom: 5),
@@ -1134,7 +1115,7 @@ class _PlansInfoState extends State<PlansInfo> {
               ),
             ),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(bottom: 25),
             child: HomePage(
               index: 0,
@@ -1202,13 +1183,13 @@ class _PlansInfoState extends State<PlansInfo> {
                           end: Alignment.bottomCenter,
                           colors: [
                             Colors.transparent,
-                            Color.fromARGB(70, 22, 22, 22).withOpacity(
+                            const Color.fromARGB(70, 22, 22, 22).withOpacity(
                                 0.2), // Adjust opacity or color as needed
                           ],
                         ),
                       ),
                       child: SingleChildScrollView(
-                        physics: BouncingScrollPhysics(),
+                        physics: const BouncingScrollPhysics(),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: List.generate(
@@ -1370,7 +1351,7 @@ class _PlansInfoState extends State<PlansInfo> {
                                         Container(
                                           padding: const EdgeInsets.only(
                                               top: 10.0, bottom: 10),
-                                          child: Row(
+                                          child: const Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
@@ -1409,10 +1390,10 @@ class _PlansInfoState extends State<PlansInfo> {
                                                                   .only(
                                                                   left: 10.0),
                                                           child: ListTile(
-                                                            leading: Icon(
+                                                            leading: const Icon(
                                                               Icons
                                                                   .shopping_cart,
-                                                              color: const Color(
+                                                              color: Color(
                                                                   0xffff7269),
                                                               size: 20,
                                                             ),
@@ -1443,14 +1424,12 @@ class _PlansInfoState extends State<PlansInfo> {
                                                                 await launchUrl(
                                                                     url);
                                                               } else {
-                                                                print(
-                                                                    'Could not launch $url');
                                                               }
                                                             },
                                                           ),
                                                         ),
-                                                        Divider(
-                                                          color: const Color
+                                                        const Divider(
+                                                          color: Color
                                                               .fromARGB(177,
                                                               255, 255, 255),
                                                           thickness: 0.5,
@@ -1462,7 +1441,7 @@ class _PlansInfoState extends State<PlansInfo> {
                                                   },
                                                 );
                                               } else {
-                                                return Center(
+                                                return const Center(
                                                     child:
                                                         CircularProgressIndicator());
                                               }
@@ -1486,7 +1465,7 @@ class _PlansInfoState extends State<PlansInfo> {
                                   size: 22,
                                 ),
                               ),
-                              const SizedBox(width: 9),
+                              SizedBox(width: 9),
                               Text(
                                 "Find nearby supermarkets",
                                 style: TextStyle(

@@ -2,13 +2,10 @@ import 'package:appebite/filteredrecipes.dart';
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:iconly/iconly.dart';
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SearchBar1 extends StatefulWidget {
-  SearchBar1({
+  const SearchBar1({
     Key? key,
   }) : super(key: key);
 
@@ -510,11 +507,9 @@ class _SearchBar1State extends State<SearchBar1>
                                                                       addedingredients
                                                                           .join(
                                                                               ', ');
-                                                                  print(
-                                                                      allAdIngredients);
                                                                 });
                                                               },
-                                                              cursorColor: Color(
+                                                              cursorColor: const Color(
                                                                   0xffff7269),
                                                               style: const TextStyle(
                                                                   color: Colors
@@ -524,7 +519,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                                 hintText:
                                                                     'Include ingredients',
                                                                 hintStyle:
-                                                                    TextStyle(
+                                                                    const TextStyle(
                                                                   fontSize:
                                                                       18.0,
                                                                   color: Color
@@ -537,14 +532,14 @@ class _SearchBar1State extends State<SearchBar1>
                                                                       'Poppins',
                                                                 ),
                                                                 filled: true,
-                                                                fillColor: Color
+                                                                fillColor: const Color
                                                                     .fromARGB(
                                                                         255,
                                                                         53,
                                                                         56,
                                                                         66),
                                                                 contentPadding:
-                                                                    EdgeInsets.symmetric(
+                                                                    const EdgeInsets.symmetric(
                                                                         vertical:
                                                                             17.0,
                                                                         horizontal:
@@ -564,7 +559,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                             ),
                                                           ),
                                                           IconButton(
-                                                            icon: Icon(
+                                                            icon: const Icon(
                                                               Icons
                                                                   .arrow_drop_up,
                                                               color: Color(
@@ -594,7 +589,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                                         child:
                                                                             Container(
                                                                           // Change bottom sheet background color here
-                                                                          color: Color.fromARGB(
+                                                                          color: const Color.fromARGB(
                                                                               250,
                                                                               38,
                                                                               40,
@@ -608,7 +603,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                                               Row(
                                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                                 children: <Widget>[
-                                                                                  Text('Included Ingredients:',
+                                                                                  const Text('Included Ingredients:',
                                                                                       style: TextStyle(
                                                                                         color: Color.fromARGB(255, 255, 255, 255),
                                                                                         fontFamily: 'Poppins',
@@ -616,7 +611,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                                                         fontSize: 20,
                                                                                       )),
                                                                                   IconButton(
-                                                                                    icon: Icon(Icons.clear, color: Color.fromARGB(255, 255, 255, 255)),
+                                                                                    icon: const Icon(Icons.clear, color: Color.fromARGB(255, 255, 255, 255)),
                                                                                     onPressed: () {
                                                                                       Navigator.of(context).pop();
                                                                                       _Addcontroller.clear(); // Clear the text field
@@ -654,20 +649,20 @@ class _SearchBar1State extends State<SearchBar1>
                                                                                       return Container(
                                                                                         decoration: BoxDecoration(
                                                                                           borderRadius: BorderRadius.circular(10),
-                                                                                          color: Color(0xffff7269),
+                                                                                          color: const Color(0xffff7269),
                                                                                         ),
-                                                                                        margin: EdgeInsets.only(bottom: 10.0),
+                                                                                        margin: const EdgeInsets.only(bottom: 10.0),
                                                                                         child: ListTile(
                                                                                           title: Text(
                                                                                             addedingredients[index],
-                                                                                            style: TextStyle(
+                                                                                            style: const TextStyle(
                                                                                               color: Color.fromARGB(255, 255, 255, 255),
                                                                                               fontFamily: 'Poppins',
                                                                                               fontWeight: FontWeight.w600,
                                                                                             ),
                                                                                           ),
                                                                                           trailing: IconButton(
-                                                                                            icon: Icon(
+                                                                                            icon: const Icon(
                                                                                               Icons.close,
                                                                                               color: Color.fromARGB(250, 38, 40, 48),
                                                                                             ),
@@ -675,7 +670,6 @@ class _SearchBar1State extends State<SearchBar1>
                                                                                               setState(() {
                                                                                                 addedingredients.removeAt(index);
                                                                                                 allAdIngredients = addedingredients.join(', ');
-                                                                                                print(allAdIngredients);
                                                                                               });
                                                                                             },
                                                                                           ),
@@ -721,11 +715,9 @@ class _SearchBar1State extends State<SearchBar1>
                                                                       Removedingredients
                                                                           .join(
                                                                               ', ');
-                                                                  print(
-                                                                      allExIngredients);
                                                                 });
                                                               },
-                                                              cursorColor: Color(
+                                                              cursorColor: const Color(
                                                                   0xffff7269),
                                                               style: const TextStyle(
                                                                   color: Colors
@@ -735,7 +727,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                                 hintText:
                                                                     'Execlude ingredients',
                                                                 hintStyle:
-                                                                    TextStyle(
+                                                                    const TextStyle(
                                                                   fontSize:
                                                                       18.0,
                                                                   color: Color
@@ -748,14 +740,14 @@ class _SearchBar1State extends State<SearchBar1>
                                                                       'Poppins',
                                                                 ),
                                                                 filled: true,
-                                                                fillColor: Color
+                                                                fillColor: const Color
                                                                     .fromARGB(
                                                                         255,
                                                                         53,
                                                                         56,
                                                                         66),
                                                                 contentPadding:
-                                                                    EdgeInsets.symmetric(
+                                                                    const EdgeInsets.symmetric(
                                                                         vertical:
                                                                             17.0,
                                                                         horizontal:
@@ -841,13 +833,13 @@ class _SearchBar1State extends State<SearchBar1>
                                                                               ),
                                                                               if (Removedingredients.isEmpty)
                                                                                 const Padding(
-                                                                                  padding: const EdgeInsets.only(top: 2.0),
+                                                                                  padding: EdgeInsets.only(top: 2.0),
                                                                                   child: Row(
                                                                                     mainAxisAlignment: MainAxisAlignment.center,
                                                                                     children: [
                                                                                       Text(
                                                                                         'You have not execluded ingredients yet',
-                                                                                        style: const TextStyle(
+                                                                                        style: TextStyle(
                                                                                           color: Color.fromARGB(255, 104, 111, 130),
                                                                                           fontFamily: 'Poppins',
                                                                                           fontWeight: FontWeight.w400,
@@ -866,9 +858,9 @@ class _SearchBar1State extends State<SearchBar1>
                                                                                       return Container(
                                                                                         decoration: BoxDecoration(
                                                                                           borderRadius: BorderRadius.circular(10),
-                                                                                          color: Color(0xffff7269),
+                                                                                          color: const Color(0xffff7269),
                                                                                         ),
-                                                                                        margin: EdgeInsets.only(bottom: 10.0),
+                                                                                        margin: const EdgeInsets.only(bottom: 10.0),
                                                                                         child: ListTile(
                                                                                           title: Text(
                                                                                             Removedingredients[index],
@@ -887,7 +879,6 @@ class _SearchBar1State extends State<SearchBar1>
                                                                                               setState(() {
                                                                                                 Removedingredients.removeAt(index);
                                                                                                 allExIngredients = Removedingredients.join(', ');
-                                                                                                print(allExIngredients);
                                                                                               });
                                                                                             },
                                                                                           ),
@@ -1096,9 +1087,6 @@ class _SearchBar1State extends State<SearchBar1>
                                                           Expanded(
                                                             child: InkWell(
                                                               onTap: () {
-                                                                print(
-                                                                  'alladdingredients: $allAdIngredients - allremovedingredients: $allExIngredients - selectedMeal: $selectedMeal - ',
-                                                                );
                                                                   Navigator.of(context).pop();
                                                               },
                                                               child: Container(
@@ -1112,7 +1100,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                                               10),
                                                                 ),
                                                                 margin:
-                                                                    EdgeInsets
+                                                                    const EdgeInsets
                                                                         .all(
                                                                             10),
                                                                 child: ListTile(
@@ -1131,15 +1119,13 @@ class _SearchBar1State extends State<SearchBar1>
                                                                     ),
                                                                     leading:
                                                                         IconButton(
-                                                                      icon: Icon(
+                                                                      icon: const Icon(
                                                                           Icons
                                                                               .check,
                                                                           color:
                                                                               Colors.white),
                                                                       onPressed:
                                                                           () {
-                                                                        print(
-                                                                            'alladdingredients: $allAdIngredients - allremovedingredients: $allExIngredients');
                                                                               Navigator.of(context).pop();
                                                                       },
                                                                     )),
@@ -1206,7 +1192,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                                   .circular(10),
                                                         ),
                                                         margin:
-                                                            EdgeInsets.all(10),
+                                                            const EdgeInsets.all(10),
                                                         child: ListTile(
                                                           title: const Text(
                                                             'Longest to Shortest Time',
@@ -1220,7 +1206,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                           ),
                                                           leading:
                                                               Radio<String>(
-                                                            activeColor: Color(
+                                                            activeColor: const Color(
                                                                 0xffff7269),
                                                               
                                                             value: 'Longest',
@@ -1261,7 +1247,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                                   .circular(10),
                                                         ),
                                                         margin:
-                                                            EdgeInsets.all(10),
+                                                            const EdgeInsets.all(10),
                                                         child: ListTile(
                                                           title: const Text(
                                                             'Shortest to Longest Time',
@@ -1275,7 +1261,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                           ),
                                                           leading:
                                                               Radio<String>(
-                                                            activeColor: Color(
+                                                            activeColor: const Color(
                                                                 0xffff7269),
                                                             value: 'Shortest',
                                                             groupValue:
@@ -1295,7 +1281,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                         ),
                                                       ),
                                                     ),
-                                                    SizedBox(height: 16),
+                                                    const SizedBox(height: 16),
                                                     const Row(
                                                       crossAxisAlignment:
                                                           CrossAxisAlignment
@@ -1349,7 +1335,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                                   .circular(10),
                                                         ),
                                                         margin:
-                                                            EdgeInsets.all(10),
+                                                            const EdgeInsets.all(10),
                                                         child: ListTile(
                                                           title: const Text(
                                                             'Highest to Lowest Calories',
@@ -1363,7 +1349,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                           ),
                                                           leading:
                                                               Radio<String>(
-                                                            activeColor: Color(
+                                                            activeColor: const Color(
                                                                 0xffff7269),
                                                             value: 'highest',
                                                             groupValue:
@@ -1402,7 +1388,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                                   .circular(10),
                                                         ),
                                                         margin:
-                                                            EdgeInsets.all(10),
+                                                            const EdgeInsets.all(10),
                                                         child: ListTile(
                                                           title: const Text(
                                                             'Lowest to Highest Calories',
@@ -1416,7 +1402,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                           ),
                                                           leading:
                                                               Radio<String>(
-                                                            activeColor: Color(
+                                                            activeColor: const Color(
                                                                 0xffff7269),
                                                             value: 'lowest',
                                                             groupValue:
@@ -1503,8 +1489,6 @@ class _SearchBar1State extends State<SearchBar1>
                                                           Expanded(
                                                             child: InkWell(
                                                               onTap: () {
-                                                                print(
-                                                                    'sortType: $sortType - sortdireaction: $sortDirection');
                                                                       Navigator.of(context).pop();
                                                               },
                                                               child: Container(
@@ -1518,7 +1502,7 @@ class _SearchBar1State extends State<SearchBar1>
                                                                               10),
                                                                 ),
                                                                 margin:
-                                                                    EdgeInsets
+                                                                    const EdgeInsets
                                                                         .all(
                                                                             10),
                                                                 child: ListTile(
@@ -1537,15 +1521,13 @@ class _SearchBar1State extends State<SearchBar1>
                                                                     ),
                                                                     leading:
                                                                         IconButton(
-                                                                      icon: Icon(
+                                                                      icon: const Icon(
                                                                           Icons
                                                                               .check,
                                                                           color:
                                                                               Colors.white),
                                                                       onPressed:
                                                                           () {
-                                                                        print(
-                                                                            'sortType: $sortType - sortdireaction: $sortDirection');
                                                                               Navigator.of(context).pop();
                                                                       },
                                                                     )),
@@ -1609,12 +1591,12 @@ class _RatingRowState extends State<RatingRow> {
         decoration: BoxDecoration(
           border: Border.all(
             color: isSelected
-                ? Color.fromARGB(255, 231, 149, 91)
+                ? const Color.fromARGB(255, 231, 149, 91)
                 : const Color.fromARGB(255, 255, 255, 255),
           ),
           color: isSelected
-              ? Color.fromARGB(255, 231, 149, 91)
-              : Color.fromARGB(0, 255, 255, 255),
+              ? const Color.fromARGB(255, 231, 149, 91)
+              : const Color.fromARGB(0, 255, 255, 255),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Center(
@@ -1626,11 +1608,11 @@ class _RatingRowState extends State<RatingRow> {
                 style: TextStyle(
                   color: isSelected
                       ? const Color.fromARGB(255, 0, 0, 0)
-                      : Color.fromARGB(255, 104, 111, 130),
+                      : const Color.fromARGB(255, 104, 111, 130),
                   fontFamily: 'Poppins',
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Icon(
                 IconlyBold.star,
                 color: isSelected

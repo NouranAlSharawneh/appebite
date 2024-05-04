@@ -100,7 +100,7 @@ class HomeView extends StatelessWidget {
           ),
           ),
         ),
-          ), HomePage(index: 1,),
+          ), const HomePage(index: 1,),
       ]),
     );
   }

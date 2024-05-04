@@ -110,7 +110,6 @@ class _SettingsEditInformationState extends State<SettingsEditInformation> {
   }
 
   void _cancelChange() {
-    FirebaseAuth auth = FirebaseAuth.instance;
     setState(() {
       _newProfilePictureUrl = _profilePictureUrl;
       _currentHeight = _currentHeight;

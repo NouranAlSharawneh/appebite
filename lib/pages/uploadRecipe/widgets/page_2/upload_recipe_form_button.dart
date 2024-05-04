@@ -10,7 +10,7 @@ import 'package:appebite/pages/uploadRecipe/widgets/page_2/add_ingredient_field.
 
 class UploadFormButtons extends StatelessWidget {
   const UploadFormButtons({
-    Key? key,
+    super.key,
     required this.fem,
     required this.ffem,
     required this.foodName,
@@ -24,7 +24,7 @@ class UploadFormButtons extends StatelessWidget {
     required this.cuisineType, 
     required this.ingredientFields, 
     required this.stepControllers,
-  }) : super(key: key);
+  });
 
   final String calories;
   final String category; 

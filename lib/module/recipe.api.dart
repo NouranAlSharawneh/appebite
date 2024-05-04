@@ -239,7 +239,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:appebite/pages/DietaryPlan/recipe.dart';
 import 'package:intl/intl.dart';
- import 'package:flutter/material.dart';
  //import 'package:iconly/iconly.dart';
 
 
@@ -411,9 +410,6 @@ class RecipeScreen {
 
           final rating = await fetchRecipeRating(recipe.id.toString());
           recipe.rating = rating;
-          print(recipe.name);
-          print(recipe.id);
-          print(recipe.hostedLargeUrl);
           
 
           fetchedRecipes.add(recipe);
@@ -426,19 +422,15 @@ class RecipeScreen {
         if (fetchedRecipes.length >= 2) {
          return fetchedRecipes.take(3).toList();
         } else {
-          print('Insufficient recipes fetched: ${fetchedRecipes.length}');
           return fetchedRecipes;
         }
       } else {
-        print('Invalid data format: results key not found or not a list');
         return [];
       }
     } else {
-      print('Failed to fetch recipes: ${complexSearchResponse.statusCode}');
       return [];
     }
   } catch (error) {
-    print('Error fetching data: $error');
     return [];
   }
 }
@@ -451,7 +443,6 @@ int? _extractCalories(Map<String, dynamic> recipeData) {
     if (nutrients != null) {
       for (final nutrient in nutrients) {
         if (nutrient['name'] == 'Calories') {
-          print('Calories for recipe : $nutrition');
           return nutrient['amount'].toInt();
         }
       }
@@ -468,10 +459,8 @@ Future<int> fetchRecipeServings(String recipeId) async {
     if (response.statusCode == 200) {
         final Map<String, dynamic> responseData = json.decode(response.body);
         final int servings = responseData['servings'] ?? 0;
-        print('Servings for recipe $recipeId: $servings');
         return servings;
     } else {
-    print('Failed to fetch servings for recipe $recipeId');
     return 0;
     }
 }
@@ -483,10 +472,8 @@ Future<int> fetchRecipeCookingTime(String recipeId) async {
     if (response.statusCode == 200) {
         final Map<String, dynamic> responseData = json.decode(response.body);
         final int CookingTime = responseData['readyInMinutes'] ?? 0;
-        print('Cooking time for recipe $recipeId: $CookingTime');
         return CookingTime;
     } else {
-    print('Failed to fetch rating for recipe $recipeId');
     return 0;
     }
 }
@@ -500,11 +487,8 @@ Future<double> fetchRecipeRating(String recipeId) async {
         final double rating = responseData['spoonacularScore'] ?? 0.0;
         final double calculatedRating = (rating / 100.0) * 5.0;
         final double roundedRating = double.parse(calculatedRating.toStringAsFixed(1));
-        print('Rating for recipe $recipeId: $roundedRating');
-        print("===========\n");
         return roundedRating;
     } else {
-    print('Failed to fetch rating for recipe $recipeId');
     return 0.0;
     }
     }

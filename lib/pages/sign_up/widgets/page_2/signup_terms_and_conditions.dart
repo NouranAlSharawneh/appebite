@@ -3,12 +3,12 @@ import 'package:google_fonts/google_fonts.dart';
 
 class SignUpTermsAndConditions extends StatefulWidget {
   const SignUpTermsAndConditions({
-    Key? key,
+    super.key,
     required this.fem,
     required this.ffem,
     required this.isChecked,
     required this.updateIsChecked,
-  }) : super(key: key);
+  });
 
   final double fem;
   final double ffem;

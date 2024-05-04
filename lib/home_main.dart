@@ -54,7 +54,7 @@ class _HomeMainState extends State<HomeMain> {
           SafeArea(
             child: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.only(left: 36, top: 33, right: 36),
+                padding: const EdgeInsets.only(left: 36, top: 33, right: 36),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -100,7 +100,7 @@ class _HomeMainState extends State<HomeMain> {
                                   height: 50,
                                   width: 50,
                                   color: Colors.grey,
-                                  child: Icon(Icons.error, color: Colors.red),
+                                  child: const Icon(Icons.error, color: Colors.red),
                                 );
                               },
                             ),
@@ -122,7 +122,7 @@ class _HomeMainState extends State<HomeMain> {
                         ),
                       ],
                     ),
-                    SearchBar1(),
+                    const SearchBar1(),
                     const SizedBox(height: 15),
                     const Row(
                       children: [

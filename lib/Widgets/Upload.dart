@@ -107,7 +107,6 @@ class _UploadState extends State<Upload> {
                 return Row(
                   children: snapshot.data!.docs.map((doc) {
                     final recipeData = doc.data() as Map<String, dynamic>;
-                    print(recipeData);
                     return CardDisplay(
                       recipe: recipeData,
                       onDelete: () {
