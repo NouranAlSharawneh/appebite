@@ -14,7 +14,7 @@ class Header extends StatelessWidget {
       child: const Stack(
         children:[ Center(
           child: Text(
-            'Choose your plan',
+            'Choose your Plan',
             style: TextStyle(
               fontFamily: 'Poppins',
               color: Colors.white,
@@ -27,98 +27,6 @@ class Header extends StatelessWidget {
     );
   }
 }
-
-// class DietsList extends StatelessWidget {
-//   const DietsList({super.key, required this.onDietSelected});
-
-//   final Function(String) onDietSelected;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return SizedBox(
-//       height: 140,
-//       width: 603,
-//       child: ListView(
-//         scrollDirection: Axis.horizontal,
-//         children: <Widget>[
-//           buildDietContainer('Ketogenic', context,"High fat, protein-rich foods\nare acceptableand carbohydrates 10%"),
-//           buildDietContainer('Vegetarian', context,"No ingredients may contain meat or meat by-products, such as bones or gelatin"),
-//           buildDietContainer('Lacto-Vegetarian', context,"Ingredients must be vegetarian and none of the ingredients contain egg"),
-//           buildDietContainer('Ovo-Vegetarian', context,"Ingredients must be vegetarian and none of the ingredients contain dairy"),
-//           buildDietContainer('Vegan', context,"No meat or meat by-productssuch such as bones, gelatin, eggs, dairy, or honey"),
-//           buildDietContainer('Pescetarian', context,"Meat and meat by-products are not allowed-some dieters eat eggs and dairy"),
-//           buildDietContainer('Paleo', context,"Legumes, grains, dairy,\nrefined sugar, and processed foods are not allowed"),
-//           buildDietContainer('Primal', context,"Similar to Paleo, except\ndairy is allowed-full fat milk, butter, ghee"),
-//           buildDietContainer('Low FODMAP', context,"Foods are considered\nhigh in different types of carbohydrates"),
-//           buildDietContainer('Whole30', context,"Include meats eggs, vegetables,fruits,organicoils, dried fruit, nuts, seeds"),
-//           buildDietContainer('Gluten Free', context,"Avoiding wheat, barley,\nrye, and other gluten-containing grains"),
-//         ],
-//       ),
-//     );
-//   }
-
-//   Widget buildDietContainer(String dietName, BuildContext context,String dirciption) {
-//     return GestureDetector(
-//       onTap: () {
-//         onDietSelected(dietName); // Pass selected diet to RecipeHomePage
-//       },
-//       child: Stack(
-//         children: [Container(
-//           height: 120,
-//           width: 197,
-//           margin: const EdgeInsets.fromLTRB(18, 10, 10, 10),
-//           decoration: BoxDecoration(
-//             borderRadius: BorderRadius.circular(20),
-//             color: const Color.fromRGBO(53, 56, 66, 1),
-//           ),
-//           child: Stack(
-//             //crossAxisAlignment: CrossAxisAlignment.center,
-//             //mainAxisAlignment: MainAxisAlignment.spaceAround,
-//             children: [
-//               Container(
-//                 height: 26,
-//                 margin: const EdgeInsets.only(top: 16),
-                
-//                 //color: Colors.black,
-//                 child: Center(
-//                   child: Text(
-//                     dietName,
-//                     style: const TextStyle(
-//                       color: Color.fromRGBO(255, 114, 105, 1),
-//                       fontSize: 17,
-//                       fontFamily: 'poppins',
-//                       fontWeight: FontWeight.w500
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//             const SizedBox(height: 1,),
-//               Container(
-//                   height: 70,
-//                  //color: Colors.black,
-//                   margin: const EdgeInsets.only(top: 38),
-//                   //padding: EdgeInsets.only(left: 10),
-//                 child: Center(
-//                   child: Text(
-//                     dirciption,
-//                     style: const TextStyle(
-//                       color: Colors.white,
-//                       fontSize: 11.5,
-//                       fontFamily: 'poppins',
-//                       fontWeight: FontWeight.w500,
-                      
-//                   ),
-//                       textAlign: TextAlign.center  ),
-//                 ),
-//               ),
-//          ] ),
-//         ),
-        
-//       ]),
-//     );
-//   }
-// }
-
 
 class DietsList extends StatefulWidget {
   const DietsList({super.key, required this.onDietSelected});
@@ -135,35 +43,38 @@ class _DietsListState extends State<DietsList> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 140,
-      width: 603,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: <Widget>[
-          buildDietContainer('Ketogenic', context,
-              "High fat, protein-rich foods\nare acceptable and carbohydrates 10%"),
-          buildDietContainer('Vegetarian', context,
-              "No ingredients may contain meat or meat by-products, such as bones or gelatin"),
-          buildDietContainer('Lacto-Vegetarian', context,
-              "Ingredients must be vegetarian and none of the ingredients contain egg"),
-          buildDietContainer('Ovo-Vegetarian', context,
-              "Ingredients must be vegetarian and none of the ingredients contain dairy"),
-          buildDietContainer('Vegan', context,
-              "No meat or meat by-products such as bones, gelatin, eggs, dairy, or honey"),
-          buildDietContainer('Pescetarian', context,
-              "Meat and meat by-products are not allowed-some dieters eat eggs and dairy"),
-          buildDietContainer('Paleo', context,
-              "Legumes, grains, dairy,\nrefined sugar, and processed foods are not allowed"),
-          buildDietContainer('Primal', context,
-              "Similar to Paleo, except\ndairy is allowed-full fat milk, butter, ghee"),
-          buildDietContainer('Low FODMAP', context,
-              "Foods are considered\nhigh in different types of carbohydrates"),
-          buildDietContainer('Whole30', context,
-              "Include meats eggs, vegetables,fruits,organicoils, dried fruit, nuts, seeds"),
-          buildDietContainer('Gluten Free', context,
-              "Avoiding wheat, barley,\nrye, and other gluten-containing grains"),
-        ],
+    return Padding(
+      padding: EdgeInsets.only(left:30, right:30) ,
+      child: SizedBox(
+        height: 140,
+        width: 603,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: <Widget>[
+            buildDietContainer('Ketogenic', context,
+                "High fat, protein-rich foods\nare acceptable and carbohydrates 10%"),
+            buildDietContainer('Vegetarian', context,
+                "No ingredients may contain meat or meat by-products, such as bones or gelatin"),
+            buildDietContainer('Lacto-Vegetarian', context,
+                "Ingredients must be vegetarian and none of the ingredients contain egg"),
+            buildDietContainer('Ovo-Vegetarian', context,
+                "Ingredients must be vegetarian and none of the ingredients contain dairy"),
+            buildDietContainer('Vegan', context,
+                "No meat or meat by-products such as bones, gelatin, eggs, dairy, or honey"),
+            buildDietContainer('Pescetarian', context,
+                "Meat and meat by-products are not allowed-some dieters eat eggs and dairy"),
+            buildDietContainer('Paleo', context,
+                "Legumes, grains, dairy,\nrefined sugar, and processed foods are not allowed"),
+            buildDietContainer('Primal', context,
+                "Similar to Paleo, except\ndairy is allowed-full fat milk, butter, ghee"),
+            buildDietContainer('Low FODMAP', context,
+                "Foods are considered\nhigh in different types of carbohydrates"),
+            buildDietContainer('Whole30', context,
+                "Include meats eggs, vegetables,fruits,organicoils, dried fruit, nuts, seeds"),
+            buildDietContainer('Gluten Free', context,
+                "Avoiding wheat, barley,\nrye, and other gluten-containing grains"),
+          ],
+        ),
       ),
     );
   }
@@ -208,7 +119,7 @@ class _DietsListState extends State<DietsList> {
                     color: Color.fromRGBO(255, 114, 105, 1),
                     fontSize: 17,
                     fontFamily: 'poppins',
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
@@ -225,7 +136,7 @@ class _DietsListState extends State<DietsList> {
                     color: Colors.white,
                     fontSize: 12,
                     fontFamily: 'poppins',
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w400,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -339,9 +250,10 @@ class _HomePageState extends State<DietsHomePage> {
                   });
                 },
               ),
+                const SizedBox(height: 18,),
               Container(
-                margin: EdgeInsets.fromLTRB(36, 9, 36, 0),
-                child: Row(
+                margin: const EdgeInsets.fromLTRB(36, 9, 36, 0),
+                child: const Row(
                 children: [
                   Text(
                     "Recipes",
@@ -354,7 +266,7 @@ class _HomePageState extends State<DietsHomePage> {
                 ),
                 Spacer(),
                 Text(
-                    "2 items",
+                    "3 items",
                     style: TextStyle(
                       color: Color.fromARGB(255, 134, 137, 150),
                       fontSize: 15,
@@ -362,15 +274,20 @@ class _HomePageState extends State<DietsHomePage> {
                       fontWeight: FontWeight.w300
                     ),
                   ),
+                  
                             ],
+
                           ),
+                          
               ),
+             
               Expanded(
-                child: RecipeHomePage(selectedDiet: selectedDiet, selectedDate: selectedDate), // Pass selectedDate to RecipeHomePage
+                child: SafeArea(child: RecipeHomePage(selectedDiet: selectedDiet, selectedDate: selectedDate)), // Pass selectedDate to RecipeHomePage
               ),
+              SizedBox(height: 20,),
               Container(
-                height: 10,
-                margin: const EdgeInsets.only(bottom: 130),
+                height: 1,
+                margin: const EdgeInsets.only(bottom: 1),
               ),
             ],
           ),

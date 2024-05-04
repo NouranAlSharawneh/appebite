@@ -41,17 +41,17 @@ class Place {
   }
 }
 
-class RecipeInfo extends StatefulWidget {
+class PlansInfo extends StatefulWidget {
   final Map<String, dynamic> recipe;
 
 
-  const RecipeInfo({Key? key, required this.recipe}) : super(key: key);
+  const PlansInfo({Key? key, required this.recipe}) : super(key: key);
 
   @override
-  _RecipeInfoState createState() => _RecipeInfoState();
+  _PlansInfoState createState() => _PlansInfoState();
 }
 
-class _RecipeInfoState extends State<RecipeInfo> {
+class _PlansInfoState extends State<PlansInfo> {
   late Future<Map<String, List<String>>> substitutesFuture;
   bool isReceiptClicked = false;
   List<Map<String, dynamic>> _breakfastRecipes = [];
@@ -68,26 +68,15 @@ class _RecipeInfoState extends State<RecipeInfo> {
   List<Map<String, dynamic>> ingredients = [];
   List<double> originalValues = [];
   List<double> currentValues = [];
-  bool isIconHSelected = false;
-  bool isIconCSelected = false;
+
 
   @override
   void initState() {
     super.initState();
-    isIconHSelected = widget.recipe['favorited']?? false;
-   isIconCSelected = widget.recipe['cooked']?? false;
-   
-      fetchRecipeFavoriteStatus(widget.recipe['id'].toString()).then((isFavorited) {
-    setState(() {
-      isIconHSelected = isFavorited;
-    });
-  });
 
-    fetchRecipeCookedStatus(widget.recipe['id'].toString()).then((isCooked) {
-    setState(() {
-      isIconCSelected = isCooked;
-    });
-  });
+
+   
+      
 
 
     for (var ingredient in widget.recipe['ingredients']) {
@@ -106,54 +95,7 @@ class _RecipeInfoState extends State<RecipeInfo> {
     servings = widget.recipe['servings'] ??
         0; // Using ?? to provide a default value if recipe['servings'] is null
   }
-Future<bool> fetchRecipeFavoriteStatus(String recipeId) async {
-  // Get the current user
-  User? user = FirebaseAuth.instance.currentUser;
 
-  if (user != null) {
-    // Fetch the recipe document from the user's "favorite_recipes" collection
-    DocumentSnapshot doc = await FirebaseFirestore.instance
-        .collection("Users")
-        .doc(user.uid)
-        .collection('favorite_recipes')
-        .doc(recipeId)
-        .get();
-
-    // Return the favorited status, or false if the document doesn't exist
-    if (doc.exists) {
-      return (doc.data() as Map<String, dynamic>)['favorited'] ?? false;
-    } else {
-      return false;
-    }
-  }
-
-  // If the user is not signed in, return false
-  return false;
-}
-Future<bool> fetchRecipeCookedStatus(String recipeId) async {
-  // Get the current user
-  User? user = FirebaseAuth.instance.currentUser;
-
-  if (user != null) {
-    // Fetch the recipe document from the user's "favorite_recipes" collection
-    DocumentSnapshot doc = await FirebaseFirestore.instance
-        .collection("Users")
-        .doc(user.uid)
-        .collection('cooked_recipes')
-        .doc(recipeId)
-        .get();
-
-    // Return the favorited status, or false if the document doesn't exist
-    if (doc.exists) {
-      return (doc.data() as Map<String, dynamic>)['cooked'] ?? false;
-    } else {
-      return false;
-    }
-  }
-
-  // If the user is not signed in, return false
-  return false;
-}
   Future<void> fetchBreakfastRecipes(
       String mealType, cuisineType, String keywords) async {
     final String apiKey =
@@ -197,49 +139,7 @@ Future<bool> fetchRecipeCookedStatus(String recipeId) async {
     }
   }
 
-  Future<void> favoriteRecipe(String recipeId, bool isFavorited) async {
-    // Get the current user
-    User? user = FirebaseAuth.instance.currentUser;
 
-    if (user != null) {
-      // Get a reference to the recipe document in the user's "favorite_recipes" collection
-      DocumentReference docRef = FirebaseFirestore.instance
-          .collection("Users")
-          .doc(user.uid)
-          .collection('favorite_recipes')
-          .doc(recipeId);
-
-      if (isFavorited) {
-        // If the recipe is favorited, set the favorited status in Firestore
-        await docRef.set({'favorited': true});
-      } else {
-        // If the recipe is not favorited, delete the document from Firestore
-        await docRef.delete();
-      }
-    }
-  }
-
-  Future<void> cookRecipe(String recipeId, bool isCooked) async {
-    // Get the current user
-    User? user = FirebaseAuth.instance.currentUser;
-
-    if (user != null) {
-      // Get a reference to the recipe document in the user's "favorite_recipes" collection
-      DocumentReference docRef = FirebaseFirestore.instance
-          .collection("Users")
-          .doc(user.uid)
-          .collection('cooked_recipes')
-          .doc(recipeId);
-
-      if (isCooked) {
-        // If the recipe is favorited, set the favorited status in Firestore
-        await docRef.set({'cooked': true});
-      } else {
-        // If the recipe is not favorited, delete the document from Firestore
-        await docRef.delete();
-      }
-    }
-  }
 
   Future<List<dynamic>> fetchRecipeIngredients(String recipeId) async {
     final String apiKey =
@@ -491,179 +391,7 @@ Future<bool> fetchRecipeCookedStatus(String recipeId) async {
                         ),
                       ),
                     ),
-                    Positioned(
-                      right: 40,
-                      top: 110,
-                      child: Container(
-                        padding: const EdgeInsets.all(6),
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(0, 53, 56, 66),
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color.fromARGB(125, 53, 56, 66),
-                              spreadRadius: 4,
-                              blurRadius: 3,
-                              offset: Offset(0, 0),
-                            ),
-                            BoxShadow(
-                              color: Color.fromARGB(125, 53, 56, 66),
-                              spreadRadius: 4,
-                              blurRadius: 3,
-                              offset: Offset(0, 0),
-                            ),
-                          ],
-                        ),
-                        child: GestureDetector(
-                            onTap: () async {
-                              if (isIconHSelected) {
-                                // Show the alert only if the recipe is favorited
-                                QuickAlert.show(
-                                  context: context,
-                                  type: QuickAlertType.confirm,
-                                  backgroundColor: const Color(0xff272a32),
-                                  title: 'Are you sure',
-                                  titleColor: Colors.white,
-                                  text:
-                                      "Are you sure you want to remove\n your ${widget.recipe['title']} recipe from favorites? \n",
-                                  textColor: const Color(0xff686f82),
-                                  confirmBtnColor: const Color(0xffff7269),
-                                  confirmBtnText: 'Yes',
-                                  cancelBtnText: 'No',
-                                  onCancelBtnTap: () => Navigator.pop(context),
-                                  onConfirmBtnTap: () {
-                                    // Only change state and call favoriteRecipe if user clicks "Yes"
-                                    setState(() {
-                                      isIconHSelected = !isIconHSelected;
-                                    });
-                                    favoriteRecipe(
-                                        widget.recipe['id'].toString(),
-                                        isIconHSelected);
-                                    Navigator.pop(context);
-                                    QuickAlert.show(
-                                        context: context,
-                                        type: QuickAlertType.success,
-                                        backgroundColor:
-                                            const Color(0xff272a32),
-                                        title: 'Recipe Removed',
-                                        titleColor: Colors.white,
-                                        text:
-                                            "Your recipe has been removed\nfrom favorites. \n",
-                                        textColor: const Color(0xff686f82),
-                                        confirmBtnColor:
-                                            const Color(0xffff7269),
-                                        confirmBtnText: 'Back home',
-                                        onConfirmBtnTap: () {
-                                          Navigator.pop(context);
-                                          Navigator.pop(context);
-                                          Navigator.pop(context);
-                                        });
-                                  },
-                                );
-                              }
-                              if (!isIconHSelected) {
-                                setState(() {
-                                  isIconHSelected = !isIconHSelected;
-                                });
-                                favoriteRecipe(widget.recipe['id'].toString(),
-                                    isIconHSelected);
-                              }
-                            },
-                            child: Icon(
-                              Atlas.heart,
-                              color: isIconHSelected
-                                  ? Color(0xffff7269)
-                                  : Colors.white,
-                              size: 30,
-                            )),
-                      ),
-                    ),
-                    Positioned(
-                      right: 40,
-                      top: 175,
-                      child: Container(
-                          padding: const EdgeInsets.all(6),
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(0, 53, 56, 66),
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color.fromARGB(125, 53, 56, 66),
-                                spreadRadius: 4,
-                                blurRadius: 3,
-                                offset: Offset(0, 0),
-                              ),
-                              BoxShadow(
-                                color: Color.fromARGB(125, 53, 56, 66),
-                                spreadRadius: 4,
-                                blurRadius: 3,
-                                offset: Offset(0, 0),
-                              ),
-                            ],
-                          ),
-                          child: GestureDetector(
-                            onTap: () async {
-                              if (isIconCSelected) {
-                                // Show the alert only if the recipe is favorited
-                                QuickAlert.show(
-                                  context: context,
-                                  type: QuickAlertType.confirm,
-                                  backgroundColor: const Color(0xff272a32),
-                                  title: 'Are you sure',
-                                  titleColor: Colors.white,
-                                  text:
-                                      "Are you sure you want to remove\n your ${widget.recipe['title']} recipe from your cooked? \n",
-                                  textColor: const Color(0xff686f82),
-                                  confirmBtnColor: const Color(0xffff7269),
-                                  confirmBtnText: 'Yes',
-                                  cancelBtnText: 'No',
-                                  onCancelBtnTap: () => Navigator.pop(context),
-                                  onConfirmBtnTap: () {
-                                    // Only change state and call favoriteRecipe if user clicks "Yes"
-                                    setState(() {
-                                     isIconCSelected = !isIconCSelected;
-                                    });
-                                    cookRecipe(
-                                        widget.recipe['id'].toString(),
-                                        isIconCSelected);
-                                    Navigator.pop(context);
-                                    QuickAlert.show(
-                                        context: context,
-                                        type: QuickAlertType.success,
-                                        backgroundColor:
-                                            const Color(0xff272a32),
-                                        title: 'Recipe Removed',
-                                        titleColor: Colors.white,
-                                        text:
-                                            "Your recipe has been removed\nfrom cooked. \n",
-                                        textColor: const Color(0xff686f82),
-                                        confirmBtnColor:
-                                            const Color(0xffff7269),
-                                        confirmBtnText: 'Back home',
-                                        onConfirmBtnTap: () {
-                                          Navigator.pop(context);
-                                          Navigator.pop(context);
-                                          Navigator.pop(context);
-                                        });
-                                  },
-                                );
-                              }
-                              if (!isIconCSelected) {
-                                setState(() {
-                                  isIconCSelected = !isIconCSelected;
-                                });
-                                cookRecipe(widget.recipe['id'].toString(),
-                                    isIconCSelected);
-                              }
-                            },
-                            child: Icon(
-                              Atlas.hot_food,
-                              color: isIconCSelected
-                                  ? Color(0xffff7269)
-                                  : Colors.white,
-                              size: 30,
-                            )),),
-                    ),
+                  
                     Padding(
                       padding: const EdgeInsets.only(
                         left: 30,
@@ -1805,7 +1533,7 @@ class instructions extends StatelessWidget {
   });
 
   final bool isIconUpStep;
-  final RecipeInfo widget;
+  final PlansInfo widget;
 
   @override
   Widget build(BuildContext context) {

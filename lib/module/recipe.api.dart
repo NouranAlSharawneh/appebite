@@ -373,7 +373,7 @@ import 'package:intl/intl.dart';
 class RecipeScreen {
  
   Future<List<Recipe>> fetchRecipes(String selectedDiet, DateTime selectedDate) async {
-  const String spoonacularAPIKey = '0aef9a341db345a48d23e87a5b903466';
+  const String spoonacularAPIKey = '25e156a57e0b43be98220d6f32fd8ff4';
   String complexSearchUrl = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=$spoonacularAPIKey';
   
   if (selectedDiet.isNotEmpty) {
@@ -424,7 +424,7 @@ class RecipeScreen {
 
         
         if (fetchedRecipes.length >= 2) {
-         return fetchedRecipes.take(2).toList();
+         return fetchedRecipes.take(3).toList();
         } else {
           print('Insufficient recipes fetched: ${fetchedRecipes.length}');
           return fetchedRecipes;
@@ -462,7 +462,7 @@ int? _extractCalories(Map<String, dynamic> recipeData) {
 }
 
 Future<int> fetchRecipeServings(String recipeId) async {
-    const  String apiKey ='0aef9a341db345a48d23e87a5b903466';
+    const  String apiKey ='25e156a57e0b43be98220d6f32fd8ff4';
     final response = await http.get(Uri.parse(
     'https://api.spoonacular.com/recipes/$recipeId/information?apiKey=$apiKey'));
     if (response.statusCode == 200) {
@@ -477,7 +477,7 @@ Future<int> fetchRecipeServings(String recipeId) async {
 }
 
 Future<int> fetchRecipeCookingTime(String recipeId) async {
-    const String apiKey ='0aef9a341db345a48d23e87a5b903466';
+    const String apiKey ='25e156a57e0b43be98220d6f32fd8ff4';
     final response = await http.get(Uri.parse(
     'https://api.spoonacular.com/recipes/$recipeId/information?apiKey=$apiKey'));
     if (response.statusCode == 200) {
@@ -492,7 +492,7 @@ Future<int> fetchRecipeCookingTime(String recipeId) async {
 }
 
 Future<double> fetchRecipeRating(String recipeId) async {
-    const String apiKey ='0aef9a341db345a48d23e87a5b903466';
+    const String apiKey ='25e156a57e0b43be98220d6f32fd8ff4';
     final response = await http.get(Uri.parse(
     'https://api.spoonacular.com/recipes/$recipeId/information?apiKey=$apiKey'));
     if (response.statusCode == 200) {

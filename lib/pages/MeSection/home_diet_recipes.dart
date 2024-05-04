@@ -1,3 +1,4 @@
+import 'package:appebite/RecipeInfo.dart';
 import 'package:flutter/material.dart';
 import 'package:appebite/pages/DietaryPlan/recipe_card.dart';
 import 'package:appebite/pages/DietaryPlan/recipe.dart';
@@ -71,7 +72,7 @@ class _RecipeHomePageState extends State<RecipeHomePage> {
     return Scaffold(
   backgroundColor: const Color(0xff272a32),
   body: Transform.translate(
-    offset: Offset(0, -30), 
+    offset: Offset(0, -50), 
     child: SizedBox(
       // height: 656,
       child: _isLoading
@@ -80,13 +81,19 @@ class _RecipeHomePageState extends State<RecipeHomePage> {
               shrinkWrap: true,
               itemCount: _recipes.length,
               itemBuilder: (context, index) {
-                return RecipeCard(
-                  title: _recipes[index].name,
-                  cookTime: _recipes[index].totalTime.toString(),
-                  rating: _recipes[index].rating.toString(),
-                  thumbnailUrl: _recipes[index].hostedLargeUrl.toString(),
-                  calories: _recipes[index].calories.toString(),
-                  servings: _recipes[index].servings,
+                return GestureDetector(
+                  onTap: () {
+  
+                  },
+                  child: RecipeCard(
+                    id: _recipes[index].id.toString(),
+                    title: _recipes[index].name,
+                    cookTime: _recipes[index].totalTime.toString(),
+                    rating: _recipes[index].rating.toString(),
+                    thumbnailUrl: _recipes[index].hostedLargeUrl.toString(),
+                    calories: _recipes[index].calories.toString(),
+                    servings: _recipes[index].servings,
+                  ),
                 );
               },
             ),
