@@ -1,4 +1,4 @@
-import 'package:appebite/recipe_info.dart';
+import 'package:appebite/RecipeInfo.dart';
 import 'package:appebite/Widgets/nav_bar.dart';
 import 'package:appebite/home_main.dart';
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
