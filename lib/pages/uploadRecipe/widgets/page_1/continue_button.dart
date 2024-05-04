@@ -5,7 +5,7 @@ import 'package:appebite/pages/uploadRecipe/upload_recipe_page_2.dart';
 
 class ContinueButton extends StatelessWidget {
   const ContinueButton({
-    Key? key,
+    super.key,
     required this.fem,
     required this.ffem,
     required this.foodName,
@@ -14,7 +14,7 @@ class ContinueButton extends StatelessWidget {
     required this.calories,
     required this.cookingDuration,
     required this.selectedImage, 
-  }) : super(key: key);
+  });
 
   final double fem;
   final double ffem;

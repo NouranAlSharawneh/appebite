@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 import 'package:appebite/home_main.dart';
 import 'package:flutter/material.dart';
@@ -77,7 +79,7 @@ class UploadFormButtons extends StatelessWidget {
 
     if (user != null) {
       // Check if any required fields are empty
-      if (foodName.isEmpty || description.isEmpty || servings.isEmpty || calories.isEmpty || category.isEmpty || selectedImage == null) {
+      if (foodName.isEmpty || description.isEmpty || servings.isEmpty || calories.isEmpty || selectedImage == null) {
         // Show scaffold message if any required field is empty
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
