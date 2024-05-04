@@ -79,16 +79,16 @@ class UploadFormButtons extends StatelessWidget {
 
     if (user != null) {
       // Check if any required fields are empty
-      if (foodName.isEmpty || description.isEmpty || servings.isEmpty || calories.isEmpty || selectedImage == null || cuisineType.isEmpty) {
-        // Show scaffold message if any required field is empty
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Please fill in all fields.'),
-            duration: Duration(seconds: 5),
-          ),
-        );
-        return; // Exit the function if any field is empty
-      }
+      // if (foodName.isEmpty || description.isEmpty || servings.isEmpty || calories.isEmpty || selectedImage == null || cuisineType.isEmpty) {
+      //   // Show scaffold message if any required field is empty
+      //   ScaffoldMessenger.of(context).showSnackBar(
+      //     const SnackBar(
+      //       content: Text('Please fill in all fields.'),
+      //       duration: Duration(seconds: 5),
+      //     ),
+      //   );
+      //   return; // Exit the function if any field is empty
+      // }
 
       // Show loader
       showDialog(
