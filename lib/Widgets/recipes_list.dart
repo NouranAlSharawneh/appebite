@@ -1,8 +1,7 @@
-import 'package:appebite/RecipeInfo.dart';
+import 'package:appebite/recipe_info.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'dart:convert';
 import 'package:iconly/iconly.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
@@ -232,12 +231,12 @@ Future<bool> fetchRecipeCookedStatus(String recipeId) async {
       if (instructionsData.isNotEmpty) {
         final List<dynamic> steps = instructionsData[0]['steps'];
         List<String> instructions = [];
-        steps.forEach((stepData) {
+        for (var stepData in steps) {
           final String step = stepData['step'].toString();
           final List<String> separatedSteps =
               _splitSteps(step); // Split steps based on patterns
           instructions.addAll(separatedSteps);
-        });
+        }
         instructions = instructions
             .where((step) => step.trim().isNotEmpty)
             .toList(); // Remove empty steps
@@ -413,6 +412,7 @@ class RecipeCard extends StatelessWidget {
                           ),
                           const SizedBox(width: 4),
                           Text(
+                            // ignore: unnecessary_string_interpolations
                             '${rating.toStringAsFixed(2)}',
                             style: const TextStyle(
                               fontFamily: 'Poppins',

@@ -1,6 +1,6 @@
 import 'package:appebite/Widgets/nav_bar.dart';
 
-import 'package:appebite/pages/Fav.dart';
+import 'package:appebite/pages/fav.dart';
 import 'package:appebite/pages/cook.dart';
 import 'package:appebite/pages/login/login_screen.dart';
 import 'package:flutter/material.dart';

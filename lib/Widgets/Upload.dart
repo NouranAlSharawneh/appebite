@@ -1,4 +1,4 @@
-import 'package:appebite/Widgets/cardDisplay.dart';
+import 'package:appebite/Widgets/card_display.dart';
 import 'package:appebite/pages/uploadRecipe/upload_recipe.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';

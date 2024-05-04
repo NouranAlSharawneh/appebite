@@ -1,8 +1,7 @@
-import 'package:appebite/RecipeInfo.dart';
+import 'package:appebite/recipe_info.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'dart:convert';
 import 'package:iconly/iconly.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';

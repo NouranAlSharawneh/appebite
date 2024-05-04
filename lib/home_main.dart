@@ -1,4 +1,4 @@
-import 'package:appebite/Widgets/Upload.dart';
+import 'package:appebite/Widgets/upload.dart';
 import 'package:appebite/Widgets/cuisines.dart';
 import 'package:appebite/Widgets/nav_bar.dart';
 import 'package:appebite/Widgets/search_bar.dart';

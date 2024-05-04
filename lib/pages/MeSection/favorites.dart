@@ -1,4 +1,4 @@
-import 'package:appebite/RecipeInfo.dart';
+import 'package:appebite/recipe_info.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -429,7 +429,7 @@ class RecipeCard1 extends StatelessWidget {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            '${rating.toStringAsFixed(2)}',
+                            rating.toStringAsFixed(2),
                             style: const TextStyle(
                               fontFamily: 'Poppins',
                               color: Color.fromARGB(255, 0, 0, 0),

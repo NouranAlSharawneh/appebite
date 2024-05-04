@@ -304,815 +304,813 @@ class _PlansInfoState extends State<PlansInfo> {
           Padding(
             padding: const EdgeInsets.only(bottom: 80.0),
             child: SingleChildScrollView(
-              child: Container(
-                child: Column(children: [
-                  Stack(children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 75),
-                      child: Positioned(
-                        top: 75,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(45),
-                          child: Image.network(
-                            widget.recipe['image'] ??
-                                '<https://via.placeholder.com/150>',
-                            fit: BoxFit.cover,
-                            width: double.infinity,
-                            height: 300,
-                            errorBuilder: (BuildContext context,
-                                Object exception, StackTrace? stackTrace) {
-                              // If there's an error (e.g., 404 not found), display a local asset
-                              return const Image(
-                                image: AssetImage(
-                                    '/Users/swtayx/Desktop/flutter_projects/recipes/assets/notavaliable.png'),
-                                fit: BoxFit.cover,
-                                width: double.infinity,
-                                height: 300,
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 110, left: 40),
-                      child: Positioned(
-                        left: 40,
-                        top: 110,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).pop();
+              child: Column(children: [
+                Stack(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 75),
+                    child: Positioned(
+                      top: 75,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(45),
+                        child: Image.network(
+                          widget.recipe['image'] ??
+                              '<https://via.placeholder.com/150>',
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                          height: 300,
+                          errorBuilder: (BuildContext context,
+                              Object exception, StackTrace? stackTrace) {
+                            // If there's an error (e.g., 404 not found), display a local asset
+                            return const Image(
+                              image: AssetImage(
+                                  '/Users/swtayx/Desktop/flutter_projects/recipes/assets/notavaliable.png'),
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                              height: 300,
+                            );
                           },
-                          child: Container(
-                            padding: const EdgeInsets.all(6),
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(0, 53, 56, 66),
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Color.fromARGB(125, 53, 56, 66),
-                                  spreadRadius: 4,
-                                  blurRadius: 3,
-                                  offset: Offset(0, 0),
-                                ),
-                                BoxShadow(
-                                  color: Color.fromARGB(125, 53, 56, 66),
-                                  spreadRadius: 4,
-                                  blurRadius: 3,
-                                  offset: Offset(0, 0),
-                                ),
-                              ],
-                            ),
-                            child: const Icon(
-                              IconlyLight.arrow_left_2,
-                              color: Colors.white,
-                              size: 30,
-                            ),
-                          ),
                         ),
                       ),
                     ),
-                  
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 30,
-                        right: 30,
-                        top: 320,
-                      ),
-                      child: Positioned(
-                        top: 200,
-                        left: 30,
-                        right: 30,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 110, left: 40),
+                    child: Positioned(
+                      left: 40,
+                      top: 110,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
                         child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 20),
+                          padding: const EdgeInsets.all(6),
                           decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 53, 56, 66),
-                            borderRadius: BorderRadius.circular(
-                                20), // Adjust the radius here
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Center(
-                                child: Text(
-                                  '${widget.recipe['title']} ',
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 22.1,
-                                      fontWeight: FontWeight.w600,
-                                      fontFamily: 'Poppins'),
-                                ),
+                            color: const Color.fromARGB(0, 53, 56, 66),
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color.fromARGB(125, 53, 56, 66),
+                                spreadRadius: 4,
+                                blurRadius: 3,
+                                offset: Offset(0, 0),
                               ),
-                              const SizedBox(height: 10),
-                              Container(
-                                padding: const EdgeInsets.only(
-                                  left: 0,
-                                  right: 0,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const Icon(
-                                      Icons.people_alt_outlined,
-                                      color: Color.fromARGB(255, 231, 149, 91),
-                                      size: 22,
-                                    ),
-                                    const SizedBox(width: 3),
-                                    Text(
-                                      '$servings serve',
-                                      style: const TextStyle(
-                                        fontFamily: 'Poppins',
-                                        color:
-                                            Color.fromARGB(255, 104, 111, 130),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 3),
-                                    GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          isIconUp1 = !isIconUp1;
-                                        });
-                                      },
-                                      child: Icon(
-                                        isIconUp1
-                                            ? Iconsax.arrow_up_2_copy
-                                            : Iconsax.arrow_down_1_copy,
-                                        color: isIconUp1
-                                            ? const Color.fromARGB(
-                                                255, 231, 149, 91)
-                                            : const Color.fromARGB(
-                                                255, 255, 255, 255),
-                                        size: 13,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 10),
-                                    const Icon(
-                                      Iconsax.timer_1_copy,
-                                      color: Color.fromARGB(255, 231, 149, 91),
-                                      size: 22,
-                                    ),
-                                    const SizedBox(width: 3),
-                                    Text(
-                                      '${widget.recipe['prepTime'] ?? 'N/A'} mins',
-                                      style: const TextStyle(
-                                        fontFamily: 'Poppins',
-                                        color:
-                                            Color.fromARGB(255, 104, 111, 130),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 10),
-                                    const Icon(
-                                      AkarIcons.fire,
-                                      color: Color.fromARGB(255, 231, 149, 91),
-                                      size: 22,
-                                    ),
-                                    const SizedBox(width: 3),
-                                    Text(
-                                      '${widget.recipe['calories'] ?? 'N/A'} kcal',
-                                      style: const TextStyle(
-                                        fontFamily: 'Poppins',
-                                        color:
-                                            Color.fromARGB(255, 104, 111, 130),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                              BoxShadow(
+                                color: Color.fromARGB(125, 53, 56, 66),
+                                spreadRadius: 4,
+                                blurRadius: 3,
+                                offset: Offset(0, 0),
                               ),
                             ],
                           ),
+                          child: const Icon(
+                            IconlyLight.arrow_left_2,
+                            color: Colors.white,
+                            size: 30,
+                          ),
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 300,
-                        top: 303,
-                      ),
+                  ),
+                
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 30,
+                      right: 30,
+                      top: 320,
+                    ),
+                    child: Positioned(
+                      top: 200,
+                      left: 30,
+                      right: 30,
                       child: Container(
-                        height: 30,
-                        width: 60,
+                        width: MediaQuery.of(context).size.width,
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 20, horizontal: 20),
                         decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 255, 225, 179),
-                          borderRadius: BorderRadius.circular(20),
+                          color: const Color.fromARGB(255, 53, 56, 66),
+                          borderRadius: BorderRadius.circular(
+                              20), // Adjust the radius here
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              IconlyBold.star,
-                              color: Color.fromARGB(255, 255, 173, 48),
-                              size: 14,
-                            ),
-                            const SizedBox(width: 4),
-                            Text(
-                              '${rating.toStringAsFixed(2)}',
-                              style: const TextStyle(
-                                fontFamily: 'Poppins',
-                                color: Color.fromARGB(255, 0, 0, 0),
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Visibility(
-                      visible: isIconUp1,
-                      child: Padding(
-                        padding: widget.recipe['title'].length >= 27
-                            ? EdgeInsets.only(
-                                left: 70,
-                                top: widget.recipe['title'].length >= 70
-                                    ? 500
-                                    : widget.recipe['title'].length >= 44
-                                        ? 467
-                                        : 437,
-                              )
-                            : const EdgeInsets.only(
-                                left: 70,
-                                top: 405,
-                              ),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
+                            Center(
+                              child: Text(
+                                '${widget.recipe['title']} ',
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 22.1,
+                                    fontWeight: FontWeight.w600,
+                                    fontFamily: 'Poppins'),
+                              ),
+                            ),
+                            const SizedBox(height: 10),
                             Container(
-                              height: 30,
-                              width: 170,
-                              decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 53, 56, 66),
-                                borderRadius: BorderRadius.circular(5),
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Color.fromARGB(78, 0, 0, 0),
-                                    blurRadius: 5,
-                                    offset: Offset(0, 3),
-                                  ),
-                                ],
+                              padding: const EdgeInsets.only(
+                                left: 0,
+                                right: 0,
                               ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 0.0),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          servings++; // Increase servings by one
-                                          saveServings(
-                                              servings); // Save servings
-
-                                          showInvalidServingsMessage = false;
-                                          for (int i = 0;
-                                              i < originalValues.length;
-                                              i++) {
-                                            double newAmount =
-                                                originalValues[i] *
-                                                    servings /
-                                                    widget.recipe['servings'];
-                                            currentValues[i] = double.parse(
-                                                newAmount.toStringAsFixed(2));
-                                          }
-                                        });
-                                      },
-                                      child: const Icon(
-                                        Iconsax.add_circle_copy,
-                                        color: Color(0xffff7269),
-                                        size: 17,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 3),
-                                  const VerticalDivider(
-                                    color: Color.fromARGB(255, 37, 40, 48),
-                                    thickness: 1,
-                                    width: 10,
-                                    endIndent: 0,
-                                    indent: 0,
+                                  const Icon(
+                                    Icons.people_alt_outlined,
+                                    color: Color.fromARGB(255, 231, 149, 91),
+                                    size: 22,
                                   ),
                                   const SizedBox(width: 3),
                                   Text(
-                                    '$servings servings',
+                                    '$servings serve',
                                     style: const TextStyle(
                                       fontFamily: 'Poppins',
-                                      color: Color.fromARGB(255, 255, 255, 255),
+                                      color:
+                                          Color.fromARGB(255, 104, 111, 130),
+                                      fontSize: 14,
                                       fontWeight: FontWeight.w400,
-                                      fontSize: 15,
                                     ),
-                                  ),
-                                  const SizedBox(width: 3),
-                                  const VerticalDivider(
-                                    color: Color.fromARGB(255, 37, 40, 48),
-                                    thickness: 1,
-                                    width: 10,
-                                    endIndent: 0,
-                                    indent: 0,
                                   ),
                                   const SizedBox(width: 3),
                                   GestureDetector(
                                     onTap: () {
                                       setState(() {
-                                        if (servings > 1) {
-                                          servings--; // Decrease servings by one
-                                          for (int i = 0;
-                                              i < originalValues.length;
-                                              i++) {
-                                            double newAmount =
-                                                originalValues[i] *
-                                                    servings /
-                                                    widget.recipe['servings'];
-                                            currentValues[i] = double.parse(
-                                                newAmount.toStringAsFixed(2));
-                                          }
-                                          showInvalidServingsMessage = false;
-                                        } else {
-                                          setState(() {
-                                            showInvalidServingsMessage =
-                                                true; // Show the message
-                                          });
-                                        }
-                                        saveServings(servings); // Save servings
+                                        isIconUp1 = !isIconUp1;
                                       });
                                     },
-                                    child: const Icon(
-                                      Iconsax.minus_cirlce_copy,
-                                      color: Color(0xffff7269),
-                                      size: 17,
+                                    child: Icon(
+                                      isIconUp1
+                                          ? Iconsax.arrow_up_2_copy
+                                          : Iconsax.arrow_down_1_copy,
+                                      color: isIconUp1
+                                          ? const Color.fromARGB(
+                                              255, 231, 149, 91)
+                                          : const Color.fromARGB(
+                                              255, 255, 255, 255),
+                                      size: 13,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  const Icon(
+                                    Iconsax.timer_1_copy,
+                                    color: Color.fromARGB(255, 231, 149, 91),
+                                    size: 22,
+                                  ),
+                                  const SizedBox(width: 3),
+                                  Text(
+                                    '${widget.recipe['prepTime'] ?? 'N/A'} mins',
+                                    style: const TextStyle(
+                                      fontFamily: 'Poppins',
+                                      color:
+                                          Color.fromARGB(255, 104, 111, 130),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  const Icon(
+                                    AkarIcons.fire,
+                                    color: Color.fromARGB(255, 231, 149, 91),
+                                    size: 22,
+                                  ),
+                                  const SizedBox(width: 3),
+                                  Text(
+                                    '${widget.recipe['calories'] ?? 'N/A'} kcal',
+                                    style: const TextStyle(
+                                      fontFamily: 'Poppins',
+                                      color:
+                                          Color.fromARGB(255, 104, 111, 130),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
                                     ),
                                   ),
                                 ],
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Visibility(
-                              visible: showInvalidServingsMessage,
-                              child: const Text(
-                                'Servings cannot be less than 1',
-                                style: TextStyle(
-                                  color: Color(0xffff7269),
-                                  fontSize: 12,
-                                  fontFamily: 'Poppins',
-                                ),
                               ),
                             ),
                           ],
                         ),
                       ),
                     ),
-                  ]),
-                  const SizedBox(
-                    height: 20,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const SizedBox(width: 23),
-                      const Text(
-                        'Ingredients',
-                        style: TextStyle(
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 300,
+                      top: 303,
+                    ),
+                    child: Container(
+                      height: 30,
+                      width: 60,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 255, 225, 179),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            IconlyBold.star,
+                            color: Color.fromARGB(255, 255, 173, 48),
+                            size: 14,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            rating.toStringAsFixed(2),
+                            style: const TextStyle(
+                              fontFamily: 'Poppins',
+                              color: Color.fromARGB(255, 0, 0, 0),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: isIconUp1,
+                    child: Padding(
+                      padding: widget.recipe['title'].length >= 27
+                          ? EdgeInsets.only(
+                              left: 70,
+                              top: widget.recipe['title'].length >= 70
+                                  ? 500
+                                  : widget.recipe['title'].length >= 44
+                                      ? 467
+                                      : 437,
+                            )
+                          : const EdgeInsets.only(
+                              left: 70,
+                              top: 405,
+                            ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 30,
+                            width: 170,
+                            decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 53, 56, 66),
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color.fromARGB(78, 0, 0, 0),
+                                  blurRadius: 5,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 0.0),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        servings++; // Increase servings by one
+                                        saveServings(
+                                            servings); // Save servings
+              
+                                        showInvalidServingsMessage = false;
+                                        for (int i = 0;
+                                            i < originalValues.length;
+                                            i++) {
+                                          double newAmount =
+                                              originalValues[i] *
+                                                  servings /
+                                                  widget.recipe['servings'];
+                                          currentValues[i] = double.parse(
+                                              newAmount.toStringAsFixed(2));
+                                        }
+                                      });
+                                    },
+                                    child: const Icon(
+                                      Iconsax.add_circle_copy,
+                                      color: Color(0xffff7269),
+                                      size: 17,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 3),
+                                const VerticalDivider(
+                                  color: Color.fromARGB(255, 37, 40, 48),
+                                  thickness: 1,
+                                  width: 10,
+                                  endIndent: 0,
+                                  indent: 0,
+                                ),
+                                const SizedBox(width: 3),
+                                Text(
+                                  '$servings servings',
+                                  style: const TextStyle(
+                                    fontFamily: 'Poppins',
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                const SizedBox(width: 3),
+                                const VerticalDivider(
+                                  color: Color.fromARGB(255, 37, 40, 48),
+                                  thickness: 1,
+                                  width: 10,
+                                  endIndent: 0,
+                                  indent: 0,
+                                ),
+                                const SizedBox(width: 3),
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      if (servings > 1) {
+                                        servings--; // Decrease servings by one
+                                        for (int i = 0;
+                                            i < originalValues.length;
+                                            i++) {
+                                          double newAmount =
+                                              originalValues[i] *
+                                                  servings /
+                                                  widget.recipe['servings'];
+                                          currentValues[i] = double.parse(
+                                              newAmount.toStringAsFixed(2));
+                                        }
+                                        showInvalidServingsMessage = false;
+                                      } else {
+                                        setState(() {
+                                          showInvalidServingsMessage =
+                                              true; // Show the message
+                                        });
+                                      }
+                                      saveServings(servings); // Save servings
+                                    });
+                                  },
+                                  child: const Icon(
+                                    Iconsax.minus_cirlce_copy,
+                                    color: Color(0xffff7269),
+                                    size: 17,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Visibility(
+                            visible: showInvalidServingsMessage,
+                            child: const Text(
+                              'Servings cannot be less than 1',
+                              style: TextStyle(
+                                color: Color(0xffff7269),
+                                fontSize: 12,
+                                fontFamily: 'Poppins',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ]),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const SizedBox(width: 23),
+                    const Text(
+                      'Ingredients',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    const SizedBox(width: 7),
+                    GroceryDialog(context),
+                    Expanded(
+                      child: Text(
+                        '${widget.recipe['ingredientsCount'] ?? 'N/A'} Items',
+                        textAlign: TextAlign.end,
+                        style: const TextStyle(
                           fontFamily: 'Poppins',
-                          color: Color.fromARGB(255, 255, 255, 255),
-                          fontSize: 20,
+                          color: Color.fromARGB(255, 104, 111, 130),
+                          fontSize: 17,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      const SizedBox(width: 7),
-                      GroceryDialog(context),
-                      Expanded(
-                        child: Text(
-                          '${widget.recipe['ingredientsCount'] ?? 'N/A'} Items',
-                          textAlign: TextAlign.end,
-                          style: const TextStyle(
-                            fontFamily: 'Poppins',
-                            color: Color.fromARGB(255, 104, 111, 130),
-                            fontSize: 17,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
+                    ),
+                    const SizedBox(width: 10),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isIconUp = !isIconUp;
+                        });
+                      },
+                      child: Icon(
+                        isIconUp
+                            ? Iconsax.arrow_up_2_copy
+                            : Iconsax.arrow_down_1_copy,
+                        color: isIconUp
+                            ? const Color(0xffff7269)
+                            : const Color.fromARGB(255, 255, 255, 255),
+                        size: 23,
                       ),
-                      const SizedBox(width: 10),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            isIconUp = !isIconUp;
-                          });
-                        },
-                        child: Icon(
-                          isIconUp
-                              ? Iconsax.arrow_up_2_copy
-                              : Iconsax.arrow_down_1_copy,
-                          color: isIconUp
-                              ? const Color(0xffff7269)
-                              : const Color.fromARGB(255, 255, 255, 255),
-                          size: 23,
-                        ),
-                      ),
-                      const SizedBox(width: 24),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  Visibility(
-                    visible: isIconUp,
-                    child: Column(
-                      children: [
-                        for (int i = 0;
-                            i < widget.recipe['ingredients'].length;
-                            i += 2)
-                          Padding(
-                            padding: const EdgeInsets.only(right: 37, left: 37),
-                            child: Container(
-                              margin: const EdgeInsets.only(bottom: 15),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  if (i < currentValues.length)
-                                    const Padding(
-                                      padding: EdgeInsets.only(top: 1.5),
-                                      child: Icon(
-                                        Atlas.arrow_right_circle_bold,
-                                        color: Color(0xffff7269),
-                                        size: 15,
-                                      ),
+                    ),
+                    const SizedBox(width: 24),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Visibility(
+                  visible: isIconUp,
+                  child: Column(
+                    children: [
+                      for (int i = 0;
+                          i < widget.recipe['ingredients'].length;
+                          i += 2)
+                        Padding(
+                          padding: const EdgeInsets.only(right: 37, left: 37),
+                          child: Container(
+                            margin: const EdgeInsets.only(bottom: 15),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                if (i < currentValues.length)
+                                  const Padding(
+                                    padding: EdgeInsets.only(top: 1.5),
+                                    child: Icon(
+                                      Atlas.arrow_right_circle_bold,
+                                      color: Color(0xffff7269),
+                                      size: 15,
                                     ),
-                                  const SizedBox(width: 8),
+                                  ),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: Text(
+                                    '${currentValues[i]} ${widget.recipe['ingredients'][i]['amount']['metric']['unit']} ${widget.recipe['ingredients'][i]['name']}',
+                                    style: const TextStyle(
+                                      color:
+                                          Color.fromARGB(255, 255, 255, 255),
+                                      fontSize: 14,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 37),
+                                if (i + 1 < currentValues.length)
+                                  const Padding(
+                                    padding: EdgeInsets.only(top: 1.5),
+                                    child: Icon(
+                                      Atlas.arrow_right_circle_bold,
+                                      color: Color(0xffff7269),
+                                      size: 15,
+                                    ),
+                                  ),
+                                const SizedBox(width: 8),
+                                if (i + 1 < currentValues.length)
                                   Expanded(
                                     child: Text(
-                                      '${currentValues[i]} ${widget.recipe['ingredients'][i]['amount']['metric']['unit']} ${widget.recipe['ingredients'][i]['name']}',
+                                      '${currentValues[i + 1]} ${widget.recipe['ingredients'][i + 1]['amount']['metric']['unit']} ${widget.recipe['ingredients'][i + 1]['name']}',
                                       style: const TextStyle(
-                                        color:
-                                            Color.fromARGB(255, 255, 255, 255),
+                                        color: Color.fromARGB(
+                                            255, 255, 255, 255),
                                         fontSize: 14,
                                         fontFamily: 'Poppins',
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(width: 37),
-                                  if (i + 1 < currentValues.length)
-                                    const Padding(
-                                      padding: EdgeInsets.only(top: 1.5),
-                                      child: Icon(
-                                        Atlas.arrow_right_circle_bold,
-                                        color: Color(0xffff7269),
-                                        size: 15,
-                                      ),
-                                    ),
-                                  const SizedBox(width: 8),
-                                  if (i + 1 < currentValues.length)
-                                    Expanded(
-                                      child: Text(
-                                        '${currentValues[i + 1]} ${widget.recipe['ingredients'][i + 1]['amount']['metric']['unit']} ${widget.recipe['ingredients'][i + 1]['name']}',
-                                        style: const TextStyle(
-                                          color: Color.fromARGB(
-                                              255, 255, 255, 255),
-                                          fontSize: 14,
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ),
+                              ],
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 25),
+                  height: 1,
+                  color: const Color.fromARGB(255, 104, 111, 130),
+                ),
+                const SizedBox(
+                  height: 26,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const SizedBox(width: 23),
+                    const Text(
+                      'Ingredients Alternatives',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    const SizedBox(width: 50),
+                    Expanded(
+                      child: Icon(
+                        isIconUpAlt
+                            ? SolarIconsOutline.chefHat
+                            : SolarIconsOutline.chefHat,
+                        color: isIconUpAlt
+                            ? const Color(0xffff7269)
+                            : const Color.fromARGB(255, 104, 111, 130),
+                        size: 20,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isIconUpAlt = !isIconUpAlt;
+                        });
+                      },
+                      child: Icon(
+                        isIconUpAlt
+                            ? Iconsax.arrow_up_2_copy
+                            : Iconsax.arrow_down_1_copy,
+                        color: isIconUpAlt
+                            ? const Color(0xffff7269)
+                            : const Color.fromARGB(255, 255, 255, 255),
+                        size: 23,
+                      ),
+                    ),
+                    const SizedBox(width: 24),
+                  ],
+                ),
+                const SizedBox(height: 15),
+                FutureBuilder<Map<String, List<String>>>(
+                  future: substitutesFuture,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Container(); // or you can use SizedBox.shrink()
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}',
+                          style:
+                              const TextStyle(fontSize: 16.0, color: Colors.red));
+                    } else {
+                      final Map<String, List<String>> substitutes =
+                          snapshot.data ?? {};
+                      final List<Map<String, dynamic>> ingredients =
+                          widget.recipe['ingredients'];
+                      List<Map<String, dynamic>> uniqueIngredients =
+                          ingredients
+                              .map((ingredient) => ingredient['name'])
+                              .toSet()
+                              .toList()
+                              .map((name) => ingredients.firstWhere(
+                                  (ingredient) => ingredient['name'] == name))
+                              .toList();
+                      return Visibility(
+                        visible: isIconUpAlt,
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(left: 0, right: 0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'The Alternatives for:',
+                                    style: TextStyle(
+                                        fontSize: 17.5,
+                                        color: Color.fromARGB(
+                                            255, 104, 111, 130),
+                                        fontFamily: 'Poppins'),
+                                  ),
                                 ],
                               ),
                             ),
-                          ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 25),
-                    height: 1,
-                    color: const Color.fromARGB(255, 104, 111, 130),
-                  ),
-                  const SizedBox(
-                    height: 26,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const SizedBox(width: 23),
-                      const Text(
-                        'Ingredients Alternatives',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          color: Color.fromARGB(255, 255, 255, 255),
-                          fontSize: 20,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      const SizedBox(width: 50),
-                      Expanded(
-                        child: Icon(
-                          isIconUpAlt
-                              ? SolarIconsOutline.chefHat
-                              : SolarIconsOutline.chefHat,
-                          color: isIconUpAlt
-                              ? const Color(0xffff7269)
-                              : const Color.fromARGB(255, 104, 111, 130),
-                          size: 20,
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            isIconUpAlt = !isIconUpAlt;
-                          });
-                        },
-                        child: Icon(
-                          isIconUpAlt
-                              ? Iconsax.arrow_up_2_copy
-                              : Iconsax.arrow_down_1_copy,
-                          color: isIconUpAlt
-                              ? const Color(0xffff7269)
-                              : const Color.fromARGB(255, 255, 255, 255),
-                          size: 23,
-                        ),
-                      ),
-                      const SizedBox(width: 24),
-                    ],
-                  ),
-                  const SizedBox(height: 15),
-                  FutureBuilder<Map<String, List<String>>>(
-                    future: substitutesFuture,
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Container(); // or you can use SizedBox.shrink()
-                      } else if (snapshot.hasError) {
-                        return Text('Error: ${snapshot.error}',
-                            style:
-                                const TextStyle(fontSize: 16.0, color: Colors.red));
-                      } else {
-                        final Map<String, List<String>> substitutes =
-                            snapshot.data ?? {};
-                        final List<Map<String, dynamic>> ingredients =
-                            widget.recipe['ingredients'];
-                        List<Map<String, dynamic>> uniqueIngredients =
-                            ingredients
-                                .map((ingredient) => ingredient['name'])
-                                .toSet()
-                                .toList()
-                                .map((name) => ingredients.firstWhere(
-                                    (ingredient) => ingredient['name'] == name))
-                                .toList();
-                        return Visibility(
-                          visible: isIconUpAlt,
-                          child: Column(
-                            children: [
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.only(left: 0, right: 0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'The Alternatives for:',
-                                      style: TextStyle(
-                                          fontSize: 17.5,
-                                          color: Color.fromARGB(
+                            const SizedBox(
+                              height: 4,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SingleChildScrollView(
+                                child: Container(
+                                  height: 65,
+                                  width: 350,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                        10), // This adds border radius
+                                    color: const Color.fromARGB(255, 53, 56, 66),
+                                  ),
+                                  child: Theme(
+                                    data: Theme.of(context).copyWith(
+                                      dividerColor: const Color(0xffff7269),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 14.0, right: 14, bottom: 4),
+                                      child: DropdownButtonHideUnderline(
+                                        child: DropdownButton<String>(
+                                          iconEnabledColor: const Color(0xffff7269),
+                                          iconDisabledColor: const Color.fromARGB(
                                               255, 104, 111, 130),
-                                          fontFamily: 'Poppins'),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 4,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: SingleChildScrollView(
-                                  child: Container(
-                                    height: 65,
-                                    width: 350,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(
-                                          10), // This adds border radius
-                                      color: const Color.fromARGB(255, 53, 56, 66),
-                                    ),
-                                    child: Theme(
-                                      data: Theme.of(context).copyWith(
-                                        dividerColor: const Color(0xffff7269),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 14.0, right: 14, bottom: 4),
-                                        child: DropdownButtonHideUnderline(
-                                          child: DropdownButton<String>(
-                                            iconEnabledColor: const Color(0xffff7269),
-                                            iconDisabledColor: const Color.fromARGB(
-                                                255, 104, 111, 130),
-                                            dropdownColor:
-                                                const Color.fromARGB(255, 53, 56, 66),
-                                            menuMaxHeight: 170,
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            isExpanded: true,
-                                            value: selectedIngredient,
-                                            hint: const Text(
-                                                "Select Ingredient",
-                                                style: TextStyle(
-                                                    fontSize: 18.0,
-                                                    color: Color.fromARGB(
-                                                        255, 255, 255, 255),
-                                                    fontFamily: 'Poppins')),
-                                            onChanged: (String? newValue) {
-                                              setState(() {
-                                                selectedIngredient = newValue;
-                                                selectedSubstitute =
-                                                    substitutes[newValue];
-                                              });
-                                            },
-                                            items: uniqueIngredients
-                                                .map<DropdownMenuItem<String>>(
-                                                    (Map<String, dynamic>
-                                                        ingredient) {
-                                              return DropdownMenuItem<String>(
-                                                value: ingredient['name'],
-                                                child: Text(ingredient['name'],
-                                                    style: const TextStyle(
-                                                        fontSize: 16.0,
-                                                        color: Colors.white,
-                                                        fontFamily: 'Poppins')),
-                                              );
-                                            }).toList(),
-                                          ),
+                                          dropdownColor:
+                                              const Color.fromARGB(255, 53, 56, 66),
+                                          menuMaxHeight: 170,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          isExpanded: true,
+                                          value: selectedIngredient,
+                                          hint: const Text(
+                                              "Select Ingredient",
+                                              style: TextStyle(
+                                                  fontSize: 18.0,
+                                                  color: Color.fromARGB(
+                                                      255, 255, 255, 255),
+                                                  fontFamily: 'Poppins')),
+                                          onChanged: (String? newValue) {
+                                            setState(() {
+                                              selectedIngredient = newValue;
+                                              selectedSubstitute =
+                                                  substitutes[newValue];
+                                            });
+                                          },
+                                          items: uniqueIngredients
+                                              .map<DropdownMenuItem<String>>(
+                                                  (Map<String, dynamic>
+                                                      ingredient) {
+                                            return DropdownMenuItem<String>(
+                                              value: ingredient['name'],
+                                              child: Text(ingredient['name'],
+                                                  style: const TextStyle(
+                                                      fontSize: 16.0,
+                                                      color: Colors.white,
+                                                      fontFamily: 'Poppins')),
+                                            );
+                                          }).toList(),
                                         ),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              if (selectedIngredient != null)
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 0, right: 0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      ...selectedSubstitute?.map((item) =>
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 45.0,
-                                                    right: 15,
-                                                    bottom: 5),
-                                                child: Row(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    const Padding(
-                                                      padding:
-                                                          EdgeInsets.only(
-                                                              top: 5.0),
-                                                      child: Icon(
-                                                        Icons.circle_outlined,
-                                                        size: 15,
-                                                        color:
-                                                            Color(0xffff7269),
-                                                      ),
-                                                    ),
-                                                    const SizedBox(
-                                                      width: 10,
-                                                    ),
-                                                    Expanded(
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                                right: 30.0),
-                                                        child: Text(
-                                                          item,
-                                                          style: const TextStyle(
-                                                              fontSize: 16.0,
-                                                              color: Color
-                                                                  .fromARGB(
-                                                                      255,
-                                                                      255,
-                                                                      255,
-                                                                      255),
-                                                              fontFamily:
-                                                                  'Poppins'),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              )) ??
-                                          [
-                                            const Padding(
-                                              padding: EdgeInsets.only(
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            if (selectedIngredient != null)
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 0, right: 0),
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.center,
+                                  children: [
+                                    ...selectedSubstitute?.map((item) =>
+                                            Padding(
+                                              padding: const EdgeInsets.only(
                                                   left: 45.0,
                                                   right: 15,
                                                   bottom: 5),
                                               child: Row(
                                                 crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
+                                                    CrossAxisAlignment.start,
                                                 children: [
-                                                  Text(
-                                                    'This ingredient cannot be replaced.',
-                                                    style: TextStyle(
-                                                        fontSize: 16.0,
-                                                        color: Color.fromARGB(
-                                                            255, 104, 111, 130),
-                                                        fontFamily: 'Poppins'),
+                                                  const Padding(
+                                                    padding:
+                                                        EdgeInsets.only(
+                                                            top: 5.0),
+                                                    child: Icon(
+                                                      Icons.circle_outlined,
+                                                      size: 15,
+                                                      color:
+                                                          Color(0xffff7269),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets
+                                                              .only(
+                                                              right: 30.0),
+                                                      child: Text(
+                                                        item,
+                                                        style: const TextStyle(
+                                                            fontSize: 16.0,
+                                                            color: Color
+                                                                .fromARGB(
+                                                                    255,
+                                                                    255,
+                                                                    255,
+                                                                    255),
+                                                            fontFamily:
+                                                                'Poppins'),
+                                                      ),
+                                                    ),
                                                   ),
                                                 ],
                                               ),
-                                            )
-                                          ],
-                                    ],
-                                  ),
+                                            )) ??
+                                        [
+                                          const Padding(
+                                            padding: EdgeInsets.only(
+                                                left: 45.0,
+                                                right: 15,
+                                                bottom: 5),
+                                            child: Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  'This ingredient cannot be replaced.',
+                                                  style: TextStyle(
+                                                      fontSize: 16.0,
+                                                      color: Color.fromARGB(
+                                                          255, 104, 111, 130),
+                                                      fontFamily: 'Poppins'),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                  ],
                                 ),
-                            ],
-                          ),
-                        );
-                      }
-                    },
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 25),
-                    height: 1,
-                    color: const Color.fromARGB(255, 104, 111, 130),
-                  ),
-                  const SizedBox(
-                    height: 26,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const SizedBox(width: 23),
-                      const Text(
-                        'Cooking Steps',
-                        style: TextStyle(
+                              ),
+                          ],
+                        ),
+                      );
+                    }
+                  },
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 25),
+                  height: 1,
+                  color: const Color.fromARGB(255, 104, 111, 130),
+                ),
+                const SizedBox(
+                  height: 26,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const SizedBox(width: 23),
+                    const Text(
+                      'Cooking Steps',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        '${widget.recipe['instructions'].length ?? 'N/A'} Steps',
+                        textAlign: TextAlign.end,
+                        style: const TextStyle(
                           fontFamily: 'Poppins',
-                          color: Color.fromARGB(255, 255, 255, 255),
-                          fontSize: 20,
+                          color: Color.fromARGB(255, 104, 111, 130),
+                          fontSize: 17,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      Expanded(
-                        child: Text(
-                          '${widget.recipe['instructions'].length ?? 'N/A'} Steps',
-                          textAlign: TextAlign.end,
-                          style: const TextStyle(
-                            fontFamily: 'Poppins',
-                            color: Color.fromARGB(255, 104, 111, 130),
-                            fontSize: 17,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
+                    ),
+                    const SizedBox(width: 10),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isIconUpStep = !isIconUpStep;
+                        });
+                      },
+                      child: Icon(
+                        isIconUpStep
+                            ? Iconsax.arrow_up_2_copy
+                            : Iconsax.arrow_down_1_copy,
+                        color: isIconUpStep
+                            ? const Color.fromARGB(255, 255, 114, 105)
+                            : const Color.fromARGB(255, 255, 255, 255),
+                        size: 23,
                       ),
-                      const SizedBox(width: 10),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            isIconUpStep = !isIconUpStep;
-                          });
-                        },
-                        child: Icon(
-                          isIconUpStep
-                              ? Iconsax.arrow_up_2_copy
-                              : Iconsax.arrow_down_1_copy,
-                          color: isIconUpStep
-                              ? const Color.fromARGB(255, 255, 114, 105)
-                              : const Color.fromARGB(255, 255, 255, 255),
-                          size: 23,
-                        ),
-                      ),
-                      const SizedBox(width: 24),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  instructions(isIconUpStep: isIconUpStep, widget: widget),
-                  const SizedBox(
-                    height: 26,
-                  ),
-                  const SizedBox(
-                    height: 45,
-                  ),
-                ]),
-              ),
+                    ),
+                    const SizedBox(width: 24),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                instructions(isIconUpStep: isIconUpStep, widget: widget),
+                const SizedBox(
+                  height: 26,
+                ),
+                const SizedBox(
+                  height: 45,
+                ),
+              ]),
             ),
           ),
           const Padding(

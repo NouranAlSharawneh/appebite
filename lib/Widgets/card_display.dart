@@ -1,7 +1,6 @@
 import 'package:akar_icons_flutter/akar_icons_flutter.dart';
 import 'package:appebite/posted_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
@@ -138,7 +137,7 @@ class _CardDisplayState extends State<CardDisplay> {
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        '${rating.toStringAsFixed(2)}',
+                        rating.toStringAsFixed(2),
                         style: const TextStyle(
                           fontFamily: 'Poppins',
                           color: Color.fromARGB(255, 0, 0, 0),
