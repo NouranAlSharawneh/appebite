@@ -1,4 +1,4 @@
-import 'package:appebite/recipe_info.dart';
+import 'package:appebite/RecipeInfo.dart';
 import 'package:flutter/material.dart';
 import 'package:appebite/pages/DietaryPlan/recipe_card.dart';
 import 'package:appebite/pages/DietaryPlan/recipe.dart';
